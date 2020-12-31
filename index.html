@@ -1,0 +1,1877 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前端学习之路">
+<meta property="og:type" content="website">
+<meta property="og:title" content="前端学习之路">
+<meta property="og:url" content="https://zhulichao.github.io/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="前端学习之路">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端学习之路">
+<meta name="twitter:description" content="前端学习之路">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">156</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/12/04/qiankun-base/" itemprop="url">
+                  qiankun 集成
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-12-04T15:39:29+08:00" content="2020-12-04">
+              2020-12-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Project-Base/" itemprop="url" rel="index">
+                    <span itemprop="name">Project Base</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a href="https://qiankun.umijs.org/" target="_blank" rel="external">qiankun（乾坤）</a> 是一个基于 single-spa 的微前端实现库，旨在帮助大家能更简单、无痛的构建一个生产可用微前端架构系统。</p>
+</blockquote>
+<p>开发环境下，集成 qiankun 比较简单，常规项目也没什么问题。但是我们的项目有些特殊性，主要原因是使用了已经打完包的技术平台，技术平台中有授权校验，又使用了 cesium 地图相关的功能。</p>
+<p>生产环境部署还没测！！！</p>
+<h2 id="特殊包-mapv-的引用报错"><a href="#特殊包-mapv-的引用报错" class="headerlink" title="特殊包 mapv 的引用报错"></a>特殊包 mapv 的引用报错</h2><p>业务平台，用户端使用了技术平台，后台端也使用了技术平台，火星科技引用的 mapv 包，在加载后会注册全局变量 window.L，内部对 L 有一些判断逻辑，进入用户端时 L 已经被注册了，再进入后台端，L 已经存在，导致 mapv 内部的判断逻辑会出错。解决方案如下，在进入后台端前卸载 L 变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">registerMicroApps(</div><div class="line">  [</div><div class="line">    &#123;</div><div class="line">      name: <span class="string">'vue'</span>,</div><div class="line">      entry: <span class="string">'//localhost:1024'</span>,</div><div class="line">      container: <span class="string">'#container'</span>,</div><div class="line">      activeRule: genActiveRule(<span class="string">'/cms'</span>),</div><div class="line">    &#125;,</div><div class="line">  ],</div><div class="line">  &#123;</div><div class="line">    beforeLoad: () =&gt; &#123;</div><div class="line">      <span class="built_in">window</span>.L = <span class="literal">undefined</span>;</div><div class="line">    &#125;,</div><div class="line">  &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
+<h2 id="请求静态资源报错"><a href="#请求静态资源报错" class="headerlink" title="请求静态资源报错"></a>请求静态资源报错</h2><p>src/assets 下的资源，或者通过 import 加载的 static 下的静态资源，都会经过打包编译，是没有问题的。但是直接引用 static 下的资源路径，就会找不到。解决办法是在这些直接引用的静态资源前面添加 <code>window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__</code> 变量。</p>
+<h2 id="cesium-CESIUM-BASE-URL-变量"><a href="#cesium-CESIUM-BASE-URL-变量" class="headerlink" title="cesium CESIUM_BASE_URL 变量"></a>cesium CESIUM_BASE_URL 变量</h2><p>因为 cesium 是被技术平台引用的，经过打包后被业务平台引用的，cesium 的 CESIUM_BASE_URL 变量的定义是在技术平台中定义的，也需要定义成动态的值才能在经过 qiankun 引用时找到。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'CESIUM_BASE_URL'</span>: <span class="string">'window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__ + "/static/cesium"'</span>,</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/11/23/business-platform/" itemprop="url">
+                  business-platform
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-11-23T13:41:21+08:00" content="2020-11-23">
+              2020-11-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>epipe-vp-web 用户端项目，epipe-vp-web-cms 后台项目。这两个项目独立开发，epipe-vp-web-cms 打包后，发布到 npm 上。epipe-vp-web 通过 npm install 安装后台项目，通过 iframe 引用后台项目，iframe 无法直接引用 node_modules 下的资源，可以通过 webpack 配置，将打包后的静态文件拷贝到当前项目中，iframe 就能引到了。</p>
+<h2 id="Vuex-结构"><a href="#Vuex-结构" class="headerlink" title="Vuex 结构"></a>Vuex 结构</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</div><div class="line">  modules: &#123;</div><div class="line">    user, <span class="comment">// 登录相关、用户信息</span></div><div class="line">    permission, <span class="comment">// 根据路由生成菜单信息</span></div><div class="line">    userConfig, <span class="comment">// 用户设置，主题、布局等</span></div><div class="line">    checkedLayer, <span class="comment">// 图层树中已勾选的图层</span></div><div class="line">    checkedProject, <span class="comment">// 项目过滤中已勾选的项目</span></div><div class="line">    companyInfo, <span class="comment">// 公司信息</span></div><div class="line">    createdModal, <span class="comment">// 已经初始化的 Modal 弹框，可全局控制关闭</span></div><div class="line">    currentPage, <span class="comment">// 当前页面</span></div><div class="line">    layerCache,</div><div class="line">  &#125;,</div><div class="line">  getters,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="巧用-css"><a href="#巧用-css" class="headerlink" title="巧用 css"></a>巧用 css</h2><p>select 用图片回填，可以用 css 绝对定位将要显示的元素，也就是图片，放在 select 输入框元素的上面，设置 <code>pointer-event: none;</code> 将鼠标事件穿透，来正常触发 select 点击事件。</p>
+<p>底图切换按钮，将 cesium 底图切换按钮用绝对定位放在自定义底图按钮下层，将图片透明度设置为 0，自定义的底图按钮设置 <code>pointer-event: none;</code> 将鼠标事件穿透，来触发 cesium 底图切换按钮。这时功能是没问题的，但是因为将自定义底图按钮的鼠标事件穿透了，也无法触发 hover 和 active 样式，效果不好。处理方式是将自定义底图按钮通过 <code>visibility: hidden;</code> 隐藏起来，cesium 底图按钮除了图片透明度为 0，还需要用 <code>:after</code> 设置按钮中的文字，背景色设置成按钮一样可切换主色，就实现了自定义底图按钮的效果。</p>
+<h2 id="iView-按需引用"><a href="#iView-按需引用" class="headerlink" title="iView 按需引用"></a>iView 按需引用</h2><p>项目里，除了主要使用的组件库，如 element-ui，其它使用的组件库，尽量使用按需引用，减少打包后的体积。</p>
+<h2 id="Modal-组件"><a href="#Modal-组件" class="headerlink" title="Modal 组件"></a>Modal 组件</h2><p>基于 el-dialog 组件进行封装，在 mounted 中根据传入的 left、right 等值，设置 Modal 的位置，<code>this.$refs.mapModal.$refs.dialog.style.setProperty(&#39;top&#39;, this.top);</code> ，在 watch 中监听 left、right 等参数的变化修改位置。使用 setProperty 是因为这种方式可以设置样式的 <code>!important</code>。</p>
+<p>在全局状态管理中管理 Modal，在 created 的时候将 Modal 的名字和关闭的回调函数添加到 vuex 中，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">created() &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.addCloseToStore) &#123;</div><div class="line">    <span class="keyword">this</span>.$store.dispatch(<span class="string">'AddCreatedModal'</span>, &#123;</div><div class="line">      name: <span class="keyword">this</span>.name,</div><div class="line">      handleModalClose: <span class="keyword">this</span>.handleModalClose,</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>在 vuex 中有关闭所有 Modal、关闭指定的多个 Modal、关闭除指定外的所有 Modal 的事件。</p>
+<h2 id="Modal-避让"><a href="#Modal-避让" class="headerlink" title="Modal 避让"></a>Modal 避让</h2><p>在要打开多个 Modal 的组件中，定义一个记录当前打开 Modal 的数组，每次打开一个 Modal 时调用 handleModalShow 方法将要打开的 Modal 的名字和宽度放入数组中，并调用 reCalculateLeft() 方法计算 left 值，该值时传入 Modal 组件的参数。每次关闭 Modal 时将数组中的对应元素去掉，并调用所有 Modal 对应的 reCalculateLeft() 方法重新计算位置，页面中添加动画。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">handleModalShow(refName) &#123;</div><div class="line">  <span class="keyword">let</span> position = <span class="number">-1</span>;</div><div class="line">  <span class="keyword">this</span>.openedModal.forEach((item, index) =&gt; &#123;</div><div class="line">    <span class="keyword">if</span> (item.name === <span class="keyword">this</span>.$refs[refName].name) &#123;</div><div class="line">      position = index;</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">if</span> (position &lt; <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.openedModal.push(&#123;</div><div class="line">      name: <span class="keyword">this</span>.$refs[refName].name,</div><div class="line">      width: <span class="keyword">this</span>.$refs[refName].width,</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">this</span>.$refs[refName].handleShow();</div><div class="line">  &#125;</div><div class="line">&#125;,</div><div class="line">handleModalClose(name) &#123;</div><div class="line">  <span class="keyword">let</span> position = <span class="number">-1</span>;</div><div class="line">  <span class="keyword">this</span>.openedModal.forEach((item, index) =&gt; &#123;</div><div class="line">    <span class="keyword">if</span> (item.name === name) &#123;</div><div class="line">      position = index;</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">if</span> (position &gt; <span class="number">-1</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.openedModal.splice(position, <span class="number">1</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">this</span>.$refs.pbsTreeModal &amp;&amp; <span class="keyword">this</span>.$refs.pbsTreeModal.reCalculateLeft();</div><div class="line">  <span class="keyword">this</span>.$refs.pbsIntroductionModal &amp;&amp; <span class="keyword">this</span>.$refs.pbsIntroductionModal.reCalculateLeft();</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<h2 id="添加新模块"><a href="#添加新模块" class="headerlink" title="添加新模块"></a>添加新模块</h2><ul>
+<li><p>/src/views/map/components 中添加新模块，如文件名为 XXX，有 handleOpen 方法入口</p>
+</li>
+<li><p>/src/views/map/header/Content/index.vue 中添加新组件 XXX 的引用</p>
+</li>
+<li><p>菜单管理中，需要有一个名为“用户端菜单”的菜单，它下面添加的菜单会显示在用户端Header中</p>
+</li>
+<li><p>菜单管理中，添加新菜单，路由地址中填入 XXX，与文件名或文件夹名保持一致</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/11/23/technology-platform/" itemprop="url">
+                  technology-platform
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-11-23T09:37:58+08:00" content="2020-11-23">
+              2020-11-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="结构简介"><a href="#结构简介" class="headerlink" title="结构简介"></a>结构简介</h2><p>技术平台 epipe-visual-engine 项目，其实是三个项目，一个是 EVECesium 项目，一个是 EVEThree 项目，一个是网站项目。我们是通过一套代码，或者说是一个代码仓库，来维护的这三个项目，通过配置 webpack，打包后也是生成三个包。</p>
+<img src="/2020/11/23/technology-platform/folder.jpg" width="400" title="目录结构">
+<ul>
+<li>/app 下是网站代码</li>
+<li>/EVECesium 是 cesium API 代码</li>
+<li>/EVEThree 是 three.js API 代码</li>
+<li>/build/app 是打包网站的配置</li>
+<li>/build/EVECesium 是打包 cesium API 的配置</li>
+<li>/build/EVEThree 是打包 three.js API 的配置</li>
+<li>/dist_app 是网站打包后的文件</li>
+<li>/dist_EVECesium 是 cesium API 打包后的文件，可发布到 npm 安装使用</li>
+<li>/dist_EVEThree 是 three.js API 打包后的文件，可发布到 npm 安装使用</li>
+<li>/static/app 是网站中使用的静态资源</li>
+<li>/static/doc 是使用 jsdoc 生成的静态文件，里面分别有 EVECesium、EVEThree 目录</li>
+<li>/static/EVECesium 是 cesium API 使用的静态资源，如地图上的图片</li>
+<li>/static/EVEThree 是 three.js API 使用的静态资源，如模型上的图片</li>
+<li>/jsdoc 下是使用 jsdoc 根据注释生成的静态文件的自定义配置</li>
+<li>/build/generateLicense.js 文件是生成秘钥的脚本，被 <code>npm run generateLicense</code> 命令引用</li>
+</ul>
+<h2 id="授权简介"><a href="#授权简介" class="headerlink" title="授权简介"></a>授权简介</h2><img src="/2020/11/23/technology-platform/authorization.jpg" title="授权逻辑">
+<h3 id="生成秘钥"><a href="#生成秘钥" class="headerlink" title="生成秘钥"></a>生成秘钥</h3><p><code>npm run generateLicense</code> 将 /static/license 明文文件加密后生成 /license 文件，拷贝到需要的项目即可。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"modules"</span>: [</div><div class="line">    <span class="string">"EVECesium"</span>,</div><div class="line">    <span class="string">"EVEThree"</span></div><div class="line">  ],</div><div class="line">  <span class="attr">"type"</span>: <span class="string">"permanent"</span>,</div><div class="line">  <span class="attr">"domains"</span>: [</div><div class="line">    <span class="string">"localhost"</span>,</div><div class="line">    <span class="string">"127.0.0.1"</span>,</div><div class="line">    <span class="string">"192.168.70.119"</span>,</div><div class="line">    <span class="string">"192.168.70.69"</span></div><div class="line">  ],</div><div class="line">  <span class="attr">"created"</span>: <span class="string">"2020-08-11"</span>,</div><div class="line">  <span class="attr">"expired"</span>: <span class="string">"60"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>modules 表示授权的包，可为多个</li>
+<li>本项目或业务平台引用指定 type 为 permanent，添加 domains 为本地域名</li>
+<li>生产环境指定 type 为 production，添加 domains 为域名或IP加端口</li>
+<li>开发环境指定 type 为 development，添加 created 创建时间、expired 过期天数</li>
+</ul>
+<h3 id="解密逻辑、输出版权信息"><a href="#解密逻辑、输出版权信息" class="headerlink" title="解密逻辑、输出版权信息"></a>解密逻辑、输出版权信息</h3><p>EVECesium 或 EVEThree 中读入 static/license 文件，校验逻辑放在 static/EVECesium/validate 中，输出版权信息放在 static/EVECesium/info 中。解密逻辑和输出版权信息，在 epipe-visual-engine 项目中看到的，是明文的文件，但是在打包后生成的是加密后的文件。上面三个文件读入后，都需要执行解密逻辑，然后通过 eval 执行 validate 校验和输入版权信息。</p>
+<p>再说 static/license 正常应该是加密后的授权文件，在技术平台自身的项目 epipe-visual-engine 中，为了维护方便，static/license 是明文文件，就像 validate 和 info 文件一样，通过 webpack 插件 copy-webpack-plugin 打包后生成加密后的文件。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/11/10/lottie-web/" itemprop="url">
+                  使用 Lottie 加载动画
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-11-10T11:29:09+08:00" content="2020-11-10">
+              2020-11-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>基于 lottie ，将 After Effects 导出的 json 文件渲染成 svg/canvas/html 动画效果。我使用的是 <a href="https://github.com/airbnb/lottie-web" target="_blank" rel="external">lottie-web</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>npm install lottie-web --save</code></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">  &lt;div id=&quot;lottie_box&quot; class=&quot;login-form-container&quot; /&gt;</div><div class="line">&lt;/template&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">import lottie from &apos;lottie-web&apos;;</div><div class="line">import * as animationData from &apos;@/assets/image/login-data.json&apos;;</div><div class="line"></div><div class="line">export default &#123;</div><div class="line">  mounted() &#123;</div><div class="line">    lottie.loadAnimation(&#123;</div><div class="line">      container: document.getElementById(&apos;lottie_box&apos;),</div><div class="line">      renderer: &apos;svg&apos;,</div><div class="line">      loop: true,</div><div class="line">      autoplay: true,</div><div class="line">      animationData: animationData.default,</div><div class="line">    &#125;);</div><div class="line">  &#125;,</div><div class="line">&#125;;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/11/06/css-border-overlap/" itemprop="url">
+                  css-border-overlap
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-11-06T13:59:43+08:00" content="2020-11-06">
+              2020-11-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="css-处理边框叠加"><a href="#css-处理边框叠加" class="headerlink" title="css 处理边框叠加"></a>css 处理边框叠加</h2><p>如图所示，想要做一个按钮组的功能，有 hover 效果。</p>
+<img src="/2020/11/06/css-border-overlap/buttons.jpg" title="按钮组">
+<p>如果做一个 ul 列表，然后给每个 li 加上边框，相邻列表的边框就会变成 2px，解决方法是给 li 在样式中指定 <code>margin-right: -1px;</code> 这样两个边框就可以重叠在一起了。</p>
+<p>但是在这个 li 加了 hover 后，鼠标悬停让边框变色，每个变色的只会是上下左三条框，右边框被盖住，看不出效果了，解决方法是给 li 在 hover 时提高层级，就达到了想要的效果。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">li</span> &#123;</div><div class="line">   <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#FF0000</span>;</div><div class="line">   <span class="attribute">margin-right</span>: -<span class="number">1px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">li</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">   <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#0000FF</span>;</div><div class="line">   <span class="attribute">position</span>: relative;</div><div class="line">   <span class="attribute">z-index</span>: <span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="css-让点击穿透"><a href="#css-让点击穿透" class="headerlink" title="css 让点击穿透"></a>css 让点击穿透</h2><p>pointer-event: none; // 点击穿透<br>pointer-event: auto; // 恢复点击</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/10/10/self-documenting-code/" itemprop="url">
+                  自文档化代码
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-10-10T09:45:18+08:00" content="2020-10-10">
+              2020-10-10
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="自文档化代码（Self-Documenting-Code）"><a href="#自文档化代码（Self-Documenting-Code）" class="headerlink" title="自文档化代码（Self Documenting Code）"></a>自文档化代码（Self Documenting Code）</h2><ul>
+<li>不需要额外的编写、维护文档或注释的工作</li>
+<li>文档或注释要随着代码更新，维护版本，多了不好管理</li>
+<li>文档或注释会增加人们的阅读量</li>
+<li>不要编写需要外部文档支持的代码</li>
+<li>唯一能完整并正确地描述代码的文档就是代码本身</li>
+</ul>
+<h2 id="怎么做"><a href="#怎么做" class="headerlink" title="怎么做"></a>怎么做</h2><ul>
+<li>变量、函数名语义化</li>
+<li>避免过多地嵌套语句</li>
+<li>要谨慎地优化代码，防止它不再清晰地表达基础的算法</li>
+<li>结构化，分解为原子函数</li>
+<li>把条件表达式换成函数或变量</li>
+<li>选择有描述型的类型</li>
+<li>命名常量</li>
+<li>提供必要的、有意义的注释，如复杂逻辑</li>
+<li>恰当的处理错误</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/09/27/object-oriented/" itemprop="url">
+                  面向对象
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-09-27T14:11:58+08:00" content="2020-09-27">
+              2020-09-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="《面向对象的思考过程》"><a href="#《面向对象的思考过程》" class="headerlink" title="《面向对象的思考过程》"></a>《面向对象的思考过程》</h2><p>面向对象的思考过程是一个非常优秀的设计理念。它可以独立于语言存在。如果你熟练掌握了面向对象的思考过程，那么就可以轻松地在不同的面向对象的语言之间切换。</p>
+<p>既然函数式编程这么好，为什么这几年的发展只能算是波澜不惊，没有掀起大风浪呢？</p>
+<ul>
+<li>首先面向对象的思考过程更加符合大家对世界的直观感受，毕竟不是每个人都是数学家</li>
+<li>其次是面向对象的编程范式和函数式编程的范式并不是完全对立的，一些语言既有函数式的特点，也有面向对象的特点</li>
+</ul>
+<p>历史上定义面向对象的语言拥有：封装（encapsulation）、继承（inheritance）、多态（polymorphism）的特点，我也会加入组合的特点。</p>
+<p>开发人员面临的问题一直就是如何将新的面向对象技术与现有的系统集成起来。</p>
+<p>包装对象是指在面向对象的类中包含其他代码。例如，可以将结构化代码包装到一个对象内部，使其行为就像对象一样。</p>
+<p>究竟什么是对象？一个对象由两部分组成：属性及行为，对象的基本定义是一个包含了数据和行为的实体。</p>
+<p>在面向对象的设计中，属性及行为包含在单个对象中，而在过程式或结构式设计中，属性和行为通常是分开的。</p>
+<p>结构化编程中数据往往与程序分离，而且数据是全局的，所以在你的代码作用域之外依然可以很容易修改数据。</p>
+<p>如果设计是恰当的，那么在面向对象模型中则不会有诸如全局数据的元素。事实上，在面向对象系统中具有很高的数据完整性。</p>
+<p>对象包含整型和字符串之类的实体，用于表示属性，对象也包含方法，用于表示行为。在对象中，方法用于操作数据及其他行为。更重要的是，你可以控制对对象中成员（包括属性及方法）的访问。</p>
+<p>在面向对象的术语中，数据表现为属性，行为表现为方法。限制访问具体属性和（或）方法的行为叫做数据隐藏。将属性及方法合并到同一个实体中，在面向对象中将这种方式叫做封装。</p>
+<p>对象不应当操作其它对象的内部数据。</p>
+<p>使用面向对象技术的程序本质上是对象的集合。</p>
+<p>存放在对象中的数据代表了该对象的状态。在面向对象数据中，数据被称为属性。</p>
+<p>对象的行为表示对象可以做什么。在面向对象程序设计术语中，这些行为包含在方法中，你可以通过发送消息的方式来调用方法。</p>
+<p>使用对象最强大、最有趣的一点在于，数据与行为是一个整体，而不是与行为代码割裂。</p>
+<p>XML 的出现并不全为了以可移植的方式表示数据。它也有一种替代方式起来让代码轻松访问数据。</p>
+<p>取值方法和赋值方法的理念就是数据隐藏。</p>
+<p>每个类图有三部分组成：类名、数据（属性）、行为（方法）。</p>
+<p>请注意没必要为每个对象的每个方法都实现一个物理副本。其实，每个对象指向了同一个实现。</p>
+<p>类是对象的蓝图。当你实例化一个对象时，你基于类来构建这个对象。</p>
+<p>类可以认为是对象的模板或者模具。</p>
+<p>类的数据通过属性来表示。每个类必须定义属性，用来存放该类实例化的每个对象的状态。</p>
+<p>在任何情况下，对对象中属性的访问应该由该对象自身控制，任何一个对象都不应该直接修改其它对象的属性。</p>
+<p>消息是对象之间的通信机制。例如，当对象A调用了对象B的一个方法，对象A向对象B发送了一个消息。对象B的响应由其返回值定义。</p>
+<p>对象仅暴露必要的接口来和其它对象进行交互。除了如何使用该对象，其它细节都应当对其它对象隐藏起来。</p>
+<p>数据隐藏是封装的主要部分。</p>
+<p>为了实现数据隐藏，必须将所有属性声明为 private。属性绝不是接口的一部分。只有 public 方法是类接口的一部分。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/09/26/component-splitting/" itemprop="url">
+                  组件拆分、设计
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-09-26T09:35:53+08:00" content="2020-09-26">
+              2020-09-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="组件设计"><a href="#组件设计" class="headerlink" title="组件设计"></a>组件设计</h2><ul>
+<li>各种名称要尽量语义化、规范化，如组件名、参数名、方法名，语义化可以起到注释的作用，规范化保证系统各处命名规则一致</li>
+<li>必要的容错处理，如没传参数、参数不正确等</li>
+<li>常用的设置可以提取为缺省值</li>
+<li>尽量提取出配置项，可预留用户自己定义内容的地方</li>
+<li>场景化，如 dialog 的 success、warning 状态</li>
+<li>可以拆分出子组件但不用过度组件化，适当的时候再分离也可以，维护良好的层次结构，可借助 StarUML 等工具画出组件图</li>
+<li>扁平化、面向数据的 state/props，更加纯粹的 state 变化，这也是Redux推崇的，完全的扁平化设计能带来的开发体验和性能提升</li>
+<li>考虑集中、统一的状态管理</li>
+<li>提前考虑可扩展性，尽量做到后面的改变能向下兼容</li>
+<li>分阶段、多版本维护，没必要一次就完成全部功能</li>
+<li>维护详细的 CHANGELOG 或其它文档，能够记录变更历史</li>
+<li>辅助代码分离，提取配置代码、假数据、非技术说明文档等</li>
+</ul>
+<h2 id="组件化规范"><a href="#组件化规范" class="headerlink" title="组件化规范"></a>组件化规范</h2><ul>
+<li>组件之间独立、松耦合</li>
+<li>组件间嵌套使用</li>
+<li>组件间通信</li>
+<li>组件公用部分设计</li>
+<li>组件的构建打包</li>
+<li>组件继承与复用性</li>
+<li>私有组件的统一管理</li>
+<li>根据特性场景进行扩展或自定义</li>
+</ul>
+<h2 id="组件拆分"><a href="#组件拆分" class="headerlink" title="组件拆分"></a>组件拆分</h2><h3 id="拆分依据"><a href="#拆分依据" class="headerlink" title="拆分依据"></a>拆分依据</h3><ul>
+<li>通常一个工程，由多个模块组成，每个模块由多个组件构成</li>
+<li>可复用性，基础组件，方便统一管理，src/components</li>
+<li>可维护性，拆分的依据一般是单一原则，分而治之，降低复杂度，src/views/xxx/components</li>
+<li>可测试性，耦合度低到一定程度就可以了，没必要再无限制的拆分下去</li>
+<li>适应UI设计师的建模</li>
+<li>方便协作，有人控制逻辑，有人只写展示组件</li>
+<li>不拆分是否有性能影响，使拆分后的组件更容易判断是否更新</li>
+<li>考虑拆分的好处是否超过了成本</li>
+</ul>
+<h3 id="拆分方式"><a href="#拆分方式" class="headerlink" title="拆分方式"></a>拆分方式</h3><ul>
+<li>区分展示组件和容器组件，展示组件，通常没有自己的状态，只为展示信息，容器组件，有自己的状态、逻辑处理、数据绑定等，通常调用展示组件</li>
+<li>切割复杂的 render() 方法，创建子组件</li>
+<li>模板化组件，固定的东西放在模板组件中，业务组件进行逻辑处理后调用模板组件</li>
+<li>高阶组件，做一层封装返回新组件</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/09/26/css-shapes/" itemprop="url">
+                  css-shapes
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-09-26T09:34:35+08:00" content="2020-09-26">
+              2020-09-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://jiongks.name/slides/five-css-features/#17" target="_blank" rel="external">My Slides</a></p>
+<h2 id="css-shape"><a href="#css-shape" class="headerlink" title="css shape"></a>css shape</h2><p>shape-outside 定义当前元素的形状为非矩形形状，相邻元素中的内容可沿着此元素形状的边缘进行编写</p>
+<p>shape-margin 就是沿着 shape-outside 属性生成形状再向外扩展相应的距离，不过扩展后的形状不能超过参考盒模型的区域！</p>
+<p>shape-image-threshold 这个属性是专门用来设置图片形状提取时透明通道的阈值，范围为0 ~ 1，默认值为0；阈值为n代表图片中透明通道值大于n的区域都是浮动区域。</p>
+<h2 id="css-exclusions"><a href="#css-exclusions" class="headerlink" title="css exclusions"></a>css exclusions</h2><p>致力于解决文本环绕图片的效果，只有微软旗下 IE 和 Edge 可以用</p>
+<p><a href="http://www.360doc.com/content/17/0209/17/13092497_627829160.shtml" target="_blank" rel="external">http://www.360doc.com/content/17/0209/17/13092497_627829160.shtml</a><br><a href="https://www.html5rocks.com/en/tutorials/regions/adobe/" target="_blank" rel="external">https://www.html5rocks.com/en/tutorials/regions/adobe/</a></p>
+<p>wrap-flow 设置 exclusion 区域以及内容围绕的方式<br>wrap-margin 设置 exclusion 区与周边围绕区域的间距</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/08/25/theme-change/" itemprop="url">
+                  主题切换思路
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-08-25T16:42:43+08:00" content="2020-08-25">
+              2020-08-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Project-Base/" itemprop="url" rel="index">
+                    <span itemprop="name">Project Base</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="js-中动态引入样式文件-import"><a href="#js-中动态引入样式文件-import" class="headerlink" title="js 中动态引入样式文件 import()"></a>js 中动态引入样式文件 import()</h2><p>不能通过 import() 动态引用样式文件来解决主题切换的问题，因为 import 文件后引入的样式会覆盖先引入的样式，如果选择主题1、主题2，再选择主题1是没办法切换回去的。</p>
+<h2 id="export-实现-CSS、JS变量共享"><a href="#export-实现-CSS、JS变量共享" class="headerlink" title=":export 实现 CSS、JS变量共享"></a>:export 实现 CSS、JS变量共享</h2><p>scss 中导出变量，js 中导入变量。但是 js 中动态改变这个变量的值后无法实现数据双向绑定，dom 不会实时动态渲染。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$--color-primary</span>: <span class="number">#1890ff</span>;</div><div class="line"></div><div class="line">:export &#123;</div><div class="line">  theme: <span class="variable">$--color-primary</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> variables <span class="keyword">from</span> <span class="string">'@/variables.scss'</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(variables.theme);</div></pre></td></tr></table></figure>
+<p>如果要设置主题颜色，可以将从 css 中导出的变量值注入到 js 的全局变量中，需要设置主题颜色的地方，将样式写在 js 中并使用这个全局变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">  &lt;el-menu</div><div class="line">    :active-text-color=&quot;settings.theme&quot;</div><div class="line">  &gt;</div><div class="line">  &lt;router-link</div><div class="line">    :style=&quot;activeStyle(tag)&quot;</div><div class="line">  &gt;</div><div class="line">&lt;/template&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">export default &#123;</div><div class="line">  computed: &#123;</div><div class="line">    ...mapState([&quot;settings&quot;]),</div><div class="line">  &#125;,</div><div class="line">  methods: &#123;</div><div class="line">    activeStyle(tag) &#123;</div><div class="line">      if (!this.isActive(tag)) return &#123;&#125;;</div><div class="line">      return &#123;</div><div class="line">        &quot;background-color&quot;: this.settings.theme,</div><div class="line">        &quot;border-color&quot;: this.settings.theme</div><div class="line">      &#125;;</div><div class="line">    &#125;,</div><div class="line">&#125;,</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h2 id="js-动态改变-css-的变量"><a href="#js-动态改变-css-的变量" class="headerlink" title="js 动态改变 css 的变量"></a>js 动态改变 css 的变量</h2><p>设定 css 可以直接读取的参数，注意变量名前面要加两根连词线，这是 css 的规则。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>].style.setProperty(<span class="string">'--参数名'</span>,<span class="string">'值'</span>);</div></pre></td></tr></table></figure>
+<p>css 中读取参数</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$--color-primary: var(--参数名);</div></pre></td></tr></table></figure>
+<h2 id="js-改变主-html-元素上的类"><a href="#js-改变主-html-元素上的类" class="headerlink" title="js 改变主 html 元素上的类"></a>js 改变主 html 元素上的类</h2><p>js 中修改主 html 元素上的类名，css 中不同类名下定义相同的变量，取不同的颜色值，页面元素使用变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// name 为 blue 或 red</span></div><div class="line"><span class="built_in">document</span>.documentElement.className = <span class="string">'theme-'</span> + name;</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.theme-blue</span> &#123;</div><div class="line">  <span class="attribute">--color</span>: blue;</div><div class="line">  <span class="attribute">--background-color</span>: red;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.theme-red</span> &#123;</div><div class="line">  <span class="attribute">--color</span>: red;</div><div class="line">  <span class="attribute">--background-color</span>: blue;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.item</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="built_in">var</span>(--color);</div><div class="line">  <span class="attribute">background-color</span>: <span class="built_in">var</span>(--background-color);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="data-theme-多套主题配色方案"><a href="#data-theme-多套主题配色方案" class="headerlink" title="data-theme 多套主题配色方案"></a>data-theme 多套主题配色方案</h2><p>html 根标签设置一个 data-theme 属性，然后通过 js 切换 data-theme 的属性值，SCSS 根据此属性来判断使用对应主题变量。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$themes</span>: (</div><div class="line">  red: (</div><div class="line">    text-color-primary: <span class="number">#dc2b34</span>,</div><div class="line">    bg-color-primary: <span class="number">#d91720</span>,</div><div class="line">  ),</div><div class="line">  blue: (</div><div class="line">    text-color-primary: <span class="number">#78A4FA</span>,</div><div class="line">    bg-color-primary: <span class="number">#78A4FA</span>,</div><div class="line">  ),</div><div class="line">)</div><div class="line"></div><div class="line">@mixin themeify &#123;</div><div class="line">  @each <span class="variable">$theme-name</span>, <span class="variable">$theme-map</span> in <span class="variable">$themes</span> &#123;</div><div class="line">    <span class="variable">$theme-map</span>: <span class="variable">$theme-map</span> !global;</div><div class="line">    <span class="selector-attr">[data-theme=#&#123;$theme-name&#125;]</span> &amp; &#123;</div><div class="line">      @<span class="keyword">content</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@function themed(<span class="variable">$key</span>) &#123;</div><div class="line">  @return map-get(<span class="variable">$theme-map</span>, <span class="variable">$key</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">@<span class="keyword">mixin</span> themedColor(<span class="variable">$key</span>, <span class="variable">$name</span>) &#123;</div><div class="line">  @<span class="keyword">include</span> themeify &#123;</div><div class="line">    #&#123;<span class="variable">$key</span>&#125;: themed(<span class="variable">$name</span>) <span class="meta">!important</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@import './mixin';</div><div class="line"></div><div class="line">.testTheme .item &#123;</div><div class="line">  @include themedColor('color', 'text-color-primary');</div><div class="line">  @include themedColor('background-color', 'bg-color-primary');</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// name 为 blue 或 red</span></div><div class="line"><span class="built_in">window</span>.document.documentElement.setAttribute(<span class="string">'data-theme'</span>, name);</div></pre></td></tr></table></figure>
+<h2 id="若依方案"><a href="#若依方案" class="headerlink" title="若依方案"></a>若依方案</h2><p><a href="https://vue.ruoyi.vip/login" target="_blank" rel="external">若依管理系统在线演示地址</a></p>
+<p>思路是下载 element-ui 相应版本的 theme-chalk 样式文件，将其中的主题相关颜色替换成新的颜色值，然后添加到页面的 style 标签上。因为页面中除了 element-ui 还有自己定义的主题样式，再查找一遍所有的 style 标签找到使用主题颜色的标签，替换其中的主题相关颜色值。注意，这种方式只进行了 element-ui 组件基础颜色的切换。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">  &lt;el-color-picker</div><div class="line">    v-model=&quot;theme&quot;</div><div class="line">    :predefine=&quot;[&apos;#409EFF&apos;, &apos;#1890ff&apos;, &apos;#304156&apos;,&apos;#212121&apos;,&apos;#11a983&apos;, &apos;#13c2c2&apos;, &apos;#6959CD&apos;, &apos;#f5222d&apos;, ]&quot;</div><div class="line">    class=&quot;theme-picker&quot;</div><div class="line">    popper-class=&quot;theme-picker-dropdown&quot;</div><div class="line">  /&gt;</div><div class="line">&lt;/template&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">const version = require(&apos;element-ui/package.json&apos;).version // element-ui version from node_modules</div><div class="line">const ORIGINAL_THEME = &apos;#409EFF&apos; // default color</div><div class="line"></div><div class="line">export default &#123;</div><div class="line">  data() &#123;</div><div class="line">    return &#123;</div><div class="line">      chalk: &apos;&apos;, // content of theme-chalk css</div><div class="line">      theme: &apos;&apos;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  computed: &#123;</div><div class="line">    // store 中的 theme 值</div><div class="line">    defaultTheme() &#123;</div><div class="line">      return this.$store.state.settings.theme</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  watch: &#123;</div><div class="line">    // 监听 store 中的 theme 值发生变化，修改 theme 值</div><div class="line">    defaultTheme: &#123;</div><div class="line">      handler: function(val, oldVal) &#123;</div><div class="line">        this.theme = val</div><div class="line">      &#125;,</div><div class="line">      immediate: true</div><div class="line">    &#125;,</div><div class="line">    // 监听 theme 值发生变化</div><div class="line">    async theme(val) &#123;</div><div class="line">      const oldVal = this.chalk ? this.theme : ORIGINAL_THEME</div><div class="line">      if (typeof val !== &apos;string&apos;) return</div><div class="line">      const themeCluster = this.getThemeCluster(val.replace(&apos;#&apos;, &apos;&apos;))</div><div class="line">      // 此次改变时，上一次的颜色值，用来替换带有主题颜色值的 style 标签</div><div class="line">      const originalCluster = this.getThemeCluster(oldVal.replace(&apos;#&apos;, &apos;&apos;))</div><div class="line"></div><div class="line">      const $message = this.$message(&#123;</div><div class="line">        message: &apos;  Compiling the theme&apos;,</div><div class="line">        customClass: &apos;theme-message&apos;,</div><div class="line">        type: &apos;success&apos;,</div><div class="line">        duration: 0,</div><div class="line">        iconClass: &apos;el-icon-loading&apos;</div><div class="line">      &#125;)</div><div class="line"></div><div class="line">      const getHandler = (variable, id) =&gt; &#123;</div><div class="line">        return () =&gt; &#123;</div><div class="line">          // 初始化时的主题颜色值，用来修改 element-ui 的 theme-chalk 文件中对应的值，因为每次改变并没有将新的值更新到 this.chalk，所以每次都是用初始值替换新的值</div><div class="line">          const originalCluster = this.getThemeCluster(ORIGINAL_THEME.replace(&apos;#&apos;, &apos;&apos;))</div><div class="line">          const newStyle = this.updateStyle(this[variable], originalCluster, themeCluster)</div><div class="line"></div><div class="line">          let styleTag = document.getElementById(id)</div><div class="line">          if (!styleTag) &#123;</div><div class="line">            styleTag = document.createElement(&apos;style&apos;)</div><div class="line">            styleTag.setAttribute(&apos;id&apos;, id)</div><div class="line">            document.head.appendChild(styleTag)</div><div class="line">          &#125;</div><div class="line">          styleTag.innerText = newStyle</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      // 用 this.chalk 保存下载的 element-ui 的 theme-chalk 样式文件</div><div class="line">      if (!this.chalk) &#123;</div><div class="line">        const url = `https://unpkg.com/element-ui@$&#123;version&#125;/lib/theme-chalk/index.css`</div><div class="line">        await this.getCSSString(url, &apos;chalk&apos;)</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      const chalkHandler = getHandler(&apos;chalk&apos;, &apos;chalk-style&apos;)</div><div class="line">      // 替换 this.chalk 样式文件中的主题相关颜色值，将新的内容赋给指定的 style 标签</div><div class="line">      chalkHandler()</div><div class="line">      // 找到页面中带有旧颜色值的 style 标签，替换其中的主题相关颜色值</div><div class="line">      const styles = [].slice.call(document.querySelectorAll(&apos;style&apos;))</div><div class="line">        .filter(style =&gt; &#123;</div><div class="line">          const text = style.innerText</div><div class="line">          return new RegExp(oldVal, &apos;i&apos;).test(text) &amp;&amp; !/Chalk Variables/.test(text)</div><div class="line">        &#125;)</div><div class="line">      styles.forEach(style =&gt; &#123;</div><div class="line">        const &#123; innerText &#125; = style</div><div class="line">        if (typeof innerText !== &apos;string&apos;) return</div><div class="line">        style.innerText = this.updateStyle(innerText, originalCluster, themeCluster)</div><div class="line">      &#125;)</div><div class="line"></div><div class="line">      this.$emit(&apos;change&apos;, val)</div><div class="line"></div><div class="line">      $message.close()</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  methods: &#123;</div><div class="line">    updateStyle(style, oldCluster, newCluster) &#123;</div><div class="line">      let newStyle = style</div><div class="line">      oldCluster.forEach((color, index) =&gt; &#123;</div><div class="line">        newStyle = newStyle.replace(new RegExp(color, &apos;ig&apos;), newCluster[index])</div><div class="line">      &#125;)</div><div class="line">      return newStyle</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    getCSSString(url, variable) &#123;</div><div class="line">      return new Promise(resolve =&gt; &#123;</div><div class="line">        const xhr = new XMLHttpRequest()</div><div class="line">        xhr.onreadystatechange = () =&gt; &#123;</div><div class="line">          if (xhr.readyState === 4 &amp;&amp; xhr.status === 200) &#123;</div><div class="line">            this[variable] = xhr.responseText.replace(/@font-face&#123;[^&#125;]+&#125;/, &apos;&apos;)</div><div class="line">            resolve()</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">        xhr.open(&apos;GET&apos;, url)</div><div class="line">        xhr.send()</div><div class="line">      &#125;)</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    getThemeCluster(theme) &#123;</div><div class="line">      const tintColor = (color, tint) =&gt; &#123;</div><div class="line">        let red = parseInt(color.slice(0, 2), 16)</div><div class="line">        let green = parseInt(color.slice(2, 4), 16)</div><div class="line">        let blue = parseInt(color.slice(4, 6), 16)</div><div class="line"></div><div class="line">        if (tint === 0) &#123; // when primary color is in its rgb space</div><div class="line">          return [red, green, blue].join(&apos;,&apos;)</div><div class="line">        &#125; else &#123;</div><div class="line">          red += Math.round(tint * (255 - red))</div><div class="line">          green += Math.round(tint * (255 - green))</div><div class="line">          blue += Math.round(tint * (255 - blue))</div><div class="line"></div><div class="line">          red = red.toString(16)</div><div class="line">          green = green.toString(16)</div><div class="line">          blue = blue.toString(16)</div><div class="line"></div><div class="line">          return `#$&#123;red&#125;$&#123;green&#125;$&#123;blue&#125;`</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      const shadeColor = (color, shade) =&gt; &#123;</div><div class="line">        let red = parseInt(color.slice(0, 2), 16)</div><div class="line">        let green = parseInt(color.slice(2, 4), 16)</div><div class="line">        let blue = parseInt(color.slice(4, 6), 16)</div><div class="line"></div><div class="line">        red = Math.round((1 - shade) * red)</div><div class="line">        green = Math.round((1 - shade) * green)</div><div class="line">        blue = Math.round((1 - shade) * blue)</div><div class="line"></div><div class="line">        red = red.toString(16)</div><div class="line">        green = green.toString(16)</div><div class="line">        blue = blue.toString(16)</div><div class="line"></div><div class="line">        return `#$&#123;red&#125;$&#123;green&#125;$&#123;blue&#125;`</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      const clusters = [theme]</div><div class="line">      for (let i = 0; i &lt;= 9; i++) &#123;</div><div class="line">        clusters.push(tintColor(theme, Number((i / 10).toFixed(2))))</div><div class="line">      &#125;</div><div class="line">      clusters.push(shadeColor(theme, 0.1))</div><div class="line">      return clusters</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div><div class="line"></div><div class="line">&lt;style&gt;</div><div class="line">.theme-message,</div><div class="line">.theme-picker-dropdown &#123;</div><div class="line">  z-index: 99999 !important;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.theme-picker .el-color-picker__trigger &#123;</div><div class="line">  height: 26px !important;</div><div class="line">  width: 26px !important;</div><div class="line">  padding: 2px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.theme-picker-dropdown .el-color-dropdown__link-btn &#123;</div><div class="line">  display: none;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+<h2 id="webpack-theme-color-replacer"><a href="#webpack-theme-color-replacer" class="headerlink" title="webpack-theme-color-replacer"></a>webpack-theme-color-replacer</h2><p>参考<a href="https://github.com/iczer/vue-antd-admin" target="_blank" rel="external">Ant Design Pro 的 Vue 实现</a>项目的主题切换配置。主要代码涉及如下几个文件：</p>
+<p>vue.config.js<br>src/utils/themeUtil.js<br>src/store/modules/setting.js<br>src/App.vue<br>src/components/setting/Setting.vue</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
