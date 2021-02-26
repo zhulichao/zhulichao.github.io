@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="基于 lottie ，将 After Effects 导出的 json 文件渲染成 svg/canvas/html 动画效果。我使用的是 lottie-web 安装npm install lottie-web --save 使用1234567891011121314151617181920&amp;lt;template&amp;gt;  &amp;lt;div id=&amp;quot;lottie_box&amp;quot; cla">
+<meta name="description" content="基于 lottie ，将 After Effects 导出的 json 文件渲染成 svg/canvas/html 动画效果。我使用的是 lottie-web。 安装npm install lottie-web --save 使用1234567891011121314151617181920&amp;lt;template&amp;gt;  &amp;lt;div id=&amp;quot;lottie_box&amp;quot; cl">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 Lottie 加载动画">
 <meta property="og:url" content="https://zhulichao.github.io/2020/11/10/lottie-web/index.html">
 <meta property="og:site_name" content="前端学习之路">
-<meta property="og:description" content="基于 lottie ，将 After Effects 导出的 json 文件渲染成 svg/canvas/html 动画效果。我使用的是 lottie-web 安装npm install lottie-web --save 使用1234567891011121314151617181920&amp;lt;template&amp;gt;  &amp;lt;div id=&amp;quot;lottie_box&amp;quot; cla">
+<meta property="og:description" content="基于 lottie ，将 After Effects 导出的 json 文件渲染成 svg/canvas/html 动画效果。我使用的是 lottie-web。 安装npm install lottie-web --save 使用1234567891011121314151617181920&amp;lt;template&amp;gt;  &amp;lt;div id=&amp;quot;lottie_box&amp;quot; cl">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-23T08:54:11.751Z">
+<meta property="og:updated_time" content="2020-12-31T06:33:40.360Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 Lottie 加载动画">
-<meta name="twitter:description" content="基于 lottie ，将 After Effects 导出的 json 文件渲染成 svg/canvas/html 动画效果。我使用的是 lottie-web 安装npm install lottie-web --save 使用1234567891011121314151617181920&amp;lt;template&amp;gt;  &amp;lt;div id=&amp;quot;lottie_box&amp;quot; cla">
+<meta name="twitter:description" content="基于 lottie ，将 After Effects 导出的 json 文件渲染成 svg/canvas/html 动画效果。我使用的是 lottie-web。 安装npm install lottie-web --save 使用1234567891011121314151617181920&amp;lt;template&amp;gt;  &amp;lt;div id=&amp;quot;lottie_box&amp;quot; cl">
 
 
 
@@ -284,7 +284,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">156</span>
+              <span class="site-state-item-count">161</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -489,7 +489,7 @@
       
 
       
-        <p>基于 lottie ，将 After Effects 导出的 json 文件渲染成 svg/canvas/html 动画效果。我使用的是 <a href="https://github.com/airbnb/lottie-web" target="_blank" rel="external">lottie-web</a></p>
+        <p>基于 lottie ，将 After Effects 导出的 json 文件渲染成 svg/canvas/html 动画效果。我使用的是 <a href="https://github.com/airbnb/lottie-web" target="_blank" rel="external">lottie-web</a>。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>npm install lottie-web --save</code></p>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">  &lt;div id=&quot;lottie_box&quot; class=&quot;login-form-container&quot; /&gt;</div><div class="line">&lt;/template&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">import lottie from &apos;lottie-web&apos;;</div><div class="line">import * as animationData from &apos;@/assets/image/login-data.json&apos;;</div><div class="line"></div><div class="line">export default &#123;</div><div class="line">  mounted() &#123;</div><div class="line">    lottie.loadAnimation(&#123;</div><div class="line">      container: document.getElementById(&apos;lottie_box&apos;),</div><div class="line">      renderer: &apos;svg&apos;,</div><div class="line">      loop: true,</div><div class="line">      autoplay: true,</div><div class="line">      animationData: animationData.default,</div><div class="line">    &#125;);</div><div class="line">  &#125;,</div><div class="line">&#125;;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
 
@@ -571,7 +571,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

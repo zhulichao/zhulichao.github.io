@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="前端学习之路">
 <meta property="og:description" content="简介epipe-vp-web 用户端项目，epipe-vp-web-cms 后台项目。这两个项目独立开发，epipe-vp-web-cms 打包后，发布到 npm 上。epipe-vp-web 通过 npm install 安装后台项目，通过 iframe 引用后台项目，iframe 无法直接引用 node_modules 下的资源，可以通过 webpack 配置，将打包后的静态文件拷贝到当前项目">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-24T06:03:45.223Z">
+<meta property="og:updated_time" content="2020-12-31T07:26:15.240Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="business-platform">
 <meta name="twitter:description" content="简介epipe-vp-web 用户端项目，epipe-vp-web-cms 后台项目。这两个项目独立开发，epipe-vp-web-cms 打包后，发布到 npm 上。epipe-vp-web 通过 npm install 安装后台项目，通过 iframe 引用后台项目，iframe 无法直接引用 node_modules 下的资源，可以通过 webpack 配置，将打包后的静态文件拷贝到当前项目">
@@ -283,7 +283,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">156</span>
+              <span class="site-state-item-count">161</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -470,7 +470,7 @@
 
       
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>epipe-vp-web 用户端项目，epipe-vp-web-cms 后台项目。这两个项目独立开发，epipe-vp-web-cms 打包后，发布到 npm 上。epipe-vp-web 通过 npm install 安装后台项目，通过 iframe 引用后台项目，iframe 无法直接引用 node_modules 下的资源，可以通过 webpack 配置，将打包后的静态文件拷贝到当前项目中，iframe 就能引到了。</p>
-<h2 id="Vuex-结构"><a href="#Vuex-结构" class="headerlink" title="Vuex 结构"></a>Vuex 结构</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</div><div class="line">  modules: &#123;</div><div class="line">    user, <span class="comment">// 登录相关、用户信息</span></div><div class="line">    permission, <span class="comment">// 根据路由生成菜单信息</span></div><div class="line">    userConfig, <span class="comment">// 用户设置，主题、布局等</span></div><div class="line">    checkedLayer, <span class="comment">// 图层树中已勾选的图层</span></div><div class="line">    checkedProject, <span class="comment">// 项目过滤中已勾选的项目</span></div><div class="line">    companyInfo, <span class="comment">// 公司信息</span></div><div class="line">    createdModal, <span class="comment">// 已经初始化的 Modal 弹框，可全局控制关闭</span></div><div class="line">    currentPage, <span class="comment">// 当前页面</span></div><div class="line">    layerCache,</div><div class="line">  &#125;,</div><div class="line">  getters,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="Vuex-结构"><a href="#Vuex-结构" class="headerlink" title="Vuex 结构"></a>Vuex 结构</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</div><div class="line">  modules: &#123;</div><div class="line">    user, <span class="comment">// 登录相关、用户信息</span></div><div class="line">    permission, <span class="comment">// 根据路由生成菜单信息</span></div><div class="line">    userConfig, <span class="comment">// 用户设置，主题、布局等</span></div><div class="line">    checkedLayer, <span class="comment">// 图层树中已勾选的图层</span></div><div class="line">    checkedProject, <span class="comment">// 项目过滤中已勾选的项目</span></div><div class="line">    companyInfo, <span class="comment">// 公司信息</span></div><div class="line">    createdModal, <span class="comment">// 已经初始化的 Modal 弹框，可全局控制关闭</span></div><div class="line">    currentPage, <span class="comment">// 当前页面</span></div><div class="line">  &#125;,</div><div class="line">  getters,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <h2 id="巧用-css"><a href="#巧用-css" class="headerlink" title="巧用 css"></a>巧用 css</h2><p>select 用图片回填，可以用 css 绝对定位将要显示的元素，也就是图片，放在 select 输入框元素的上面，设置 <code>pointer-event: none;</code> 将鼠标事件穿透，来正常触发 select 点击事件。</p>
 <p>底图切换按钮，将 cesium 底图切换按钮用绝对定位放在自定义底图按钮下层，将图片透明度设置为 0，自定义的底图按钮设置 <code>pointer-event: none;</code> 将鼠标事件穿透，来触发 cesium 底图切换按钮。这时功能是没问题的，但是因为将自定义底图按钮的鼠标事件穿透了，也无法触发 hover 和 active 样式，效果不好。处理方式是将自定义底图按钮通过 <code>visibility: hidden;</code> 隐藏起来，cesium 底图按钮除了图片透明度为 0，还需要用 <code>:after</code> 设置按钮中的文字，背景色设置成按钮一样可切换主色，就实现了自定义底图按钮的效果。</p>
 <h2 id="iView-按需引用"><a href="#iView-按需引用" class="headerlink" title="iView 按需引用"></a>iView 按需引用</h2><p>项目里，除了主要使用的组件库，如 element-ui，其它使用的组件库，尽量使用按需引用，减少打包后的体积。</p>
@@ -563,7 +563,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -275,7 +275,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">156</span>
+              <span class="site-state-item-count">161</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -389,6 +389,892 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/28/css-scattered/" itemprop="url">
+                  CSS-零散知识
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-28T08:08:35+08:00" content="2016-09-28">
+              2016-09-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="text-indent"><a href="#text-indent" class="headerlink" title="text-indent"></a>text-indent</h2><p>段落的第一行缩进</p>
+<h2 id="css-hack"><a href="#css-hack" class="headerlink" title="css hack"></a>css hack</h2><p><a href="http://baike.baidu.com/view/1119452.htm?subLemmaId=1119452&amp;fromenter=CSShack" target="_blank" rel="external">css hack</a> 目的就是使你的CSS代码兼容不同的浏览器</p>
+<h2 id="CSS-border实现各个方向等腰直角三角"><a href="#CSS-border实现各个方向等腰直角三角" class="headerlink" title="CSS border实现各个方向等腰直角三角"></a>CSS border实现各个方向等腰直角三角</h2><p>HTML代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;span class=&quot;border_cort&quot;&gt;&lt;/span&gt;</div><div class="line">&lt;span class=&quot;border_corb&quot;&gt;&lt;/span&gt;</div><div class="line">&lt;span class=&quot;border_corl&quot;&gt;&lt;/span&gt;</div><div class="line">&lt;span class=&quot;border_corr&quot;&gt;&lt;/span&gt;</div></pre></td></tr></table></figure></p>
+<p>CSS代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">.border_cort, .border_corr, .border_corb, .border_corl &#123;</div><div class="line">    display: inline-block;</div><div class="line">    width: 0;</div><div class="line">    height: 0;</div><div class="line">    border-width: 6px;</div><div class="line">    overflow: hidden;</div><div class="line">    background-color: red;</div><div class="line">&#125;</div><div class="line">.border_cort &#123;</div><div class="line">    border-color: #333 transparent transparent;</div><div class="line">    border-style: solid dotted dotted;</div><div class="line">&#125;</div><div class="line">.border_corr &#123;</div><div class="line">    border-color: transparent #333 transparent transparent;</div><div class="line">    border-style: dotted solid dotted dotted;</div><div class="line">&#125;</div><div class="line">.border_corb &#123;</div><div class="line">    border-color: transparent transparent #333;</div><div class="line">    border-style: dotted dotted solid;</div><div class="line">&#125;</div><div class="line">.border_corl &#123;</div><div class="line">    border-color: transparent transparent transparent #333;</div><div class="line">    border-style: dotted dotted dotted solid;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<img src="/2016/09/28/css-scattered/transparent.png" title="结果如图">
+<img src="/2016/09/28/css-scattered/transparent2.png" title="原理如图">
+<h2 id="important"><a href="#important" class="headerlink" title="!important"></a>!important</h2><p>使用!important定义的样式拥有最高的优先级，IE6不支持，会按正常优先级显示，可以解决一些浏览器的兼容性问题。</p>
+<h2 id="两个div显示在一行，分居左右"><a href="#两个div显示在一行，分居左右" class="headerlink" title="两个div显示在一行，分居左右"></a>两个div显示在一行，分居左右</h2><p>对两个div元素A、B都添加diaplay:inline-block属性，对居右元素B添加float:right属性，在B元素的后面需添加一个div并有clear:both属性用于清除float。</p>
+<h2 id="min-height"><a href="#min-height" class="headerlink" title="min-height"></a>min-height</h2><p>由于某些原因导致相同元素不同高度，在IE浏览器下导致页面布局发生变化(有空位)，可以给这些相同元素添加min-height属性，取值大于等于这些不同高度中的最大值，即可是页面布局恢复正常。</p>
+<h2 id="必填样式"><a href="#必填样式" class="headerlink" title="必填样式"></a>必填样式</h2><p>常见的必填样式都是在label前添加一个红色星号，可以在判断该项为必填项时给label添加一个class如notNull，并使用伪类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.notNull::before &#123;</div><div class="line">    color: red;</div><div class="line">    content: &quot;*&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="元素居中"><a href="#元素居中" class="headerlink" title="元素居中"></a>元素居中</h2><p>top: 50%;<br>left: 50%;<br>margin-top: 50px;// 居中元素的高度/2<br>margin-left: 50px;// 居中元素的宽度/2</p>
+<p>img {<br>    display: block;<br>    margin: 0 auto;<br>}</p>
+<h2 id="文字居中"><a href="#文字居中" class="headerlink" title="文字居中"></a>文字居中</h2><p>text-align: center; // 水平居中<br>line-height: @divHeight; // 垂直居中，属性值等于文字所在块的高度</p>
+<h2 id="word-break属性"><a href="#word-break属性" class="headerlink" title="word-break属性"></a>word-break属性</h2><p>word-break属性规定自动换行的处理方法，通过使用该属性，可以让浏览器实现在任意位置的换行。</p>
+<blockquote>
+<p>normal，使用浏览器默认的换行规则<br>break-all，允许在单词内换行<br>keep-all，只能在半角空格或连字符处换行</p>
+</blockquote>
+<img src="/2016/09/28/css-scattered/word-break.png" title="word-break属性">
+<h2 id="word-wrap属性"><a href="#word-wrap属性" class="headerlink" title="word-wrap属性"></a>word-wrap属性</h2><p>word-wrap属性允许长单词或URL地址换行到下一行。</p>
+<blockquote>
+<p>normal，只在允许的断字点换行（浏览器保持默认处理）<br>break-word，在长单词或URL地址内部进行换行</p>
+</blockquote>
+<img src="/2016/09/28/css-scattered/word-wrap.png" title="word-wrap属性">
+<h2 id="图片未加载完成的占位"><a href="#图片未加载完成的占位" class="headerlink" title="图片未加载完成的占位"></a>图片未加载完成的占位</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.imgWrapper &#123;</div><div class="line">  position: relative;</div><div class="line">  height: 0;</div><div class="line">  padding-top: 190%; // 图片高度 / 图片宽度 * 100%</div><div class="line">  overflow: hidden;</div><div class="line">&#125;</div><div class="line"></div><div class="line">img &#123;</div><div class="line">  position: absolute;</div><div class="line">  top: 0;</div><div class="line">  width: 100vw;</div><div class="line">  height: auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="获取滚动条宽度"><a href="#获取滚动条宽度" class="headerlink" title="获取滚动条宽度"></a>获取滚动条宽度</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置一个不可见的div，查看设置 scroll 前后的宽度差</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getScrollWidth</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">const</span> oDiv = <span class="built_in">document</span>.createElement(<span class="string">"DIV"</span>);</div><div class="line">    oDiv.style.cssText = <span class="string">"position:absolute;top:-1000px;width:100px;height:100px; overflow:hidden;"</span>;</div><div class="line">    <span class="keyword">const</span> noScroll = <span class="built_in">document</span>.body.appendChild(oDiv).clientWidth;</div><div class="line">    oDiv.style.overflowY = <span class="string">"scroll"</span>;</div><div class="line">    <span class="keyword">const</span> scroll = oDiv.clientWidth;</div><div class="line">    <span class="built_in">document</span>.body.removeChild(oDiv);</div><div class="line">    <span class="keyword">return</span> noScroll-scroll;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="英文单词使用连字符换行"><a href="#英文单词使用连字符换行" class="headerlink" title="英文单词使用连字符换行"></a>英文单词使用连字符换行</h2><p>设置标签的 <code>lang=&quot;en&quot;</code>，css 中添加 <code>hyphens: auto;</code>。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">            p &#123;</div><div class="line">                width: 80px;</div><div class="line">                border: 1px solid black;</div><div class="line">                hyphens: auto;</div><div class="line">            &#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">lang</span>=<span class="string">"en"</span> <span class="attr">class</span>=<span class="string">"auto"</span>&gt;</span>An extremely long English word<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<img src="/2016/09/28/css-scattered/hyphens.png" title="hyphens 属性">
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/21/css-layout2/" itemprop="url">
+                  CSS-布局基础2
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-21T22:52:59+08:00" content="2016-09-21">
+              2016-09-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="长度单位"><a href="#长度单位" class="headerlink" title="长度单位"></a>长度单位</h2><p><strong>绝对长度单位</strong></p>
+<p>in（英寸）、cm（厘米）、mm（毫米）、pt（磅）、pc（pica）  </p>
+<p><strong>相对长度单位</strong>  </p>
+<ul>
+<li>px 像素  </li>
+<li>em 是相对于文字大小的值，实际大小是受到字体尺寸影响的。例如：定义某个元素的文字大小为12pt，那么，对于这个元素来说1em就是12pt。  </li>
+<li>ex 和em类似，指的是相对于文本中字母x的高度，因为不同的字体的x的高度是不同的，所以ex的实际大小，受到字体和字体尺寸两个因素的影响。 </li>
+<li>% 相对于包含块的计量单位  </li>
+<li>vw 基于视窗宽度的大小，10vw表示视窗宽度的10%</li>
+<li>vh 基于视窗高度的大小，10vh表示视窗高度的10%</li>
+</ul>
+<h2 id="替换元素和非替换元素"><a href="#替换元素和非替换元素" class="headerlink" title="替换元素和非替换元素"></a>替换元素和非替换元素</h2><p><strong>替换元素</strong></p>
+<p>替换元素是浏览器根据其标签的元素与属性来判断显示具体的内容，如<code>&lt;img&gt;、&lt;input&gt;、&lt;textarea&gt;、&lt;select&gt;、&lt;object&gt;</code></p>
+<p><strong>非替换元素</strong></p>
+<p>大多数元素是不可替换元素，他们将内容直接告诉浏览器，将其显示出来，如<code>&lt;p&gt;</code></p>
+<h2 id="块级元素和行内元素"><a href="#块级元素和行内元素" class="headerlink" title="块级元素和行内元素"></a>块级元素和行内元素</h2><p><strong>块级元素</strong></p>
+<p>最明显的特征就是独自占领一行，自动充满父级元素的内容区域，如<code>div、p、form、header、footer、section</code><br>通过CSS设定了浮动（float）以及设定显示（display）属性为’block’或’list-item’的元素都是块级元素</p>
+<p><strong>行内元素</strong></p>
+<p>允许左右都可以有元素，最常见的就是<a></a><br>通过display:’inline’设置以后都会变成行内元素</p>
+<h2 id="浏览器的标准模式和怪异模式"><a href="#浏览器的标准模式和怪异模式" class="headerlink" title="浏览器的标准模式和怪异模式"></a>浏览器的标准模式和怪异模式</h2><ul>
+<li>标准模式(strict mode)：浏览器按W3C标准解析执行代码</li>
+<li><p>怪异模式(quirks mode)：使用浏览器自己的方式解析执行代码</p>
+<p>  浏览器解析时到底使用标准模式还是怪异模式，与网页中的DTD声明直接相关，DTD声明定义了标准文档的类型（标准模式解析）文档类型，会使浏览器使用相应的方式加载网页并显示，忽略DTD声明,将使网页进入怪异模式(quirks mode)。  </p>
+</li>
+</ul>
+<p>怪异模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;html&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;title&gt;重庆PHP&lt;/title&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">        &lt;h3&gt;重庆PHP，最专业的PHP社区&lt;/h3&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>标准模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</div><div class="line">&lt;html&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;title&gt;重庆PHP&lt;/title&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">        &lt;h3&gt;重庆PHP，最专业的PHP社区&lt;/h3&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="margin属性"><a href="#margin属性" class="headerlink" title="margin属性"></a>margin属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">margin:2cm 4cm 3cm 4cm;// 值分别代表上外边距、右外边距、下外边距、左外边距</div><div class="line">margin:10px 5px 15px;// 值分别代表上外边距、右外和左外边距、下外边距</div><div class="line">margin:10px 5px;// 值分别代表上外和下外边距、右外和左外边距</div><div class="line">margin:10px;// 值代表四个外边据</div></pre></td></tr></table></figure>
+<p>可选的属性值如下：  </p>
+<blockquote>
+<p><strong>auto:</strong> 浏览器计算外边距<br><strong>length:</strong> 具体单位计的外边距值，比如<code>px、cm</code>等，默认值是 0px<br><strong>%:</strong> 基于父元素的宽度的百分比<br><strong>inherit:</strong> 从父元素继承  </p>
+</blockquote>
+<p>说明如下：  </p>
+<ul>
+<li>块级元素的垂直相邻外边距会合并，由于块级元素独占一行，不考虑水平外边距 </li>
+<li>行内元素实际上不占上下外边距，左右外边距不会合并</li>
+<li>浮动元素的外边距也不会合并  </li>
+<li>允许指定负的外边距值，不过使用时要小心</li>
+</ul>
+<p>设置块级元素的 width 可以阻止它从左到右撑满容器，再设置左右外边距为 auto 来使其水平居中。但是，当浏览器窗口比元素的宽度还要窄时，浏览器会显示一个水平滚动条来容纳页面。此时可以使用 max-width 替代 width 可以使浏览器更好地处理小窗口的情况。</p>
+<h2 id="float属性"><a href="#float属性" class="headerlink" title="float属性"></a>float属性</h2><p>可选的属性值如下： </p>
+<blockquote>
+<p><strong>left:</strong> 元素向左浮动<br><strong>right:</strong> 元素向右浮动<br><strong>none(默认):</strong> 元素不浮动，并会显示在其在文本中出现的位置<br><strong>inherit:</strong> 从父元素继承 </p>
+</blockquote>
+<p>说明如下：</p>
+<ul>
+<li>用来定义元素在哪个方向浮动，浮动元素会生成一个块级框，而不论它本身是何种元素  </li>
+<li>这个属性总应用于图像，使文本围绕在图像周围</li>
+<li>如果浮动非替换元素，如div，则要指定一个明确的宽度；否则，它们会按元素内容尽可能地窄</li>
+<li>如果行内有极少的空间可供浮动元素，那么这个元素会跳至下一行，直到某一行拥有足够的空间为止</li>
+<li>如果浮动元素超出父容器，在父容器添加overflow:auto即可根据浮动的元素撑开容器-  clear属性可清除浮动，值可为left或right，分别表示清除向左浮动或向右浮动</li>
+</ul>
+<h2 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h2><h3 id="W3C标准盒模型"><a href="#W3C标准盒模型" class="headerlink" title="W3C标准盒模型"></a>W3C标准盒模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">外盒尺寸计算(元素空间尺寸)</div><div class="line">element 空间高度 = 内容高度 + 内距 + 边框 + 外距</div><div class="line">element 空间宽度 = 内容宽度 + 内距 + 边框 + 外距</div><div class="line">内盒尺寸计算(元素大小)</div><div class="line">element 高度 = 内容高度 + 内距 + 边框 （height为内容高度）</div><div class="line">element 宽度 = 内容宽度 + 内距 + 边框 （width为内容宽度）</div></pre></td></tr></table></figure>
+<h3 id="IE传统盒模型-IE6以下"><a href="#IE传统盒模型-IE6以下" class="headerlink" title="IE传统盒模型(IE6以下)"></a>IE传统盒模型(IE6以下)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">外盒尺寸计算(元素空间尺寸)</div><div class="line">element 空间高度 = 内容高度 + 外距（height包含了元素内容高度、边框、内距）</div><div class="line">element 空间宽度 = 内容宽度 + 外距（height包含了元素内容高度、边框、内距）</div><div class="line">内盒尺寸计算(元素大小)</div><div class="line">element 高度 = 内容高度（height包含了元素内容高度、边框、内距）</div><div class="line">element 宽度 = 内容宽度（width包含了元素内容宽度、边框、内距）</div></pre></td></tr></table></figure>
+<p>边框和内距都包含在宽度或高度内！！！</p>
+<h2 id="box-sizing属性"><a href="#box-sizing属性" class="headerlink" title="box-sizing属性"></a>box-sizing属性</h2><p>可选的属性值如下：</p>
+<blockquote>
+<p><strong>content-box(默认):</strong> 维持W3C的标准盒模型<br><strong>border-box:</strong> 维持IE的传统盒模型<br><strong>padding-box(Firefox浏览器):</strong> 指定元素的宽度或高度包含内容的宽度或高度和内距<br><strong>inherit:</strong> 从父元素继承</p>
+</blockquote>
+<p>说明如下：</p>
+<ul>
+<li>定义盒模型的尺寸解析方式，主要目的是控制元素的总宽度  </li>
+</ul>
+<h2 id="outline属性"><a href="#outline属性" class="headerlink" title="outline属性"></a>outline属性</h2><ul>
+<li><p>外轮廓outline的效果和边框border的效果极其相似，不同之处在于outline不占用网页布局空间，不一定是矩形，属于一种动态样式，可以向内扩展。</p>
+</li>
+<li><p>将outline属性设置在:focus上，可以实现在元素获取到焦点或者被激活时呈现边框的效果。</p>
+</li>
+<li><p>为了给元素添加边框效果又不影响页面布局，可以使用outline属性。</p>
+</li>
+</ul>
+<h2 id="position属性"><a href="#position属性" class="headerlink" title="position属性"></a>position属性</h2><p>可选的属性值如下：</p>
+<blockquote>
+<p><strong>static(默认):</strong> 元素不会被特殊的定位，top, right, bottom, left 和 z-index 属性无效。<br><strong>relative:</strong> 相对定位，相对于其在普通流中的正常位置进行定位，元素仍保持其未定位前的形状，它原本所占的空间仍保留。<br><strong>absolute:</strong> 绝对定位，不为元素预留空间。元素相对于最近的非static定位的祖先元素来定位。<br><strong>fixed:</strong> 固定定位，不为元素预留空间。元素会相对于视窗来来定位，当出现滚动条时，对象不会随着滚动。<br><strong>inherit:</strong> 从父元素继承。</p>
+</blockquote>
+<p>说明如下：</p>
+<p>position: sticky，类似relative和fixed的合体，当目标区域在屏幕中可见时，它的行为就像relative; 当页面滚动超出目标区域时，它的行为就像fixed，固定在目标位置。目前支持该属性的浏览器比较少。</p>
+<h2 id="top、right、bottom、left-属性"><a href="#top、right、bottom、left-属性" class="headerlink" title="top、right、bottom、left 属性"></a>top、right、bottom、left 属性</h2><p>top、right、bottom、left 分别定义了定位元素上、右、下、左外边距边界与其包含块右边界之间的偏移。可选的取值如下：</p>
+<blockquote>
+<p><strong>auto(默认):</strong> 通过浏览器计算的位置<br><strong>%:</strong> 设置以包含元素的百分比计的位置，可使用负值<br><strong>length:</strong> 使用 px、cm 等单位设置元素的位置，可使用负值<br><strong>inherit:</strong> 规定应该从父元素继承属性的值</p>
+</blockquote>
+<p>说明如下：</p>
+<p>对于 static 元素，为 auto。对于相对定义元素，如果 top 和 bottom 都是 auto，其计算值则都是 0；如果其中之一为 auto，则取另一个值的相反数；如果二者都不是 auto，bottom 将取 top 值的相反数；当 left 和 right​ ​​​​​同时指定时，如果容器是从左到右时，left的值会被优先设定，如果容器是从右到左时，right的值会被优先设定。</p>
+<h2 id="overflow-属性"><a href="#overflow-属性" class="headerlink" title="overflow 属性"></a>overflow 属性</h2><p>可选的属性值如下：</p>
+<blockquote>
+<p><strong>visible(默认):</strong> 内容不会被修剪，会呈现在元素框之外<br><strong>hidden:</strong> 内容会被修剪，并且其余内容是不可见的<br><strong>scroll:</strong> 内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容<br><strong>auto:</strong> 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容<br><strong>inherit:</strong> 从父元素继承</p>
+</blockquote>
+<p>说明如下：</p>
+<p>如果值为 scroll，不论是否需要，用户代理都会提供一种滚动机制。因此，有可能即使元素框中可以放下所有内容也会出现滚动条。</p>
+<h2 id="clip-属性"><a href="#clip-属性" class="headerlink" title="clip 属性"></a>clip 属性</h2><p>用于裁剪绝对定位元素，可选的属性值如下：</p>
+<blockquote>
+<p><strong>auto(默认):</strong> 不应用任何剪裁<br><strong>shape:</strong> 设置元素的形状，唯一合法的形状值是：rect(top, right, bottom, left)<br><strong>inherit:</strong> 从父元素继承</p>
+</blockquote>
+<h2 id="z-index-属性"><a href="#z-index-属性" class="headerlink" title="z-index 属性"></a>z-index 属性</h2><p>设置元素的堆叠顺序，仅能在定位元素上奏效，即 position 为 relative 或 absolute 的元素上。</p>
+<h2 id="vertical-align-属性"><a href="#vertical-align-属性" class="headerlink" title="vertical-align 属性"></a>vertical-align 属性</h2><p>可选的属性值如下：</p>
+<blockquote>
+<p><strong>baseline(默认):</strong> 元素放置在父元素的基线上<br><strong>sub:</strong> 垂直对齐文本的下标<br><strong>super:</strong> 垂直对齐文本的上标<br><strong>top:</strong> 把元素的顶端与行中最高元素的顶端对齐<br><strong>text-top:</strong> 把元素的顶端与父元素字体的顶端对齐<br><strong>middle:</strong> 把此元素放置在父元素的中部<br><strong>bottom:</strong> 把元素的底端与行中最低的元素的底端对齐<br><strong>text-bottom:</strong> 把元素的底端与父元素字体的底端对齐<br><strong>lenght:</strong> 用长度值指定由基线算起的偏移量，允许使用负值<br><strong>%:</strong> 使用 “line-height” 属性的百分比值来排列此元素，允许使用负值<br><strong>inherit:</strong> 从父元素继承</p>
+</blockquote>
+<p>说明如下：</p>
+<p>vertical-align 影响 inline-level 元素，这些元素的 display 属性为 inline、inline-block、inline-table，基本的inline元素都是标签裹着文字。</p>
+<p>inline 的元素在一行中一个挨着一个，当这些元素超出了他们的所在行，一个新行便会建立在它下方。这里的每一行就叫做line box。每一行不同尺寸的元素意味着 line box 不同的高度。在这些 line boxes 里面 vertical-align 属性负责摆放单独的元素。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/21/scattered-knowledge/" itemprop="url">
+                  零散知识
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-21T17:53:42+08:00" content="2016-09-21">
+              2016-09-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Other/" itemprop="url" rel="index">
+                    <span itemprop="name">Other</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="window-parent和window-opener区别"><a href="#window-parent和window-opener区别" class="headerlink" title="window.parent和window.opener区别"></a>window.parent和window.opener区别</h2><ul>
+<li>window.parent能获取一个框架的父窗口或父框架。顶层窗口的parent引用的是它本身。</li>
+<li>window.opener引用的是window.open打开的页面的父页面。</li>
+</ul>
+<h2 id="解决不支持html5标签的办法"><a href="#解决不支持html5标签的办法" class="headerlink" title="解决不支持html5标签的办法"></a>解决不支持html5标签的办法</h2><p>方式一：自己创建标签节点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    document.createElement(e[i]);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>方式二：使用Google的html5shiv包（推荐）<br><code>&lt;script src=&quot;http://html5shiv.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;</code></p>
+<p><strong>不管使用以上哪种方法,都要初始化新标签的CSS</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">article,aside,dialog,footer,header,section,footer,nav,figure,menu&#123;</div><div class="line">    display: block;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>方式三：防弹衣技术<br>Bulletproof技术，防弹衣技术，建议在所有新的HTML5块级元素中增加一个内部的div元素，然后包含一个CSS class，用这个元素来替代HTML元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;section&gt;</div><div class="line">　　&lt;div class=&quot;section&quot;&gt;</div><div class="line">　　&lt;!-- content --&gt;</div><div class="line">　　&lt;/div&gt;</div><div class="line">&lt;/section&gt;</div><div class="line"></div><div class="line">.section &#123;</div><div class="line">   　　color: blue;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<h2 id="outerHTML、innerText、innerHTML"><a href="#outerHTML、innerText、innerHTML" class="headerlink" title="outerHTML、innerText、innerHTML"></a>outerHTML、innerText、innerHTML</h2><img src="/2016/09/21/scattered-knowledge/innerHTML.gif" title="一张图了解outerHTML和innerText、innerHTML">
+<h2 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h2><p>cmd中输入<code>echo %PATH%</code> 可查看path环境变量</p>
+<h2 id="Chrome浏览器用户名、密码回填问题"><a href="#Chrome浏览器用户名、密码回填问题" class="headerlink" title="Chrome浏览器用户名、密码回填问题"></a>Chrome浏览器用户名、密码回填问题</h2><p>前几天发现一个奇怪的问题，使用Chrome浏览器在登录输入用户名、密码后，点击了保存用户名密码，在其它页面发生了用户名、密码的回填。</p>
+<img src="/2016/09/21/scattered-knowledge/login1.png" title="登录输入">
+<img src="/2016/09/21/scattered-knowledge/save.png" title="点击保存密码">
+<img src="/2016/09/21/scattered-knowledge/card.png" title="其它页面表单">
+<p>解决方案：在使用到Input的地方，都添加了autoComplete属性值为off和name属性，但是不同的name属性值，有的可能不会回填有的可能就会回填，我有点怀疑人生了。</p>
+<img src="/2016/09/21/scattered-knowledge/card1.png" title="回填登录信息">
+<img src="/2016/09/21/scattered-knowledge/card2.png" title="没有回填登录信息">
+<p><strong>而且对于没有回填用户信息的情况，在点击密码框的时候，还是会有用户密码信息的提示，这个还没有找到解决方案。</strong></p>
+<img src="/2016/09/21/scattered-knowledge/card3.png" title="提示用户密码">
+<h2 id="端口占用"><a href="#端口占用" class="headerlink" title="端口占用"></a>端口占用</h2><h3 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h3><p>netstat -aon | findstr 8088 # 查看指定端口被哪个进程占用，会返回一个进程号<br>tasklist | findstr 6808 # 查看指定进程号是哪个程序的<br>taskkill -F -IM javaw.exe # 杀死应用程序</p>
+<h3 id="mac"><a href="#mac" class="headerlink" title="mac"></a>mac</h3><p>sudo lsof -i :4000<br>sudo kill -9 [PID]</p>
+<h2 id="eclipse分配内存"><a href="#eclipse分配内存" class="headerlink" title="eclipse分配内存"></a>eclipse分配内存</h2><p>右键项目 -&gt; Run As -&gt; -Run Configurations -&gt; Arguments， 添加下面的信息到VM arguments中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-Xms256m</div><div class="line">-Xmx512m -XX:MaxNewSize=256m -XX:MaxPermSize=512m</div></pre></td></tr></table></figure></p>
+<h2 id="Xshell指令更新环境"><a href="#Xshell指令更新环境" class="headerlink" title="Xshell指令更新环境"></a>Xshell指令更新环境</h2><p>停 tomcat 重新启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ps -ef|grep java            # 查进程号，12997</div><div class="line">kill -9 12997               # 杀死进程</div><div class="line">cd /usr/local/tomcat6/bin/  # 进入到目录</div><div class="line">./catalina.sh start         # 启动</div><div class="line">cd ..                       </div><div class="line">cd logs</div><div class="line">tail -f catalina.out        # 打日志</div></pre></td></tr></table></figure></p>
+<h2 id="Chrome插件生成crx文件"><a href="#Chrome插件生成crx文件" class="headerlink" title="Chrome插件生成crx文件"></a>Chrome插件生成crx文件</h2><p>扩展程序-&gt;开发者模式-&gt;打包扩展程序-&gt;根据扩展程序ID，如hgmloofddffdnphfgcellkdfbfbjeloo，在C:\Users\Administrator\AppData\Local\Google\Chrome\User Data\Default\Extensions\路径下找到指定ID(hgmloofddffdnphfgcellkdfbfbjeloo)文件，双击进入，选择文件夹-&gt;打包扩展程序，即可生成crx文件。</p>
+<h2 id="Thunk函数的含义"><a href="#Thunk函数的含义" class="headerlink" title="Thunk函数的含义"></a>Thunk函数的含义</h2><p>编译器的”传名调用”实现，往往是将参数放到一个临时函数之中，再将这个临时函数传入函数体。这个临时函数就叫做Thunk函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function f(m)&#123;</div><div class="line">  return m * 2;</div><div class="line">&#125;</div><div class="line">f(x + 5);</div><div class="line"></div><div class="line">// 等同于</div><div class="line">var thunk = function () &#123;</div><div class="line">  return x + 5;</div><div class="line">&#125;;</div><div class="line">function f(thunk)&#123;</div><div class="line">  return thunk() * 2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在JavaScript语言中，Thunk函数替换的不是表达式，而是多参数函数，将其替换成单参数的版本，且只接受回调函数作为参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 正常版本的readFile（多参数版本）</div><div class="line">fs.readFile(fileName, callback);</div><div class="line"></div><div class="line">// Thunk版本的readFile（单参数版本）</div><div class="line">var Thunk = function (fileName)&#123;</div><div class="line">  return function (callback)&#123;</div><div class="line">    return fs.readFile(fileName, callback);</div><div class="line">  &#125;;</div><div class="line">&#125;;</div><div class="line">var readFileThunk = Thunk(fileName);</div><div class="line">readFileThunk(callback);</div></pre></td></tr></table></figure>
+<h2 id="数据库表回滚"><a href="#数据库表回滚" class="headerlink" title="数据库表回滚"></a>数据库表回滚</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 表sy_org_user1回滚到2015-01-09 15:00:00时间</div><div class="line">alter table sy_org_user1 enable row movement;</div><div class="line">flashback table sy_org_user1 to timestamp to_timestamp(&apos;2015-01-09 15:00:00&apos;,&apos;yyyy-mm-dd hh24:mi:ss&apos;);</div></pre></td></tr></table></figure>
+<h2 id="Oracle数据库导入导出"><a href="#Oracle数据库导入导出" class="headerlink" title="Oracle数据库导入导出"></a>Oracle数据库导入导出</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># 导出库</div><div class="line">exp DEV_BASE/DEV_BASE@pcmdb_192.168.100.30 file=E:\DEV_BASE.dmp owner=DEV_BASE</div><div class="line"># 如果以前导入过，删除用户再重建</div><div class="line">drop user DEV_BASE cascade;</div><div class="line">create user DEV_BASE identified by DEV_BASE;</div><div class="line">grant resource, connect, dba to DEV_BASE;</div><div class="line">alter user DEV_BASE quota unlimited on PCMDB;</div><div class="line"># 导入库</div><div class="line">imp system/sys1234@orcl fromuser=DEV_BASE touser=DEV_BASE file=E:\DEV_BASE.dmp</div></pre></td></tr></table></figure>
+<h2 id="响应式编程"><a href="#响应式编程" class="headerlink" title="响应式编程"></a>响应式编程</h2><p>响应式编程是一种面向数据流和变化传播的编程范式，这意味着可以在编程语言中很方便地表达静态或动态的数据流，而相关的计算模型会自动将变化的值通过数据流进行传播。响应式编程最初是为了简化交互式用户界面的创建和实时系统动画的绘制而提出来的一种方法，但它本质上是一种通用的编程范式。在MVC软件架构中，响应式编程允许将相关模型的变化自动反映到视图上，反之亦然。</p>
+<h2 id="检测浏览器版本"><a href="#检测浏览器版本" class="headerlink" title="检测浏览器版本"></a>检测浏览器版本</h2><p>最近做的项目对浏览器的类型及版本有要求，同事写了检测浏览器版本的代码如下，我在此处进行记录，供以后参考。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--在工程入口html文件的body标签中添加如下script内容--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">id</span>=<span class="string">"body"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"react-content"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">      <span class="function"><span class="keyword">function</span> <span class="title">cheackBowser</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> userAgent = navigator.userAgent; <span class="comment">//取得浏览器的userAgent字符串</span></div><div class="line">        <span class="keyword">var</span> version = navigator.appVersion; <span class="comment">// 浏览器版本信息</span></div><div class="line">        <span class="keyword">var</span> isOpera = userAgent.indexOf(<span class="string">"Opera"</span>) &gt; <span class="number">-1</span>; <span class="comment">//判断是否Opera浏览器</span></div><div class="line">        <span class="keyword">var</span> isChrome = userAgent.indexOf(<span class="string">"Chrome"</span>) &gt; <span class="number">-1</span>; <span class="comment">//判断是否Chrome浏览器</span></div><div class="line">        <span class="keyword">var</span> isIE = userAgent.indexOf(<span class="string">"compatible"</span>) &gt; <span class="number">-1</span> &amp;&amp; userAgent.indexOf(<span class="string">"MSIE"</span>) &gt; <span class="number">-1</span> &amp;&amp; !isOpera; <span class="comment">//判断是否IE浏览器</span></div><div class="line">        <span class="keyword">var</span> isFF = userAgent.indexOf(<span class="string">"Firefox"</span>) &gt; <span class="number">-1</span>; <span class="comment">//判断是否Firefox浏览器</span></div><div class="line">        <span class="keyword">var</span> isSafari = userAgent.indexOf(<span class="string">"Safari"</span>) &gt; <span class="number">-1</span>; <span class="comment">//判断是否Safari浏览器</span></div><div class="line"></div><div class="line">        <span class="comment">//如果是 IE 火狐 opera，提示下载qq浏览器</span></div><div class="line">        <span class="keyword">if</span>(isIE || isFF || isOpera) &#123;</div><div class="line">          <span class="comment">//主页面不显示只显示弹出框，弹出弹框提示下载qq浏览器</span></div><div class="line">          <span class="keyword">if</span>(confirm(<span class="string">"您使用的浏览器存在兼容问题，为了您更好的用户体验，建议您点击确定下载QQ浏览器"</span>)) &#123;</div><div class="line">              <span class="built_in">document</span>.getElementById(<span class="string">"react-content"</span>).style.display = <span class="string">"none"</span>;</div><div class="line">              <span class="built_in">window</span>.open(<span class="string">"http://browser.qq.com/?adtag=SEM1"</span>, <span class="string">"_self"</span>);</div><div class="line">          &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">//点击取消关闭此页面</span></div><div class="line">            <span class="built_in">window</span>.close();</div><div class="line">            <span class="comment">//如果关闭此页面被阻止则把页面清空</span></div><div class="line">            <span class="keyword">if</span>(<span class="built_in">window</span>)&#123;</div><div class="line">               <span class="built_in">window</span>.location.href=<span class="string">"about:blank"</span>;</div><div class="line">            &#125;</div><div class="line">          &#125;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(isChrome)&#123;</div><div class="line">            <span class="keyword">var</span> detailVersion = <span class="built_in">Number</span>(VersionFilter(version)[<span class="number">0</span>].substring(<span class="number">7</span>,<span class="number">9</span>));</div><div class="line">            <span class="keyword">if</span>(detailVersion &lt; <span class="number">45</span>) &#123;</div><div class="line">              <span class="built_in">document</span>.getElementById(<span class="string">"react-content"</span>).style.display = <span class="string">"none"</span>;</div><div class="line">              <span class="keyword">if</span>(confirm(<span class="string">"您使用的浏览器版本太低，为了您更好的用户体验，建议您点击确定下载QQ浏览器"</span>)) &#123;</div><div class="line">                <span class="built_in">window</span>.open(<span class="string">"https://dldir1.qq.com/invc/tt/QQBrowser_Setup_SEM1.exe"</span>,<span class="string">"_self"</span>);</div><div class="line">              &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">              <span class="comment">//谷歌浏览器,版本符合要求</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="comment">// 获取详细的chrome版本</span></div><div class="line">      <span class="function"><span class="keyword">function</span> <span class="title">VersionFilter</span> (<span class="params">value</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> reg = <span class="regexp">/Chrome\/\d&#123;2&#125;\.\d+\.\d+/</span></div><div class="line">         <span class="keyword">return</span> reg.exec(value)</div><div class="line">      &#125;</div><div class="line">      cheackBowser()</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="打版本号"><a href="#打版本号" class="headerlink" title="打版本号"></a>打版本号</h2><p>在做项目时，测试环境只要更新，最好打个版本号(tag)，这样如果这次测试的结果比较稳定，要向线上更新，直接更新指定tag的代码到线上就行了，开发人员还是正常开发提交代码。</p>
+<h2 id="元编程"><a href="#元编程" class="headerlink" title="元编程"></a>元编程</h2><p>简单的理解可以说成是“关于编程的编程”，或者说“与编程相关的编程”，如程序甲可以输出 A ~ Z，而程序乙可以生成程序甲，那么编写程序乙的活动就可以算作元编程。元编程更狭义的意思应该是指“编写能改变语言语法特性或者运行时特性的程序”，一种语言本来做不到的事情，通过编程来修改它，使得它可以做到了，这就是元编程。</p>
+<h2 id="robots-txt"><a href="#robots-txt" class="headerlink" title="robots.txt"></a>robots.txt</h2><p><a href="https://baike.baidu.com/item/robots%E5%8D%8F%E8%AE%AE/2483797?fromtitle=robots.txt&amp;fromid=9518761&amp;fr=aladdin" target="_blank" rel="external">【百度百科】</a>robots协议也叫robots.txt（统一小写）是一种存放于网站根目录下的ASCII编码的文本文件，它通常告诉网络搜索引擎的漫游器（又称网络蜘蛛），此网站中的哪些内容是不应被搜索引擎的漫游器获取的，哪些是可以被漫游器获取的。因为一些系统中的URL是大小写敏感的，所以robots.txt的文件名应统一为小写。robots.txt应放置于网站的根目录下。如果想单独定义搜索引擎的漫游器访问子目录时的行为，那么可以将自定的设置合并到根目录下的robots.txt，或者使用robots元数据（Metadata，又称元数据）。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/18/css-layout1/" itemprop="url">
+                  CSS-布局基础1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-18T21:08:17+08:00" content="2016-09-18">
+              2016-09-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="display属性"><a href="#display属性" class="headerlink" title="display属性"></a>display属性</h2><p>大多数元素的默认值通常是 block 或 inline 。一个 block 元素通常被叫做块级元素。一个 inline 元素通常被叫做行内元素。注意是控制当前元素的，而不是其内部元素。  </p>
+<p><strong>none:</strong></p>
+<ul>
+<li>在不删除元素的情况下隐藏元素，不会保留元素本该显示的空间    </li>
+<li>visibility:hidden 会保留元素的空间  </li>
+</ul>
+<p><strong>block:</strong> </p>
+<ul>
+<li>前后有换行符，如不指定宽度，会尽可能撑满容器  </li>
+<li>高度，行高及顶和底边距都可控制   </li>
+<li>常见块级元素：<code>div、p、form、header、footer、section</code>等</li>
+</ul>
+<p><strong>inline（默认）:</strong> </p>
+<ul>
+<li>前后没有换行符、不撑满容器  </li>
+<li>高，行高及顶和底边距不可改变  </li>
+<li>包裹一些文字而不会打乱段落的布局</li>
+</ul>
+<p><strong>inline-block:</strong>  </p>
+<ul>
+<li>将对象呈递为内联对象，但是对象的内容作为块对象呈递（准确地说，应用此特性的元素呈现为内联对象，周围元素保持在同一行，但可以设置宽度和高度地块元素的属性）  </li>
+<li>可以实现浮动（float）的效果，如果HTML源代码中元素之间有空格，那么元素之间会产生空隙，使用float不会有空隙；但不能实现float的文字环绕图片  </li>
+<li>如果不设置width和height，会按元素的内容大小显示  </li>
+<li>这一行的高度为该行内最大高度的元素高度，vertical-align属性会影响到元素在垂直方向的对齐方式  </li>
+</ul>
+<p><strong>list-item:</strong> </p>
+<ul>
+<li>此元素会作为列表显示，如果不设置width和height，每个列表项尽可能撑满容器</li>
+</ul>
+<p><strong>flex:</strong>  </p>
+<ul>
+<li>详见下文</li>
+</ul>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display" target="_blank" rel="external">display其它属性值详细列表</a>  </p>
+<hr>
+<h2 id="Flexbox-布局"><a href="#Flexbox-布局" class="headerlink" title="Flexbox 布局"></a>Flexbox 布局</h2><p>参考阮一峰的网络日志：<br><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="external">《Flex 布局教程：语法篇》</a><br><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="external">《Flex 布局教程：实例篇》</a>  </p>
+<blockquote>
+<p><code>display: flex |inline-flex</code> </p>
+<p>指定Flex布局后，子元素的float、clear和vertical-align属性将失效</p>
+<p>几个基本概念： 容器、项目、主轴、交叉轴</p>
+</blockquote>
+<h3 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h3><p><strong>flex-direction</strong>  </p>
+<ul>
+<li>主轴的方向（即项目的排列方向） </li>
+<li>row | row-reverse | column | column-revers</li>
+</ul>
+<p><strong>flex-wrap</strong> </p>
+<ul>
+<li>owrap | wrap | wrap-reverse</li>
+<li>一条轴线排不下，如何换行  </li>
+</ul>
+<p><strong>flex-flow</strong></p>
+<ul>
+<li>flex-direction属性和flex-wrap属性的简写形式  </li>
+<li>默认值为row nowrap</li>
+</ul>
+<p><strong>justify-content</strong></p>
+<ul>
+<li>项目在主轴上的对齐方式</li>
+<li>flex-start | flex-end | center | space-between | space-around</li>
+</ul>
+<p><strong>align-items</strong></p>
+<ul>
+<li>项目在交叉轴上的对齐方式</li>
+<li>flex-start | flex-end | center | baseline | stretch</li>
+</ul>
+<p><strong>align-content</strong></p>
+<ul>
+<li>多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用</li>
+<li>flex-start | flex-end | center | space-between | space-around | stretch</li>
+</ul>
+<h3 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h3><p><strong>order</strong></p>
+<ul>
+<li>项目的排列顺序，数值越小，排列越靠前</li>
+<li>整数，默认为0</li>
+</ul>
+<p><strong>flex-grow</strong></p>
+<ul>
+<li>项目的放大比例，0表示如果存在剩余空间，也不放大</li>
+<li>整数，默认为0</li>
+<li>如果所有项目的属性都为1，则它们将等分剩余空间；如果一个项目的属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍</li>
+</ul>
+<p><strong>flex-shrink</strong></p>
+<ul>
+<li>项目的缩小比例，1表示如果空间不足，该项目将缩小</li>
+<li>非负整数，默认为1</li>
+<li>如果所有项目的属性都为1，当空间不足时，都将等比例缩小；如果一个项目的属性为0，其他项目都为1，则空间不足时，前者不缩小</li>
+</ul>
+<p><strong>flex-basis</strong></p>
+<ul>
+<li>在分配多余空间之前，项目占据的主轴空间，浏览器根据这个属性，计算主轴是否有多余空间</li>
+<li>[length] | auto，默认为auto</li>
+<li>可以设为跟width或height属性一样的值，则项目将占据固定空间</li>
+</ul>
+<p><strong>flex</strong>  </p>
+<ul>
+<li>flex-grow, flex-shrink 和 flex-basis的简写，后两个属性可选</li>
+<li>默认值为 0 1 auto</li>
+<li>none (0 0 auto) 表示无论窗口如何变化宽度不变</li>
+<li>auto (1 1 auto) 表示空间足够时放大，空间不足时缩小</li>
+<li>initial (0 1 auto) 表示空间足够时不放大，空间不足时缩小</li>
+<li>建议优先使用这个属性，因为浏览器会推算相关值</li>
+</ul>
+<p><strong>align-self</strong></p>
+<ul>
+<li>允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性</li>
+<li>auto | flex-start | flex-end | center | baseline | stretch，默认值为auto</li>
+<li>auto 表示继承父元素的align-items属性，如果没有父元素，则等同于stretch</li>
+</ul>
+<hr>
+<h2 id="多列布局"><a href="#多列布局" class="headerlink" title="多列布局"></a>多列布局</h2><p>CSS3多列布局可以自动将内容按指定的列数排列，这种特性实现的布局效果和报纸、杂志排版非常相似。<br>常用属性如下：</p>
+<p><strong>column-width:</strong></p>
+<blockquote>
+<p>auto 默认值，元素多列的列宽由其它属性决定，没有显示设置的情况下，将默认显示一列<br>[length] 数值和长度单位组成，非负；如果单独使用，容器超出列宽时显示多列，小于列宽时显示一列</p>
+</blockquote>
+<p><strong>column-count:</strong></p>
+<blockquote>
+<p>auto 默认值，表示元素只有一列，依靠浏览器计算自动设置<br>[integer] 正整数值，定义想要的列数和最大列数，当容器没有足够空间来包含具有指定宽度的列数，元素列数会自动往下计算；如果单独使用，显示固定列数<br>列数 = (容器宽度 - 列间距)/列宽 向下取整</p>
+</blockquote>
+<p><strong>columns:</strong></p>
+<blockquote>
+<p>column-width和column-count的缩写</p>
+</blockquote>
+<p><strong>column-gap:</strong></p>
+<blockquote>
+<p>normal 默认值，一般情况相当于1em<br>[length] 浮点数据和单位标识符组成的长度值，非负，常用px、em单位的任何整数值；<br>如果同时设置了column-width属性，可能会导致列被撑破，使列数减1</p>
+</blockquote>
+<p><strong>column-rule:</strong></p>
+<blockquote>
+<p>定义列之间的边框宽度、样式、颜色，类似border属性，但不占用任何空间位置<br>[column-rule-width]|[column-rule-style]|[column-rule-color]<br>默认值分别为 medium | none | 前景色color值<br>如果column-rule-width宽度超过列间距，列边框就会消失</p>
+</blockquote>
+<p><strong>column-span:</strong></p>
+<blockquote>
+<p>定义一个分列元素中的子元素能跨多少列<br>none 默认值，表示不跨任何列<br>all 表示跨所有列，并定位在列的Z轴之上  </p>
+</blockquote>
+<p><strong>column-fill:</strong></p>
+<blockquote>
+<p>定义多列中每一列的高度是否统一<br>auto 默认值，各列的高度随其内容的变化自动变化<br>balance 各列的高度将会根据内容最多的一列的高度进行统一  </p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/14/ant-design-study/" itemprop="url">
+                  Ant Design 组件学习经验
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-14T14:39:06+08:00" content="2016-09-14">
+              2016-09-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Ant-Design/" itemprop="url" rel="index">
+                    <span itemprop="name">Ant Design</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<h2 id="Tree组件"><a href="#Tree组件" class="headerlink" title="Tree组件"></a>Tree组件</h2><p>参考 <a href="https://ant.design/components/tree-select/" target="_blank" rel="external">TreeSelect</a></p>
+<h3 id="异步加载数据"><a href="#异步加载数据" class="headerlink" title="异步加载数据"></a>异步加载数据</h3><p>使用redux时，TreeSelect异步加载数据需要通过触发action调用后台获取数据，根据reducer更新的state显示出加载的数据。需添加loadData属性，值为一个方法，如onLoadData，内容如下。<br>这个函数的返回值好像必须是一个Promise对象，如果不这么写，会报<code>Uncaught TypeError: Cannot read property &#39;then&#39; of undefined(…)</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">onLoadData(treeNode) &#123;</div><div class="line">    return new Promise((resolve) =&gt; &#123;</div><div class="line">        // 树形显示的数据在this.state.treeData中，在this.state.treeData中找到当前操作节点</div><div class="line">        const pathArr = treeNode.props.pos.split(&apos;-&apos;);</div><div class="line">        let findTreeNode = null;</div><div class="line">        for (let i=1,len=pathArr.length; i &lt; len ; i++) &#123;</div><div class="line">            if( i === 1)&#123;</div><div class="line">                findTreeNode = this.state.treeData[pathArr[i]];</div><div class="line">            &#125; else &#123;</div><div class="line">                findTreeNode = findTreeNode.children[pathArr[i]];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        // 如果该节点没有子节点，表示没加载过其子节点，进行加载</div><div class="line">        if (findTreeNode.children.length &lt;= 0) &#123;</div><div class="line">            // 设置展开的节点为当前节点</div><div class="line">            this.state.openKey = treeNode.props.eventKey;</div><div class="line">            // 组织后台查询条件</div><div class="line">            const queryData = &#123;</div><div class="line">                LEVEL: 1, // TODO  不知道什么规则</div><div class="line">                _extWhere: this.state.queryData._extWhere,</div><div class="line">                PID: treeNode.props.eventKey,</div><div class="line">                NAME: treeNode.props.title,</div><div class="line">                checkstate: &apos;&apos;</div><div class="line">            &#125;</div><div class="line">            const dict = &#123;</div><div class="line">                dictId: this.state.dictId,</div><div class="line">                dictData: this.props.dict.dictData</div><div class="line">            &#125;</div><div class="line">            // 发起action，获取数据</div><div class="line">            this.props.updataDictByPid(this.props.servId, this.props.itemCode, objectUtils.clone(dict), queryData, this.props.servType, this.props.opeCode, this.props.queryServId);</div><div class="line">        &#125;</div><div class="line">        resolve();</div><div class="line">        &#125;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Form组件"><a href="#Form组件" class="headerlink" title="Form组件"></a>Form组件</h2><p>参考 <a href="https://ant.design/components/form/" target="_blank" rel="external">Form</a> 和 <a href="http://react-component.github.io/form/" target="_blank" rel="external">rc-form</a></p>
+<h3 id="使用mapPropsToFields和onFieldsChange的校验问题"><a href="#使用mapPropsToFields和onFieldsChange的校验问题" class="headerlink" title="使用mapPropsToFields和onFieldsChange的校验问题"></a>使用mapPropsToFields和onFieldsChange的校验问题</h3><p>Form组件如下方式使用，获取不到校验信息了，浏览器的控制台会有打印的校验结果，但没有反映在页面上，但如果不使用mapPropsToFields是好使的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// 必填校验</div><div class="line">const validateArray = [&#123;</div><div class="line">    rules: [&#123;</div><div class="line">        required: true,</div><div class="line">        message: &apos;邮箱必填&apos;</div><div class="line">    &#125;],</div><div class="line">    trigger: [&apos;onChange&apos;]</div><div class="line">&#125;];</div><div class="line"></div><div class="line">let fieldPropsOptions = &#123;</div><div class="line">    validate: validateArray</div><div class="line">&#125;;</div><div class="line">...</div><div class="line">&lt;FormItem</div><div class="line">    label=&quot;email&quot;</div><div class="line">    validateStatus=&#123;getFieldError(&apos;email&apos;) ? &apos;success&apos; : &apos;error&apos;&#125;</div><div class="line">    help=&#123;isFieldValidating(&apos;email&apos;) ? &apos;&apos; : errMessage&#125;</div><div class="line">&gt;</div><div class="line">    &lt;Input &#123;...getFieldProps(&apos;email&apos;, fieldPropsOptions)&#125; /&gt;;</div><div class="line">&lt;/FormItem&gt;</div><div class="line">...</div><div class="line">NewForm = Form.create(&#123;onFieldsChange, mapPropsToFields&#125;)(NewForm);</div></pre></td></tr></table></figure></p>
+<p>解决方法是调用Form组件是传入一个props及更新该props的方法，如formErrItem、updateFormErrItem，在onFieldsChange中添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function onFieldsChange(props, fields)&#123;</div><div class="line">    // 调用父组件更新formErrItem的方法</div><div class="line">    const newFormErrItem = &#123;</div><div class="line">        ...props.formErrItem,</div><div class="line">        ...fields,</div><div class="line">    &#125;;</div><div class="line">    props.updateFormErrItem(newFormErrItem);</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在Form组件中通过，this.props.formErrItem可获取校验信息。</p>
+<h3 id="ref引用"><a href="#ref引用" class="headerlink" title="ref引用"></a>ref引用</h3><p>在使用Form组件时，在Form.create时需要添加<code>withRef: true</code>才能获取到组件内部定义的方法或state。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// MyForm.jsx中，定义了 MyForm 组件，是对Form组件的封装，返回的是antd的Form组件。</div><div class="line">class MyForm extends Component &#123;</div><div class="line">    render() &#123;</div><div class="line">        return &lt;Form /&gt;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">MyForm = Form.create(&#123;onFieldsChange, mapPropsToFields, withRef: true&#125;)(MyForm);</div><div class="line">export default MyForm;</div><div class="line">// App.jsx中，引用了MyForm组件，如果要引用到MyForm组件内部定义的方法或state，需要使用如下方式。</div><div class="line">class App extends Component &#123;</div><div class="line">    clickHandler() &#123;</div><div class="line">        // 引用MyForm组件中定义的方法或state</div><div class="line">        const formRef = this.refs.myForm.refs.wrappedComponent.refs.formWrappedComponent;</div><div class="line">    &#125;</div><div class="line">    render() &#123;</div><div class="line">        return (</div><div class="line">            &lt;div&gt;</div><div class="line">                &lt;MyForm ref=&quot;myForm&quot; /&gt;</div><div class="line">                &lt;Button onClick=&#123;this.clickHandler.bind(this)&#125;&gt;点击&lt;/Button&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Table组件"><a href="#Table组件" class="headerlink" title="Table组件"></a>Table组件</h2><p>参考 <a href="https://ant.design/components/table/" target="_blank" rel="external">Table</a></p>
+<h3 id="单选"><a href="#单选" class="headerlink" title="单选"></a>单选</h3><p>如果Table组件中要进行单选，需要进行如下配置：</p>
+<ul>
+<li>将Table组件rowSelection属性的type值设置为radio，当前选中的数据由radioIndex控制</li>
+<li>注意，ant-design的Table组件，对于单选类型的，无法自己管理radioIndex值，如果想要自己管理radioIndex值，需要在Table组件中添加如下代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if ((&apos;radioIndex&apos; in nextProps) &amp;&amp; nextProps.radioIndex !== null ) &#123;</div><div class="line">    this.setState(&#123;</div><div class="line">        radioIndex: nextProps.radioIndex || null</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="行样式"><a href="#行样式" class="headerlink" title="行样式"></a>行样式</h3><p>Table组件的rowClassName属性，如：<code>rowClassName={(record, index) =&gt; record[&#39;_delete_&#39;] ? &#39;ant-table-row-delete&#39; : &#39;&#39; }</code></p>
+<h3 id="不显示页码"><a href="#不显示页码" class="headerlink" title="不显示页码"></a>不显示页码</h3><p>Table组件的pagination属性为false</p>
+<h3 id="pagination"><a href="#pagination" class="headerlink" title="pagination"></a>pagination</h3><p>pagination.pageSize不为10、20、30、40中的值时，分页处显示的只有一个值，如15，而不是像10 条/页这样<br>需要给Table组件传入的pagination中有自定义的pageSizeOptions属性，该属性的值为所有需要显示的每页条数的数组</p>
+<h3 id="列表勾选行样式问题"><a href="#列表勾选行样式问题" class="headerlink" title="列表勾选行样式问题"></a>列表勾选行样式问题</h3><p>在勾选列表行的checkbox或是列表可编辑的下拉框时，点击所在的行会发生颜色抖动，直接运行官方例子也有这个问题。后来发现可能是Chrome浏览器的问题，如果用360浏览器就不会有这个问题。很奇怪！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1124,142 +2010,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/03/study-plan/" itemprop="url">
-                  学习计划
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-03T14:53:03+08:00" content="2016-09-03">
-              2016-09-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/前端知识/" itemprop="url" rel="index">
-                    <span itemprop="name">前端知识</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Web前端知识"><a href="#Web前端知识" class="headerlink" title="Web前端知识"></a>Web前端知识</h1><h2 id="学习路径"><a href="#学习路径" class="headerlink" title="学习路径"></a>学习路径</h2><p><a href="https://roadmap.sh/" target="_blank" rel="external">Developer Roadmaps</a><br><a href="https://github.com/thedaviddias/Front-End-Checklist" target="_blank" rel="external">Front-End-Checklist</a></p>
-<h2 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h2><p><a href="http://www.ruanyifeng.com/blog/" target="_blank" rel="external">阮一峰的网络日志</a><br><a href="http://blog.andrewray.me/" target="_blank" rel="external">Andrew Ray’s Blog</a><br><a href="https://github.com/reactnativecn/react-native-guide" target="_blank" rel="external">React Native指南汇集了各类react-native学习资源、开源App和组件</a><br><a href="https://github.com/lcxfs1991/blog" target="_blank" rel="external">leehey’s blog</a><br><a href="http://www.jianshu.com/users/4713cde8f222/latest_articles" target="_blank" rel="external">有情怀的程序猿</a> </p>
-<h2 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h2><p>《HTML5秘籍》</p>
-<h2 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h2><p>《图解CSS3:核心技术与案例实战》</p>
-<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><p>《JavaScript高级程序设计》<br>《JavaScript语言精粹》</p>
-<h2 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h2><p>《ES6标准入门 2》</p>
-<h2 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h2><p>…</p>
-<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><p>《React精髓》<br>《React导学》<br>《React:引领未来的用户界面开发框架》<br>《React与Redux开发实例精解》<br><a href="http://www.ruanyifeng.com/blog/2016/11/javascript.html" target="_blank" rel="external">JavaScript 全栈工程师培训教程</a></p>
-<h2 id="React-Router"><a href="#React-Router" class="headerlink" title="React-Router"></a>React-Router</h2><p><a href="http://www.ruanyifeng.com/blog/2016/05/react_router.html" target="_blank" rel="external">React Router 使用教程</a><br><a href="https://github.com/reactjs/react-router-tutorial/tree/master/lessons" target="_blank" rel="external">react-router-tutorial</a><br><a href="https://github.com/ReactTraining/react-router" target="_blank" rel="external">react-router</a> </p>
-<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><p><a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html" target="_blank" rel="external">Redux 入门教程（一）：基本用法</a><br><a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_two_async_operations.html" target="_blank" rel="external">Redux 入门教程（二）：中间件与异步操作</a><br><a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html" target="_blank" rel="external">Redux 入门教程（三）：React-Redux 的用法</a> </p>
-<h2 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h2><h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>《Web全栈工程师的自我修养》<br>《哈佛情商课:献给奋斗中的你》<br>《精益创业》<br>《关键对话》<br>…</p>
-<h2 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h2><p><a href="http://webpack.github.io/docs/tutorials/getting-started/" target="_blank" rel="external">快速上手</a><br><a href="http://www.cnblogs.com/vajoy/p/4650467.html" target="_blank" rel="external">一小时包教会</a><br><a href="https://github.com/ruanyf/webpack-demos" target="_blank" rel="external">webpack-demos</a> </p>
-<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><p><a href="http://www.ruanyifeng.com/blog/2014/06/git_remote.html" target="_blank" rel="external">Git远程操作详解</a><br><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/" target="_blank" rel="external">Git教程</a></p>
-<h2 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h2><p>…</p>
-<hr>
-<h1 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h1><p>《写给大家看的设计书》<br>《精益创业UX篇 高效用户体验设计》<br>《Web表单设计：点石成金的艺术》<br>《用户体验要素》</p>
-<hr>
-<h1 id="移动端知识"><a href="#移动端知识" class="headerlink" title="移动端知识"></a>移动端知识</h1><h2 id="React-Native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h2><p>《React Native 跨平台移动应用开发》<br>《React Native 入门与实战》<br>《React Native 开发指南》</p>
-<h2 id="小程序"><a href="#小程序" class="headerlink" title="小程序"></a>小程序</h2><p>《微信小程序入门指南》</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span>
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1280,7 +2035,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

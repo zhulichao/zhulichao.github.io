@@ -275,7 +275,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">156</span>
+              <span class="site-state-item-count">161</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -389,6 +389,661 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/12/04/mobile-adaptive/" itemprop="url">
+                  移动端适配
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-04T15:41:15+08:00" content="2019-12-04">
+              2019-12-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://www.zcool.com.cn/article/ZNjQ0NjQw.html" target="_blank" rel="external">超全面的UI设计规范整理汇总（包含iPhone X适配）</a><br><a href="http://www.wenliku.com/sheji/2790.html" target="_blank" rel="external">APP启动页该如何适配</a><br><a href="http://www.wenliku.com/sheji/26846.html" target="_blank" rel="external">关于APP适配的经验总结</a></p>
+<p>适配只跟倍率相关，同一倍率下，界面上的间距、文字大小、icon大小是一样的，不同的只是屏幕显示内容的宽度和高度不同，元素的间距不同。在适配的时候通常会遵循三个适配原则：<strong>等比缩放、弹性控件、文字流自适应。</strong></p>
+<img src="/2019/12/04/mobile-adaptive/adaptive.png" title="图片素材来自设计驱动力">
+<h2 id="通用"><a href="#通用" class="headerlink" title="通用"></a>通用</h2><p>iOS 严格规定了各个栏的高度，这个是必须遵守的</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">设备</th>
+<th style="text-align:left">分辨率</th>
+<th style="text-align:left">状态栏</th>
+<th style="text-align:left">导航栏</th>
+<th style="text-align:left">标签栏</th>
+<th style="text-align:left">主页指示器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">iPhone SE</td>
+<td style="text-align:left">640×1136px</td>
+<td style="text-align:left">44px</td>
+<td style="text-align:left">88px</td>
+<td style="text-align:left">98px</td>
+<td style="text-align:left">–</td>
+</tr>
+<tr>
+<td style="text-align:left">iPhone 6s/7/8</td>
+<td style="text-align:left">750×1334px</td>
+<td style="text-align:left">44px</td>
+<td style="text-align:left">88px</td>
+<td style="text-align:left">98px</td>
+<td style="text-align:left">–</td>
+</tr>
+<tr>
+<td style="text-align:left">iPhone 6s/7/8 Plus</td>
+<td style="text-align:left">1242×2208px</td>
+<td style="text-align:left">66px</td>
+<td style="text-align:left">132px</td>
+<td style="text-align:left">147px</td>
+<td style="text-align:left">–</td>
+</tr>
+<tr>
+<td style="text-align:left">iPhone X (@3x)</td>
+<td style="text-align:left">1125×2436px</td>
+<td style="text-align:left">132px</td>
+<td style="text-align:left">132px</td>
+<td style="text-align:left">147px</td>
+<td style="text-align:left">102px</td>
+</tr>
+<tr>
+<td style="text-align:left">iPhone X (@2x)</td>
+<td style="text-align:left">750×1624px</td>
+<td style="text-align:left">88px</td>
+<td style="text-align:left">88px</td>
+<td style="text-align:left">98px</td>
+<td style="text-align:left">68px</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>垂直方向的间距固定</li>
+<li>首焦图等图片需按比例适配</li>
+<li>水平方向屏幕两边间距固定，中间元素间距等宽</li>
+<li>切片命名的通用规范是，界面<em>功能</em>状态.png</li>
+<li>状态栏、导航栏、标签栏是平台的基础控件，需单独处理，不在适配的范围内</li>
+</ul>
+<h2 id="移动端单屏页面适配"><a href="#移动端单屏页面适配" class="headerlink" title="移动端单屏页面适配"></a>移动端单屏页面适配</h2><h3 id="超出部分裁剪"><a href="#超出部分裁剪" class="headerlink" title="超出部分裁剪"></a>超出部分裁剪</h3><ul>
+<li>保持图片比例不变，屏幕高度固定，裁剪左右超出屏幕部分</li>
+<li>设置屏幕内图片裁剪比例，裁剪左右超过屏幕部分</li>
+<li>底部区域高度固定，图片根据剩余高度适配进行裁剪</li>
+<li>屏幕宽度固定，高度根据最大屏幕比来设计，主要信息区域在最小屏幕比里即可，根据不同的屏幕，对图片高度进行裁剪</li>
+</ul>
+<h3 id="为不同比例配图"><a href="#为不同比例配图" class="headerlink" title="为不同比例配图"></a>为不同比例配图</h3><ul>
+<li>App 启动页中有部分启动页通常是一张静态图，例如默认启动页、新手引导图，不常进行更改，为了更好的效果，可以为不同比例的手机屏幕单独配图</li>
+</ul>
+<h3 id="使用切图弹性适配"><a href="#使用切图弹性适配" class="headerlink" title="使用切图弹性适配"></a>使用切图弹性适配</h3><ul>
+<li>将页面内容分为多个图片，进行布局，提供开发四套切图（@2x、@3x、_xh、_xxh），然后根据屏幕倍率进行弹性适配</li>
+</ul>
+<h3 id="图文分离"><a href="#图文分离" class="headerlink" title="图文分离"></a>图文分离</h3><ul>
+<li>图片使用等比例放大裁剪，文字需要根据页面位置定位</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/12/04/css-unit/" itemprop="url">
+                  CSS-单位
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-04T15:37:50+08:00" content="2019-12-04">
+              2019-12-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="单位"><a href="#单位" class="headerlink" title="单位"></a>单位</h2><p>物理像素：设备屏幕实际拥有的像素点。比如iPhone 6的屏幕在宽度方向有750个像素点，高度方向有1334个像素点，所以iPhone 6总共有750*1334个物理像素。</p>
+<p>逻辑像素：也叫“设备独立像素”（Device Independent Pixel, DIP），可以理解为反映在 CSS/JS 代码里的像素点数。每英寸的像素的数量保持在96左右，因此设置为12px的元素，无论使用什么样的设备查看网页，字体的大小始终为1/8英寸。iPhone 6总共有375*667个逻辑像素。</p>
+<p>px 绝对尺寸，逻辑像素<br>pt 全称 point，1/72英寸，用于印刷业，也称“绝对长度”<br>em 相对尺寸，相对于当前对象内文本的 font-size<br>rem 相对尺寸，可理解为 “root em”, 其参考对象为根元 <code>&lt;html&gt;</code> 的 font-size<br>dp = px × (目标设备 dpi 分辨率 / 160)<br>rpx = px × (目标设备宽 px 值 / 750)</p>
+<p>dp 是以屏幕分辨率为基准的动态单位，而 rpx 是以长度为基准的动态单位，两者是不能直接进行互换的。</p>
+<p>如果将微信小程序放到平板电脑上运行，屏幕的宽度 px 值有可能会变化（横竖屏、分屏模式等等），这时候，再以宽度为基准，就会出现元素显示不正确的问题，从这一点可以看出，微信团队目前并不希望将小程序扩展到手机以外的设备中。</p>
+<h2 id="1px-边框"><a href="#1px-边框" class="headerlink" title="1px 边框"></a>1px 边框</h2><p>CSS 中定义的 1px 边框实际有多个物理像素，如果想要一个物理像素显示，使用 <code>transform: scale(0.5)</code> 或 <code>transform: scale(0.33)</code>，只剩一个点了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/12/02/chrome-debug/" itemprop="url">
+                  Chrome-调试
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-02T16:11:52+08:00" content="2019-12-02">
+              2019-12-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Debug/" itemprop="url" rel="index">
+                    <span itemprop="name">Debug</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>性能调试时使用 command + shift + n 快捷键打开无痕模式，来规避 Chrome 插件对页面性能的影响。</p>
+<h2 id="Sinppets"><a href="#Sinppets" class="headerlink" title="Sinppets"></a>Sinppets</h2><p>当我们想不起某个方法的具体使用时，会打开控制台随意写一些测试代码，或者想测试一下刚刚写的方法是否会出现期待的样子，但是控制台一打回车本想换行但是却执行刚写的半截代码。这时可以使用 Sources 下面的左侧的 Sinppets 代码片段，点击创建一个新的片段文件，写完测试代码后把鼠标放在新建的文件上右键 Run，再结合控制台查看相关信息。</p>
+<h2 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h2><p>确保 Screenshots checkbox 被选中；点击 Capture Settings（⚙️）按钮，DevTools 会展示很多设置，来模拟各种状况，如将 CPU 选为 4x slowdown 模拟4倍低速 CPU，将 Network 选为 Slow 3G 模拟慢速 3G。参考 <a href="https://segmentfault.com/a/1190000011516068" target="_blank" rel="external">全新Chrome Devtools Performance使用指南</a></p>
+<h2 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h2><p>查看当前网页的 JavaScript 占用的内存情况。参考 <a href="https://www.cnblogs.com/ys-ys/p/11336811.html" target="_blank" rel="external">Chrome 开发工具之 Memory</a></p>
+<h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2><p>可以告诉你这个网站的安全性，查看有效的证书等。</p>
+<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><p>会列出所有的资源，包括 Manifest、Service Workers、Local Storage、Session Storage、IndexedDB、Web SQL(已被 IndexedDB 干趴下)、Cookies、Cache Storage、Application Cache(已被 Service Workers 干趴下)、BackGround Services、Frames 等，可以对存储的内容编辑和删除。参考 <a href="https://www.cnblogs.com/ys-ys/p/11444290.html" target="_blank" rel="external">Chrome 开发工具之 Application</a></p>
+<h2 id="Audits"><a href="#Audits" class="headerlink" title="Audits"></a>Audits</h2><p>Audits 源于著名的开源自动化分析插件——Lighthouse，Lighthouse 不仅能够分析页面性能，还能够对 PWA、无障碍访问、SEO 等进行测试评分，可选网络环境，运行后给出优化建议。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/11/29/javascript-base3/" itemprop="url">
+                  JavaScript-基础3
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-11-29T15:59:53+08:00" content="2019-11-29">
+              2019-11-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="includes-VS-indexOf"><a href="#includes-VS-indexOf" class="headerlink" title="includes VS. indexOf"></a>includes VS. indexOf</h2><ul>
+<li>返回值类型不同，includes 返回布尔型，indexOf 返回数值，在 if 判断时 includes 更简便</li>
+<li>如果数组中有 NaN，要判断数组是否有存在 NaN，indexOf 是无法判断的，必须使用 includes</li>
+<li>当数组有空值的时候，includes 会认为空的值是 undefined，而 indexOf 不会</li>
+<li>如果要查找某个元素在数组中的位置，该使用 indexOf，如果要判断数组中是否存在某个元素，该使用 includes</li>
+</ul>
+<h2 id="import-VS-require"><a href="#import-VS-require" class="headerlink" title="import VS. require"></a>import VS. require</h2><h3 id="require"><a href="#require" class="headerlink" title="require"></a>require</h3><ul>
+<li>require 是 AMD 规范引入方式</li>
+<li>require 动态加载，是运行时调用，只能在运行时确定模块的依赖关系及输入/输出，无法进行静态优化，可以出现在任何地方，可以使用通过计算得到的地址</li>
+<li>require 是赋值过程，require 的结果就是对象、数字、字符串、函数等，再把结果赋值给某个变量，是普通的值拷贝传递</li>
+<li>使用 exports、module.exports 导出</li>
+</ul>
+<h3 id="import"><a href="#import" class="headerlink" title="import"></a>import</h3><ul>
+<li>import 是 ES6 的一个语法标准，如果要兼容浏览器必须转化成 ES5 的语法，import 语法会被转码为 require</li>
+<li>import 静态加载，是编译时调用，必须放在文件开头，支持编译时静态分析，便于 JS 引入宏和类型检验，不能使用通过计算得的到地址</li>
+<li>import 是解构过程，使用 import 导入模块的属性或者方法是引用传递，read-only，单向传递</li>
+<li>使用 export 导出</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/11/29/circleci-base/" itemprop="url">
+                  circleci-base
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-11-29T15:41:46+08:00" content="2019-11-29">
+              2019-11-29
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>CircleCI 持续集成</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1103,644 +1758,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/11/18/git-base3/" itemprop="url">
-                  Git-基础3
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-11-18T15:36:33+08:00" content="2019-11-18">
-              2019-11-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="配置的三个级别"><a href="#配置的三个级别" class="headerlink" title="配置的三个级别"></a>配置的三个级别</h2><p>local 针对当前仓库，优先级最高<br>global 针对当前用户，优先级其次<br>system 针对系统，优先级最低</p>
-<h2 id="四种对象"><a href="#四种对象" class="headerlink" title="四种对象"></a>四种对象</h2><p>git 使用40个16进制字符的 SHA-1 Hash 来唯一标识对象，git 有4种对象：</p>
-<ul>
-<li>blob 文本文件，二进制文件，链接文件，<strong>是在代码提交到 Stage 区时根据内容生成的二进制文件</strong></li>
-<li>tree 目录结构，包括 tree 和 blob，在进行提交时把 Stage 区中的 blob 对象封装在 tree 中</li>
-<li>commit 存储一次提交的信息，指向一个 tree</li>
-<li>tag 指向固定的历史提交，可以当做是 commit 的别名</li>
-</ul>
-<p>git 只关心文件的内容，如果2个文件有同样的内容，它们会指向同一个 blob 对象，文件名等其它信息会存储在 tree 对象中。</p>
-<p><code>git hash-object [file-name]</code> 查看文件的 hash 码<br><code>git cat-file -p [id]</code> 显示仓库中对象的类型、大小和内容信息</p>
-<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p>working directory 工作区，日常编辑代码的地方，维护着一个树形结构<br>git repository 本地仓库，commit 指向的一个树形结构<br>staging area 暂存区，.git/index 文件，工作区与本地仓库中间的缓存，维护的是虚拟的树形结构，代表的是需要提交的工作的状态</p>
-<p>工作区是我们能看到的区域，我们在工作区修改增加代码，完成编辑后，用 <code>git add</code> 将工作区文件添加到暂存区，然后利用 <code>git commit</code> 提交文件到本地仓库。分支就是 commit 的引用，在这些分支上工作会产生各自的历史，分支切换就是 HEAD 引用的移动以及暂存区和工作区的还原，tag 指向一个固定的 commit。</p>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p><code>git add</code> 工作区到暂存区<br><code>git commit</code> 暂存区到和本地仓库<br><code>git rm [file-name]</code> 删除暂存区和工作区的文件<br><code>git rm --cached [file-name]</code> 删除暂存区的文件<br><code>git mv [old-name] [new-name]</code> 重命名或移动暂存区和工作区的文件<br><code>git status</code> 查看工作区和暂存区的区别<br><code>git stash save &quot;name&quot;</code> 将工作区放入 stash 栈中<br><code>git stash save -a &quot;name&quot;</code> 将工作区和暂存区放入 stash 栈中<br><code>git stash pop --index stash@{0}</code> 还原工作区和暂存区<br><code>git stash apply --index stash@{0}</code> 还原工作区和暂存区，不删除 stash 中的索引<br><code>git stash drop stash@{0}</code> 删除 stash 栈中的索引<br><code>git stash clear</code> 清除 stash 栈中的全部索引<br><code>git merge --abort</code> 放弃当前合并操作</p>
-<h2 id="查看与对比历史记录"><a href="#查看与对比历史记录" class="headerlink" title="查看与对比历史记录"></a>查看与对比历史记录</h2><p><code>git show</code> 显示 git 对象<br><code>git log [--oneline] [--decorate] [--graph] [--all]</code> 查看历史记录<br><code>git diff [--color-worlds] [--word-diff]</code> 查看工作区与暂存区的区别<br><code>git diff [file-name]</code> 查看工作区与暂存区指定文件的区别<br><code>git diff --cached</code> 查看暂存区与本地仓库的区别<br><code>git diff [提交hash码或者HEAD]</code> 查看工作区与本地仓库的区别<br><code>git diff 提交区hash码A  提交区hash码B</code> 查看两个不同提交的区别<br><code>git diff 分支A的某个hash码  分支B的某个hash码</code> 两个不同分支间比较</p>
-<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><p><code>git checkout [file-name]</code> 从暂存区或本地仓库恢复文件，回到最近一次 git commit 或 git add 的状态<br><code>git checkout .</code> 从暂存区或本地仓库恢复所有文件，<strong>撤销工作区修改，不改变暂存区</strong><br><code>git checkout [commit 引用] [file-name]</code> 还原工作区和暂存区<br><code>git reset [file-name]</code> 撤销暂存区文件<br><code>git reset .</code> 撤销所有暂存区文件，<strong>清空暂存区文件，不改变工作区</strong><br><code>git reset [commit 引用] [file-name]</code> 还原暂存区<br><code>git clean -n [-X|x]</code> 查看执行 git clean 会清除的文件<br><code>git clean -f</code> 清除未跟踪的文件，不包括 gitignore 中指定的文件<br><code>git clean -x -f</code> 清除所有未跟踪文件，包括 gitignore 中指定的文件<br><code>git clean -X -f</code> 保留 gitignore 之外的文件，清除 gitignore 中指定的文件<br><code>git revert [commit 引用]</code> 产生一个新的提交来撤销以前的提交</p>
-<p>commit 引用可能是 commitID、branch、HEAD、tag。</p>
-<h2 id="重写历史记录"><a href="#重写历史记录" class="headerlink" title="重写历史记录"></a>重写历史记录</h2><p>git commit 和 git rebase 参考<a href="/2018/05/04/git-base2/">Git-基础2</a><br><code>git reflog</code> 查看 HEAD 引用的历史<br><code>git reset --hard HEAD@{n}</code> 回到指定的历史提交，还原暂存区和工作区<br><code>git reset --mixed HEAD@{n}</code> 回到指定的历史提交，只还原暂存区，为默认参数<br><code>git reset --soft HEAD@{n}</code> 回到指定的历史提交，不原暂存区和工作区</p>
-<h2 id="gitignore-文件"><a href="#gitignore-文件" class="headerlink" title="gitignore 文件"></a>gitignore 文件</h2><ul>
-<li>以’#’开始的行，被视为注释</li>
-<li>以斜杠“/”开头表示目录</li>
-<li>以星号“*”通配多个字符</li>
-<li>以问号“?”通配单个字符</li>
-<li>以方括号“[]”包含单个字符的匹配列表</li>
-<li>以叹号“!”表示不忽略(也就是跟踪)匹配到的文件或目录</li>
-<li><code>git check-ignore -v [file|folder]</code> 查找 gitignore 文件中匹配该文件的规则</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/11/14/css-guide/" itemprop="url">
-                  CSS-规范
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-11-14T16:05:56+08:00" content="2019-11-14">
-              2019-11-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="BEM-–-Blocks-ELements-and-Modifiers"><a href="#BEM-–-Blocks-ELements-and-Modifiers" class="headerlink" title="BEM – Blocks, ELements and Modifiers"></a>BEM – Blocks, ELements and Modifiers</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// Block</div><div class="line">.container &#123;&#125;</div><div class="line">// Element, depends upon the block</div><div class="line">.container__btn &#123;&#125;</div><div class="line">// Modifier, changes the style of the block</div><div class="line">.container--rounded &#123;&#125;</div></pre></td></tr></table></figure>
-<h2 id="rscss"><a href="#rscss" class="headerlink" title="rscss"></a><a href="https://rscss.io/" target="_blank" rel="external">rscss</a></h2><h2 id="OOCSS"><a href="#OOCSS" class="headerlink" title="OOCSS"></a><a href="https://github.com/stubbornella/oocss/wiki" target="_blank" rel="external">OOCSS</a></h2>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/11/12/git-workflow/" itemprop="url">
-                  使用 git 开发流程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-11-12T11:31:58+08:00" content="2019-11-12">
-              2019-11-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我们的项目中，master、develop 为受保护分支，master 对应生产环境，develop 对应测试环境，不能直接在该分支上提交代码。开发某个特性时，需要从 develop 分支拉出一条 feature 分支，例如 feature-1 与 feature-2，在这些分支上并行地开发具体特性。当特性开发完毕后，提交 pull request 到 develop 分支，所有前端进行 code review，如果有问题进行 Request changes，如果没问题点击 Approve，审核没问题后才合并到 develop 分支，并自动部署到测试环境。测试过程中如果发现 bug，从 develop 拉出新的分支修改发现的 bug。当测试没问题需要发布新版本时，需要从 develop 分支上拉出一条 release 分支，例如 release-1.0.0，更新 CHANGELOG.md 文件和 package.json、package-lock.json 的 version，提交 pull request 到 master 和 develop 分支，进行合并，并自动发布到生产环境和测试环境。release 的 pull request，到 develop 和 master 上都用 “Create a merge commit” ，其它提交到 develop 的 pull request，都用 “Squash and merge” 合并。<strong>Squash and merge 方式可能会产生一些问题。</strong></p>
-<p>当生产环境发现紧急 bug 时，直接从对应的 master 拉出一条 hotfix 分支（例如 hotfix-1.0.1），在该分支上做 bug 修复，并提交 pull request 到 develop 和 master 分支，进行合并。</p>
-<p>如果 develop 分支发生变化时，有正在开发的 feature 分支，需要执行 rebase 操作以保证是基于最新的 develop 分支。</p>
-<p>对于版本号我们也有要求，使用 Semver（Semantic Version）版本命名规范，格式为：x.y.z，其中，x 用于有重大重构时才会升级，y 用于有新的特性发布时才会升级，z 用于修改了某个 bug 后才会升级。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/10/29/develop-flow/" itemprop="url">
-                  项目开发流程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-10-29T10:03:13+08:00" content="2019-10-29">
-              2019-10-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Project-Base/" itemprop="url" rel="index">
-                    <span itemprop="name">Project Base</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><img src="/2019/10/29/develop-flow/work-flow.jpg" title="项目开发流程">
-<p>如图所示，项目的运行一共涉及6个环节。PM 在与业务方进行需求确认后产出文档，评审通过后通过 <a href="https://www.atlassian.com/software/confluence" target="_blank" rel="external">Confluence</a> 交付；UX 根据需求文档进行交互涉及，产出交互稿，评审通过后通过 <a href="https://www.abstract.com/" target="_blank" rel="external">Abstract</a> 交付，查看文件时使用 <a href="https://www.sketch.com/" target="_blank" rel="external">Sketch</a> 查看；后面 BE 和 UI 并行工作，BE 根据 UX 交互稿开发接口，没有评审，通过 Docker 镜像的形式交付，或者线上的开发环境，或者 FE 自己拉取项目启动，查看 graphql 文档；UI 根据交互稿设计页面，评审通过后通过<a href="https://lanhuapp.com/web/#/item" target="_blank" rel="external">蓝湖</a>交付，同时也会上传文件到 Abstract；BE 和 UI 都交付后，FE 进行开发，完成开发后部署到测试环境；最后由 QA 进行功能测试，使用 <a href="https://fir.im/" target="_blank" rel="external">fir.im</a> 发布移动端安装包，使用 <a href="https://www.atlassian.com/software/jira" target="_blank" rel="external">Jira</a> 进行 bug 管理 。</p>
-<p>BE 和 FE 都使用 VSCode 进行开发，项目托管在 GitHub，使用 GitHub Desktop 维护代码，具体的开发流程参考<a href="/2019/11/12/git-workflow/">使用 git 开发流程</a>。</p>
-<p>tip：最好从 PM 环节开始，功能模块的名称及对应的英文就已确定，后面的环节都使用统一的名称。最好所有人都参与评审，在每个环节评审前都给参与评审的人留出一些时间，提前仔细看一遍评审的内容，尽量在评审时发现并提出问题。</p>
-<h2 id="评审注意点"><a href="#评审注意点" class="headerlink" title="评审注意点"></a>评审注意点</h2><h3 id="PM-—-gt-UX"><a href="#PM-—-gt-UX" class="headerlink" title="PM —&gt; UX"></a>PM —&gt; UX</h3><ul>
-<li>成本：人力、时间、紧急程度</li>
-<li>项目复杂度</li>
-<li>能不能基于现有程序解决</li>
-<li>可行的解决方案（从工程师角度出发）</li>
-<li>和现有的业务是什么关系</li>
-<li>对公司意味着什么</li>
-</ul>
-<h2 id="UX-—-gt-UI、BE"><a href="#UX-—-gt-UI、BE" class="headerlink" title="UX —&gt; UI、BE"></a>UX —&gt; UI、BE</h2><ul>
-<li>功能和跳转逻辑</li>
-<li>后端数据关联、数据结构、穷尽所有的状态和类型</li>
-<li>状态的更新</li>
-<li>各个环节提示、报错信息、placeholder</li>
-<li>与以后的后台是否有冲突、更改、新增</li>
-</ul>
-<h2 id="BE-gt-FE"><a href="#BE-gt-FE" class="headerlink" title="BE -&gt; FE"></a>BE -&gt; FE</h2><ul>
-<li>接口齐全</li>
-<li>参数、返回有清晰描述</li>
-<li>接口可使用</li>
-<li>有测试数据</li>
-</ul>
-<h2 id="UI-—-gt-FE"><a href="#UI-—-gt-FE" class="headerlink" title="UI —&gt; FE"></a>UI —&gt; FE</h2><ul>
-<li>文案 、素材、图片格式是否齐全</li>
-<li>是否遵守规范</li>
-<li>是否极端情况考虑（字最多/少）</li>
-<li>适配</li>
-<li>动画的开发成本</li>
-<li>是否与 UX 保持一致</li>
-</ul>
-<h2 id="开发-—-gt-QA"><a href="#开发-—-gt-QA" class="headerlink" title="开发 —&gt; QA"></a>开发 —&gt; QA</h2><ul>
-<li>准备好基础数据，如果需要准备 mock 数据</li>
-<li>完成冒烟测试</li>
-<li>之前测试的bug和功能是否覆盖</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/10/25/node-base/" itemprop="url">
-                  Node-基础
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-10-25T15:14:17+08:00" content="2019-10-25">
-              2019-10-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Node/" itemprop="url" rel="index">
-                    <span itemprop="name">Node</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>__dirname 指向被执行 js 文件的绝对路径<br>./ 指向执行 node 命令的路径，一个特殊情况是在 require() 中使用 ./ 时，这时的路径就会是含有 require() 的脚本文件的相对路径<br>path.join 使用特定的分隔符将路径片段连接起来生成规范路径<br>path.resolve 把一个路径解析为绝对路径，相当于执行 cd，/ 被解析为根目录</p>
-<ul>
-<li><strong>Loopback — 企业级别的 node 框架</strong></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1761,7 +1783,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

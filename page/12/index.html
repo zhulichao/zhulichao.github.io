@@ -275,7 +275,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">156</span>
+              <span class="site-state-item-count">161</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -389,6 +389,638 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/17/react-native-base3/" itemprop="url">
+                  React-Native-基础3
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-17T12:17:23+08:00" content="2017-06-17">
+              2017-06-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Native/" itemprop="url" rel="index">
+                    <span itemprop="name">React Native</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>已经用react-native开发过3个项目，经过这段时间的使用，对react-native总结如下。</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
+<li>个人感觉react-native的主要优点还是快速构建页面，无论是使用antd-mobile的组件库还是使用react-native官方提供的组件，都能相对快速的搭建页面，但是，无论使用哪种方式也都存在着同一个问题，就是样式问题，如果要完全按照UI设计做出一套页面，还是不太容易。</li>
+<li>个人感觉react-native在页面交互上还是比较方便的，可以通过组件、组件提供的方法进行事件的控制，如页面跳转、点击、关联刷新等，目前很少发现有不支持的事件。</li>
+<li>个人感觉，在android上开发的react-native项目，调试出一版ios的困难并不大，如果开发中使用的第三方依赖都是兼容ios的且不考虑ios适配问题，预计一周时间是可以调出一版兼容ios的。</li>
+<li>开源的第三方组件比较多，目前使用过的第三方依赖可参考<a href="/2017/04/02/react-native-dependencies/">React-Native-依赖</a>，而且已经确认友盟、bugtags都可以支持react-native。</li>
+</ul>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><h3 id="项目名称修改不方便"><a href="#项目名称修改不方便" class="headerlink" title="项目名称修改不方便"></a>项目名称修改不方便</h3><p>react-native项目名称修改不方便，个人认为目前就是不能修改项目名称。使用react-native-cli初始化的项目，android目录和ios目录中都有很多地方使用了项目名称，不是修改根目录文件夹的名称就能修改项目名称的，因此如果想使用已有的稳定项目生成新的项目，只能先初始化一个新的项目，再手动移代码，很不方便。</p>
+<p>目前已经试验过针对android的项目名称修改的方法，参见<a href="/2016/11/30/react-native-base/">React-Native-基础1</a>中“项目名称修改”部分，但针对ios的项目名称修改还没有找到解决办法，因此还不敢使用这种方法。</p>
+<h3 id="不支持web端"><a href="#不支持web端" class="headerlink" title="不支持web端"></a>不支持web端</h3><p>直接使用react-native开发的项目，可以做到兼容android和ios，但不能运行在web端。react-native-web声称能将react-native开发的项目运行在web端，个人只试验过将直接初始化的项目运行在web端，但对于已经使用了很多第三方依赖的项目运行在web端报错了，想要将react-native开发的项目运行在web端不是那么容易的。京东是自己实现了从React Native向React JS进行转换的方案。</p>
+<h3 id="开发中常见错误"><a href="#开发中常见错误" class="headerlink" title="开发中常见错误"></a>开发中常见错误</h3><p>开发中常见两个错误，截图如下，目前只在开发环境有，打包后的生产环境暂时还没发现。开发环境下OOM错误非常频繁，查找react-native在github上的<a href="https://github.com/facebook/react-native/issues/13379" target="_blank" rel="external">issues列表</a>建议将使用图片的ListView换成FlatList。</p>
+<img src="/2017/06/17/react-native-base3/langPressIn.jpg" width="300" title="RESPONDER_ACTIVE_LONG_PRESS_IN错误">
+<img src="/2017/06/17/react-native-base3/oom.png" width="300" title="OOM错误">
+<h3 id="多个异步请求-redux-saga"><a href="#多个异步请求-redux-saga" class="headerlink" title="多个异步请求 redux-saga"></a>多个异步请求 redux-saga</h3><p>在业务逻辑比较复杂、需要多次网络请求及本地数据库操作的情况下，例如下面的业务，写出来的代码会很复杂，原因就是使用redux发起了多个异步action，除了图片上传，个人感觉应该是使用同步请求的逻辑会容易些，因为后面的处理是基于前一个请求结果进行的，但fetch没有同步请求方法，所以逻辑写起来就复杂些。目前已知的解决发起多个异步请求的方法有redux-sequence-action和redux-sage，redux-sequence-action在web端使用过，但感觉还是有些局限，redux-sage应该是比较好的解决方案，但目前还没研究过怎么使用。</p>
+<p>“带有图片的本地数据进行web端提交后，无论提交是否成功，都需要进行本地保存；如果提交成功，根据请求返回结果删除本地业务数据、更新图片关系表，再将图片上传到web端，并根据图片上传成功的返回结果更新本地图片关系表。”</p>
+<h3 id="打包耗时"><a href="#打包耗时" class="headerlink" title="打包耗时"></a>打包耗时</h3><p>打包问题，就像react-native项目有时需要很多次启动才能启动成功（最多一次启动了6、7次），打包通常也是需要多次，几乎没有一次就能打包成功的时候，这时候代码不能修改，只能干等，后期希望引入持续集成解决这个问题，也能解决使用不同机器打的包可能不一致的问题。</p>
+<h3 id="其它问题"><a href="#其它问题" class="headerlink" title="其它问题"></a>其它问题</h3><ul>
+<li>样式不好调整，如果要完全按照UI设计做出一套页面，还是不太容易，而且目前还做过屏幕适配，不知道好不好处理</li>
+<li>react-native版本升级有时变动较大，如0.44去掉了Navigator和BackAndroid，最主要的是许多第三方依赖对高版本rn支持的不好</li>
+<li>react-native或其它组件可能存在手机适配问题，目前发现的是在工程机“VT5000”上，ListView的Item如果包装了滑动删除，几乎无法触发Item的onPress事件</li>
+<li>开发环境和打包后的生产环境可能不一致，具体原因还不清楚，怀疑是开发时打开浏览器调试能使用了一些浏览器的解析功能，导致离开浏览器的打包后的生产环境可能存在问题</li>
+<li>数据库操作使用的<a href="https://github.com/andpor/react-native-sqlite-storage" target="_blank" rel="external">react-native-sqlite-storage</a>，个人感觉还是不太好用，多个查询的嵌套看上去很乱，写起来也不方便</li>
+<li>本人没有做过原生开发，不了解更新升级，京东在GMTC会议演讲中提到更新升级需要依赖第三方框架，在我目前的项目中更新升级时本地库的处理还没有查找解决方案</li>
+<li>Small等插件化框架是支持原生的，目前没有看到支持react-native的文档，有没有支持react-native插件化的框架还不清楚</li>
+<li>复杂场景下内存性能有瓶颈，页面跳转可能卡顿，有些偶发问题很难复现也不好定位原因，目前发现的是ListView中数据重复的问题，还没定位原因</li>
+<li>react-native项目运行时有时需要android studio先编译，这就需要保持开发人员android studio环境的一致，有时候我运行项目没问题，但其它人运行就有问题，需要打开android studio看一下编译信息</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/17/react-native-baidu-map-android/" itemprop="url">
+                  React-Native-Android使用百度地图
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-17T11:31:13+08:00" content="2017-06-17">
+              2017-06-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Native/" itemprop="url" rel="index">
+                    <span itemprop="name">React Native</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="百度地图key值"><a href="#百度地图key值" class="headerlink" title="百度地图key值"></a>百度地图key值</h2><ul>
+<li><a href="http://developer.baidu.com/，注册开发者帐号" target="_blank" rel="external">http://developer.baidu.com/，注册开发者帐号</a></li>
+<li>进入百度地图-&gt;API控制台，创建应用，应用类型选择Android SDK，输入发布版SHA1和包名提交即可</li>
+</ul>
+<img src="/2017/06/17/react-native-baidu-map-android/key.png" title="申请百度地图key">
+<h2 id="显示地图及定位"><a href="#显示地图及定位" class="headerlink" title="显示地图及定位"></a>显示地图及定位</h2><p>使用<a href="https://github.com/lovebing/react-native-baidu-map" target="_blank" rel="external">react-native-baidu-map</a>依赖。</p>
+<ul>
+<li><p><code>NPM install</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install react-native-baidu-map --save</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>android/setting.gradle</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">include &apos;:react-native-baidu-map&apos;</div><div class="line">project(&apos;:react-native-baidu-map&apos;).projectDir = new File(settingsDir, &apos;../node_modules/react-native-baidu-map/android&apos;)</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>android/app/build.gradle</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile project(&apos;:react-native-baidu-map&apos;)</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>MainApplication.java</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import org.lovebing.reactnative.baidumap.BaiduMapPackage;</div><div class="line"></div><div class="line">      return Arrays.&lt;ReactPackage&gt;asList(</div><div class="line">          ...</div><div class="line">          , new BaiduMapPackage(getApplicationContext())</div><div class="line">          ...</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>AndroidManifest.xml</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&lt;!--用于进行网络定位--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--用于访问GPS定位--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--获取运营商信息，用于支持提供运营商信息相关的接口--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--用于访问wifi网络信息，wifi信息会用于进行网络定位--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.CHANGE_WIFI_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--用于访问网络，网络定位需要上网--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--用于读取手机当前的状态--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--写入扩展存储，向扩展卡写入数据，用于写入缓存定位数据--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line"></div><div class="line">&lt;application</div><div class="line">  android:name=&quot;.MainApplication&quot;</div><div class="line">  android:allowBackup=&quot;true&quot;</div><div class="line">  android:label=&quot;@string/app_name&quot;</div><div class="line">  android:icon=&quot;@mipmap/ic_launcher&quot;</div><div class="line">  android:theme=&quot;@style/AppTheme&quot;&gt;</div><div class="line">  &lt;service android:name=&quot;com.amap.api.location.APSService&quot;&gt;&lt;/service&gt;</div><div class="line">  &lt;meta-data</div><div class="line">    android:name=&quot;com.baidu.lbsapi.API_KEY&quot;</div><div class="line">    android:value=&quot;baidu-key&quot;/&gt;&lt;!--百度地图key值--&gt;</div><div class="line">   ...</div></pre></td></tr></table></figure>
+</li>
+<li><p>Usage</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div></pre></td><td class="code"><pre><div class="line">import React, &#123; Component &#125; from &apos;react&apos;;</div><div class="line">import &#123;</div><div class="line">  View,</div><div class="line">  Text,</div><div class="line">  TouchableHighlight,</div><div class="line">  StyleSheet,</div><div class="line">  InteractionManager,</div><div class="line">  Dimensions,</div><div class="line">  Platform,</div><div class="line">  StatusBar,</div><div class="line">  NativeAppEventEmitter,</div><div class="line">  Alert,</div><div class="line">&#125; from &apos;react-native&apos;;</div><div class="line">import &#123; Button &#125; from &apos;antd-mobile&apos;;</div><div class="line">import &#123; MapView, MapTypes, MapModule, Geolocation &#125; from &apos;react-native-baidu-map&apos;;</div><div class="line"></div><div class="line">class BaiduLocationTest extends Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;</div><div class="line">      mayType: MapTypes.NORMAL,</div><div class="line">      zoom: 15,</div><div class="line">      center: &#123;</div><div class="line">        longitude: 113.981718,</div><div class="line">        latitude: 22.542449</div><div class="line">      &#125;,</div><div class="line">      trafficEnabled: false,</div><div class="line">      baiduHeatMapEnabled: false,</div><div class="line">      markers: [&#123;</div><div class="line">        longitude: 113.981718,</div><div class="line">        latitude: 22.542449,</div><div class="line">        title: &quot;Window of the world&quot;</div><div class="line">      &#125;,&#123;</div><div class="line">        longitude: 113.995516,</div><div class="line">        latitude: 22.537642,</div><div class="line">        title: &quot;&quot;</div><div class="line">      &#125;]</div><div class="line">    &#125;;</div><div class="line">    this.timer = null;</div><div class="line">  &#125;</div><div class="line">  componentDidMount() &#123;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">  componentWillUnmount () &#123;</div><div class="line">    this.timer &amp;&amp; clearInterval(this.timer);</div><div class="line">  &#125;</div><div class="line">  getLocation = () =&gt; &#123;</div><div class="line">    this.timer = setInterval(</div><div class="line">      () =&gt; &#123;</div><div class="line">        Geolocation.getCurrentPosition()</div><div class="line">          .then(data =&gt; &#123;</div><div class="line">            console.log(JSON.stringify(data));</div><div class="line">            this.setState(&#123;</div><div class="line">              marker: &#123;</div><div class="line">                latitude: data.latitude,</div><div class="line">                longitude: data.longitude,</div><div class="line">                title: &apos;Your location&apos;</div><div class="line">              &#125;,</div><div class="line">              center: &#123;</div><div class="line">                latitude: data.latitude,</div><div class="line">                longitude: data.longitude,</div><div class="line">                rand: Math.random()</div><div class="line">              &#125;</div><div class="line">            &#125;);</div><div class="line">          &#125;)</div><div class="line">          .catch(e =&gt;&#123;</div><div class="line">            console.warn(e, &apos;error&apos;);</div><div class="line">          &#125;)</div><div class="line">      &#125;,</div><div class="line">      2000</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;View style=&#123;styles.container&#125;&gt;</div><div class="line">        &lt;MapView</div><div class="line">          trafficEnabled=&#123;this.state.trafficEnabled&#125;</div><div class="line">          baiduHeatMapEnabled=&#123;this.state.baiduHeatMapEnabled&#125;</div><div class="line">          zoom=&#123;this.state.zoom&#125;</div><div class="line">          mapType=&#123;this.state.mapType&#125;</div><div class="line">          center=&#123;this.state.center&#125;</div><div class="line">          marker=&#123;this.state.marker&#125;</div><div class="line">          markers=&#123;this.state.markers&#125;</div><div class="line">          style=&#123;styles.map&#125;</div><div class="line">          onMarkerClick=&#123;(e) =&gt; &#123;</div><div class="line">            console.warn(JSON.stringify(e));</div><div class="line">          &#125;&#125;</div><div class="line">          onMapClick=&#123;(e) =&gt; &#123;</div><div class="line">          &#125;&#125;</div><div class="line">        &gt;</div><div class="line">        &lt;/MapView&gt;</div><div class="line">        &lt;View style=&#123;styles.row&#125;&gt;</div><div class="line">          &lt;Button style=&#123;styles.btn&#125; onClick=&#123;this.getLocation&#125;&gt;获取位置信息&lt;/Button&gt;</div><div class="line">        &lt;/View&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const styles = StyleSheet.create(&#123;</div><div class="line">  button: &#123;</div><div class="line">    margin: 20,</div><div class="line">  &#125;,</div><div class="line">  row: &#123;</div><div class="line">    flexDirection: &apos;row&apos;,</div><div class="line">    height: 40</div><div class="line">  &#125;,</div><div class="line">  container: &#123;</div><div class="line">    flex: 1,</div><div class="line">    justifyContent: &apos;flex-start&apos;,</div><div class="line">    alignItems: &apos;center&apos;,</div><div class="line">    backgroundColor: &apos;#F5FCFF&apos;,</div><div class="line">  &#125;,</div><div class="line">  map: &#123;</div><div class="line">    width: Dimensions.get(&apos;window&apos;).width,</div><div class="line">    height: Dimensions.get(&apos;window&apos;).height - 200,</div><div class="line">    marginBottom: 16</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">export default BaiduLocationTest;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<img src="/2017/06/17/react-native-baidu-map-android/map.gif" width="300" title="百度地图">
+<img src="/2017/06/17/react-native-baidu-map-android/location.png" width="500" title="位置信息">
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/17/fetch-timeout-wrapper/" itemprop="url">
+                  Fetch-Timeout-Wrapper
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-17T09:52:18+08:00" content="2017-06-17">
+              2017-06-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Native/" itemprop="url" rel="index">
+                    <span itemprop="name">React-Native</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在使用react-native进行开发时，用到网络请求的地方，如果服务端未启动或存在网络问题，会弹出Network request failed，想自己设置客户端超时时间及超时提示信息，在react-native问题列表和网上查找后，已确认react-native用的fetch没有直接提供timeout设置的。</p>
+<p>在网上查到了使用ES6的promise封装fetch的方式，自己修改成如下timeout_fetch.js工具类，经过验证可以解决使用fetch时timeout的设置问题，将项目所有使用fetch的地方替换成使用timeout_fetch即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">config中配置了系统默认的请求超时时间，方便后期统一修改</div><div class="line">*/</div><div class="line">import &#123; default as config &#125; from &apos;../config/base&apos;;</div><div class="line"></div><div class="line">/**</div><div class="line"> * @param &#123;Promise&#125; fetch_promise fetch请求返回的Promise</div><div class="line"> * @param &#123;number&#125; timeout 超时时间，单位为毫秒</div><div class="line"> * @return 返回Promise</div><div class="line"> */</div><div class="line">function promise_fetch(fetch_promise, timeout) &#123;</div><div class="line">  let timeout_fn = null;</div><div class="line">  // 这是一个可以被reject的promise</div><div class="line">  let timeout_promise = new Promise((resolve, reject) =&gt; &#123;</div><div class="line">    timeout_fn = () =&gt; &#123;</div><div class="line">      const error = new Error(&apos;网络请求超时&apos;);</div><div class="line">      reject(error);</div><div class="line">    &#125;;</div><div class="line">  &#125;);</div><div class="line">  /*</div><div class="line">  这里使用Promise.race，以先返回的 resolve 或 reject 的结果来传入后续绑定的回调。</div><div class="line">  timeout不是请求连接超时的含义，它表示请求的response时间，fetch的timeout即使超时发生了，本次请求也不会被abort丢弃掉，它在后台仍然会发送到服务器端，只是本次请求的响应内容被丢弃而已。</div><div class="line">  */</div><div class="line">  const abortable_promise = Promise.race([</div><div class="line">    fetch_promise,</div><div class="line">    timeout_promise</div><div class="line">  ]);</div><div class="line">  setTimeout(function() &#123;</div><div class="line">    timeout_fn();</div><div class="line">  &#125;, timeout);</div><div class="line">  return abortable_promise;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * @param &#123;string&#125; url 请求地址</div><div class="line"> * @param &#123;object&#125; params 请求参数，其中timeout是超时设置，如果没有取全局配置的默认值</div><div class="line"> * @return 返回Promise</div><div class="line"> */</div><div class="line">export function timeout_fetch(url, params) &#123;</div><div class="line">  return new Promise((resolve, reject) =&gt; &#123;</div><div class="line">    promise_fetch(fetch(url, params), params.timeout ? params.timeout : config.clientTimeout * 1000)</div><div class="line">      .then((responseData) =&gt; &#123;</div><div class="line">          resolve(responseData);</div><div class="line">      &#125;)</div><div class="line">      .catch((err) =&gt; &#123;</div><div class="line">          reject(err);</div><div class="line">      &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/22/react-native-floder/" itemprop="url">
+                  React-Native-目录结构
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-22T09:15:02+08:00" content="2017-05-22">
+              2017-05-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Native/" itemprop="url" rel="index">
+                    <span itemprop="name">React Native</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="项目目录"><a href="#项目目录" class="headerlink" title="项目目录"></a>项目目录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">jxtrq_rn                                </div><div class="line">  ├── /_test_                  # RN生成，测试目录</div><div class="line">  ├── /android                 # RN生成，android代码目录，具体见下图</div><div class="line">  ├── /ios                     # RN生成，代码目录，具体见下图</div><div class="line">  ├── /node_modules            # 自动生成，安装依赖的目录，不会被提交</div><div class="line">  ├── .babelrc                 # RN生成，Babel配置文件</div><div class="line">  ├── .buckconfig              # RN生成，Buck是Mac OS X和Linux使用的构建工具</div><div class="line">  ├── .flowconfig              # RN生成，Flow是一个静态的类型检查工具</div><div class="line">  ├── .gitattributes           # RN生成，配置Git对一个特定的子目录或子文件集运用那些设置项</div><div class="line">  ├── .gitignore               # RN生成，配置Git忽略提交的文件</div><div class="line">  ├── .watchmanconfig          # RN生成，Watchman用于监控文件变化，辅助实现工程修改所见即所得</div><div class="line">  ├── yarn.lock                # RN生成，Yarn是node包管理器，yarn.lock文件使程序在不同的机器上以同样的方式安装依赖</div><div class="line">  ├── package.json             # RN生成，用于描述项目的基本信息以及需要的依赖信息</div><div class="line">  ├── index.android.js         # RN生成，android入口文件</div><div class="line">  ├── index.ios.js             # RN生成，ios入口文件</div><div class="line">  |</div><div class="line">  ├── index.web.js             # 自定义，web入口文件</div><div class="line">  ├── CHANGELOG.md             # 自定义，版本更新日志</div><div class="line">  ├── README.md                # 自定义，项目运行说明</div><div class="line">  ├── /docs                    # 自定义，项目相关的说明目录</div><div class="line">  |     ├── /dev                    # 开发相关目录</div><div class="line">  |     |     ├── api                   # 接口相关目录</div><div class="line">  |     ├── /work                   # 工作内容、计划目录</div><div class="line">  |     └── /training               # 培训相关文档</div><div class="line">  └── /app                     # 自定义，项目主体RN代码</div><div class="line">        ├── config                  # 项目相关的配置信息，配置后台接口等</div><div class="line">        ├── resources               # 项目资源目录，目前主要是图片资源</div><div class="line">        ├── actions                 # redux的action的目录</div><div class="line">        ├── reducers                # redux的reducer的目录，一般与actions对应</div><div class="line">        ├── components              # 组件目录，这些组件在项目中属于展示组件，不直接关联redux</div><div class="line">        ├── containers              # 组件目录，这些组件在项目中属于智能组件，直接关联redux，里面再返回展示组件</div><div class="line">        ├── store                   # 初始化redux的目录</div><div class="line">        ├── utils                   # 相当于工具类</div><div class="line">        ├── styles                  # 项目公共样式、主题相关的目录</div><div class="line">        └── App.js                  # 平台无关的项目入口文件，通常根据条件决定显示欢迎页、登录页或主页</div></pre></td></tr></table></figure>
+<img src="/2017/05/22/react-native-floder/android.png" width="300" title="android目录截图">
+<img src="/2017/05/22/react-native-floder/ios.png" width="300" title="ios目录截图">
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/21/ant-design-mobile-notice/" itemprop="url">
+                  Ant Design Mobile 组件注意
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-21T00:03:42+08:00" content="2017-05-21">
+              2017-05-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Ant-Design/" itemprop="url" rel="index">
+                    <span itemprop="name">Ant Design</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><ul>
+<li>Popover、Progress外面如果没有View并且给高度的话可能不显示，外层是ScrollView应该也可以显示</li>
+<li>Tabs最好指定activeKey否则可能有奇怪的返回第一个TabPane问题</li>
+<li>SwipeAction放在TouchableHighlight外，否则会报 undefined is not an object (evaluation ‘this.refs.swipeoutContent.measure’) 错误</li>
+</ul>
+<h2 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h2><ul>
+<li>PickerView 编辑不了，官方也没有给出RN上的demo</li>
+<li>Range 使用不了，直接红屏报错<code>Expected a component class,got [object Object]</code></li>
+<li>Steps 不能水平方向</li>
+<li>ListView中使用SwipeAction时效果不好，左右滑动会触发上下滑动，造成ListView滚动，不容易出现删除按钮，在部分Android机型上，目前已知的是“VT5000”上，点击时触发的是SwipeAction的onOpen方法，很少会触发ListView的onPress方法</li>
+<li>Tabs.TabPane 在官网上写的tab属性支持 React.Element，目前经过确认是不支持的</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1271,646 +1903,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/28/react-dependencies/" itemprop="url">
-                  React-依赖
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-28T17:18:39+08:00" content="2017-04-28">
-              2017-04-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index">
-                    <span itemprop="name">React</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://github.com/facebookincubator/create-react-app" target="_blank" rel="external">create-react-app</a> 初始化空的react项目</p>
-<p><a href="http://leonshi.com/redux-saga-in-chinese/index.html" target="_blank" rel="external">redux-saga</a> 处理异步利器</p>
-<p><a href="https://github.com/jasonslyvia/redux-sequence-action" target="_blank" rel="external">redux-sequence-action</a> 按序发起action</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/07/react-native-open/" itemprop="url">
-                  React-Native-打开文件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-07T16:32:03+08:00" content="2017-04-07">
-              2017-04-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/React-Native/" itemprop="url" rel="index">
-                    <span itemprop="name">React Native</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="本地应用打开文件-react-native-file-opener"><a href="#本地应用打开文件-react-native-file-opener" class="headerlink" title="本地应用打开文件  react-native-file-opener"></a>本地应用打开文件  <a href="https://github.com/huangzuizui/react-native-file-opener" target="_blank" rel="external">react-native-file-opener</a></h2><ul>
-<li><p><code>NPM install</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save react-native-file-opener</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>IOS install</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在Xcode中，将node_modules/react-native-file-opener/ios/RNFileOpener.xcodeproj添加到项目的Libraries目录；</div><div class="line">将Libraries/RNFileOpener.xcodeproj/Products/libRNFileOpener.a拖拽到Build Phases -&gt; Link Binary With Libraries中。</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>Android install</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// file: android/settings.gradle</div><div class="line">...</div><div class="line">include &apos;:react-native-file-opener&apos;</div><div class="line">project(&apos;:react-native-file-opener&apos;).projectDir = new File(settingsDir, &apos;../node_modules/react-native-file-opener/android&apos;)</div></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// file: android/app/build.gradle</div><div class="line">...</div><div class="line">dependencies &#123;</div><div class="line">    ...</div><div class="line">    compile project(&apos;:react-native-file-opener&apos;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// file: MainActivity.java</div><div class="line">...</div><div class="line">import com.fileopener.FileOpenerPackage;//&lt;- import package</div><div class="line"></div><div class="line">public class MainActivity extends ReactActivity &#123;</div><div class="line">    @Override</div><div class="line">    protected List&lt;ReactPackage&gt; getPackages() &#123;</div><div class="line">        return Arrays.&lt;ReactPackage&gt;asList(</div><div class="line">            new MainReactPackage(),</div><div class="line">            new FileOpenerPackage() //&lt;- Add package</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>Usage</code><br>在上一篇<a href="/2017/04/03/react-native-upload/">React-Native-上传下载</a>例子的基础上，添加如下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">import FileOpener from &apos;react-native-file-opener&apos;;</div><div class="line">...</div><div class="line">class TestFileStream extends Component &#123;</div><div class="line">  ...</div><div class="line">  openFile(fileName) &#123;</div><div class="line">    const FilePath = Platform.OS === &apos;android&apos; ? dirs.DCIMDir + &apos;/&apos; + fileName : dirs.DocumentDir + &apos;/&apos; + fileName;</div><div class="line">    const FileMimeType = &apos;image/jpg&apos;;</div><div class="line">    FileOpener.open(</div><div class="line">        FilePath,</div><div class="line">        FileMimeType</div><div class="line">    ).then((msg) =&gt; &#123;</div><div class="line">        console.log(&apos;success!!&apos;)</div><div class="line">    &#125;,(err) =&gt; &#123;</div><div class="line">        console.log(&apos;打开失败:&apos;, err)</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line">export default TestFileStream;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<img src="/2017/04/07/react-native-open/open.gif" width="300" title="运行结果">
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/03/http-base/" itemprop="url">
-                  Http-基础
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-03T23:39:16+08:00" content="2017-04-03">
-              2017-04-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Http/" itemprop="url" rel="index">
-                    <span itemprop="name">Http</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写，是用于从万维网（WWW）服务器传输超文本到本地浏览器的传送协议。它基于TCP/IP通信协议来传递数据，是一个属于应用层的面向对象的协议，由于其简捷、快速的方式，适用于分布式超媒体信息系统。HTTP协议通常承载于TCP协议之上，有时也承载于TLS或SSL协议层之上，这个时候，就成了我们常说的HTTPS。HTTP协议是无状态协议，无状态是指协议对于事务处理没有记忆能力，如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。从HTTP/1.1起，默认都开启了Keep-Alive，保持连接特性，简单地说，当一个网页打开完成后，客户端和服务器之间用于传输HTTP数据的TCP连接不会关闭，如果客户端再次访问这个服务器上的网页，会继续使用这一条已经建立的连接。Keep-Alive不会永久保持连接，它有一个保持时间。HTTP协议永远都是客户端发起请求，服务器回送响应。这样就限制了使用HTTP协议，无法实现在客户端没有发起请求的时候，服务器将消息推送给客户端。</p>
-<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p>一次HTTP操作称为一个事务，其工作过程可分为四步：</p>
-<ul>
-<li>首先客户机与服务器需要建立连接。只要单击某个超级链接，HTTP的工作开始。</li>
-<li>建立连接后，客户机发送一个请求给服务器，请求方式的格式为：统一资源标识符（URL）、协议版本号，后边是MIME信息包括请求修饰符、客户机信息和可能的内容。</li>
-<li>服务器接到请求后，给予相应的响应信息，其格式为一个状态行，包括信息的协议版本号、一个成功或错误的代码，后边是MIME信息包括服务器信息、实体信息和可能的内容。</li>
-<li>客户端接收服务器所返回的信息通过浏览器显示在用户的显示屏上，然后客户机与服务器断开连接。</li>
-</ul>
-<p>如果在以上过程中的某一步出现错误，那么产生错误的信息将返回到客户端，有显示屏输出。对于用户来说，这些过程是由HTTP自己完成的，用户只要用鼠标点击，等待信息显示就可以了。</p>
-<h2 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h2><p>根据HTTP标准，HTTP请求可以使用多种请求方法。HTTP1.0定义了三种请求方法： GET, POST 和 HEAD方法。HTTP1.1新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT 方法。</p>
-<ul>
-<li>GET      – 请求指定的页面信息，并返回实体主体。</li>
-<li>HEAD     – 类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头</li>
-<li>POST     – 向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。</li>
-<li>PUT      – 从客户端向服务器传送的数据取代指定的文档的内容。</li>
-<li>DELETE   – 请求服务器删除指定的页面。</li>
-<li>CONNECT  – HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。</li>
-<li>OPTIONS  – 允许客户端查看服务器的性能。</li>
-<li>TRACE    – 回显服务器收到的请求，主要用于测试或诊断。</li>
-</ul>
-<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a><a href="http://www.runoob.com/http/http-status-codes.html" target="_blank" rel="external">状态码</a></h2><p>状态代码有三位数字组成，第一个数字定义了响应的类别，且有五种可能取值：</p>
-<ul>
-<li>1xx：指示信息–表示请求已接收，继续处理</li>
-<li>2xx：成功–表示请求已被成功接收、理解、接受</li>
-<li>3xx：重定向–要完成请求必须进行更进一步的操作</li>
-<li>4xx：客户端错误–请求有语法错误或请求无法实现</li>
-<li>5xx：服务器端错误–服务器未能实现合法的请求</li>
-</ul>
-<p>常见状态代码、状态描述、说明：</p>
-<p>1**(信息类)：表示接收到请求并且继续处理<br>100——客户必须继续发出请求<br>101——客户要求服务器根据请求转换HTTP协议版本</p>
-<p>2**(响应成功)：表示动作被成功接收、理解和接受<br>200——表明该请求被成功地完成，所请求的资源发送回客户端<br>201——提示知道新文件的URL<br>202——接受和处理、但处理未完成<br>203——返回信息不确定或不完整<br>204——请求收到，但返回信息为空<br>205——服务器完成了请求，用户代理必须复位当前已经浏览过的文件<br>206——服务器已经完成了部分用户的GET请求</p>
-<p>3**(重定向类)：为了完成指定的动作，必须接受进一步处理<br>300——请求的资源可在多处得到<br>301——本网页被永久性转移到另一个URL<br>302——请求的网页被转移到一个新的地址，但客户访问仍继续通过原始URL地址，重定向，新的URL会在response中的Location中返回，浏览器将会使用新的URL发出新的Request<br>303——建议客户访问其他URL或访问方式<br>304——自从上次请求后，请求的网页未修改过，服务器返回此响应时，不会返回网页内容，代表上次的文档已经被缓存了，还可以继续使用<br>305——请求的资源必须从服务器指定的地址得到<br>306——前一版本HTTP中使用的代码，现行版本中不再使用<br>307——申明请求的资源临时性删除</p>
-<p>4**(客户端错误类)：请求包含错误语法或不能正确执行<br>400——客户端请求有语法错误，不能被服务器所理解<br>401——请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用<br>402——保留有效ChargeTo头响应<br>403——禁止访问，服务器收到请求，但是拒绝提供服务<br>404——一个404错误表明可连接服务器，但服务器无法取得所请求的网页，请求资源不存在。eg：输入了错误的URL<br>405——用户在Request-Line字段定义的方法不允许<br>406——根据用户发送的Accept拖，请求资源不可访问<br>407——类似401，用户必须首先在代理服务器上得到授权<br>408——客户端没有在用户指定的饿时间内完成请求<br>409——对当前资源状态，请求不能完成<br>410——服务器上不再有此资源且无进一步的参考地址<br>411——服务器拒绝用户定义的Content-Length属性请求<br>412——一个或多个请求头字段在当前请求中错误<br>413——请求的资源大于服务器允许的大小<br>414——请求的资源URL长于服务器允许的长度<br>415——请求资源不支持请求项目格式<br>416——请求中包含Range请求头字段，在当前请求资源范围内没有range指示值，请求也不包含If-Range请求头字段<br>417——服务器不满足请求Expect头字段指定的期望值，如果是代理服务器，可能是下一级服务器不能满足请求长。</p>
-<p>5**(服务端错误类)：服务器不能正确执行一个正确的请求<br>500——服务器遇到错误，无法完成请求<br>501——未实现<br>502——网关错误<br>503——由于超载或停机维护，服务器目前无法使用，一段时间后可能恢复正常</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/03/base-concept/" itemprop="url">
-                  JavaScript-基础概念
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-03T11:08:24+08:00" content="2017-04-03">
-              2017-04-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h2><p>柯里化（Currying）是<strong>把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数</strong>，并且返回接受余下的参数且返回结果的新函数的技术。柯里化声称“如果你固定某些参数，你将得到接受余下参数的一个函数”。如对于有两个变量的函数yx，如果固定了 y = 2，则得到有一个变量的函数 2x。</p>
-<h2 id="不可变数据"><a href="#不可变数据" class="headerlink" title="不可变数据"></a>不可变数据</h2><p>不可变数据（Immutable Data）的思想就是，一旦创建就不能被修改的数据，所有对Immutable Data的改变，最终都会返回一份新复制的数据，各自的数据并不会互相影响。</p>
-<h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>函数式编程是一种编程范式，和面向对象的编程方式一样，是一种编程思想。它属于”结构化编程”的一种，<strong>主要思想是把运算过程尽量写成一系列嵌套的函数调用</strong>。它的原理将电脑运算视为函数的计算，它的基础是λ演算，λ演算的函数可以接受函数当作输入和输出。最主要的特征是，函数是第一等公民。和指令式编程相比，函数式编程强调函数的计算比指令的执行重要。和过程化编程相比，函数式编程里函数的计算可随时调用。函数式编程认为，只有纯的没有副作用的函数，才是合格的函数。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/03/react-native-upload/" itemprop="url">
-                  React-Native-上传下载
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-03T00:22:48+08:00" content="2017-04-03">
-              2017-04-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/React-Native/" itemprop="url" rel="index">
-                    <span itemprop="name">React Native</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="文件的上传下载-react-native-fetch-blob"><a href="#文件的上传下载-react-native-fetch-blob" class="headerlink" title="文件的上传下载 react-native-fetch-blob"></a>文件的上传下载<a href="https://github.com/wkh237/react-native-fetch-blob" target="_blank" rel="external"> react-native-fetch-blob</a></h2><ul>
-<li><p><code>NPM install</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save react-native-fetch-blob</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>Automatically Link Native Modules</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">react-native link react-native-fetch-blob</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>AndroidManifest.xml</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot; /&gt;                                               </div><div class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt; </div><div class="line">...</div><div class="line">&lt;intent-filter&gt;</div><div class="line">    &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;</div><div class="line">    &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;</div><div class="line">    &lt;action android:name=&quot;android.intent.action.DOWNLOAD_COMPLETE&quot;/&gt;         </div><div class="line">&lt;/intent-filter&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>Notice</code><br>对于下载路径 RNFetchBlob.fs.dirs 的结论如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CacheDir:&quot;/data/user/0/com.gps/cache&quot; ---- ios需越狱；android需root权限才能看</div><div class="line">DocumentDir:&quot;/data/user/0/com.gps/files&quot; ---- ios需越狱；android需root权限才能看</div><div class="line">MainBundleDir:&quot;/data/user/0/com.gps&quot; ---- ios系统app才能用；android需root权限才能看</div><div class="line">DCIMDir:&quot;/storage/emulated/0/DCIM&quot; ---- 不支持ios；android的DCIM目录</div><div class="line">DownloadDir:&quot;/storage/emulated/0/Download&quot; ---- 不支持ios；android的Download目录</div><div class="line">MovieDir:&quot;/storage/emulated/0/Movies&quot; ---- 不支持ios；android的Download目录</div><div class="line">MusicDir:&quot;/storage/emulated/0/Music&quot; ---- 不支持ios；android的Download目录</div><div class="line">PictureDir:&quot;/storage/emulated/0/Pictures&quot; ---- 不支持ios；android的Download目录</div><div class="line">SDCardDir:&quot;/storage/emulated/0&quot; ---- 不支持ios；android的Download目录</div></pre></td></tr></table></figure>
-<p>  <strong>个人感觉下载时应该下载到DocumentDir或CacheDir中，这两个个目录是用户不可见的，只用当用户显示发出了保存到相册的动作时才应该把下载的图片放到相册，通过调用React Native 提供的CameraRoll可以达到这个效果，这样用户对相册中图片的任何操作才不会对系统产生影响。</strong></p>
-</li>
-<li><code>Usage</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div></pre></td><td class="code"><pre><div class="line">import React, &#123; Component &#125; from &apos;react&apos;;</div><div class="line">import &#123; View, Text, StyleSheet, ScrollView, Image, Platform, CameraRoll, TouchableHighlight, Dimensions &#125; from &apos;react-native&apos;;</div><div class="line">import &#123; Button &#125; from &apos;antd-mobile&apos;;</div><div class="line">import RNFetchBlob from &apos;react-native-fetch-blob&apos;;</div><div class="line">import Icon from &apos;react-native-vector-icons/FontAwesome&apos;;</div><div class="line"></div><div class="line">import Global from &apos;../styles/Global&apos;;</div><div class="line">import NavBar from &apos;./NavBar&apos;;</div><div class="line">import &#123; default as config &#125; from &apos;../config/base&apos;;</div><div class="line">import &#123; getCommonHeaders &#125; from &apos;../utils/fetchUtil&apos;;</div><div class="line"></div><div class="line">const dirs = RNFetchBlob.fs.dirs;</div><div class="line">const WINDOW_WIDTH = Dimensions.get(&apos;window&apos;).width;</div><div class="line">const WINDOW_HEIGHT = Dimensions.get(&apos;window&apos;).height;</div><div class="line"></div><div class="line">class TestFileStream extends Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;</div><div class="line">      downImageView: null,</div><div class="line">      fileList: [],</div><div class="line">    &#125;;</div><div class="line">    this.uploadFile = this.uploadFile.bind(this);</div><div class="line">    this.downloadFile = this.downloadFile.bind(this);</div><div class="line">    this.getFilesInfo = this.getFilesInfo.bind(this);</div><div class="line">    this.goBack = this.goBack.bind(this);</div><div class="line">  &#125;</div><div class="line">  goBack() &#123;</div><div class="line">    this.props.navigator.pop();</div><div class="line">  &#125;</div><div class="line">  uploadFile() &#123;</div><div class="line">    const data = &apos;&#123;\&quot;SERV_ID\&quot;:\&quot;&apos;+&apos;OPMS_EVENTATTACH_RECORD_PAGE&apos;+&apos;\&quot;,&apos;</div><div class="line">              + &apos;\&quot;FILE_CAT\&quot;:\&quot;&apos;+&apos;ATTACH_IMG&apos;+&apos;\&quot;,&apos;</div><div class="line">              + &apos;\&quot;DATA_ID\&quot;:\&quot;&apos;+&apos;0S8iwECYm1d68jb4FElvoKDb&apos;+&apos;\&quot;,&apos;</div><div class="line">              + &apos;\&quot;FILE_SORT\&quot;:&apos; + 0 +&apos;&#125;&apos;;</div><div class="line">    const commonHeader = getCommonHeaders();</div><div class="line">    const header = &#123;</div><div class="line">      &apos;ACCESS_TOKEN&apos;: commonHeader.ACCESS_TOKEN,</div><div class="line">      &apos;Content-Type&apos;: &apos;multipart/form-data&apos;,</div><div class="line">    &#125;;</div><div class="line">    RNFetchBlob.fetch(&apos;POST&apos;, `$&#123;config.applicationIpAndPort&#125;/file?data=$&#123;encodeURIComponent(data)&#125;`,</div><div class="line">      header,</div><div class="line">      [&#123;</div><div class="line">        name : &apos;Filedata&apos;,</div><div class="line">        filename : &apos;cdpImage.png&apos;,</div><div class="line">        data: RNFetchBlob.wrap(Platform.OS === &apos;android&apos; ? &apos;file://&apos;+ dirs.DCIMDir + &apos;/cdpImage.png&apos; : dirs.DocumentDir + &apos;/cdpImage.png&apos;)</div><div class="line">      &#125;]</div><div class="line">    ).then((res) =&gt; &#123;</div><div class="line">      console.log(&apos;上传成功：&apos;, res.text());</div><div class="line">      alert(&quot;上传成功,浏览器中有信息&quot;);</div><div class="line">    &#125;).catch((err) =&gt; &#123;</div><div class="line">      console.log(&apos;上传失败：&apos;, err);</div><div class="line">      alert(&quot;上传失败,浏览器中有信息&quot;);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  downloadFile() &#123;</div><div class="line">    RNFetchBlob.config(&#123;</div><div class="line">      fileCache : true,</div><div class="line">      path : Platform.OS === &apos;android&apos; ? dirs.DCIMDir + &apos;/logo.png&apos; : dirs.DocumentDir + &apos;/logo.png&apos;,</div><div class="line">    &#125;).fetch(&apos;GET&apos;, `https://facebook.github.io/react/img/logo_og.png`, &#123;</div><div class="line">      //some headers ..</div><div class="line">    &#125;).then((res) =&gt; &#123;</div><div class="line">      // 下载成功： /storage/emulated/0/Download/logo.png</div><div class="line">      console.log(&apos;下载成功：&apos;, res.path());</div><div class="line">      const imageStyle = &#123;</div><div class="line">        borderWidth: 1,</div><div class="line">        width: 100,</div><div class="line">        height: 100</div><div class="line">      &#125;;</div><div class="line">      const downImageView = (</div><div class="line">        &lt;View style=&#123;&#123;justifyContent: &apos;center&apos;, alignItems: &apos;center&apos;&#125;&#125;&gt;</div><div class="line">          &lt;Image source=&#123;&#123; uri : Platform.OS === &apos;android&apos; ? &apos;file://&apos; + res.path()  : &apos;&apos; + res.path() &#125;&#125; style=&#123;imageStyle&#125;/&gt;</div><div class="line">        &lt;/View&gt;</div><div class="line">      );</div><div class="line">      this.setState(&#123;</div><div class="line">        downImageView,</div><div class="line">      &#125;);</div><div class="line">      // 如果是 ios,同时下载到相册</div><div class="line">      if (Platform.OS === &apos;ios&apos;) &#123;</div><div class="line">        CameraRoll.saveToCameraRoll(res.path(), &apos;photo&apos;);</div><div class="line">      &#125;</div><div class="line">    &#125;).catch((err) =&gt; &#123;</div><div class="line">      console.log(&quot;下载失败：&quot;, err);</div><div class="line">      alert(&quot;下载失败,浏览器中有信息&quot;);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  getFilesInfo() &#123;</div><div class="line">    // 显示文件，返回数组</div><div class="line">    RNFetchBlob.fs.ls(Platform.OS === &apos;android&apos; ? dirs.DCIMDir : dirs.DocumentDir)</div><div class="line">    .then((files) =&gt; &#123;</div><div class="line">        console.log(&quot;dirs.DocumentDir目录中的文件：&quot;, files);</div><div class="line">        this.setState(&#123;</div><div class="line">          fileList: files,</div><div class="line">        &#125;);</div><div class="line">    &#125;).catch((err) =&gt; &#123;</div><div class="line">      console.log(&quot;获取失败：&quot;, err);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  openFile(fileName) &#123;</div><div class="line">    alert(`打开文件：$&#123;fileName&#125;`);</div><div class="line">  &#125;</div><div class="line">  showFileList() &#123;</div><div class="line">    return this.state.fileList.map((item, index) =&gt; &#123;</div><div class="line">      return (</div><div class="line">        &lt;TouchableHighlight</div><div class="line">          style=&#123;styles.container&#125;</div><div class="line">          underlayColor=&quot;rgba(34, 26, 38, 0.1)&quot;</div><div class="line">          onPress=&#123;() =&gt; this.openFile(item)&#125;</div><div class="line">          key=&#123;index&#125;</div><div class="line">        &gt;</div><div class="line">          &lt;View style=&#123;&#123;flexDirection:&apos;row&apos;&#125;&#125;&gt;</div><div class="line">            &lt;View style=&#123;styles.icon&#125;&gt;</div><div class="line">              &lt;Text style=&#123;styles.iconText&#125;&gt;&#123;index&#125;&lt;/Text&gt;</div><div class="line">            &lt;/View&gt;</div><div class="line">            &lt;View style=&#123;styles.textContent&#125;&gt;</div><div class="line">              &lt;Text style=&#123;[styles.title, ]&#125;&gt;&#123;item&#125;&lt;/Text&gt;</div><div class="line">            &lt;/View&gt;</div><div class="line">          &lt;/View&gt;</div><div class="line">        &lt;/TouchableHighlight&gt;</div><div class="line">      );</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;View style=&#123;[Global.flex1, &#123;width: WINDOW_WIDTH&#125;]&#125;&gt;</div><div class="line">        &lt;NavBar</div><div class="line">          title=&#123;this.props.route.params.title&#125;</div><div class="line">          goBack=&#123;this.goBack&#125;</div><div class="line">        /&gt;</div><div class="line">        &lt;ScrollView style=&#123;styles.temporaryTask&#125;&gt;</div><div class="line">          &lt;View style=&#123;[Global.containerCenter, styles.marginBottom20]&#125;&gt;</div><div class="line">            &lt;Text style=&#123;&#123;fontSize: 15&#125;&#125;&gt;测试上传、下载的服务为：&lt;/Text&gt;</div><div class="line">            &lt;Text style=&#123;&#123;fontSize: 15&#125;&#125;&gt;OPMS_EVENTATTACH_RECORD_PAGE&lt;/Text&gt;</div><div class="line">          &lt;/View&gt;</div><div class="line">          &lt;View style=&#123;Global.flex1&#125;&gt;</div><div class="line">            &#123;this.state.downImageView&#125;</div><div class="line">            &lt;Button</div><div class="line">              type=&quot;primary&quot;</div><div class="line">              onClick=&#123;this.downloadFile&#125;</div><div class="line">              style=&#123;styles.marginBottom20&#125;</div><div class="line">            &gt;</div><div class="line">              &lt;Icon name=&quot;cloud-download&quot; size=&#123;20&#125; /&gt;  下载文件</div><div class="line">            &lt;/Button&gt;</div><div class="line">            &lt;Button</div><div class="line">              type=&quot;primary&quot;</div><div class="line">              onClick=&#123;this.uploadFile&#125;</div><div class="line">              style=&#123;styles.marginBottom20&#125;</div><div class="line">            &gt;</div><div class="line">              &lt;Icon name=&quot;plus&quot; size=&#123;20&#125; /&gt;  上传文件</div><div class="line">            &lt;/Button&gt;</div><div class="line">            &lt;Button</div><div class="line">              type=&quot;primary&quot;</div><div class="line">              onClick=&#123;this.getFilesInfo&#125;</div><div class="line">              style=&#123;styles.marginBottom20&#125;</div><div class="line">            &gt;</div><div class="line">              &lt;Icon name=&quot;folder-open&quot; size=&#123;20&#125; /&gt;  获取文件列表</div><div class="line">            &lt;/Button&gt;</div><div class="line">            &#123;this.showFileList()&#125;</div><div class="line">          &lt;/View&gt;</div><div class="line">        &lt;/ScrollView&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const styles = StyleSheet.create(&#123;</div><div class="line">  temporaryTask: &#123;</div><div class="line">    marginTop: 20,</div><div class="line">    marginBottom: 10,</div><div class="line">    marginHorizontal: 20,</div><div class="line">    // alignItems: &apos;stretch&apos;,</div><div class="line">    flex: 1,</div><div class="line">    width: WINDOW_WIDTH - 40,</div><div class="line">  &#125;,</div><div class="line">  marginBottom20: &#123;</div><div class="line">    marginBottom: 20,</div><div class="line">  &#125;,</div><div class="line">  container: &#123;</div><div class="line">    width: WINDOW_WIDTH - 40,</div><div class="line">    flexDirection:&apos;row&apos;,</div><div class="line">    backgroundColor: &apos;#BFEFFF&apos;,</div><div class="line">    borderRadius: 7,</div><div class="line">    alignItems: &apos;flex-start&apos;,</div><div class="line">    marginBottom: 10,</div><div class="line">  &#125;,</div><div class="line">  content: &#123;</div><div class="line">    flex: 1,</div><div class="line">  &#125;,</div><div class="line">  icon: &#123;</div><div class="line">    width: 35,</div><div class="line">    height: 35,</div><div class="line">    margin: 10,</div><div class="line">    backgroundColor: &apos;#108ee9&apos;,</div><div class="line">    justifyContent: &apos;center&apos;,</div><div class="line">    alignItems: &apos;center&apos;,</div><div class="line">    flexDirection: &apos;row&apos;,</div><div class="line">  &#125;,</div><div class="line">  iconText: &#123;</div><div class="line">    fontSize: 28,</div><div class="line">    color: &apos;#fff&apos;,</div><div class="line">    fontWeight: &apos;400&apos;,</div><div class="line">  &#125;,</div><div class="line">  textContent: &#123;</div><div class="line">    flex: 1,</div><div class="line">    padding: 10</div><div class="line">  &#125;,</div><div class="line">  title: &#123;</div><div class="line">    color: &apos;#101010&apos;,</div><div class="line">    fontSize: 17,</div><div class="line">    fontWeight: &quot;400&quot;,</div><div class="line">  &#125;,</div><div class="line">&#125;);</div><div class="line"></div><div class="line">export default TestFileStream;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<img src="/2017/04/03/react-native-upload/file.gif" width="300" title="运行结果">
-<img src="/2017/04/03/react-native-upload/file.png" title="打印结果">
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1931,7 +1928,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

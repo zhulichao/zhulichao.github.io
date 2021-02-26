@@ -275,7 +275,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">156</span>
+              <span class="site-state-item-count">161</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -389,6 +389,671 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/12/25/css-grid/" itemprop="url">
+                  CSS-网格布局
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-25T10:55:31+08:00" content="2019-12-25">
+              2019-12-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html" target="_blank" rel="external">CSS Grid 网格布局教程</a></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Grid 布局与 Flex 布局有一定的相似性，都可以指定容器内部多个项目的位置。但是，Flex 布局是轴线布局，只能指定”项目”针对轴线的位置，可以看作是一维布局。Grid 布局则是将容器划分成”行”和”列”，产生单元格，然后指定”项目所在”的单元格，可以看作是二维布局。Grid 布局远比 Flex 布局强大。</p>
+<p>采用网格布局的区域，称为”容器”（container）。容器内部采用网格定位的子元素，称为”项目”（item）。项目只能是容器的顶层子元素，不包含项目的子元素。Grid 布局只对项目生效。Grid 布局的属性分成两类，一类定义在容器上面，称为容器属性；另一类定义在项目上面，称为项目属性。</p>
+<p>容器里面的水平区域称为”行”（row），垂直区域称为”列”（column）。行和列的交叉区域，称为”单元格”（cell）。划分网格的线，称为”网格线”（grid line）。</p>
+<h2 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h2><h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><p><code>display: grid</code> 指定一个容器内部采用网格布局，块级元素<br><code>display: inline-grid</code> 指定一个容器内部采用网格布局，行内元素</p>
+<p>容器设为网格布局以后，子元素（项目）的 <code>float</code>、<code>display: inline-block</code>、<code>display: table-cell</code>、<code>vertical-align</code> 和 <code>column-*</code> 等设置都将失效。</p>
+<h3 id="大小"><a href="#大小" class="headerlink" title="大小"></a>大小</h3><p><code>grid-template-columns</code> 属性设置每一列的列宽<br><code>grid-template-rows</code> 属性设置每一行的行高<br><code>grid-auto-columns</code> 属性设置浏览器自动创建的多余网格的列宽<br><code>grid-auto-rows</code> 属性设置浏览器自动创建的多余网格的行高</p>
+<p>有时候，一些项目的指定位置，在现有网格的外部。这时，浏览器会自动生成多余的网格，以便放置项目。如果不指定 <code>grid-auto-columns</code> 和 <code>grid-auto-rows</code> 这两个属性，浏览器完全根据单元格内容的大小，决定新增网格的列宽和行高。</p>
+<p>(1) 绝对单位或百分比</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">100px</span> <span class="number">100px</span> <span class="number">100px</span>;</div><div class="line">  <span class="attribute">grid-template-rows</span>: <span class="number">33.33%</span> <span class="number">33.33%</span> <span class="number">33.33%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(2) repeat()</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(3, 33.33%);</div><div class="line">  <span class="attribute">grid-template-rows</span>: <span class="built_in">repeat</span>(3, 100px 20px 80px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(3) fr</p>
+<p>表示比例关系，可以与绝对长度的单位结合使用</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">100px</span> <span class="number">1</span>fr <span class="number">2</span>fr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(4) minmax()</p>
+<p>表示长度就在这个范围之中</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">1</span>fr <span class="built_in">minmax</span>(100px, 1fr);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(5) auto</p>
+<p>表示由浏览器自己决定长度</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">100px</span> auto <span class="number">100px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(6) auto-fit</p>
+<p>限制单元格的最小宽度，如果容器宽度足够就平均分配剩余空间给每个子元素</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(auto-fit, minmax(50px, 1fr));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(7) auto-fill</p>
+<p>限制单元格的最小宽度，如果容器宽度足够保留剩余空间，不进行分配</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(auto-fill, minmax(50px, 1fr));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<img src="/2019/12/25/css-grid/auto-fit.png" title="auto-fit VS. auto-fill">
+<p>(8) 网格线名称</p>
+<p>使用方括号，指定每一根网格线的名字，同一根线可以有多个名字</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-template-columns</span>: [c1] <span class="number">100px</span> [c2] <span class="number">100px</span> [c3] auto [c4 right-line];</div><div class="line">  <span class="attribute">grid-template-rows</span>: [r1] <span class="number">100px</span> [r2] <span class="number">100px</span> [r3] auto [r4 bottom-line];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="间距"><a href="#间距" class="headerlink" title="间距"></a>间距</h3><p><code>grid-column-gap</code> 属性设置列间距<br><code>grid-row-gap</code> 属性设置行间距<br><code>grid-gap: &lt;grid-row-gap&gt; &lt;grid-column-gap&gt;</code> 合并简写形式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-row-gap</span>: <span class="number">20px</span>;</div><div class="line">  <span class="attribute">grid-column-gap</span>: <span class="number">20px</span>;</div><div class="line">  <span class="attribute">grid-gap</span>: <span class="number">20px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="区域"><a href="#区域" class="headerlink" title="区域"></a>区域</h3><p><code>grid-template-areas</code> 指定”区域”（area），一个区域由单个或多个单元格组成，如果某些区域不需要利用，则使用”点”（.），每个区域的起始网格线，会自动命名为 <code>区域名-start</code>，终止网格线自动命名为 <code>区域名-end</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">.area &#123;</div><div class="line">    display: grid;</div><div class="line">    width: calc(5 * 60px);</div><div class="line">    height: calc(5 * 60px);</div><div class="line">    background: white;</div><div class="line">    grid-template-rows: repeat(5, 60px);</div><div class="line">    grid-template-columns: repeat(5, 60px);</div><div class="line">    grid-template-areas: ".  g  g  g  . " "o_ .  .  .  . " "o  .  e  e  . " "o  .  .  .  l " ".  g_ g_ g_ . ";</div><div class="line">&#125;</div><div class="line"></div><div class="line">.g &#123;</div><div class="line">    grid-area: g;</div><div class="line">    background: #ea4335;</div><div class="line">&#125;</div><div class="line">.o_ &#123;</div><div class="line">    grid-area: o_;</div><div class="line">    background: #ff9800;</div><div class="line">&#125;</div><div class="line">.o &#123;</div><div class="line">    grid-area: o;</div><div class="line">    background: #fbbc05;</div><div class="line">&#125;</div><div class="line">.g_ &#123;</div><div class="line">    grid-area: g_;</div><div class="line">    background: #34a853;</div><div class="line">&#125;</div><div class="line">.l &#123;</div><div class="line">    grid-area: l;</div><div class="line">    background: #00bcd4;</div><div class="line">&#125;</div><div class="line">.e &#123;</div><div class="line">    grid-area: e;</div><div class="line">    background: #4285f4;</div><div class="line">&#125;</div><div class="line">.x &#123;</div><div class="line">    grid-area: x;</div><div class="line">    background: #9e9e9e;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div><div class="line"></div><div class="line">&lt;div class="area"&gt;</div><div class="line">    &lt;div class="g"&gt;&lt;/div&gt;</div><div class="line">    &lt;div class="o_"&gt;&lt;/div&gt;</div><div class="line">    &lt;div class="o"&gt;&lt;/div&gt;</div><div class="line">    &lt;div class="g_"&gt;&lt;/div&gt;</div><div class="line">    &lt;div class="l"&gt;&lt;/div&gt;</div><div class="line">    &lt;div class="e"&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<img src="/2019/12/25/css-grid/area.png" width="300" title="area 效果图">
+<h3 id="顺序"><a href="#顺序" class="headerlink" title="顺序"></a>顺序</h3><p><code>grid-auto-flow</code> 默认值是 row，即”先行后列”，也可以将它设成 column，表示”先列后行”；row dense 表示”先行后列并且尽可能紧密填满”，column dense 表示”先列后行并且尽量填满空格”</p>
+<h3 id="容器对齐"><a href="#容器对齐" class="headerlink" title="容器对齐"></a>容器对齐</h3><p><code>justify-content</code> 属性是整个内容区域在容器里面的水平位置（左中右）<br><code>align-content</code> 属性是整个内容区域的垂直位置（上中下）<br><code>place-content: &lt;align-content&gt; &lt;justify-content&gt;</code> 合并简写形式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">justify-content</span>: start | end | center | stretch | space-around | space-between | space-evenly;</div><div class="line">  <span class="attribute">align-content</span>: start | end | center | stretch | space-around | space-between | space-evenly;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="项目对齐"><a href="#项目对齐" class="headerlink" title="项目对齐"></a>项目对齐</h3><p><code>justify-items</code> 属性设置单元格内容的水平位置（左中右）<br><code>align-items</code> 属性设置单元格内容的垂直位置（上中下）<br><code>place-items: &lt;align-items&gt; &lt;justify-items&gt;</code> 合并简写形式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">justify-items</span>: start | end | center | <span class="built_in">stretch</span>(默认);</div><div class="line">  <span class="attribute">align-items</span>: start | end | center | <span class="built_in">stretch</span>(默认);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="合并简写"><a href="#合并简写" class="headerlink" title="合并简写"></a>合并简写</h3><p><code>grid-template</code> 属性是 <code>grid-template-columns</code>、<code>grid-template-rows</code> 和 <code>grid-template-areas</code> 的合并简写形式</p>
+<p><code>grid</code> 属性是 <code>grid-template-rows</code>、<code>grid-template-columns</code>、<code>grid-template-areas</code>、<code>grid-auto-rows</code>、<code>grid-auto-columns</code> 和 <code>grid-auto-flow</code> 的合并简写形式</p>
+<h2 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h2><h3 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h3><p><code>grid-column-start</code> 属性设置项目左边框所在的垂直网格线，值为数字或网格线的名字<br><code>grid-column-end</code> 属性设置项目右边框所在的垂直网格线，值为数字或网格线的名字<br><code>grid-row-start</code> 属性设置项目上边框所在的水平网格线，值为数字或网格线的名字<br><code>grid-row-end</code> 属性设置项目下边框所在的水平网格线，值为数字或网格线的名字</p>
+<p>上面四个属性的值可以为数字、网格线的名字，也可以使用 <code>span</code> 关键字，表示”跨越”，即左右边框（上下边框）之间跨越多少个网格。使用这四个属性，如果产生了项目的重叠，则使用 <code>z-index</code> 属性指定项目的重叠顺序。</p>
+<p><code>grid-column: &lt;grid-column-start&gt;/&lt;grid-column-end&gt;</code> 属性是 <code>grid-column-start</code> 和 <code>grid-column-end</code> 的合并简写形式<br><code>grid-row: &lt;grid-row-start&gt;/&lt;grid-row-end&gt;</code> 属性是 <code>grid-row-start</code> 和 <code>grid-row-end</code> 的合并简写形式<br><code>grid-area</code> 属性指定项目放在哪一个区域，值可为区域名称或 <code>&lt;row-start&gt; / &lt;column-start&gt; / &lt;row-end&gt; / &lt;column-end&gt;</code> 的合并简写形式</p>
+<h3 id="对齐"><a href="#对齐" class="headerlink" title="对齐"></a>对齐</h3><p><code>justify-self</code> 属性设置单个单元格内容的水平位置（左中右）<br><code>align-self</code> 属性设置单个单元格内容的垂直位置（上中下）<br><code>place-self: &lt;align-self&gt; &lt;justify-self&gt;</code> 合并简写形式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.item</span> &#123;</div><div class="line">  <span class="attribute">justify-self</span>: start | end | center | <span class="built_in">stretch</span>(默认);</div><div class="line">  <span class="attribute">align-self</span>: start | end | center | <span class="built_in">stretch</span>(默认);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/12/24/html-special-tag/" itemprop="url">
+                  HTML-特殊标签
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-24T14:59:42+08:00" content="2019-12-24">
+              2019-12-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>HTML特殊标签<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 带有一定样式，不提倡使用的标签，目前HTML5仍然保留 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">b</span>&gt;</span>b加粗<span class="tag">&lt;/<span class="name">b</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">i</span>&gt;</span>i斜体<span class="tag">&lt;/<span class="name">i</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tt</span>&gt;</span>tt打字机字体<span class="tag">&lt;/<span class="name">tt</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">small</span>&gt;</span>small小一些的字体<span class="tag">&lt;/<span class="name">small</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 带有明确语义的标签 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">del</span>&gt;</span>del删除<span class="tag">&lt;/<span class="name">del</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ins</span>&gt;</span>ins添加<span class="tag">&lt;/<span class="name">ins</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">s</span>&gt;</span>s过时废弃<span class="tag">&lt;/<span class="name">s</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">sup</span>&gt;</span>sup上标<span class="tag">&lt;/<span class="name">sup</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">sub</span>&gt;</span>sub下标<span class="tag">&lt;/<span class="name">sub</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">mark</span>&gt;</span>mark特别强调<span class="tag">&lt;/<span class="name">mark</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">em</span>&gt;</span>em强调<span class="tag">&lt;/<span class="name">em</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">strong</span>&gt;</span>strong着重<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dfn</span>&gt;</span>definition定义<span class="tag">&lt;/<span class="name">dfn</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">code</span>&gt;</span>code代码<span class="tag">&lt;/<span class="name">code</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">samp</span>&gt;</span>samp例子代码<span class="tag">&lt;/<span class="name">samp</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">kbd</span>&gt;</span>kbd用户输入<span class="tag">&lt;/<span class="name">kbd</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">var</span>&gt;</span>variable变量<span class="tag">&lt;/<span class="name">var</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">cite</span>&gt;</span>cite引用<span class="tag">&lt;/<span class="name">cite</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 英文单词过长时，根据浏览器宽度指定单词换行时机裁切换行 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>To learn AJAX, you must be familiar with the XMLHttpRequest Object.To learn AJAX, you must be familiar with the XMLHttp<span class="tag">&lt;<span class="name">wbr</span>&gt;</span>Request Object.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 既表达语义又带有一定样式的标签 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">address</span>&gt;</span>address地址<span class="tag">&lt;/<span class="name">address</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">blockquote</span>&gt;</span>blockquote缩进<span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">q</span>&gt;</span>q小引用<span class="tag">&lt;/<span class="name">q</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">pre</span>&gt;</span>pre预格式化标签<span class="tag">&lt;/<span class="name">pre</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">"中华人民共和国"</span>&gt;</span>abbr简写<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">bdo</span> <span class="attr">dir</span>=<span class="string">"rtl"</span>&gt;</span>bdo反向<span class="tag">&lt;/<span class="name">bdo</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<img src="/2019/12/24/html-special-tag/tag.png" title="效果图">
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/12/11/service-worker/" itemprop="url">
+                  PWA
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-11T15:59:48+08:00" content="2019-12-11">
+              2019-12-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端知识/" itemprop="url" rel="index">
+                    <span itemprop="name">前端知识</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="PWA"><a href="#PWA" class="headerlink" title="PWA"></a>PWA</h2><p>PWA 就是渐进式 web 应用(Progressive Web App)。早在2016年初，Google 便提出 PWA，希望提供更强大的 web 体验，引导开发者回归开放互联网。它弥补了 web 对比 Native App 急缺的几个能力，比如离线使用、后台加载、添加到主屏和消息推送等，同时它还具备了小程序标榜的“无需安装、用完即走”的特性。目的就是在移动端利用提供的标准化框架，在网页应用中实现和原生应用相近的用户体验的渐进式网页应用。虽然 PWA 技术已经被 W3C 列为标准，但是其落地情况一直以来是很让人失望的，始终受到苹果的阻碍，最重要的原因在于 PWA 绕过 Apple Store 审核，直接推给用户。</p>
+<p>如 <a href="https://cn.vuejs.org/" target="_blank" rel="external">Vue.js 官网</a> <a href="https://react.docschina.org/" target="_blank" rel="external">React 官网</a></p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>可靠的——即时加载，即使在不确定的网络条件下也不会受到影响</li>
+<li>快速的——快速响应用，用平滑的动画和滚动快速响应用户交互</li>
+<li>迷人的——感觉就像设备上的原生应用程序，具有沉浸式的用户体验</li>
+</ul>
+<h3 id="核心技术"><a href="#核心技术" class="headerlink" title="核心技术"></a>核心技术</h3><ul>
+<li>Web App Manifest</li>
+<li>Service Worker</li>
+<li>Cache API</li>
+<li>Push &amp; Notification</li>
+<li>App Shell &amp; App Skeleton</li>
+<li>Background Sync</li>
+</ul>
+<h2 id="Web-App-Manifest"><a href="#Web-App-Manifest" class="headerlink" title="Web App Manifest"></a>Web App Manifest</h2><p>实现添加至主屏。Web应用程序中，可以通过 manifest.json 控制应用程序的显示方式和启动方式，指定主屏幕图标、启动应用程序时要加载的页面、屏幕方向，甚至可以指定是否显示浏览器 Chrome。<a href="https://developer.mozilla.org/zh-CN/docs/Web/Manifest" target="_blank" rel="external">Manifest 参考文档</a></p>
+<h2 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service Worker"></a>Service Worker</h2><p>实现离线缓存。由于 JavaScript 是单线程的，随着 web 业务的复杂化，开发者逐渐在 js 中做了许多耗费资源的运算过程，这使得单线程的弊端更加凹显。web worker 正是基于此被创造出来，它是脱离在主线程之外的，我们可以将复杂耗费时间的事情交给 web worker 来做。但是 web worker 作为一个独立的线程，它的功能应当不仅于此。Service Worker 便是在 web worker 的基础上增加了离线缓存的能力。当然在 Service Worker 之前也有在 HTML5 上做离线缓存的 API 叫 AppCache, 但是 AppCache 存在很多缺点。<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers" target="_blank" rel="external">Service Worker 参考文档</a> <a href="https://github.com/GoogleChrome/workbox" target="_blank" rel="external">GoogleChrome/workbox 库</a></p>
+<p>Service Worker 是由事件驱动的，具有生命周期，可以拦截处理页面的所有网络请求(fetch)，可以访问 cache 和 indexDB，支持推送，并且可以让开发者自己控制管理缓存的内容以及版本，为离线弱网环境下的 web 的运行提供了可能，让 web 在体验上更加贴近 native。</p>
+<h3 id="基本特征"><a href="#基本特征" class="headerlink" title="基本特征"></a>基本特征</h3><ul>
+<li>不能操作页面 DOM，但可以通过事件机制来处理</li>
+<li>事件驱动型服务线程</li>
+<li>必须使用 HTTPS 和 localhost</li>
+<li>运行于浏览器后台，不受页面刷新的影响，可以监听和截拦作用域范围内所有页面的 HTTP 请求</li>
+<li>单独的作用域范围，单独的运行环境和执行线程，与主线程独立不会被阻塞</li>
+<li>完全异步，无法使用 XHR 和 localStorage</li>
+<li>一旦被 install，就永远存在，除非被 uninstall 或者 dev 模式手动删除</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/12/11/styled-components/" itemprop="url">
+                  styled-components
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-11T15:51:36+08:00" content="2019-12-11">
+              2019-12-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a href="https://www.styled-components.com/" target="_blank" rel="external">styled-components</a> 是一个针对 React 的 css in js 类库。和所有同类型的类库一样，通过 js 赋能解决了原生 css 所不具备的能力，比如变量、循环、函数等。解决了 css 全局命名空间，避免样式冲突的问题，维护起来更加方便。</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
+<li>贯彻 React 的 everything in JS 理念，降低 js 对 css 文件的依赖</li>
+<li>保留前端开发 CSS 书写习惯，无学习和迁移成本</li>
+<li>使用方便，不需要配置 webpack，开箱即用</li>
+<li>不用再担心样式命名的问题，移除样式与组件之间的对应关系</li>
+<li>样式可以使用变量，更加灵活</li>
+<li>组件的逻辑、生命周期、样式、结构完全和其它组件解耦，对组件维护很有帮助</li>
+</ul>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ul>
+<li>可读性差，不方便直接看出组件的 html 元素</li>
+</ul>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><h3 id="IDE-插件"><a href="#IDE-插件" class="headerlink" title="IDE 插件"></a>IDE 插件</h3><p>VSCode 插件 vscode-styled-components</p>
+<h3 id="Babel-配置"><a href="#Babel-配置" class="headerlink" title="Babel 配置"></a>Babel 配置</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="string">"plugins"</span>: [</div><div class="line">    [</div><div class="line">      <span class="string">"babel-plugin-styled-components"</span>,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"ssr"</span>: <span class="literal">true</span>,</div><div class="line">        <span class="string">"displayName"</span>: <span class="literal">true</span>,</div><div class="line">        <span class="string">"fileName"</span>: <span class="literal">false</span>,</div><div class="line">        <span class="string">"preprocess"</span>: <span class="literal">false</span></div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  ],</div><div class="line">...</div></pre></td></tr></table></figure>
+<h3 id="stylelint-配置"><a href="#stylelint-配置" class="headerlink" title="stylelint 配置"></a>stylelint 配置</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="string">"processors"</span>: [</div><div class="line">  <span class="string">"stylelint-processor-styled-components"</span></div><div class="line">],</div><div class="line"><span class="string">"extends"</span>: [</div><div class="line">  <span class="string">"stylelint-config-recommended"</span>,</div><div class="line">  <span class="string">"stylelint-config-styled-components"</span></div><div class="line">],</div><div class="line">...</div></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Button = styled.button<span class="string">`</span></div><div class="line">  background: <span class="subst">$&#123;props =&gt; props.primary ? "blue" : "white"&#125;</span>;</div><div class="line">`;</div><div class="line"></div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span>&gt;</span>Normal<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span> <span class="attr">primary</span>&gt;</span>Primary<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Button = styled.button<span class="string">`</span></div><div class="line">  color: blue;</div><div class="line">  border-radius: 3px;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> TomatoButton = styled(Button)<span class="string">`</span></div><div class="line">  color: tomato;</div><div class="line">`;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Button = styled.button<span class="string">`</span></div><div class="line">  display: inline-block;</div><div class="line">  color: blue;</div><div class="line">  font-size: 1em;</div><div class="line">`;</div><div class="line"><span class="keyword">const</span> TomatoButton = styled(Button)<span class="string">`</span></div><div class="line">  color: tomato;</div><div class="line">`;</div><div class="line"></div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span>&gt;</span>Normal Button<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span> <span class="attr">as</span>=<span class="string">"a"</span> <span class="attr">href</span>=<span class="string">"/"</span>&gt;</span>Link with Button styles<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span> <span class="attr">as</span>=<span class="string">&#123;TomatoButton&#125;</span>&gt;</span>Custom Button with Normal Button styles<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Thing = styled.div<span class="string">`</span></div><div class="line">  color: blue;</div><div class="line">  &amp;:hover &#123;</div><div class="line">    color: red;</div><div class="line">  &#125;</div><div class="line">  &amp; ~ &amp; &#123;</div><div class="line">    background: yellow; // &lt;Thing&gt; as a sibling of &lt;Thing&gt;, but maybe not directly next to it</div><div class="line">  &#125;</div><div class="line">  &amp; + &amp; &#123;</div><div class="line">    background: green; // &lt;Thing&gt; next to &lt;Thing&gt;</div><div class="line">  &#125;</div><div class="line">  &amp;.something &#123;</div><div class="line">    background: orange; // &lt;Thing&gt; tagged with an additional CSS class ".something"</div><div class="line">  &#125;</div><div class="line">  .other-thing &#123;</div><div class="line">    background: blue; // CSS class ".other-thing" inner &lt;Thing&gt;</div><div class="line">  &#125;</div><div class="line">  .something-else &amp; &#123;</div><div class="line">    background: red; // &lt;Thing&gt; inside another element labeled ".something-else"</div><div class="line">  &#125;</div><div class="line">`</div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">React.Fragment</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">Thing</span>&gt;</span>Hello world!<span class="tag">&lt;/<span class="name">Thing</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Thing</span>&gt;</span>green<span class="tag">&lt;/<span class="name">Thing</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Thing</span> <span class="attr">className</span>=<span class="string">"something"</span>&gt;</span>orange<span class="tag">&lt;/<span class="name">Thing</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Thing</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"other-thing"</span>&gt;</span>blue<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">Thing</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>Pretty nice day today.<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Thing</span>&gt;</span>yellow<span class="tag">&lt;/<span class="name">Thing</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"something-else"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Thing</span>&gt;</span>red<span class="tag">&lt;/<span class="name">Thing</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">React.Fragment</span>&gt;</span></div><div class="line">)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Input = styled.input.attrs(props =&gt; (&#123;</div><div class="line">  <span class="comment">// we can define static props</span></div><div class="line">  type: <span class="string">"password"</span>,</div><div class="line">  <span class="comment">// or we can define dynamic ones</span></div><div class="line">  size: props.size || <span class="string">"1em"</span>,</div><div class="line">&#125;))<span class="string">`</span></div><div class="line">  font-size: 1em;</div><div class="line">  margin: <span class="subst">$&#123;props =&gt; props.size&#125;</span>;</div><div class="line">  padding: <span class="subst">$&#123;props =&gt; props.size&#125;</span>;</div><div class="line">`;</div><div class="line"></div><div class="line">render(</div><div class="line">  &lt;div&gt;</div><div class="line">    &lt;Input placeholder="A small text input" /&gt;</div><div class="line">    &lt;br /&gt;</div><div class="line">    &lt;Input placeholder="A bigger text input" size="2em" /&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> rotate = keyframes<span class="string">`</span></div><div class="line">  from &#123;</div><div class="line">    transform: rotate(0deg);</div><div class="line">  &#125;</div><div class="line">  to &#123;</div><div class="line">    transform: rotate(360deg);</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"><span class="keyword">const</span> Rotate = styled.div<span class="string">`</span></div><div class="line">  display: inline-block;</div><div class="line">  animation: <span class="subst">$&#123;rotate&#125;</span> 2s linear infinite;</div><div class="line">`;</div><div class="line"></div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">Rotate</span>&gt;</span>&amp;lt; 💅 &amp;gt;<span class="tag">&lt;/<span class="name">Rotate</span>&gt;</span></span></div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Button = styled.button<span class="string">`</span></div><div class="line">  color: <span class="subst">$&#123;props =&gt; props.theme.fg&#125;</span>;</div><div class="line">  border: 2px solid <span class="subst">$&#123;props =&gt; props.theme.fg&#125;</span>;</div><div class="line">  background: <span class="subst">$&#123;props =&gt; props.theme.bg&#125;</span>;</div><div class="line">`;</div><div class="line">Button.defaultProps = &#123;</div><div class="line">  theme: &#123;</div><div class="line">    fg: <span class="string">"mediumseagreen"</span></div><div class="line">    bg: <span class="string">"white"</span>,</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">const</span> theme = &#123;</div><div class="line">  fg: <span class="string">"palevioletred"</span>,</div><div class="line">  bg: <span class="string">"white"</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">const</span> invertTheme = (&#123; fg, bg &#125;) =&gt; (&#123;</div><div class="line">  fg: bg,</div><div class="line">  bg: fg</div><div class="line">&#125;);</div><div class="line"></div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span>&gt;</span>mediumseagreen<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ThemeProvider</span> <span class="attr">theme</span>=<span class="string">&#123;theme&#125;</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">Button</span>&gt;</span>Default Theme<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">ThemeProvider</span> <span class="attr">theme</span>=<span class="string">&#123;invertTheme&#125;</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Button</span>&gt;</span>Inverted Theme<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">ThemeProvider</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ThemeProvider</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; withTheme &#125; <span class="keyword">from</span> <span class="string">'styled-components'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Current theme: '</span>, <span class="keyword">this</span>.props.theme);</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> withTheme(MyComponent);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; useContext &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; ThemeContext &#125; <span class="keyword">from</span> <span class="string">'styled-components'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> MyComponent = () =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> themeContext = useContext(ThemeContext);</div><div class="line"></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Current theme: '</span>, themeContext);</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Button = styled.button<span class="string">`</span></div><div class="line">  color: <span class="subst">$&#123;props =&gt; props.theme.main&#125;</span>;</div><div class="line">`;</div><div class="line"><span class="keyword">const</span> theme = &#123;</div><div class="line">  main: <span class="string">"mediumseagreen"</span></div><div class="line">&#125;;</div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span> <span class="attr">theme</span>=<span class="string">&#123;&#123;</span> <span class="attr">main:</span> "<span class="attr">royalblue</span>" &#125;&#125;&gt;</span>royalblue<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ThemeProvider</span> <span class="attr">theme</span>=<span class="string">&#123;theme&#125;</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">Button</span>&gt;</span>mediumseagreen<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">Button</span> <span class="attr">theme</span>=<span class="string">&#123;&#123;</span> <span class="attr">main:</span> "<span class="attr">darkorange</span>" &#125;&#125;&gt;</span>darkorange<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ThemeProvider</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/12/10/javascript-practice/" itemprop="url">
+                  JavaScript-练习题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-10T15:47:29+08:00" content="2019-12-10">
+              2019-12-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">100</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">testResult</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> b = <span class="number">2</span> * a;</div><div class="line">  <span class="keyword">var</span> a = <span class="number">200</span>; <span class="comment">// 这里的 a 会覆盖外面的 a</span></div><div class="line">  <span class="keyword">var</span> c = a / <span class="number">2</span>;</div><div class="line">  <span class="built_in">console</span>.log(b, c); <span class="comment">// NaN 100</span></div><div class="line">&#125;</div><div class="line">testResult();</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createFunctions</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> result = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">    <span class="keyword">var</span> j = i;</div><div class="line">    result[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> j; <span class="comment">// j 存在变量提升，循环结束后 j 为 9</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> result;</div><div class="line">&#125;</div><div class="line">createFunctions().forEach(item =&gt; <span class="built_in">console</span>.log(item())) <span class="comment">// 10 个 9</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myObject = &#123;</div><div class="line">  foo: <span class="string">'bar'</span>,</div><div class="line">  func: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'outer func:this.foo = '</span>, <span class="keyword">this</span>.foo); <span class="comment">// bar</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'outer func:self.foo = '</span>, self.foo); <span class="comment">// bar</span></div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">// 立即执行函数，没有 this</span></div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'inner func:this.foo = '</span>, <span class="keyword">this</span>.foo); <span class="comment">// undefined, this 指向 window</span></div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'inner func:self.foo = '</span>, self.foo); <span class="comment">// bar</span></div><div class="line">    &#125;());</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">myObject.func();</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1058,666 +1723,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/12/04/mobile-adaptive/" itemprop="url">
-                  移动端适配
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-12-04T15:41:15+08:00" content="2019-12-04">
-              2019-12-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://www.zcool.com.cn/article/ZNjQ0NjQw.html" target="_blank" rel="external">超全面的UI设计规范整理汇总（包含iPhone X适配）</a><br><a href="http://www.wenliku.com/sheji/2790.html" target="_blank" rel="external">APP启动页该如何适配</a><br><a href="http://www.wenliku.com/sheji/26846.html" target="_blank" rel="external">关于APP适配的经验总结</a></p>
-<p>适配只跟倍率相关，同一倍率下，界面上的间距、文字大小、icon大小是一样的，不同的只是屏幕显示内容的宽度和高度不同，元素的间距不同。在适配的时候通常会遵循三个适配原则：<strong>等比缩放、弹性控件、文字流自适应。</strong></p>
-<img src="/2019/12/04/mobile-adaptive/adaptive.png" title="图片素材来自设计驱动力">
-<h2 id="通用"><a href="#通用" class="headerlink" title="通用"></a>通用</h2><p>iOS 严格规定了各个栏的高度，这个是必须遵守的</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">设备</th>
-<th style="text-align:left">分辨率</th>
-<th style="text-align:left">状态栏</th>
-<th style="text-align:left">导航栏</th>
-<th style="text-align:left">标签栏</th>
-<th style="text-align:left">主页指示器</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">iPhone SE</td>
-<td style="text-align:left">640×1136px</td>
-<td style="text-align:left">44px</td>
-<td style="text-align:left">88px</td>
-<td style="text-align:left">98px</td>
-<td style="text-align:left">–</td>
-</tr>
-<tr>
-<td style="text-align:left">iPhone 6s/7/8</td>
-<td style="text-align:left">750×1334px</td>
-<td style="text-align:left">44px</td>
-<td style="text-align:left">88px</td>
-<td style="text-align:left">98px</td>
-<td style="text-align:left">–</td>
-</tr>
-<tr>
-<td style="text-align:left">iPhone 6s/7/8 Plus</td>
-<td style="text-align:left">1242×2208px</td>
-<td style="text-align:left">66px</td>
-<td style="text-align:left">132px</td>
-<td style="text-align:left">147px</td>
-<td style="text-align:left">–</td>
-</tr>
-<tr>
-<td style="text-align:left">iPhone X (@3x)</td>
-<td style="text-align:left">1125×2436px</td>
-<td style="text-align:left">132px</td>
-<td style="text-align:left">132px</td>
-<td style="text-align:left">147px</td>
-<td style="text-align:left">102px</td>
-</tr>
-<tr>
-<td style="text-align:left">iPhone X (@2x)</td>
-<td style="text-align:left">750×1624px</td>
-<td style="text-align:left">88px</td>
-<td style="text-align:left">88px</td>
-<td style="text-align:left">98px</td>
-<td style="text-align:left">68px</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>垂直方向的间距固定</li>
-<li>首焦图等图片需按比例适配</li>
-<li>水平方向屏幕两边间距固定，中间元素间距等宽</li>
-<li>切片命名的通用规范是，界面<em>功能</em>状态.png</li>
-<li>状态栏、导航栏、标签栏是平台的基础控件，需单独处理，不在适配的范围内</li>
-</ul>
-<h2 id="移动端单屏页面适配"><a href="#移动端单屏页面适配" class="headerlink" title="移动端单屏页面适配"></a>移动端单屏页面适配</h2><h3 id="超出部分裁剪"><a href="#超出部分裁剪" class="headerlink" title="超出部分裁剪"></a>超出部分裁剪</h3><ul>
-<li>保持图片比例不变，屏幕高度固定，裁剪左右超出屏幕部分</li>
-<li>设置屏幕内图片裁剪比例，裁剪左右超过屏幕部分</li>
-<li>底部区域高度固定，图片根据剩余高度适配进行裁剪</li>
-<li>屏幕宽度固定，高度根据最大屏幕比来设计，主要信息区域在最小屏幕比里即可，根据不同的屏幕，对图片高度进行裁剪</li>
-</ul>
-<h3 id="为不同比例配图"><a href="#为不同比例配图" class="headerlink" title="为不同比例配图"></a>为不同比例配图</h3><ul>
-<li>App 启动页中有部分启动页通常是一张静态图，例如默认启动页、新手引导图，不常进行更改，为了更好的效果，可以为不同比例的手机屏幕单独配图</li>
-</ul>
-<h3 id="使用切图弹性适配"><a href="#使用切图弹性适配" class="headerlink" title="使用切图弹性适配"></a>使用切图弹性适配</h3><ul>
-<li>将页面内容分为多个图片，进行布局，提供开发四套切图（@2x、@3x、_xh、_xxh），然后根据屏幕倍率进行弹性适配</li>
-</ul>
-<h3 id="图文分离"><a href="#图文分离" class="headerlink" title="图文分离"></a>图文分离</h3><ul>
-<li>图片使用等比例放大裁剪，文字需要根据页面位置定位</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/12/04/css-unit/" itemprop="url">
-                  CSS-单位
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-12-04T15:37:50+08:00" content="2019-12-04">
-              2019-12-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="单位"><a href="#单位" class="headerlink" title="单位"></a>单位</h2><p>物理像素：设备屏幕实际拥有的像素点。比如iPhone 6的屏幕在宽度方向有750个像素点，高度方向有1334个像素点，所以iPhone 6总共有750*1334个物理像素。</p>
-<p>逻辑像素：也叫“设备独立像素”（Device Independent Pixel, DIP），可以理解为反映在 CSS/JS 代码里的像素点数。每英寸的像素的数量保持在96左右，因此设置为12px的元素，无论使用什么样的设备查看网页，字体的大小始终为1/8英寸。iPhone 6总共有375*667个逻辑像素。</p>
-<p>px 绝对尺寸，逻辑像素<br>pt 全称 point，1/72英寸，用于印刷业，也称“绝对长度”<br>em 相对尺寸，相对于当前对象内文本的 font-size<br>rem 相对尺寸，可理解为 “root em”, 其参考对象为根元 <code>&lt;html&gt;</code> 的 font-size<br>dp = px × (目标设备 dpi 分辨率 / 160)<br>rpx = px × (目标设备宽 px 值 / 750)</p>
-<p>dp 是以屏幕分辨率为基准的动态单位，而 rpx 是以长度为基准的动态单位，两者是不能直接进行互换的。</p>
-<p>如果将微信小程序放到平板电脑上运行，屏幕的宽度 px 值有可能会变化（横竖屏、分屏模式等等），这时候，再以宽度为基准，就会出现元素显示不正确的问题，从这一点可以看出，微信团队目前并不希望将小程序扩展到手机以外的设备中。</p>
-<h2 id="1px-边框"><a href="#1px-边框" class="headerlink" title="1px 边框"></a>1px 边框</h2><p>CSS 中定义的 1px 边框实际有多个物理像素，如果想要一个物理像素显示，使用 <code>transform: scale(0.5)</code> 或 <code>transform: scale(0.33)</code>，只剩一个点了。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/12/02/chrome-debug/" itemprop="url">
-                  Chrome-调试
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-12-02T16:11:52+08:00" content="2019-12-02">
-              2019-12-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Debug/" itemprop="url" rel="index">
-                    <span itemprop="name">Debug</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>性能调试时使用 command + shift + n 快捷键打开无痕模式，来规避 Chrome 插件对页面性能的影响。</p>
-<h2 id="Sinppets"><a href="#Sinppets" class="headerlink" title="Sinppets"></a>Sinppets</h2><p>当我们想不起某个方法的具体使用时，会打开控制台随意写一些测试代码，或者想测试一下刚刚写的方法是否会出现期待的样子，但是控制台一打回车本想换行但是却执行刚写的半截代码。这时可以使用 Sources 下面的左侧的 Sinppets 代码片段，点击创建一个新的片段文件，写完测试代码后把鼠标放在新建的文件上右键 Run，再结合控制台查看相关信息。</p>
-<h2 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h2><p>确保 Screenshots checkbox 被选中；点击 Capture Settings（⚙️）按钮，DevTools 会展示很多设置，来模拟各种状况，如将 CPU 选为 4x slowdown 模拟4倍低速 CPU，将 Network 选为 Slow 3G 模拟慢速 3G。参考 <a href="https://segmentfault.com/a/1190000011516068" target="_blank" rel="external">全新Chrome Devtools Performance使用指南</a></p>
-<h2 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h2><p>查看当前网页的 JavaScript 占用的内存情况。参考 <a href="https://www.cnblogs.com/ys-ys/p/11336811.html" target="_blank" rel="external">Chrome 开发工具之 Memory</a></p>
-<h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2><p>可以告诉你这个网站的安全性，查看有效的证书等。</p>
-<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><p>会列出所有的资源，包括 Manifest、Service Workers、Local Storage、Session Storage、IndexedDB、Web SQL(已被 IndexedDB 干趴下)、Cookies、Cache Storage、Application Cache(已被 Service Workers 干趴下)、BackGround Services、Frames 等，可以对存储的内容编辑和删除。参考 <a href="https://www.cnblogs.com/ys-ys/p/11444290.html" target="_blank" rel="external">Chrome 开发工具之 Application</a></p>
-<h2 id="Audits"><a href="#Audits" class="headerlink" title="Audits"></a>Audits</h2><p>Audits 源于著名的开源自动化分析插件——Lighthouse，Lighthouse 不仅能够分析页面性能，还能够对 PWA、无障碍访问、SEO 等进行测试评分，可选网络环境，运行后给出优化建议。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/11/29/javascript-base3/" itemprop="url">
-                  JavaScript-基础3
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-11-29T15:59:53+08:00" content="2019-11-29">
-              2019-11-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="includes-VS-indexOf"><a href="#includes-VS-indexOf" class="headerlink" title="includes VS. indexOf"></a>includes VS. indexOf</h2><ul>
-<li>返回值类型不同，includes 返回布尔型，indexOf 返回数值，在 if 判断时 includes 更简便</li>
-<li>如果数组中有 NaN，要判断数组是否有存在 NaN，indexOf 是无法判断的，必须使用 includes</li>
-<li>当数组有空值的时候，includes 会认为空的值是 undefined，而 indexOf 不会</li>
-<li>如果要查找某个元素在数组中的位置，该使用 indexOf，如果要判断数组中是否存在某个元素，该使用 includes</li>
-</ul>
-<h2 id="import-VS-require"><a href="#import-VS-require" class="headerlink" title="import VS. require"></a>import VS. require</h2><h3 id="require"><a href="#require" class="headerlink" title="require"></a>require</h3><ul>
-<li>require 是 AMD 规范引入方式</li>
-<li>require 动态加载，是运行时调用，只能在运行时确定模块的依赖关系及输入/输出，无法进行静态优化，可以出现在任何地方，可以使用通过计算得到的地址</li>
-<li>require 是赋值过程，require 的结果就是对象、数字、字符串、函数等，再把结果赋值给某个变量，是普通的值拷贝传递</li>
-<li>使用 exports、module.exports 导出</li>
-</ul>
-<h3 id="import"><a href="#import" class="headerlink" title="import"></a>import</h3><ul>
-<li>import 是 ES6 的一个语法标准，如果要兼容浏览器必须转化成 ES5 的语法，import 语法会被转码为 require</li>
-<li>import 静态加载，是编译时调用，必须放在文件开头，支持编译时静态分析，便于 JS 引入宏和类型检验，不能使用通过计算得的到地址</li>
-<li>import 是解构过程，使用 import 导入模块的属性或者方法是引用传递，read-only，单向传递</li>
-<li>使用 export 导出</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/11/29/circleci-base/" itemprop="url">
-                  circleci-base
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-11-29T15:41:46+08:00" content="2019-11-29">
-              2019-11-29
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>CircleCI 持续集成</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1738,7 +1748,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -275,7 +275,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">156</span>
+              <span class="site-state-item-count">161</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -389,6 +389,703 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/14/recursion/" itemprop="url">
+                  递归用法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-14T08:03:20+08:00" content="2017-03-14">
+              2017-03-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>前段时间有个刚学编程的人找我做了几道编程题，都用到了递归，让我写个使用递归的总结，我个人用到的递归不多，就这几道编程题总结如下，后期如有新的体会再补充。</p>
+<h2 id="适用点"><a href="#适用点" class="headerlink" title="适用点"></a>适用点</h2><p>想一下规模为n的问题是否可以经过计算换算成规模为n-1的问题，如阶乘计算，n!=n*(n-1)!，这时就可以用递归。使用递归主要是代码写起来比较方便，大多数情况使用栈和循环都可以替代使用递归。</p>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>写递归算法时，要最先思考边界值，就是递归算法在什么情况下不应该再递归下去，如对于阶乘问题的n为1、0的时候，防止出现死循环。</p>
+<h2 id="优化点"><a href="#优化点" class="headerlink" title="优化点"></a>优化点</h2><p>用递归算法去解决问题，经常会比较耗性能，因为进行了大量循环，多进行一次递归可能会进行很多次循环，所以控制在哪些条件下无需递归很容易优化性能，如递归求最短路径时，如果当前递归处理的路径长度已经超过了当前最短路径的长度，那就不用再向下递归了。还要会利用数据结构，比如Map能够快速取值，如果是数组取值时需要进行遍历，尽量减少循环的次数。</p>
+<h2 id="调试点"><a href="#调试点" class="headerlink" title="调试点"></a>调试点</h2><p>递归问题最大的难点可能就在调试上了，因为进行了很多循环，无法跟进每一个循环去看当前的值对不对。这时一定要将问题范围缩小，比如题目要求100个点，可以先拿10个以内的点去调试，这时可以通过断点调试跟进每一次循环，看到所有变量当前的值，这样就容易看出问题出在哪了。如果有问题的标准答案，还要会利用答案，如果解题需要大量循环无法跟进时，可以写一个if条件在满足正确答案时进行输出，也可以在这里打个断点，看看为什么没有获得这个标准的答案，这时比较容易看出问题。</p>
+<p>以上都是我做那几个题时的思路和方法，以前我也就写过一两次递归，其实没什么经验，大多数方法都是以前调程序的经验。如果打算深入的往编程这方面发展，有如下建议：</p>
+<p>1、要进行编程练习，就像递归，完全自己手动去解决两三个问题也就会用了，也有调试的经验了；<br>2、一定要会分析问题，拆分问题，这个问题分几步，每一步都做什么，这样比较容易写出程序，容易调试，容易定位问题出在哪步了，其它地方就不用看了，也方便解决问题，问题细化后就容易描述小问题了，可以上网找找现成的例子；<br>3、一定要会分析现象，现在程序运行的结果不对，是什么样的现象，这个现象表明什么本质，切记不要直接一遍一遍的看代码，找哪里不对，这样很难找到问题的，如果你知道这样写有问题，那当时也就不会这样写了，一定要仔细思考、分析现象，找到问题本质，然后定位有问题的代码范围，再看代码。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/18/react-lifecycle/" itemprop="url">
+                  React-生命周期
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-18T11:11:56+08:00" content="2017-02-18">
+              2017-02-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>学了React快一年了，现在用的已经比较顺手了，单个组件的生命周期执行过程已经很清楚了，但是关于多个组件之间怎么进入生命周期方法的还是不确定，现在好好学习一下。</p>
+<h2 id="单个组件的生命周期过程"><a href="#单个组件的生命周期过程" class="headerlink" title="单个组件的生命周期过程"></a>单个组件的生命周期过程</h2><p>组件的生命周期函数按如下顺序执行，每个方法的说明如下：</p>
+<ul>
+<li><p>constructor</p>
+<p>  构造函数，对组件的state进行初始化，对函数进行this绑定。</p>
+</li>
+<li><p>componentWillMount</p>
+<p>  初始渲染前进入，只执行一次，如果这个函数里调用setState，不会执行渲染操作，而是等这个函数执行完成后再执行初始渲染。如果组件需要从本地存储中读取数据，一般放在这里执行。</p>
+</li>
+<li><p>render</p>
+<p>  返回值为页面要显示的组件，组件的重新渲染后触发所有子组件的重新渲染。</p>
+</li>
+<li><p>componentDidMount</p>
+<p>  初始渲染完成后进入，只执行一次。如果组件需要从网络侧读取数据，一般放在这里执行。</p>
+</li>
+<li><p>componentWillReceiveProps(nextProps, nextContext)</p>
+<p>  组件在初始渲染完成后，当接收到新的props时进入，state发生变化时不会进入，而无论props的内容是否发生变化都会进入。如果在这个函数中调用setState，不会执行渲染操作，而是等该方法执行完成一起渲染。</p>
+</li>
+<li><p>shouldComponentUpdate(nextProps, nextState, nextContext)</p>
+<p>  当组件接收到新的state或props时，这个函数将被调用，如果返回false可以阻止组件的重新渲染，也就不会进入本组件的componentWillUpdate、componentDidUpdate方法了。通过这个函数来阻止无必要的重新渲染可以提高程序的性能。</p>
+</li>
+<li><p>componentWillUpdate(nextProps, nextState, nextContext)</p>
+<p>  组件在重新渲染前进入，<strong>切记不能在这个函数中通过setState更新状态，</strong> 如果需要改变，则在componentWillReceiveProps函数中进行改变，否则会导致死循环。</p>
+</li>
+<li><p>componentDidUpdate(prevProps, prevState, prevContext)</p>
+<p>  组件在重新渲染完成时进入。</p>
+</li>
+<li><p>componentWillUnmount()</p>
+<p>  组件在卸载前进入，如果组件申请了某些资源或订阅了某些消息，需要要在这个函数中释放资源或取消订阅，常见的是在这里清除定时器。</p>
+</li>
+</ul>
+<img src="/2017/02/18/react-lifecycle/life.gif" title="单个组件的生命周期过程">
+<h2 id="多个组件的生命周期过程"><a href="#多个组件的生命周期过程" class="headerlink" title="多个组件的生命周期过程"></a>多个组件的生命周期过程</h2><p>父组件每次执行过setState更新了state后，无论state内容是否发生变化，都会进行所有子孙组件的重新渲染。</p>
+<p>先进入父组件的componentWillUnmount，再进入子组件的componentWillUnmount，就像先进入父组件的componentWillUpdate，再进入子组件的componentWillUpdate一样，只是React没有componentDidUnmount方法，看不到是先卸载子组件完成，再卸载父组件完成的。</p>
+<img src="/2017/02/18/react-lifecycle/mount.png" title="初始化">
+<img src="/2017/02/18/react-lifecycle/update.png" title="更新">
+<img src="/2017/02/18/react-lifecycle/unmount.png" title="卸载">
+<h2 id="forceUpdate函数"><a href="#forceUpdate函数" class="headerlink" title="forceUpdate函数"></a>forceUpdate函数</h2><p>forceUpdate函数不是组件的生命周期函数，组件通过调用<code>this.forceUpdate()</code>可以强制进行组件的重新渲染，并且会连带所有子组件都重新渲染。通过这种方式的重新渲染，不会进入本组件shouldComponentUpdate方法，会进入子组件的shouldComponentUpdate和componentWillReceiveProps方法及其它生命周期方法。</p>
+<img src="/2017/02/18/react-lifecycle/forceUpdate.png" title="forceUpdate操作">
+<h2 id="HOC（High-Order-Component-）高阶组件"><a href="#HOC（High-Order-Component-）高阶组件" class="headerlink" title="HOC（High Order Component ）高阶组件"></a>HOC（High Order Component ）高阶组件</h2><p>参考<a href="http://www.tuicool.com/articles/RFJJniN" target="_blank" rel="external">初识React中的High Order Component</a><br>HOC是一个抽象和公用代码的方案，它接受一个包含共用逻辑或者是状态的ReactComponent，并返回一个包含特定逻辑或者是状态的新ReactComponent，相当于对原组件做了一层包装，react-redux中的connect就算是HOC。组件的生命周期执行顺序与父子组件类型的执行顺序一样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">class App extends React.Component &#123;</div><div class="line">    constructor(props) &#123;</div><div class="line">      super(props);</div><div class="line">      this.state = &#123;</div><div class="line">        value: &apos;&apos;,</div><div class="line">      &#125;;</div><div class="line">    &#125;</div><div class="line">    render() &#123;</div><div class="line">      return (</div><div class="line">        &lt;input ref=&quot;app&quot; value=&#123;this.state.value&#125; onChange=&#123;this.onChange&#125;/&gt;</div><div class="line">      );</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">const connect = (mapStateFromStore) =&gt; (WrappedComponent) =&gt; &#123;</div><div class="line">    class InnerComponent extends React.Component &#123;</div><div class="line">      constructor(props) &#123;</div><div class="line">        super(props);</div><div class="line">      &#125;</div><div class="line">      render () &#123;console.log(this)</div><div class="line">        return (</div><div class="line">          &lt;WrappedComponent ref=&quot;middle&quot; /&gt;</div><div class="line">        );</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    // 将新组件返回</div><div class="line">    return InnerComponent;</div><div class="line">&#125;</div><div class="line">const HOC = connect(() =&gt; (&#123;&#125;))(App);</div><div class="line"></div><div class="line">class Root extends React.Component &#123;</div><div class="line">    render() &#123;console.log(this)</div><div class="line">      return (</div><div class="line">        &lt;div&gt;</div><div class="line">          &lt;HOC ref=&quot;hoc&quot;/&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">      );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">    &lt;Root /&gt;,</div><div class="line">    document.getElementById(&apos;example&apos;)</div><div class="line">);</div></pre></td></tr></table></figure>
+<img src="/2017/02/18/react-lifecycle/hoc.png" title="HOC的ref结构">
+<img src="/2017/02/18/react-lifecycle/hocHtml.png" title="HOC渲染出的DOM结构">
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/18/ui-design/" itemprop="url">
+                  《写给大家看的设计书》笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-18T08:08:48+08:00" content="2017-01-18">
+              2017-01-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Reading-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Reading Notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近看了《写给大家看的设计书》，对页面设计的原则有了基本的了解，以下是个人感觉书中比较好的内容，记录下来方便以后查看。</p>
+<h2 id="CRAP概念"><a href="#CRAP概念" class="headerlink" title="CRAP概念"></a>CRAP概念</h2><p>复杂的设计原理在书中被浓缩为4个词，对比、重复、对齐和对和亲密性，英文首字母缩写为CRAP。</p>
+<p>对比（Contrast）：对比的基本思想是，要避免页面上的元素太过相似。如果元素（字体、颜色、大小、线宽、形状、空间等）不相同，那就干脆让它们截然不同。要让页面引人注目，对比通常是最重要的一个因素，正是它能使读者首先看这个页面。要想实现有效的对比，对比就必须强烈。</p>
+<p>重复（Repetition）：让设计中的视觉要素在整个作品中重复出现。可以重复颜色、形状、材质、空间关系、线宽、字体、大小和图片，等等。这样一来，既能增加条理性，还可以加强统一性。不要把重复用的太滥，而应当尽量“采用多样性实现统一”。</p>
+<p>对齐（Alignment）：任何东西都不能在页面上随意安放。每个元素都应当与页面上的另一个元素有某种视觉联系。这样能建立一种清晰、精巧而且清爽的外观。元素之间会有一条看不见的线把它们连在一起，它会告诉读者，即使这些项并不靠近，但它们属于同一组。</p>
+<p>亲密性（Proximity）：彼此相关的项应当靠近，归组在一起。如果多个项彼此之间存在很近的亲密性，它们就会成为一个视觉单元，而不是多个孤立的元素。这有助于组织信息，减少混乱，为读者提供清晰的结构。</p>
+<h2 id="色轮的使用"><a href="#色轮的使用" class="headerlink" title="色轮的使用"></a>色轮的使用</h2><img src="/2017/01/18/ui-design/color.png" width="300" title="色轮">
+<ul>
+<li>类似色（analogous）组合由色轮上彼此相邻的颜色组成。</li>
+<li>色轮上相对的颜色为互补色（complement），最佳搭配是一种作为主色，另一种用于强调。</li>
+<li>彼此等间距的三种颜色通常会形成一个让人愉快的三色组（triad）。</li>
+<li>从色轮的一边选择一种颜色，再在色轮上找不他对面的互补色两侧的颜色，称为分裂互补三色组（split triad）。</li>
+<li>单色组合由一种色调及其相应的多种亮色和暗色组成。</li>
+</ul>
+<h2 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h2><ul>
+<li>把所有大写都变为小写，只保留合适的首字母大写，这样能留出更多的空间，使标题更大、更醒目。</li>
+<li>把圆角变为直角，可能会使外观更简洁、更突出。</li>
+<li>要有意识地注意你是怎样阅读的，视线怎样移动的。</li>
+<li>眯起眼睛，如果页面上的项超过3~5个，就要看看哪些孤立的元素可以归在一组了。</li>
+<li>居中对齐会创建一种更正式、更稳重的外观，这种外观显得更为中规中矩，但通常也很乏味。</li>
+<li>页面上直至用一种文本对齐。</li>
+<li>绝对不要在左对齐的正文或缩进的文本上方将标题居中。</li>
+<li>去掉Times Roman、Arial/Helvetica和Sand字体。</li>
+<li>由于颜色组合而导致发生视觉抖动的原因通常是色质过于接近。</li>
+<li>冷色（蓝色、绿色）总趋于后退，而暖色（红色、橙色）是趋近型的。如果要组合暖色和冷色，一定要少用些暖色。</li>
+<li>制作logo可以使用分裂互补三色组。</li>
+<li>不要对文本或图片的链接使用默认的蓝色。</li>
+<li>不要把文本链接放在有边框的粗笨表单元格中。</li>
+<li>正文不要用粗体，也不要占据整个页面的宽度。</li>
+<li>不要使用荧光背景色，特别是不要使用荧光文字。</li>
+<li>不要让用户移动滚动条，特别是不要让表的宽度超过600像素，否则用户在打印页面时会很恼火。</li>
+<li>Verdan字体是显示Web正文的一个绝好的选择。</li>
+<li>有时名人名言使用Decorative字体非常合适。</li>
+<li>向右上倾斜的字体产生一种前进的力量，向下倾斜的字体会产生一种反向的力量。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/08/javascript-event-loop/" itemprop="url">
+                  JavaScript-事件循环
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-08T11:50:11+08:00" content="2017-01-08">
+              2017-01-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>参考<br><a href="http://www.jb51.net/article/56022.htm" target="_blank" rel="external">JavaScript运行机制之事件循环(Event Loop)详解</a><br><a href="http://www.cnblogs.com/Medeor/p/4945687.html" target="_blank" rel="external">从setTimeout说事件循环模型</a></p>
+<h2 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h2><p>JavaScript语言是单线程的，这事因为作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。这是这门语言的核心特征。</p>
+<p>为了利用多核CPU的计算能力，HTML5提出Web Worker标准，允许JavaScript脚本创建多个线程，但是子线程完全受主线程控制，且不得操作DOM，并没有改变JavaScript单线程的本质。</p>
+<h2 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h2><p>单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。JavaScript就有两种执行方式：一种是CPU按顺序执行，前一个任务结束，再执行下一个任务，这叫做同步执行；另一种是CPU跳过等待时间长的任务，先处理后面的任务，这叫做异步执行。<br>异步执行的运行机制如下(同步执行也是如此，因为它可以被视为没有异步任务的异步执行)：</p>
+<ul>
+<li>所有任务(同步和异步的)都在主线程上执行，形成一个”执行栈”(execution context stack)</li>
+<li>主程之外，还存在一个”任务队列”(task queue)，系统把异步任务放到”任务队列”之中，然后继续执行后续的任务</li>
+<li>一旦”执行栈”中的所有任务执行完毕，系统就会读取”任务队列”，如果这个时候，异步任务已经结束了等待状态，就会从”任务队列”进入执行栈，恢复执行</li>
+<li>主线程不断重复上面的第三步，只要主线程空了，就会去读取”任务队列”，这就是JavaScript的运行机制</li>
+</ul>
+<h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p>“任务队列”实质上是一个事件的队列(也可以理解成消息的队列)，主线程读取”任务队列”，就是读取里面有哪些事件。如IO设备完成一项任务，就在”任务队列”中添加一个事件，表示相关的异步任务可以进入”执行栈”了；鼠标点击、页面滚动等只要指定过回调函数，这些事件发生时就会进入”任务队列”，等待主线程读取。</p>
+<p>所谓”回调函数”(callback)，就是那些会被主线程挂起来的代码。异步任务必须指定回调函数，当异步任务从”任务队列”回到执行栈，回调函数就会执行。</p>
+<p>Javascript执行引擎的主线程运行的时候，产生堆和栈。程序中代码依次进入栈中等待执行。栈中的代码调用各种外部API，在”任务队列”中加入各种事件，只要栈中的代码执行完毕，主线程就会去读取”任务队列”，依次执行那些事件所对应的回调函数。执行栈中的代码，总是在读取”任务队列”之前执行。不同的操作添加到任务队列的时机也不同。</p>
+<blockquote>
+<p>onclick 由浏览器内核的DOM Binding模块来处理，当事件触发的时候，回调函数会立即添加到任务队列中。<br>setTimeout 会由浏览器内核的timer模块来进行延时处理，当时间到达的时候，才会将回调函数添加到任务队列中。<br>ajax 则会由浏览器内核的network模块来处理，在网络请求完成返回之后，才将回调添加到任务队列中。  </p>
+</blockquote>
+<p>主线程从”任务队列”中读取事件，只要执行栈一清空，”任务队列”上第一位的事件就自动返回主线程，这个过程是循环不断的，所以整个的这种运行机制又称为事件循环(Event Loop)。</p>
+<p>示例一输出结果都是4，表明程序是先运行完4次循环后，再进入setTimeout的。<br>实例二输出结果是1001，表明程序是向下执行完while循环后，再进入setTimeout的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 示例一</div><div class="line">for(var i = 0; i&lt;=3; i++)&#123;</div><div class="line">    setTimeout(function() &#123;</div><div class="line">        console.log(i); // 输出4</div><div class="line">    &#125;, 0);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 实例二</div><div class="line">var startDate = new Date();</div><div class="line">setTimeout(function() &#123;</div><div class="line">    var endDate = new Date();</div><div class="line">    console.log(endDate - startDate); // 输出1001</div><div class="line">&#125;, 500);</div><div class="line">while(new Date() - startDate &lt; 1000)&#123;&#125;;</div></pre></td></tr></table></figure>
+<h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><p>“任务队列”除了放置异步任务，还可以放置定时事件，即指定某些代码在多少时间之后执行，即到达设置的延时时间时被添加至任务队列里。定时器功能主要由setTimeout()和setInterval()这两个函数来完成，它们的内部运行机制完全一样，区别在于前者指定的代码是一次性执行，后者则为反复执行。如果将setTimeout()的第二个参数设为0，就表示当前代码执行完（执行栈清空）以后，立即执行（0毫秒间隔）指定的回调函数。</p>
+<p><strong>需要注意的是，setTimeout()只是将事件插入了”任务队列”，必须等到当前代码（执行栈）执行完，主线程才会去执行它指定的回调函数。要是当前代码耗时很长，有可能要等很久，所以并没有办法保证，回调函数一定会在setTimeout()指定的时间执行。</strong></p>
+<p>HTML5标准规定了setTimeout()的第二个参数的最小值（最短间隔），不得低于4毫秒，如果低于这个值，就会自动增加。在此之前，老版本的浏览器都将最短间隔设为10毫秒。另外，对于那些DOM的变动（尤其是涉及页面重新渲染的部分），通常不会立即执行，而是每16毫秒执行一次。这时使用requestAnimationFrame()的效果要好于setTimeout()。</p>
+<p>Node.js除了setTimeout和setInterval这两个方法，还提供了另外两个与”任务队列”有关的方法：process.nextTick和setImmediate。</p>
+<ul>
+<li>process.nextTick方法可以在当前”执行栈”的尾部，也就是主线程下一次读取”任务队列”之前，触发回调函数。也就是说，它指定的任务总是发生在所有异步任务之前。</li>
+<li>setImmediate方法则是在当前”任务队列”的尾部触发回调函数，也就是说，它指定的任务总是在主线程下一次读取”任务队列”时执行，这与setTimeout很像，但一次”事件循环”只能触发一个由setImmediate指定的回调函数。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/29/react-native-base2/" itemprop="url">
+                  React-Native-基础2
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-29T07:51:49+08:00" content="2016-12-29">
+              2016-12-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Native/" itemprop="url" rel="index">
+                    <span itemprop="name">React Native</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="View组件"><a href="#View组件" class="headerlink" title="View组件"></a>View组件</h2><p>View组件还有三个没有在官方文档中公布的回调函数：onTouchStart、onTouchMove、onTouchEnd。这三个回调函数都有一个特殊的性质，就是在React Native开发中，通常是在最上层的组建中(render函数靠后渲染的组件)处理触摸事件的；但这三个回调函数总能收到事件，而不管用户当前触摸区域是空白的，还是有其它组件已经处理了触摸事件。</p>
+<h2 id="pointEvents属性"><a href="#pointEvents属性" class="headerlink" title="pointEvents属性"></a>pointEvents属性</h2><p>在React Native中，触摸事件总是被传送给最上层的组件。当很多组件被布局在手机屏幕上时，有的组件可能会遮盖住它下方的其它组件。对于某些应用逻辑，被遮盖住的组件需要处理触摸事件，这时就可以使用pointerEvents属性。</p>
+<ul>
+<li>取值none，表示发生在本组件与本组件的子组件上的触摸事件都会交给本组件的父组件处理；</li>
+<li>取值box-none，表示发生在本组件显示范围内（但非本组件的子组件显示范围内）的事件将交由本组件的父组件处理，发生在本组件的子组件显示范围内的触摸事件由子组件处理；</li>
+<li>取值box-only，表示发生在本组件显示范围内的触摸事件将全部有本组件处理（即使触摸事件发生在本组件的子组件显示范围内）；</li>
+<li>取值auto会视组件的不同而不同。</li>
+</ul>
+<h2 id="设备放置状态、onLayout回调函数"><a href="#设备放置状态、onLayout回调函数" class="headerlink" title="设备放置状态、onLayout回调函数"></a>设备放置状态、onLayout回调函数</h2><p>使项目在两个平台行都能自动调整应用的显示方式来适应设备当前的放置状态，需要：</p>
+<ul>
+<li>在应用启动时能检测到设备是横置的还是竖置的；</li>
+<li>当设备从横置变为竖置或从竖置变为横置时，应用要能监测到这个事件。</li>
+</ul>
+<p>检测设备当前是竖置还是横置的一个方法是取当前设备屏幕的宽与高，正常的设备在竖置时宽小于高，在横置时宽大于高。Demensions API 可以获取屏幕的宽和高。</p>
+<p>通常，React Native 开发的应用有一个或多个根View，根View的特点是它没有父组件。onLayout回调函数在组件被加载或者布局被改变时会被调用，通过指定这个根View组件的onLayout回调函数可以很方便地得到初始设备的放置状态，检测设备放置状态的改变并得到改变后新的屏幕高度与宽度。为了实现这些功能，不能指定根View的宽和高，并需要设定根View组件的样式flex值为1。<strong>注意，模拟器显示方式被改变时不会触发Layout事件。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">&apos;user strick&apos;;</div><div class="line">var React = require(&apos;react-native&apos;);</div><div class="line">var &#123; AppRegister, StyleSheet, Text, View, Dimensions &#125; = React;</div><div class="line">var Project19 = React.createClass(&#123;</div><div class="line">    _onLayout: function (event) &#123;</div><div class="line">        console.log(&apos;屏幕的宽度：&apos;, Dimensions.get(&apos;window&apos;).width);</div><div class="line">        console.log(&apos;屏幕的高度：&apos;, Dimensions.get(&apos;window&apos;).height);</div><div class="line">        let &#123; x, y, width, height &#125; = event.nativeEvent.layout;</div><div class="line">        console.log(&apos;View的宽度：&apos;, width);</div><div class="line">        console.log(&apos;View的高度：&apos;, height);</div><div class="line">        console.log(&apos;View的左上顶点横坐标：&apos;, x);</div><div class="line">        console.log(&apos;View的左上顶点纵坐标：&apos;, y);</div><div class="line">    &#125;,</div><div class="line">    _onLayoutText: function(event) &#123;</div><div class="line">        let &#123; x, y, width, height &#125; = event.nativeEvent.layout;</div><div class="line">        console.log(&apos;Text的宽度：&apos;, width);</div><div class="line">        console.log(&apos;Text的高度：&apos;, height);</div><div class="line">        console.log(&apos;Text的左上顶点横坐标：&apos;, x);</div><div class="line">        console.log(&apos;Text的左上顶点纵坐标：&apos;, y);</div><div class="line">    &#125;,</div><div class="line">    render: function() &#123;</div><div class="line">        return (</div><div class="line">            &lt;View style=&#123;styles.container&#125; onLayout=&#123;this._onLayout&#125;&gt;</div><div class="line">                &lt;Text style=&#123;styles.welcom&#125; onLayout=&#123;this._onLayoutText&#125;&gt;</div><div class="line">                    Welcom to React Native!</div><div class="line">                &lt;/Text&gt;</div><div class="line">            &lt;/View&gt;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">var styles = StyleSheet.create(&#123;</div><div class="line">    container: &#123;</div><div class="line">        flex: 1,</div><div class="line">        justifyContent: &apos;center&apos;,</div><div class="line">        alignItem: &apos;center&apos;,</div><div class="line">        backgroundColor: &apos;#F5FCFF&apos;,</div><div class="line">    &#125;,</div><div class="line">    welcom: &#123;</div><div class="line">        fontSize: 20,</div><div class="line">        textAlign: &apos;center&apos;,</div><div class="line">        margin: 10,</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">AppRegister.registerComponent(&apos;Project19&apos;, () =&gt; Project19);</div></pre></td></tr></table></figure>
+<h2 id="setNativeProps成员函数"><a href="#setNativeProps成员函数" class="headerlink" title="setNativeProps成员函数"></a>setNativeProps成员函数</h2><p>每个React Native组件都有一个公开的成员函数setNativeProps，使用它可以增加或修改组件的属性，但不建议使用该函数，它是一个“简单、粗暴”的方法，可以直接操作任何层面组件的属性，而不是使用React Native组件的状态机变量，这样会使代码逻辑混乱。</p>
+<p>在不得不频繁刷新而又遇到性能瓶颈时，比如创建连续的动画，同时要避免渲染组件结构和同步太多的视图变化所带来的大量开销时，才考虑使用setNativeProps函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">let Project19 = React.createClass(&#123;</div><div class="line">    getInitialState: function() &#123;</div><div class="line">        return &#123;</div><div class="line">            textInputValue: &apos;&apos;</div><div class="line">        &#125;;</div><div class="line">    &#125;,</div><div class="line">    buttonPressed: function() &#123;</div><div class="line">        let textInputValue = &apos;new value&apos;;</div><div class="line">        this.setState(&#123; textInputValue &#125;);</div><div class="line">        this.refs.textInputRefer.setNativeProps(&#123;</div><div class="line">            editable: false</div><div class="line">        &#125;);</div><div class="line">        this.refs.text2.setNativeProps(&#123;</div><div class="line">            style: &#123;</div><div class="line">                color: &apos;blue&apos;,</div><div class="line">                fontSize: 30</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;,</div><div class="line">    render: function() &#123;</div><div class="line">        return (</div><div class="line">            &lt;View style=&#123;styles.container&#125;&gt;</div><div class="line">                &lt;Text style=&#123;styles.buttonStyle&#125; onPress=&#123;this.buttonPressed&#125;&gt;</div><div class="line">                    Press me genterly</div><div class="line">                &lt;/Text&gt;</div><div class="line">                &lt;Text style=&#123;styles.textPromptStyle&#125; ref=&quot;text2&quot;</div><div class="line">                    文字提示</div><div class="line">                &lt;/Text&gt;</div><div class="line">                &lt;View&gt;</div><div class="line">                    &lt;TextInput</div><div class="line">                        style=&#123;styles.textInputStyle&#125;</div><div class="line">                        ref=&quot;textInputRefer&quot;</div><div class="line">                        value=&#123;this.state.textInputValue&#125;</div><div class="line">                        onChangeText=&#123;(textInputValue)=&gt;this.setState(&#123;textInputValue&#125;)&#125;</div><div class="line">                    /&gt;</div><div class="line">                &lt;/View&gt;</div><div class="line">            &lt;/View&gt;</div><div class="line">        );</div><div class="line">    &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="measure成员函数"><a href="#measure成员函数" class="headerlink" title="measure成员函数"></a>measure成员函数</h2><p>每一个React Native组件都有一个measure成员函数，调用它可以得到组件当前的宽、高与位置信息。使用View组件的onLayout回调函数是获取组件的宽、高与位置信息的好办法，但对某些代码生成的组件，使用组件的measure成员函数是唯一的方法。<strong>Ant Design Mobile组件无法使用measure方法。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">// 在componentDidMount执行完后才可以获取位置信息</div><div class="line">componentDidMount: function() &#123;</div><div class="line">    var aref = this.tempfunc;</div><div class="line">    window.setTimeout(aref, 1);</div><div class="line">&#125;,</div><div class="line">tempfunc: function() &#123;</div><div class="line">    this.refs.aTextInputRef.measure( this.getTextInputPosition);</div><div class="line">&#125;,</div><div class="line">getTextInputPosition: function(fx, fy, width, height, px, py) &#123;</div><div class="line">    console.log(&apos;getTextInputPosition方法&apos;);  </div><div class="line">    console.log(&apos;Component width: &apos; + width);</div><div class="line">    console.log(&apos;Component height: &apos; + height);</div><div class="line">    console.log(&apos;X offset to frame: &apos; + fx); // 这个值无用</div><div class="line">    console.log(&apos;Y offset to frame: &apos; + fy);</div><div class="line">    console.log(&apos;X offset to page: &apos; + px);</div><div class="line">    console.log(&apos;Y offset to page: &apos; + py);</div><div class="line">&#125;,</div><div class="line">...</div></pre></td></tr></table></figure>
+<img src="/2016/12/29/react-native-base2/measure.png" title="结果如图">
+<h2 id="AsyncStorage"><a href="#AsyncStorage" class="headerlink" title="AsyncStorage"></a>AsyncStorage</h2><p>React Native框架不支持调用JavaScript的fs包进行文件读写操作，<strong>但提供了AsyncStorage API将“字符串键值对”存储在手机存储空间中</strong>。AsyncStorage不提供索引、排序等数据库中经常使用的功能，每个AsyncStorage API提供的方法都会返回一个JavaScript的Promise对象。</p>
+<p>使用AsyncStorage的静态函数时，如果参数类型提供错误，try…catch机制将无法捕捉到这个错误。使用Promise机制的rejection状态处理函数中或者利用Promise机制发生错误时的回调函数可以捕捉到错误。但这三种机制中的任何一种都不能阻止手机屏幕的红屏错误。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1279,714 +1976,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/14/jQuery-base/" itemprop="url">
-                  jQuery-基础
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-14T20:30:53+08:00" content="2016-11-14">
-              2016-11-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>parent([expr]) – 获得当前匹配元素集合中每个元素的<strong>父元素</strong>，使用选择器进行筛选是可选的，沿 DOM 树向上遍历单一层级<br>parents([expr]) – 获得当前匹配元素集合中每个元素的<strong>祖先元素</strong>，一直向上查找直到根元素，再使用选择器进行筛选可选的<br>closest([expr]) – 首先检查<strong>当前元素</strong>是否匹配，如果匹配则直接返回元素本身，如果不匹配则向上查找父元素，一层一层往上，直到找到匹配选择器的元素就停止了，如果什么都没找到则返回一个空的jQuery对象  </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/06/webpack-base/" itemprop="url">
-                  Webpack-基础
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-06T20:14:17+08:00" content="2016-11-06">
-              2016-11-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">Webpack</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="前端模块管理器简介"><a href="#前端模块管理器简介" class="headerlink" title="前端模块管理器简介"></a><a href="http://www.ruanyifeng.com/blog/2014/09/package-management.html" target="_blank" rel="external">前端模块管理器简介</a></h2><p>浏览器本身并不提供模块管理的机制，为了调用各个模块，有时不得不在网页中，加入一大堆script标签。这样就使得网页体积臃肿，难以维护，还产生大量的HTTP请求，拖慢显示速度，影响用户体验。<br>为了解决这个问题，前端的模块管理器（package management）应运而生。它可以轻松管理各种JavaScript脚本的依赖关系，自动加载各个模块，使得网页结构清晰合理。不夸张地说，将来所有的前端JavaScript项目，应该都会采用这种方式开发。</p>
-<h2 id="Webpack介绍"><a href="#Webpack介绍" class="headerlink" title="Webpack介绍"></a>Webpack介绍</h2><p><a href="http://webpack.github.io/docs/" target="_blank" rel="external">官网</a><br><a href="http://zhaoda.net/webpack-handbook/" target="_blank" rel="external">Webpack 中文指南</a><br><a href="https://fakefish.github.io/react-webpack-cookbook/Introduction-to-Webpack.html" target="_blank" rel="external">Webpack 介绍</a><br><a href="http://www.07net01.com/2015/08/890558.html" target="_blank" rel="external">webpack学习笔记</a><br><a href="http://webpack.github.io/docs/tutorials/getting-started/" target="_blank" rel="external">快速上手</a><br><a href="http://www.cnblogs.com/vajoy/p/4650467.html" target="_blank" rel="external">一小时包教会</a><br><a href="https://github.com/petehunt/webpack-howto" target="_blank" rel="external">webpack-howto</a><br><a href="https://web-design-weekly.com/2014/09/24/diving-webpack/" target="_blank" rel="external">Diving into Webpack</a>  <a href="http://www.christianalfoni.com/articles/2014_12_13_Webpack-and-react-is-awesome" target="_blank" rel="external">Webpack and React is awesome</a><br><a href="https://christianalfoni.github.io/react-webpack-cookbook/index.html" target="_blank" rel="external">React Webpack cookbook</a><br><a href="https://github.com/ruanyf/webpack-demos" target="_blank" rel="external">webpack-demos</a></p>
-<p>Webpack是近期最火的一款模块加载器兼模块打包工具，主要是用来打包在浏览器端使用的javascript，同时也能转换、捆绑、打包其它的静态资源，例如JS（含JSX）、coffee、样式（含less/sass）、图片等都作为模块来使用和处理，输出的静态文件只剩下js与png，而css、less、jade其他的文件都合并到了js中。<br>Webpack主要解决如何在一个大规模的代码库中，维护各种模块资源的分割和存放，维护它们之间的依赖关系，并且无缝的将它们整合到一起生成适合浏览器端请求加载的静态资源。<br>Webpack中涉及路径配置最好使用绝对路径，建议通过<code>path.resolve(__dirname, &quot;app/folder&quot;)</code>或<code>path.join(__dirname, &quot;app&quot;, &quot;folder&quot;)</code>的方式来配置，以兼容 Windows 环境。   </p>
-<p><strong>特点：</strong></p>
-<ul>
-<li>代码拆分、Loader、智能解析、插件系统、快速运行。</li>
-</ul>
-<p><strong>优点:</strong>  </p>
-<ul>
-<li>webpack 是以 commonJS 的形式来书写脚本的，但对 AMD/CMD 的支持也很全面  </li>
-<li>直接使用 require(XXX) 的形式来引入各模块，即使它们可能需要经过编译  </li>
-<li>能被模块化的不仅仅是 JS 了  </li>
-<li>开发便捷，比如打包、压缩混淆、图片转base64等  </li>
-<li>扩展性强，插件机制完善，特别是支持 React 热插拔（见 react-hot-loader ）</li>
-<li>可以使用别名（alias），简化require中的内容  </li>
-<li>支持多入口  </li>
-</ul>
-<h2 id="Webpack安装"><a href="#Webpack安装" class="headerlink" title="Webpack安装"></a>Webpack安装</h2><p>全局安装：<code>npm install webpack -g</code><br>当然如果常规项目还是把依赖写入 package.json 包去更人性化：<br><code>npm init</code><br><code>npm install webpack --save-dev</code>  </p>
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a><a href="http://webpack.github.io/docs/configuration.html" target="_blank" rel="external">配置文件</a></h2><p>示例代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">var webpack = require(&apos;webpack&apos;);</div><div class="line">// 用于提取多个入口文件的公共脚本部分，然后生成一个 common.js 来方便多页面之间进行复用。</div><div class="line">// 注意html中引入时先引入common.js，再引入index.s</div><div class="line">var commonsPlugin = new webpack.optimize.CommonsChunkPlugin(&apos;common.js&apos;);</div><div class="line">// 定义全局变量</div><div class="line">var data = &apos;hello world&apos;;</div><div class="line">module.exports = &#123;</div><div class="line">    // 插件项</div><div class="line">    plugins: [commonsPlugin],</div><div class="line">    // 页面入口文件配置</div><div class="line">    entry: &#123;</div><div class="line">        index : &apos;./src/js/page/index.js&apos;</div><div class="line">    &#125;,</div><div class="line">    // 入口文件输出配置</div><div class="line">    output: &#123;</div><div class="line">        path: &apos;dist/js/page&apos;,</div><div class="line">        filename: &apos;[name].js&apos;</div><div class="line">    &#125;,</div><div class="line">    module: &#123;</div><div class="line">        // 加载器配置</div><div class="line">        loaders: [</div><div class="line">            &#123; test: /\.css$/, loader: &apos;style-loader!css-loader?modules&apos; &#125;,// 样式开启局部作用域，如果要定义全局作用域 :global(选择器) &#123;样式&#125;</div><div class="line">            &#123; test: /\.js$/, loader: &apos;jsx-loader?harmony&apos; &#125;,</div><div class="line">            &#123; test: /\.scss$/, loader: &apos;style!css!sass?sourceMap&apos;&#125;,</div><div class="line">            &#123; test: /\.(png|jpg)$/, loader: &apos;url-loader?limit=8192&apos;&#125;,</div><div class="line">            &#123; test: /\.js[x]?$/, exclude: /node_modules/, loader: &apos;babel-loader?presets[]=es2015&amp;presets[]=react&apos;&#125;,</div><div class="line">            &#123; test: /\.jsx?$/, exclude: /node_modules/, loader: &apos;babel&apos;, query: &#123; presets: [&apos;es2015&apos;, &apos;react&apos;] &#125; &#125;</div><div class="line">        ]</div><div class="line">    &#125;,</div><div class="line">    //其它解决方案配置</div><div class="line">    resolve: &#123;</div><div class="line">        // 查找module的话从这里开始查找</div><div class="line">        root: &apos;E:/github/flux-example/src&apos;, // 绝对路径</div><div class="line">        // 自动扩展文件后缀名，意味着我们require模块可以省略不写后缀名</div><div class="line">        extensions: [&apos;&apos;, &apos;.js&apos;, &apos;.json&apos;, &apos;.scss&apos;],</div><div class="line">        // 模块别名定义，方便后续直接引用别名，无须多写长长的地址</div><div class="line">        alias: &#123;</div><div class="line">            AppStore : &apos;js/stores/AppStores.js&apos;,// 后续直接 require(&apos;AppStore&apos;) 即可</div><div class="line">            ActionType : &apos;js/actions/ActionType.js&apos;,</div><div class="line">            AppAction : &apos;js/actions/AppAction.js&apos;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    externals: &#123;</div><div class="line">        // 定义全局变量，index.html中需引入data.js，即可直接使用require(&apos;data&apos;)</div><div class="line">        &apos;data&apos;: &apos;data&apos;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<ul>
-<li>context：处理entry选项时的基础路径（绝对路径），默认值为process.cmd()，即webpack.config.js文件所在路径。  </li>
-<li>entry：配置入口文件，值可以是字符串、数组、对象；字符串指定的模块在项目程序启动的时候加载；字符串数组指定的所有模块被当做一个模块集，在项目程序启动的时候都会加载，数组最后一个元素作为模块集输出；对象的每个属性名作为模块集的名称，属性值可以是字符串和字符串数组。这个配置可用于实现非单页的程序，程序会有多个启动入口。  </li>
-<li>output.filename：打包后的文件名 ‘[name].js’，表示name为对应entry的键。  </li>
-<li>output.path：打包文件存放的绝对路径。  </li>
-<li>output.publicPath：网站运行时的访问路径，比如publicPath为”/test”，访问localhost:8080/test/bundle.js可访问编译后的文件。  </li>
-<li>module.loaders：值为一个数组，数组的每一个元素是一个对象，对象里可有text、exclude、loader以“！”分隔多个loader的string、loaders是一个字符串数组；加载器配置，以处理非javascript类型的模块，都需要先安装。  </li>
-<li>module.noParse：值为一个数组，声明这个模块不需要parse查找依赖，忽略对已知文件的解析。告诉当webpack尝试去解析压缩文件时，这种行为是不允许的。  </li>
-<li>plugins：值为一个数组，<code>new webpack.optimize.CommonsChunkPlugin(&#39;common.js&#39;)</code>表示提取多个入口文件的公共脚本部分生成一个 common.js。注意引入时先引入common.js，再引入index.s。如压缩打包的文件(UglifyJsPlugin)、允许错误不打断程序等。  </li>
-<li>resolve.root：绝对路径，查找module的话从这里开始查找。添加默认搜索路径。  </li>
-<li>resolve.extensions：自动扩展文件后缀名，意味着我们require模块可以省略不写后缀名。  </li>
-<li>resolve.alias：模块别名定义，方便后续直接引用别名，无须多写长长的地址；告诉webpack，当引入react时，试图去匹配压缩过的react。  </li>
-<li>externals：当我们想在项目中require一些其它的类库或者API，而又不想让这些类库的源码被构建到运行时文件中，这在实际开发中很有必要。<code>externals: {&quot;jquery&quot;: &quot;jQuery&quot;}</code>，这样我们就可以放心的在项目中使用这些API了：<code>var jQuery = require(&quot;jquery&quot;)</code>。如果你想将react分离，不打包到一起，可以使用externals。然后用<code>&lt;script&gt;</code>单独将react引入。  </li>
-<li>devtool：就是生成sourcemap的不同方式，eval不支持IE8，推荐用source-map，开发环境常用eval-source-map。  </li>
-<li>debug：加载器(loader)转换到调试模式。  </li>
-<li>catch：缓存生成的模块，watch 模式下默认就是启动的。  </li>
-</ul>
-<p><a href="http://webpack.github.io/docs/list-of-loaders.html" target="_blank" rel="external">常用Loader</a><br><a href="http://webpack.github.io/docs/list-of-plugins.html" target="_blank" rel="external">常用plugin</a></p>
-<p><strong>常用命令:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">webpack    // 执行webpack.config.js文件</div><div class="line">webpack --display-error-details //方便出错时能查阅更详尽的信息</div><div class="line">webpack --config XXX.js   //使用另一份配置文件（比如webpack.config2.js）来打包</div><div class="line">webpack --watch   //监听变动并自动打包</div><div class="line">webpack -p    //压缩混淆脚本，这个非常非常重要！</div><div class="line">webpack -d    //生成map映射文件，告知哪些模块被最终打包到哪里了</div></pre></td></tr></table></figure></p>
-<h2 id="webpack-dev-server"><a href="#webpack-dev-server" class="headerlink" title="webpack-dev-server"></a>webpack-dev-server</h2><p>命令：<code>webpack-dev-server --devtool eval --progress --colors --hot --content-base dist</code><br>webpack-dev-server  //启动一个小的express Web服务，8080端口<br>–devtool eval   //为你的代码创建源地址。当有任何报错的时候可以让你更加精确地定位到文件和行号<br>–progress // 显示合并代码进度<br>–colors - Yay //命令行中显示颜色！<br>–content-base build // 指向设置的输出目录，这样不能访问其它路径的文件了<br>–history-api-fallback // 这样在浏览器中直接输入url才不会报Cannot GET<br>–inline // 自动刷新页面<br>–hot // 启动热替换  </p>
-<p>当运行 webpack-dev-server 的时候，它会监听你的文件修改。当项目重新合并之后，会通知浏览器刷新。为了能够触发这样的行为，你需要把你的 index.html 放到 build/ 文件夹下。可访问<code>http://localhost:8080/webpack-dev-server/bundle</code>或<br><code>http://localhost:8080/webpack-dev-server/index.html</code>。注意，访问带webpack-dev-server的url会自动刷新，直接访问localhost:8080的可能不刷新。</p>
-<h2 id="配置webpack-dev-server代理"><a href="#配置webpack-dev-server代理" class="headerlink" title="配置webpack-dev-server代理"></a>配置webpack-dev-server代理</h2><h2 id="自动编译并刷新页面"><a href="#自动编译并刷新页面" class="headerlink" title="自动编译并刷新页面"></a>自动编译并刷新页面</h2><p>index.html 放到 build/ 文件夹下<br>Index.html中添加 <code>&lt;script src=&quot;http://localhost:8080/webpack-dev-server.js&quot;&gt;&lt;/script&gt;</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">entry: [</div><div class="line">    &apos;webpack/hot/dev-server&apos;,</div><div class="line">    &apos;webpack-dev-server/client?http://localhost:8080&apos;,</div><div class="line">    path.resolve(__dirname, &apos;app/main.js&apos;)</div><div class="line">],</div></pre></td></tr></table></figure></p>
-<p>命令：webpack-dev-server –hot<br>当Webpack-dev-server在浏览器自动刷新下运行的时候，CSS也会自动更新，不过有点不同的是，当你改变了一个 CSS 文件，属于那个文件的标签会更新新的内容但不会刷新。<br>注意，访问带webpack-dev-server的url会自动刷新，直接访问localhost:8080的可能不刷新。</p>
-<h2 id="独立打包样式文件"><a href="#独立打包样式文件" class="headerlink" title="独立打包样式文件"></a>独立打包样式文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var ExtractTextPlugin = require(&quot;extract-text-webpack-plugin&quot;);</div><div class="line">// webpack.config.js 中</div><div class="line">...</div><div class="line">plugins: [</div><div class="line">  ...</div><div class="line">  new ExtractTextPlugin(&quot;[name].css&quot;), // 如果只有一个 style.css 就行</div><div class="line">],</div><div class="line">loaders:[</div><div class="line">  ...</div><div class="line">  &#123;</div><div class="line">    test: /\.less$/,</div><div class="line">    loader: ExtractTextPlugin.extract(&apos;style-loader&apos;, &apos;css-loader!less-loader&apos;,&#123; publicPath: &apos;./&apos;&#125;)</div><div class="line">  &#125;,</div><div class="line">],</div></pre></td></tr></table></figure>
-<h2 id="CSS压缩、去重"><a href="#CSS压缩、去重" class="headerlink" title="CSS压缩、去重"></a>CSS压缩、去重</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">const OptimizeCssAssetsPlugin = require(&apos;optimize-css-assets-webpack-plugin&apos;);</div><div class="line">// webpack.config.js 中</div><div class="line">...</div><div class="line">plugins: [</div><div class="line">  ...</div><div class="line">  new OptimizeCssAssetsPlugin(&#123;</div><div class="line">    assetNameRegExp: /\.css$/g,</div><div class="line">    cssProcessor: require(&apos;cssnano&apos;),</div><div class="line">    cssProcessorOptions: &#123; discardComments: &#123;removeAll: true &#125; &#125;,</div><div class="line">    canPrint: true</div><div class="line">  &#125;),</div><div class="line">],</div></pre></td></tr></table></figure>
-<h2 id="分离应用和第三方"><a href="#分离应用和第三方" class="headerlink" title="分离应用和第三方"></a>分离应用和第三方</h2><p>当你的应用依赖其他库尤其是像 ReactJS 这种大型库的时候，你需要考虑把这些依赖分离出去，这样就能够让用户在你更新应用之后不需要再次下载第三方文件。记住要把这些文件都加入到你的 HTML 代码中，不然你会得到一个错误。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">entry: &#123;</div><div class="line">    app: path.resolve(__dirname, &apos;app/main.js&apos;),</div><div class="line">    // 当 React 作为一个 node 模块安装的时候，</div><div class="line">    // 我们可以直接指向它，就比如 require(&apos;react&apos;)</div><div class="line">    vendors: [&apos;react&apos;, &apos;react-dom&apos;, &apos;jquery&apos;]</div><div class="line">&#125;,</div><div class="line">plugins: [</div><div class="line">    ...</div><div class="line">    new webpack.optimize.CommonsChunkPlugin(&apos;vendors&apos;, &apos;vendors.js&apos;)</div><div class="line">]</div></pre></td></tr></table></figure></p>
-<h2 id="代码压缩"><a href="#代码压缩" class="headerlink" title="代码压缩"></a>代码压缩</h2><p>webpack打包后的文件可能会很大，生成环境应该去掉注释及依赖的copyright信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">plugins: [</div><div class="line">  ...</div><div class="line">  new webpack.optimize.UglifyJsPlugin(&#123;</div><div class="line">    output: &#123;</div><div class="line">      comments: false,</div><div class="line">    &#125;,</div><div class="line">    compress: &#123;</div><div class="line">      warnings: false,</div><div class="line">    &#125;</div><div class="line">  &#125;),</div><div class="line">]</div></pre></td></tr></table></figure></p>
-<h2 id="多重入口"><a href="#多重入口" class="headerlink" title="多重入口"></a>多重入口</h2><p>你的应用可能有多个路径， 就是应用中有两个或者多个 URL 相应不同的页面，这里就是提供这样的解决方案。可能你有一个普通用户页和一个管理员页，他们共享了很多代码，但是不想在普通用户页中加载所有管理员页的代码，所以好方案是使用多重入口。</p>
-<h2 id="生成html、打开浏览器"><a href="#生成html、打开浏览器" class="headerlink" title="生成html、打开浏览器"></a>生成html、打开浏览器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var HtmlwebpackPlugin = require(&apos;html-webpack-plugin&apos;);</div><div class="line">var OpenBrowserPlugin = require(&apos;open-browser-webpack-plugin&apos;);</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">    entry: &apos;./main.js&apos;,</div><div class="line">    output: &#123;</div><div class="line">        filename: &apos;bundle.js&apos;</div><div class="line">    &#125;,</div><div class="line">    plugins: [</div><div class="line">        new HtmlwebpackPlugin(&#123;</div><div class="line">            title: &apos;Webpack-demos&apos;,</div><div class="line">            filename: &apos;index.html&apos;</div><div class="line">        &#125;),</div><div class="line">        new OpenBrowserPlugin(&#123;</div><div class="line">            url: &apos;http://localhost:8080&apos;</div><div class="line">        &#125;)</div><div class="line">    ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="在开发环境使用的代码"><a href="#在开发环境使用的代码" class="headerlink" title="在开发环境使用的代码"></a>在开发环境使用的代码</h2><p>main.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.write(<span class="string">'&lt;h1&gt;Hello World&lt;/h1&gt;'</span>);</div><div class="line"></div><div class="line"><span class="keyword">if</span> (__DEV__) &#123;</div><div class="line">  <span class="built_in">document</span>.write(<span class="keyword">new</span> <span class="built_in">Date</span>());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>webpack.config.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> devFlagPlugin = <span class="keyword">new</span> webpack.DefinePlugin(&#123;</div><div class="line">  __DEV__: <span class="built_in">JSON</span>.stringify(<span class="built_in">JSON</span>.parse(process.env.DEBUG || <span class="string">'false'</span>))</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  entry: <span class="string">'./main.js'</span>,</div><div class="line">  output: &#123;</div><div class="line">    filename: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  plugins: [devFlagPlugin]</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Linux &amp; Mac</span></div><div class="line">$ env DEBUG=<span class="literal">true</span> webpack-dev-server</div><div class="line"></div><div class="line"><span class="comment"># Windows</span></div><div class="line">$ <span class="built_in">set</span> DEBUG=<span class="literal">true</span></div><div class="line">$ webpack-dev-server</div></pre></td></tr></table></figure>
-<h2 id="代码分割"><a href="#代码分割" class="headerlink" title="代码分割"></a>代码分割</h2><p>方式一</p>
-<p>使用<code>require.ensure</code>定义一个分割点，<code>require.ensure</code>会告诉webpack被引入的文件要编译成单独的文件，与编译输出文件bundle.js分开，index.html和weback.config.js都不需要修改。从表面上也看不出有什么不同，实际上webpack把main.js和a.js编译成不同的块bundle.js和1.bundle.js，并在bundle.js需要1.bundle.js时才加载。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="string">'Hello World'</span>;</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="built_in">require</span>.ensure([<span class="string">'./a'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> content = <span class="built_in">require</span>(<span class="string">'./a'</span>);</div><div class="line">  <span class="built_in">document</span>.open();</div><div class="line">  <span class="built_in">document</span>.write(<span class="string">'&lt;h1&gt;'</span> + content + <span class="string">'&lt;/h1&gt;'</span>);</div><div class="line">  <span class="built_in">document</span>.close();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// index.html</div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  entry: <span class="string">'./main.js'</span>,</div><div class="line">  output: &#123;</div><div class="line">    filename: <span class="string">'bundle.js'</span></div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>如果要配合react-router使用，示例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">const app = (location, callback) =&gt; &#123;</div><div class="line">    require.ensure([], require =&gt; &#123;</div><div class="line">        callback(null, require(&apos;./containers/App&apos;).default)</div><div class="line">    &#125;, &apos;app&apos;)</div><div class="line">&#125;;</div><div class="line">...</div><div class="line">&lt;Route getComponent=&#123;app&#125; /&gt;</div><div class="line">...</div></pre></td></tr></table></figure></p>
-<p>方式二</p>
-<p>使用<code>bundle-loader</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="keyword">var</span> load = <span class="built_in">require</span>(<span class="string">'bundle-loader!./a.js'</span>);</div><div class="line"></div><div class="line"><span class="comment">// You need to async wait until a.js is available (and get the exports)</span></div><div class="line">load(<span class="function"><span class="keyword">function</span>(<span class="params">file</span>) </span>&#123;</div><div class="line">  <span class="built_in">document</span>.open();</div><div class="line">  <span class="built_in">document</span>.write(<span class="string">'&lt;h1&gt;'</span> + file + <span class="string">'&lt;/h1&gt;'</span>);</div><div class="line">  <span class="built_in">document</span>.close();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h2 id="提取供应商模块"><a href="#提取供应商模块" class="headerlink" title="提取供应商模块"></a>提取供应商模块</h2><p>可以使用<code>CommonsChunkPlugin</code>提取供应商库到单独的文件中。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="keyword">var</span> $ = <span class="built_in">require</span>(<span class="string">'jquery'</span>);</div><div class="line">$(<span class="string">'h1'</span>).text(<span class="string">'Hello World'</span>);</div></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// index.html</div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"vendor.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  entry: &#123;</div><div class="line">    app: <span class="string">'./main.js'</span>,</div><div class="line">    vendor: [<span class="string">'jquery'</span>],</div><div class="line">  &#125;,</div><div class="line">  output: &#123;</div><div class="line">    filename: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  plugins: [</div><div class="line">    <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(<span class="comment">/* chunkName= */</span><span class="string">'vendor'</span>, <span class="comment">/* filename= */</span><span class="string">'vendor.js'</span>)</div><div class="line">  ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>如果想在其它文件使用一个模块又不想使用require引入，如使用$和jQuery但是不用<code>require(&#39;jquery&#39;)</code>，就需要使用<code>ProvidePlugin</code>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line">$(<span class="string">'h1'</span>).text(<span class="string">'Hello World'</span>);</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  entry: &#123;</div><div class="line">    app: <span class="string">'./main.js'</span></div><div class="line">  &#125;,</div><div class="line">  output: &#123;</div><div class="line">    filename: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  plugins: [</div><div class="line">    <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</div><div class="line">      $: <span class="string">"jquery"</span>,</div><div class="line">      jQuery: <span class="string">"jquery"</span>,</div><div class="line">      <span class="string">"window.jQuery"</span>: <span class="string">"jquery"</span></div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="热模块替换"><a href="#热模块替换" class="headerlink" title="热模块替换"></a>热模块替换</h2><p>方式一</p>
-<p>启动命令添加参数<br><code>webpack-dev-server --hot --inline</code>  </p>
-<p>方式二</p>
-<p>修改webpack.config.js文件，添加HotModuleReplacementPlugin插件，修改entry<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  entry: [</div><div class="line">    <span class="string">'webpack/hot/dev-server'</span>,</div><div class="line">    <span class="string">'webpack-dev-server/client?http://localhost:8080'</span>,</div><div class="line">    <span class="string">'./index.js'</span></div><div class="line">  ],</div><div class="line">  output: &#123;</div><div class="line">    filename: <span class="string">'bundle.js'</span>,</div><div class="line">    publicPath: <span class="string">'/static/'</span></div><div class="line">  &#125;,</div><div class="line">  plugins: [</div><div class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin()</div><div class="line">  ],</div><div class="line">  <span class="built_in">module</span>: &#123;</div><div class="line">    loaders: [&#123;</div><div class="line">      test: <span class="regexp">/\.jsx?$/</span>,</div><div class="line">      exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">      loader: <span class="string">'babel-loader'</span>,</div><div class="line">      query: &#123;</div><div class="line">        presets: [<span class="string">'es2015'</span>, <span class="string">'react'</span>]</div><div class="line">      &#125;,</div><div class="line">      include: path.join(__dirname, <span class="string">'.'</span>)</div><div class="line">    &#125;]</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/01/git-base/" itemprop="url">
-                  Git-基础
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-01T12:29:43+08:00" content="2016-11-01">
-              2016-11-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>参考 <a href="http://www.ruanyifeng.com/blog/2014/06/git_remote.html" target="_blank" rel="external">Git远程操作详解</a> 和 <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/" target="_blank" rel="external">Git教程</a></p>
-<p>which -a git # 查看所有版本的 git<br>git –version # 查看使用 git 的版本<br>git xxx –help # 查看 xxx 命令相关的帮助文档<br>git config –global alias.别名 命令 # 给命令起别名<br>git log –oneline –decorate –graph –all # 查看提交记录</p>
-<h2 id="拉取和提交操作"><a href="#拉取和提交操作" class="headerlink" title="拉取和提交操作"></a>拉取和提交操作</h2><p>git clone url [name] – 从远程主机克隆一个版本库<br>git clone -b url – 拉取指定分支<br>git pull – 拉取远程仓库，默认为远程origin master分支<br>git pull origin [remoteBranchName] [localBranchName] – 拉取远程仓库remoteName分支到本地localBranchName分支<br>git fetch origin remoteBranchName –  从远程分支更新最新的版本到origin/remoteBranchName分支上，没有更新到工作区，默认情况下取回所有分支的更新<br>git merge origin/localBranchName –  合并内容到本地localBranchName分支，更新到工作区<br>git diff master origin/master – 比较本地的master分支和origin/master分支的差别<br>git status – 列出当前目录所有还没有被git管理的文件和被git管理且被修改但还未提交( commit)的文件<br>git add fillname – 把文件添加到仓库，新添加的文件必须add后提交才生效<br>git rm fillname – 把文件从仓库删除，被删除的文件必须rm后提交才生效<br>git commit -m “description” – 把文件提交到本地仓库<br>git push origin [name] – 把所有本地提交推送到远程库name分支，默认为master分支  </p>
-<h2 id="临时备份"><a href="#临时备份" class="headerlink" title="临时备份"></a>临时备份</h2><p>git stash – 备份当前的工作区的内容，从最近的一次提交中读取相关内容，让工作区保证和上次提交的内容一致，同时将当前的工作区内容保存到Git栈中<br>git stash pop stash@{id} – 从Git栈中读取最近一次保存的内容，恢复工作区的相关内容，由于可能存在多个Stash的内容，所以用栈来管理，pop会从最近的一个stash中读取内容并恢复，将对应的stash id 从stash list里删除<br>git stash apply stash@{id} – 与stash pop的区别是会继续保存stash id<br>git stash list – 显示Git栈内的所有备份，可以利用这个列表来决定从那个地方恢复<br>git stash clear – 清空Git栈<br>git stash show stash@{0} – 查看压入Git栈的版本为0的文件列表<br>git stash drop – 如果不加stash编号，默认的就是删除最新的，也就是编号为0的那个，加编号就是删除指定编号的stash</p>
-<h2 id="忽略文件不提交"><a href="#忽略文件不提交" class="headerlink" title="忽略文件不提交"></a>忽略文件不提交</h2><p>在仓库根目录下创建名称为“.gitignore”的文件，写入不需要的文件夹名或文件，每个元素占一行即可，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">*.log</div><div class="line">node_modules/</div></pre></td></tr></table></figure></p>
-<h2 id="恢复操作"><a href="#恢复操作" class="headerlink" title="恢复操作"></a>恢复操作</h2><p>git reset – 将当前的分支重设(reset)到指定的commit或者HEAD(默认，即最新的一次提交)，可有–hard 或 –soft 参数<br>git revert filename – 恢复指定文件<br>git rebase localBranchName – 用于把localBranchName分支的修改合并到当前分支，该命令会把当前分支里的每个提交(commit)取消掉，然后把当前分支更新为最新的localBranchName分支  </p>
-<h2 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h2><p>git branch – 查看本地分支<br>git branch -r – 查看远程分支<br>git branch [name] – 创建本地分支<br>git checkout [name] – 切换分支<br>git checkout -b [name] [commit 引用] – 基于指定的 commit 新建并切换到该分支<br>git branch -d [name] – 删除分支，-d选项只能删除已经参与了合并的分支，对于未有合并的分支是无法删除的，如果想强制删除一个分支，可以使用-D选项<br>git merge [name] – 将指定分支合并到当前分支<br>git push origin [name] – 本地分支push到远程同名分支，远程没有该分支则创建<br>git push origin :heads/[name] – 删除远程分支<br>git push origin :master – 删除远程分支<br>git push origin –delete master – 删除远程分支<br>git push origin [remoteBranchName] [localBranchName] – 提交本地local分支作为远程的remote分支，如果没有则创建<br>git push –force origin – 如果远程主机的版本比本地版本更新，可以使用–force选项，结果导致远程主机上更新的版本被覆盖<br>git branch –set-upstream dev origin/dev – 指定本地dev分支与远程origin/dev分支的链接  </p>
-<h2 id="版本操作"><a href="#版本操作" class="headerlink" title="版本操作"></a>版本操作</h2><p>git tag – 查看版本<br>git tag [localTagName] – 创建版本<br>git push origin –tags – 把本地tag推送到远程<br>git fetch origin tag <remotetagname> – 获取远程tag<br>git tag -d [localTagName] – 删除本地tag<br>git push origin :refs/tags/[remoteTagName] – 删除远程tag<br>git checkout tagName – 切换到指定版本</remotetagname></p>
-<h2 id="fork的项目与原项目同步"><a href="#fork的项目与原项目同步" class="headerlink" title="fork的项目与原项目同步"></a>fork的项目与原项目同步</h2><p>fork一个项目并clone到本地，如果原项目已经更新了，要保持github上fork的项目和本地的项目与原项目同步，只需执行以下操作。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 远程拉取更新项目，先将原包作为 remote 加到本地项目中，A_REPOSITORY_URL需替换</div><div class="line">git remote add upstream A_REPOSITORY_URL</div><div class="line"># 拉取远程代码</div><div class="line">git pull upstream master</div><div class="line"># 提交到自己的 fork</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
-<h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">git add .</div><div class="line">git commit -m &quot;first commit&quot;</div><div class="line">git remote add origin https://github.com/zhulichao/react-native-hello.git</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/29/react-router-base/" itemprop="url">
-                  React Router-基础
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-29T13:13:11+08:00" content="2016-10-29">
-              2016-10-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/React-Router/" itemprop="url" rel="index">
-                    <span itemprop="name">React Router</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="React-Router"><a href="#React-Router" class="headerlink" title="React Router"></a>React Router</h2><p>参考：<br><a href="http://www.ruanyifeng.com/blog/2016/05/react_router.html" target="_blank" rel="external">React Router 使用教程</a><br><a href="https://github.com/reactjs/react-router-tutorial/tree/master/lessons" target="_blank" rel="external">react-router-tutorial</a><br><a href="https://github.com/ReactTraining/react-router" target="_blank" rel="external">react-router</a>  </p>
-<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p>React-Router 路由库，是官方维护的路由库，事实上也是唯一可选的路由库。它通过管理 URL，实现组件的切换和状态的变化，开发复杂的应用几乎肯定会用到。</p>
-<p>一般在src/index.jsx中定义路由，进行整个工程路由的管理。路由匹配规则是从上到下执行，一旦发现匹配，就不再走其余的规则了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import &#123; Router, Route, hashHistory &#125; from &apos;react-router&apos;;</div><div class="line"></div><div class="line">render((</div><div class="line">    &lt;Router history=&#123;hashHistory&#125;&gt;</div><div class="line">        &lt;Route path=&quot;/&quot; component=&#123;App&#125;&gt;</div><div class="line">            &lt;Route path=&quot;/home&quot; component=&#123;CommonMainPage&#125; /&gt;</div><div class="line">        &lt;/Route&gt;</div><div class="line">    &lt;/Router&gt;</div><div class="line">), document.getElementById(&apos;app&apos;));</div></pre></td></tr></table></figure></p>
-<p>子路由也可以不写在Router组件里面，单独传入Router组件的routes属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let routes = &lt;Route path=&quot;/&quot; component=&#123;App&#125;&gt;</div><div class="line">    &lt;Route path=&quot;/home&quot; component=&#123;CommonMainPage&#125; /&gt;</div><div class="line">&lt;/Route&gt;;</div><div class="line">&lt;Router routes=&#123;routes&#125; history=&#123;browserHistory&#125;/&gt;</div></pre></td></tr></table></figure></p>
-<p>用户访问/home时，会先加载App组件，然后在它的内部再加载CommonMainPage组件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;App&gt;</div><div class="line">    &lt;Repos/&gt;</div><div class="line">&lt;/App&gt;</div></pre></td></tr></table></figure></p>
-<p>App组件要写成下面的样子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">export default React.createClass(&#123;</div><div class="line">  render() &#123;</div><div class="line">    return &lt;div&gt;</div><div class="line">      &#123;this.props.children&#125;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<h2 id="path属性"><a href="#path属性" class="headerlink" title="path属性"></a>path属性</h2><p>Route组件的path属性指定路由的匹配规则。这个属性是可以省略的，这样的话，不管路径是否匹配，总是会加载指定组件。path属性也可以使用相对路径（不以/开头），匹配时就会相对于父组件的路径。嵌套路由如果想摆脱这个规则，可以使用绝对路由。</p>
-<p>path可以使用通配符，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;Route path=&quot;/list/:servId&quot; component=&#123;ListPage&#125; /&gt;</div></pre></td></tr></table></figure></p>
-<p>在ListPage组件中通过<code>this.props.params.servId</code>可获取该变量对于在url中的值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;Route path=&quot;/hello/:name&quot;&gt;</div><div class="line">// 匹配 /hello/michael</div><div class="line">// 匹配 /hello/ryan</div><div class="line"></div><div class="line">&lt;Route path=&quot;/hello(/:name)&quot;&gt;</div><div class="line">// 匹配 /hello</div><div class="line">// 匹配 /hello/michael</div><div class="line">// 匹配 /hello/ryan</div><div class="line"></div><div class="line">&lt;Route path=&quot;/files/*.*&quot;&gt;</div><div class="line">// 匹配 /files/hello.jpg</div><div class="line">// 匹配 /files/hello.html</div><div class="line"></div><div class="line">&lt;Route path=&quot;/files/*&quot;&gt;</div><div class="line">// 匹配 /files/ </div><div class="line">// 匹配 /files/a</div><div class="line">// 匹配 /files/a/b</div><div class="line"></div><div class="line">&lt;Route path=&quot;/**/*.jpg&quot;&gt;</div><div class="line">// 匹配 /files/hello.jpg</div><div class="line">// 匹配 /files/path/to/file.jpg</div></pre></td></tr></table></figure>
-<h3 id="IndexRoute"><a href="#IndexRoute" class="headerlink" title="IndexRoute"></a>IndexRoute</h3><p>IndexRoute显式指定根路由的子组件，注意没有路径参数path，即指定默认情况下加载的子组件，如访问路径/，会加载该组件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;Router&gt;</div><div class="line">  &lt;Route path=&quot;/&quot; component=&#123;App&#125;&gt;</div><div class="line">    &lt;IndexRoute component=&#123;Home&#125;/&gt;</div><div class="line">    &lt;Route path=&quot;accounts&quot; component=&#123;Accounts&#125;/&gt;</div><div class="line">&lt;/Router&gt;</div></pre></td></tr></table></figure></p>
-<h3 id="Redirect"><a href="#Redirect" class="headerlink" title="Redirect"></a>Redirect</h3><p>Redirect组件用于路由的跳转，即用户访问一个路由，会自动跳转到另一个路由。<br><code>＜Redirect from=&quot;/messages/:id&quot; to=&quot;/infos/:id&quot; /&gt;</code></p>
-<h3 id="IndexRedirect"><a href="#IndexRedirect" class="headerlink" title="IndexRedirect"></a>IndexRedirect</h3><p>IndexRedirect组件用于访问根路由的时候，将用户重定向到某个子组件。<br><code>＜IndexRedirect to=&quot;/welcome&quot; /&gt;</code><br>用户访问根路径时，将自动重定向到子组件welcome。</p>
-<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><p>Link组件用于取代<code>&lt;a&gt;</code>元素，生成一个链接，允许用户点击后跳转到另一个路由。它基本上就是<code>&lt;a&gt;</code>元素的React 版本，可以接收Router的状态。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 点击About会跳转到/about路由</div><div class="line">&lt;Link to=&quot;/about&quot;&gt;About&lt;/Link&gt;</div><div class="line"></div><div class="line">// 点击About跳转到/about是文字显示为红色</div><div class="line">&lt;Link to=&quot;/about&quot; activeStyle=&#123;&#123;color: &apos;red&apos;&#125;&#125;&gt;About&lt;/Link&gt;</div><div class="line"></div><div class="line">// 也可以指定class </div><div class="line">&lt;Link to=&quot;/about&quot; activeClassName=&quot;active&quot;&gt;About&lt;/Link&gt;</div></pre></td></tr></table></figure>
-<p>在Router组件之外，导航到路由页面，可以使用浏览器的History API。这种方式，对于以前没有访问过的路由是不好使的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import &#123; browserHistory &#125; from &apos;react-router&apos;;</div><div class="line">browserHistory.push(&apos;/some/path&apos;);</div></pre></td></tr></table></figure></p>
-<p>或者使用context对象。注意，pathname和state名称是固定的，跳转到pathname时会带着state的信息。在跳转进入的组件中，使用<code>this.props.location.state</code>获取这个state信息。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 路由跳转</div><div class="line">this.context.router.push(&#123;</div><div class="line">    pathname: &apos;/card/&apos; + this.props.servDef.SERV_ID,</div><div class="line">    state: this.props.listQueryData</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h3 id="IndexLink"><a href="#IndexLink" class="headerlink" title="IndexLink"></a>IndexLink</h3><p>如果链接到根路由/，不要使用Link组件，而要使用IndexLink组件。这是因为对于根路由来说，activeStyle和activeClassName总是生效，因为’/‘会匹配任何子路由，而IndexLink组件会使用路径的精确匹配。<br><code>&lt;IndexLink to=&quot;/&quot; activeClassName=&quot;active&quot;&gt;</code><br>或者使用<br><code>&lt;Link to=&quot;/&quot; activeClassName=&quot;active&quot; onlyActiveOnIndex={true}&gt;Home&lt;/Link&gt;</code></p>
-<h3 id="histroy"><a href="#histroy" class="headerlink" title="histroy"></a>histroy</h3><p>Router组件的history属性，是用来监听浏览器地址栏变化的，并将URL解析成一个地址对象，供 React Router 匹配。history属性，一共可以设置三种值。  </p>
-<ul>
-<li><p><strong>createMemoryHistory：</strong>主要用于服务器渲染，它创建一个内存中的history对象，不与浏览器URL互动，<code>const history = createMemoryHistory(location)</code></p>
-</li>
-<li><p><strong>hashHistory：</strong>路由将通过URL的hash部分#切换，类似example.com/#/some/path</p>
-</li>
-<li><p><strong>browserHistory：</strong>不再通过Hash完成，而显示正常的路径example.com/some/path，背后调用的是浏览器的History API。这种情况需要对<a href="https://github.com/ReactTraining/react-router/blob/master/docs/guides/Histories.md#configuring-your-server" target="_blank" rel="external">服务器改造</a>，否则用户直接向服务器请求某个子路由，会显示网页找不到的404错误。<br>如果开发服务器使用的是webpack-dev-server，加上–history-api-fallback参数<br><code>webpack-dev-server --inline --content-base . --history-api-fallback</code>，index.html中用绝对路径引入编译后的文件<code>&lt;script src=&quot;/bundle.js&quot;&gt;&lt;/script&gt;</code></p>
-</li>
-</ul>
-<h3 id="路由的钩子"><a href="#路由的钩子" class="headerlink" title="路由的钩子"></a>路由的钩子</h3><p>每个路由都有Enter和Leave钩子，用户进入或离开该路由时触发。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Route path=&quot;about&quot; component=&#123;About&#125; /&gt;  </div><div class="line">＜Route path=&quot;inbox&quot; component=&#123;Inbox&#125;&gt;  </div><div class="line">    ＜Redirect from=&quot;messages/:id&quot; to=&quot;/messages/:id&quot; /&gt;</div><div class="line">&lt;/Route&gt;</div></pre></td></tr></table></figure></p>
-<p>如果用户离开/messages/:id，进入/about时，会依次触发以下的钩子:  </p>
-<blockquote>
-<p>/messages/:id的onLeave<br>/inbox的onLeave<br>/about的onEnter  </p>
-</blockquote>
-<p>进行路由跳转<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Route</div><div class="line">    path=&quot;messages/:id&quot;</div><div class="line">    onEnter=&#123;(&#123;params&#125;, replace) =&gt; replace(`/messages/$&#123;params.id&#125;`)&#125; </div><div class="line">/&gt;</div></pre></td></tr></table></figure></p>
-<p>进行登录验证<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;Route path=&quot;/home&quot; component=&#123;CommonMainPage&#125; onEnter=&#123;requireAuth&#125;&gt;</div><div class="line"></div><div class="line">function requireAuth(nextState, replace) &#123;</div><div class="line">    if (!storage.get(&apos;token&apos;)) &#123;</div><div class="line">        replace(&#123;</div><div class="line">            pathname: &apos;/login&apos;,</div><div class="line">            state: &#123; nextPathname: nextState.location.pathname &#125;</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>当用户离开一个路径的时候，跳出一个提示框，要求用户确认是否离开。setRouteLeaveHook方法为Leave钩子指定routerWillLeave函数，该方法如果返回false，将阻止路由的切换，否则就返回一个字符串，提示用户决定是否要切换。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">const Home = withRouter(</div><div class="line">  React.createClass(&#123;</div><div class="line">    componentDidMount() &#123;</div><div class="line">      this.props.router.setRouteLeaveHook(</div><div class="line">        this.props.route, </div><div class="line">        this.routerWillLeave</div><div class="line">      )</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    routerWillLeave(nextLocation) &#123;</div><div class="line">      // 返回 false 会继续停留当前页面，</div><div class="line">      // 否则，返回一个字符串，会显示给用户，让其自己决定</div><div class="line">      if (!this.state.isSaved)</div><div class="line">        return &apos;确认要离开？&apos;;</div><div class="line">    &#125;,</div><div class="line">  &#125;)</div><div class="line">)</div></pre></td></tr></table></figure></p>
-<h3 id="生产环境相关"><a href="#生产环境相关" class="headerlink" title="生产环境相关"></a>生产环境相关</h3><p><strong>if-env 依赖：</strong> 如果想简化开发、在任何情况运行npm start都执行正确的脚本启动，可以安装if-env依赖<code>npm install if-env --save</code>并在package.json中这样部署，再运行<code>NODE_ENV=production npm start</code>启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;start&quot;: &quot;if-env NODE_ENV=production &amp;&amp; npm run start:prod || npm start:dev&quot;,</div><div class="line">  &quot;start:dev&quot;: &quot;webpack&quot;,</div><div class="line">  &quot;start:prod&quot;: &quot;start-cluster&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>为了限制浏览器可访问的文件，通常创建一个浏览器可访问的文件夹，如public，将index.html、index.css放入该目录，并在server.js中指定可访问的静态资源路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">app.use(express.static(path.join(__dirname, &apos;public&apos;)))</div><div class="line">app.get(&apos;*&apos;, function (req, res) &#123;</div><div class="line">  res.sendFile(path.join(__dirname, &apos;public&apos;, &apos;index.html&apos;))</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>并指定webpack输入目录也为该目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">output: &#123;</div><div class="line">  path: &apos;public&apos;,</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>最后启动命令添加参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;start:dev&quot;: &quot;webpack-dev-server --inline --content-base public --history-api-fallback&quot;,</div></pre></td></tr></table></figure></p>
-<p><strong>compression 依赖:</strong> 用该中间件压缩和处理静态内容。开启gzip压缩对Web应用会产生巨大影响，当一个gzip压缩浏览器请求某些资源的时候，服务器会在响应返回给浏览器之前进行压缩。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var app = express();</div><div class="line">// 必须放在第一行</div><div class="line">app.use(compression());</div><div class="line">...</div></pre></td></tr></table></figure></p>
-<p><strong>服务器端渲染:</strong> </p>
-<p>需要一个服务器渲染的webpack配置<code>webpack.server.config.js</code>，原来的webpack配置webpack.config.js还是保留的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">var path = require(&apos;path&apos;);</div><div class="line">module.exports = &#123;</div><div class="line">  entry: path.resolve(__dirname, &apos;server.js&apos;),</div><div class="line">  output: &#123;</div><div class="line">    filename: &apos;server.bundle.js&apos;</div><div class="line">  &#125;,</div><div class="line">  target: &apos;node&apos;,</div><div class="line">  // keep node_module paths out of the bundle</div><div class="line">  externals: fs.readdirSync(path.resolve(__dirname, &apos;node_modules&apos;)).concat([</div><div class="line">    &apos;react-dom/server&apos;, &apos;react/addons&apos;,</div><div class="line">  ]).reduce(function (ext, mod) &#123;</div><div class="line">    ext[mod] = &apos;commonjs &apos; + mod</div><div class="line">    return ext</div><div class="line">  &#125;, &#123;&#125;),</div><div class="line">  node: &#123;</div><div class="line">    __filename: true,</div><div class="line">    __dirname: true</div><div class="line">  &#125;,</div><div class="line">  module: &#123;</div><div class="line">    loaders: [</div><div class="line">      &#123; test: /\.js$/, exclude: /node_modules/, loader: &apos;babel-loader?presets[]=es2015&amp;presets[]=react&apos; &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>更新<code>package.json</code>文件，用<code>NODE_ENV=production npm start</code>启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;start&quot;: &quot;if-env NODE_ENV=production &amp;&amp; npm run start:prod || npm run start:dev&quot;,</div><div class="line">  &quot;start:dev&quot;: &quot;webpack-dev-server --inline --content-base public/ --history-api-fallback&quot;,</div><div class="line">  &quot;start:prod&quot;: &quot;npm run build &amp;&amp; node server.bundle.js&quot;,</div><div class="line">  &quot;build:client&quot;: &quot;webpack&quot;,</div><div class="line">  &quot;build:server&quot;: &quot;webpack --config webpack.server.config.js&quot;,</div><div class="line">  &quot;build&quot;: &quot;npm run build:client &amp;&amp; npm run build:server&quot;</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
-<p>把路由管理放到单独的文件中，以便客户端和服务器端都能获取它。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// modules/routes.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> &#123; Route, IndexRoute &#125; <span class="keyword">from</span> <span class="string">'react-router'</span></div><div class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></div><div class="line"><span class="keyword">import</span> About <span class="keyword">from</span> <span class="string">'./About'</span></div><div class="line"><span class="keyword">import</span> Repos <span class="keyword">from</span> <span class="string">'./Repos'</span></div><div class="line"><span class="keyword">import</span> Repo <span class="keyword">from</span> <span class="string">'./Repo'</span></div><div class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./Home'</span></div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = (</div><div class="line">  &lt;Route path="/" component=&#123;App&#125;&gt;</div><div class="line">    &lt;IndexRoute component=&#123;Home&#125; /&gt;</div><div class="line">    &lt;Route path="/repos" component=&#123;Repos&#125;&gt;</div><div class="line">      &lt;Route path="/repos/:userName/:repoName" component=&#123;Repo&#125; /&gt;</div><div class="line">    &lt;/Route&gt;</div><div class="line">    &lt;Route path="/about" component=&#123;About&#125; /&gt;</div><div class="line">  &lt;/Route&gt;</div><div class="line">)</div></pre></td></tr></table></figure></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// index.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span></div><div class="line"><span class="keyword">import</span> &#123; Router, browserHistory &#125; <span class="keyword">from</span> <span class="string">'react-router'</span></div><div class="line"><span class="comment">// import routes and pass them into &lt;Router/&gt;</span></div><div class="line"><span class="keyword">import</span> routes <span class="keyword">from</span> <span class="string">'./modules/routes'</span></div><div class="line"></div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">Router</span> <span class="attr">routes</span>=<span class="string">&#123;routes&#125;</span> <span class="attr">history</span>=<span class="string">&#123;browserHistory&#125;/</span>&gt;</span>,</span></div><div class="line">  document.getElementById('app')</div><div class="line">)</div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="comment">// import some new stuff</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="comment">// we'll use this to render our app to an html string</span></div><div class="line"><span class="keyword">import</span> &#123; renderToString &#125; <span class="keyword">from</span> <span class="string">'react-dom/server'</span></div><div class="line"><span class="comment">// and these to match the url to routes and then render</span></div><div class="line"><span class="keyword">import</span> &#123; match, RouterContext &#125; <span class="keyword">from</span> <span class="string">'react-router'</span></div><div class="line"><span class="keyword">import</span> routes <span class="keyword">from</span> <span class="string">'./modules/routes'</span></div><div class="line"></div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line"><span class="comment">// send all requests to index.html so browserHistory works</span></div><div class="line"></div><div class="line">app.get(<span class="string">'*'</span>, (req, res) =&gt; &#123;</div><div class="line">  <span class="comment">// match the routes to the url</span></div><div class="line">  match(&#123; routes: routes, location: req.url &#125;, (err, redirect, props) =&gt; &#123;</div><div class="line">    <span class="comment">// `RouterContext` is the what `Router` renders. `Router` keeps these</span></div><div class="line">    <span class="comment">// `props` in its state as it listens to `browserHistory`. But on the</span></div><div class="line">    <span class="comment">// server our app is stateless, so we need to use `match` to</span></div><div class="line">    <span class="comment">// get these props before rendering.</span></div><div class="line">    <span class="keyword">const</span> appHtml = renderToString(&lt;RouterContext &#123;...props&#125;/&gt;)</div><div class="line"></div><div class="line">    // dump the HTML into a template, lots of ways to do this, but none are</div><div class="line">    // really influenced by React Router, so we're just using a little</div><div class="line">    // function, `renderPage`</div><div class="line">    res.send(renderPage(appHtml))</div><div class="line">  &#125;)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">function renderPage(appHtml) &#123;</div><div class="line">  return `</div><div class="line">    &lt;!doctype html public="storage"&gt;</div><div class="line">    &lt;html&gt;</div><div class="line">    &lt;meta charset=utf-8/&gt;</div><div class="line">    &lt;title&gt;My First React Router App&lt;/title&gt;</div><div class="line">    &lt;link rel=stylesheet href=/index.css&gt;</div><div class="line">    &lt;div id=app&gt;$&#123;appHtml&#125;&lt;/div&gt;</div><div class="line">    &lt;script src="/bundle.js"&gt;&lt;/script&gt;</div><div class="line">   `</div><div class="line">&#125;</div><div class="line"></div><div class="line">var PORT = process.env.PORT || 8080</div><div class="line">app.listen(PORT, function() &#123;</div><div class="line">  console.log('Production Express server running at localhost:' + PORT)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/29/babel-base/" itemprop="url">
-                  Babel-入门
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-29T12:13:35+08:00" content="2016-10-29">
-              2016-10-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ES6/" itemprop="url" rel="index">
-                    <span itemprop="name">ES6</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://babeljs.io/" target="_blank" rel="external">Babel</a>是一个广泛使用的转码器，可以将ES6代码转为ES5代码，从而在现有环境执行。</p>
-<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>Babel的配置文件是.babelrc，存放在项目的根目录下，该文件用来设置转码规则和插件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;presets&quot;: [], -- 设定转码规则</div><div class="line">    &quot;plugins&quot;: []  -- 设定支持的插件，如&apos;antd&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>ES2015转码规则<br><code>npm install --save-dev babel-preset-es2015</code><br>react转码规则<br><code>npm install --save-dev babel-preset-react</code><br>ES7不同阶段语法提案的转码规则（共有4个阶段），选装一个<br><code>npm install --save-dev babel-preset-stage-0</code><br><code>npm install --save-dev babel-preset-stage-1</code><br><code>npm install --save-dev babel-preset-stage-2</code><br><code>npm install --save-dev babel-preset-stage-3</code>  </p>
-<h3 id="babel-cli"><a href="#babel-cli" class="headerlink" title="babel-cli"></a>babel-cli</h3><p><code>npm install --global babel-cli</code> 用于命令行转码的工具</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"># 转码结果输出到标准输出</div><div class="line">$ babel example.js</div><div class="line"></div><div class="line"># 转码结果写入一个文件</div><div class="line"># --out-file 或 -o 参数指定输出文件</div><div class="line">$ babel example.js --out-file compiled.js</div><div class="line"># 或者</div><div class="line">$ babel example.js -o compiled.js</div><div class="line"></div><div class="line"># 整个目录转码</div><div class="line"># --out-dir 或 -d 参数指定输出目录</div><div class="line">$ babel src --out-dir lib</div><div class="line"># 或者</div><div class="line">$ babel src -d lib</div><div class="line"></div><div class="line"># -s 参数生成source map文件</div><div class="line">$ babel src -d lib -s</div></pre></td></tr></table></figure>
-<p>babel-cli工具自带一个babel-node命令，提供一个支持ES6的REPL环境。它支持Node的REPL环境的所有功能，而且可以直接运行ES6代码。</p>
-<h3 id="babel-register"><a href="#babel-register" class="headerlink" title="babel-register"></a>babel-register</h3><p>babel-register模块改写require命令，为它加上一个钩子。此后，每当使用require加载.js、.jsx、.es和.es6后缀名的文件，就会先用Babel进行转码。注意，它只会对require命令加载的文件转码，而不会对当前文件转码。另外，由于它是实时转码，所以只适合在开发环境使用。</p>
-<h3 id="babel-core"><a href="#babel-core" class="headerlink" title="babel-core"></a>babel-core</h3><p>如果某些代码需要调用Babel的API进行转码，就要使用babel-core模块，配置对象为<a href="http://babeljs.io/docs/usage/options/" target="_blank" rel="external">options</a>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var babel = require(&apos;babel-core&apos;);</div><div class="line"></div><div class="line">// 字符串转码</div><div class="line">babel.transform(&apos;code();&apos;, options);</div><div class="line">// =&gt; &#123; code, map, ast &#125;</div><div class="line"></div><div class="line">// 文件转码（异步）</div><div class="line">babel.transformFile(&apos;filename.js&apos;, options, function(err, result) &#123;</div><div class="line">  result; // =&gt; &#123; code, map, ast &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 文件转码（同步）</div><div class="line">babel.transformFileSync(&apos;filename.js&apos;, options);</div><div class="line">// =&gt; &#123; code, map, ast &#125;</div><div class="line"></div><div class="line">// Babel AST转码</div><div class="line">babel.transformFromAst(ast, code, options);</div><div class="line">// =&gt; &#123; code, map, ast &#125;</div></pre></td></tr></table></figure></p>
-<h3 id="babel-polyfill"><a href="#babel-polyfill" class="headerlink" title="babel-polyfill"></a>babel-polyfill</h3><p>Babel默认只转换新的JavaScript句法（syntax），而不转换新的API，比如Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise等全局对象，以及一些定义在全局对象上的方法（比如Object.assign）都不会转码。如果想让这些代码执行，必须使用babel-polyfill，为当前环境提供一个垫片。</p>
-<h3 id="浏览器环境"><a href="#浏览器环境" class="headerlink" title="浏览器环境"></a>浏览器环境</h3><p>Babel也可以用于浏览器环境。可在网页中插入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;node_modules/babel-core/browser.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script type=&quot;text/babel&quot;&gt;</div></pre></td></tr></table></figure></p>
-<p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script type=&quot;text/babel&quot;&gt;</div></pre></td></tr></table></figure></p>
-<p>网页中实时将ES6代码转为ES5，对性能会有影响。生产环境需要加载已经转码完成的脚本。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2007,7 +2001,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

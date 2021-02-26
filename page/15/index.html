@@ -275,7 +275,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">156</span>
+              <span class="site-state-item-count">161</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -389,6 +389,709 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/14/jQuery-base/" itemprop="url">
+                  jQuery-基础
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-14T20:30:53+08:00" content="2016-11-14">
+              2016-11-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>parent([expr]) – 获得当前匹配元素集合中每个元素的<strong>父元素</strong>，使用选择器进行筛选是可选的，沿 DOM 树向上遍历单一层级<br>parents([expr]) – 获得当前匹配元素集合中每个元素的<strong>祖先元素</strong>，一直向上查找直到根元素，再使用选择器进行筛选可选的<br>closest([expr]) – 首先检查<strong>当前元素</strong>是否匹配，如果匹配则直接返回元素本身，如果不匹配则向上查找父元素，一层一层往上，直到找到匹配选择器的元素就停止了，如果什么都没找到则返回一个空的jQuery对象  </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/06/webpack-base/" itemprop="url">
+                  Webpack-基础
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-06T20:14:17+08:00" content="2016-11-06">
+              2016-11-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">Webpack</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前端模块管理器简介"><a href="#前端模块管理器简介" class="headerlink" title="前端模块管理器简介"></a><a href="http://www.ruanyifeng.com/blog/2014/09/package-management.html" target="_blank" rel="external">前端模块管理器简介</a></h2><p>浏览器本身并不提供模块管理的机制，为了调用各个模块，有时不得不在网页中，加入一大堆script标签。这样就使得网页体积臃肿，难以维护，还产生大量的HTTP请求，拖慢显示速度，影响用户体验。<br>为了解决这个问题，前端的模块管理器（package management）应运而生。它可以轻松管理各种JavaScript脚本的依赖关系，自动加载各个模块，使得网页结构清晰合理。不夸张地说，将来所有的前端JavaScript项目，应该都会采用这种方式开发。</p>
+<h2 id="Webpack介绍"><a href="#Webpack介绍" class="headerlink" title="Webpack介绍"></a>Webpack介绍</h2><p><a href="http://webpack.github.io/docs/" target="_blank" rel="external">官网</a><br><a href="http://zhaoda.net/webpack-handbook/" target="_blank" rel="external">Webpack 中文指南</a><br><a href="https://fakefish.github.io/react-webpack-cookbook/Introduction-to-Webpack.html" target="_blank" rel="external">Webpack 介绍</a><br><a href="http://www.07net01.com/2015/08/890558.html" target="_blank" rel="external">webpack学习笔记</a><br><a href="http://webpack.github.io/docs/tutorials/getting-started/" target="_blank" rel="external">快速上手</a><br><a href="http://www.cnblogs.com/vajoy/p/4650467.html" target="_blank" rel="external">一小时包教会</a><br><a href="https://github.com/petehunt/webpack-howto" target="_blank" rel="external">webpack-howto</a><br><a href="https://web-design-weekly.com/2014/09/24/diving-webpack/" target="_blank" rel="external">Diving into Webpack</a>  <a href="http://www.christianalfoni.com/articles/2014_12_13_Webpack-and-react-is-awesome" target="_blank" rel="external">Webpack and React is awesome</a><br><a href="https://christianalfoni.github.io/react-webpack-cookbook/index.html" target="_blank" rel="external">React Webpack cookbook</a><br><a href="https://github.com/ruanyf/webpack-demos" target="_blank" rel="external">webpack-demos</a></p>
+<p>Webpack是近期最火的一款模块加载器兼模块打包工具，主要是用来打包在浏览器端使用的javascript，同时也能转换、捆绑、打包其它的静态资源，例如JS（含JSX）、coffee、样式（含less/sass）、图片等都作为模块来使用和处理，输出的静态文件只剩下js与png，而css、less、jade其他的文件都合并到了js中。<br>Webpack主要解决如何在一个大规模的代码库中，维护各种模块资源的分割和存放，维护它们之间的依赖关系，并且无缝的将它们整合到一起生成适合浏览器端请求加载的静态资源。<br>Webpack中涉及路径配置最好使用绝对路径，建议通过<code>path.resolve(__dirname, &quot;app/folder&quot;)</code>或<code>path.join(__dirname, &quot;app&quot;, &quot;folder&quot;)</code>的方式来配置，以兼容 Windows 环境。   </p>
+<p><strong>特点：</strong></p>
+<ul>
+<li>代码拆分、Loader、智能解析、插件系统、快速运行。</li>
+</ul>
+<p><strong>优点:</strong>  </p>
+<ul>
+<li>webpack 是以 commonJS 的形式来书写脚本的，但对 AMD/CMD 的支持也很全面  </li>
+<li>直接使用 require(XXX) 的形式来引入各模块，即使它们可能需要经过编译  </li>
+<li>能被模块化的不仅仅是 JS 了  </li>
+<li>开发便捷，比如打包、压缩混淆、图片转base64等  </li>
+<li>扩展性强，插件机制完善，特别是支持 React 热插拔（见 react-hot-loader ）</li>
+<li>可以使用别名（alias），简化require中的内容  </li>
+<li>支持多入口  </li>
+</ul>
+<h2 id="Webpack安装"><a href="#Webpack安装" class="headerlink" title="Webpack安装"></a>Webpack安装</h2><p>全局安装：<code>npm install webpack -g</code><br>当然如果常规项目还是把依赖写入 package.json 包去更人性化：<br><code>npm init</code><br><code>npm install webpack --save-dev</code>  </p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a><a href="http://webpack.github.io/docs/configuration.html" target="_blank" rel="external">配置文件</a></h2><p>示例代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">var webpack = require(&apos;webpack&apos;);</div><div class="line">// 用于提取多个入口文件的公共脚本部分，然后生成一个 common.js 来方便多页面之间进行复用。</div><div class="line">// 注意html中引入时先引入common.js，再引入index.s</div><div class="line">var commonsPlugin = new webpack.optimize.CommonsChunkPlugin(&apos;common.js&apos;);</div><div class="line">// 定义全局变量</div><div class="line">var data = &apos;hello world&apos;;</div><div class="line">module.exports = &#123;</div><div class="line">    // 插件项</div><div class="line">    plugins: [commonsPlugin],</div><div class="line">    // 页面入口文件配置</div><div class="line">    entry: &#123;</div><div class="line">        index : &apos;./src/js/page/index.js&apos;</div><div class="line">    &#125;,</div><div class="line">    // 入口文件输出配置</div><div class="line">    output: &#123;</div><div class="line">        path: &apos;dist/js/page&apos;,</div><div class="line">        filename: &apos;[name].js&apos;</div><div class="line">    &#125;,</div><div class="line">    module: &#123;</div><div class="line">        // 加载器配置</div><div class="line">        loaders: [</div><div class="line">            &#123; test: /\.css$/, loader: &apos;style-loader!css-loader?modules&apos; &#125;,// 样式开启局部作用域，如果要定义全局作用域 :global(选择器) &#123;样式&#125;</div><div class="line">            &#123; test: /\.js$/, loader: &apos;jsx-loader?harmony&apos; &#125;,</div><div class="line">            &#123; test: /\.scss$/, loader: &apos;style!css!sass?sourceMap&apos;&#125;,</div><div class="line">            &#123; test: /\.(png|jpg)$/, loader: &apos;url-loader?limit=8192&apos;&#125;,</div><div class="line">            &#123; test: /\.js[x]?$/, exclude: /node_modules/, loader: &apos;babel-loader?presets[]=es2015&amp;presets[]=react&apos;&#125;,</div><div class="line">            &#123; test: /\.jsx?$/, exclude: /node_modules/, loader: &apos;babel&apos;, query: &#123; presets: [&apos;es2015&apos;, &apos;react&apos;] &#125; &#125;</div><div class="line">        ]</div><div class="line">    &#125;,</div><div class="line">    //其它解决方案配置</div><div class="line">    resolve: &#123;</div><div class="line">        // 查找module的话从这里开始查找</div><div class="line">        root: &apos;E:/github/flux-example/src&apos;, // 绝对路径</div><div class="line">        // 自动扩展文件后缀名，意味着我们require模块可以省略不写后缀名</div><div class="line">        extensions: [&apos;&apos;, &apos;.js&apos;, &apos;.json&apos;, &apos;.scss&apos;],</div><div class="line">        // 模块别名定义，方便后续直接引用别名，无须多写长长的地址</div><div class="line">        alias: &#123;</div><div class="line">            AppStore : &apos;js/stores/AppStores.js&apos;,// 后续直接 require(&apos;AppStore&apos;) 即可</div><div class="line">            ActionType : &apos;js/actions/ActionType.js&apos;,</div><div class="line">            AppAction : &apos;js/actions/AppAction.js&apos;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    externals: &#123;</div><div class="line">        // 定义全局变量，index.html中需引入data.js，即可直接使用require(&apos;data&apos;)</div><div class="line">        &apos;data&apos;: &apos;data&apos;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>context：处理entry选项时的基础路径（绝对路径），默认值为process.cmd()，即webpack.config.js文件所在路径。  </li>
+<li>entry：配置入口文件，值可以是字符串、数组、对象；字符串指定的模块在项目程序启动的时候加载；字符串数组指定的所有模块被当做一个模块集，在项目程序启动的时候都会加载，数组最后一个元素作为模块集输出；对象的每个属性名作为模块集的名称，属性值可以是字符串和字符串数组。这个配置可用于实现非单页的程序，程序会有多个启动入口。  </li>
+<li>output.filename：打包后的文件名 ‘[name].js’，表示name为对应entry的键。  </li>
+<li>output.path：打包文件存放的绝对路径。  </li>
+<li>output.publicPath：网站运行时的访问路径，比如publicPath为”/test”，访问localhost:8080/test/bundle.js可访问编译后的文件。  </li>
+<li>module.loaders：值为一个数组，数组的每一个元素是一个对象，对象里可有text、exclude、loader以“！”分隔多个loader的string、loaders是一个字符串数组；加载器配置，以处理非javascript类型的模块，都需要先安装。  </li>
+<li>module.noParse：值为一个数组，声明这个模块不需要parse查找依赖，忽略对已知文件的解析。告诉当webpack尝试去解析压缩文件时，这种行为是不允许的。  </li>
+<li>plugins：值为一个数组，<code>new webpack.optimize.CommonsChunkPlugin(&#39;common.js&#39;)</code>表示提取多个入口文件的公共脚本部分生成一个 common.js。注意引入时先引入common.js，再引入index.s。如压缩打包的文件(UglifyJsPlugin)、允许错误不打断程序等。  </li>
+<li>resolve.root：绝对路径，查找module的话从这里开始查找。添加默认搜索路径。  </li>
+<li>resolve.extensions：自动扩展文件后缀名，意味着我们require模块可以省略不写后缀名。  </li>
+<li>resolve.alias：模块别名定义，方便后续直接引用别名，无须多写长长的地址；告诉webpack，当引入react时，试图去匹配压缩过的react。  </li>
+<li>externals：当我们想在项目中require一些其它的类库或者API，而又不想让这些类库的源码被构建到运行时文件中，这在实际开发中很有必要。<code>externals: {&quot;jquery&quot;: &quot;jQuery&quot;}</code>，这样我们就可以放心的在项目中使用这些API了：<code>var jQuery = require(&quot;jquery&quot;)</code>。如果你想将react分离，不打包到一起，可以使用externals。然后用<code>&lt;script&gt;</code>单独将react引入。  </li>
+<li>devtool：就是生成sourcemap的不同方式，eval不支持IE8，推荐用source-map，开发环境常用eval-source-map。  </li>
+<li>debug：加载器(loader)转换到调试模式。  </li>
+<li>catch：缓存生成的模块，watch 模式下默认就是启动的。  </li>
+</ul>
+<p><a href="http://webpack.github.io/docs/list-of-loaders.html" target="_blank" rel="external">常用Loader</a><br><a href="http://webpack.github.io/docs/list-of-plugins.html" target="_blank" rel="external">常用plugin</a></p>
+<p><strong>常用命令:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">webpack    // 执行webpack.config.js文件</div><div class="line">webpack --display-error-details //方便出错时能查阅更详尽的信息</div><div class="line">webpack --config XXX.js   //使用另一份配置文件（比如webpack.config2.js）来打包</div><div class="line">webpack --watch   //监听变动并自动打包</div><div class="line">webpack -p    //压缩混淆脚本，这个非常非常重要！</div><div class="line">webpack -d    //生成map映射文件，告知哪些模块被最终打包到哪里了</div></pre></td></tr></table></figure></p>
+<h2 id="webpack-dev-server"><a href="#webpack-dev-server" class="headerlink" title="webpack-dev-server"></a>webpack-dev-server</h2><p>命令：<code>webpack-dev-server --devtool eval --progress --colors --hot --content-base dist</code><br>webpack-dev-server  //启动一个小的express Web服务，8080端口<br>–devtool eval   //为你的代码创建源地址。当有任何报错的时候可以让你更加精确地定位到文件和行号<br>–progress // 显示合并代码进度<br>–colors - Yay //命令行中显示颜色！<br>–content-base build // 指向设置的输出目录，这样不能访问其它路径的文件了<br>–history-api-fallback // 这样在浏览器中直接输入url才不会报Cannot GET<br>–inline // 自动刷新页面<br>–hot // 启动热替换  </p>
+<p>当运行 webpack-dev-server 的时候，它会监听你的文件修改。当项目重新合并之后，会通知浏览器刷新。为了能够触发这样的行为，你需要把你的 index.html 放到 build/ 文件夹下。可访问<code>http://localhost:8080/webpack-dev-server/bundle</code>或<br><code>http://localhost:8080/webpack-dev-server/index.html</code>。注意，访问带webpack-dev-server的url会自动刷新，直接访问localhost:8080的可能不刷新。</p>
+<h2 id="配置webpack-dev-server代理"><a href="#配置webpack-dev-server代理" class="headerlink" title="配置webpack-dev-server代理"></a>配置webpack-dev-server代理</h2><h2 id="自动编译并刷新页面"><a href="#自动编译并刷新页面" class="headerlink" title="自动编译并刷新页面"></a>自动编译并刷新页面</h2><p>index.html 放到 build/ 文件夹下<br>Index.html中添加 <code>&lt;script src=&quot;http://localhost:8080/webpack-dev-server.js&quot;&gt;&lt;/script&gt;</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">entry: [</div><div class="line">    &apos;webpack/hot/dev-server&apos;,</div><div class="line">    &apos;webpack-dev-server/client?http://localhost:8080&apos;,</div><div class="line">    path.resolve(__dirname, &apos;app/main.js&apos;)</div><div class="line">],</div></pre></td></tr></table></figure></p>
+<p>命令：webpack-dev-server –hot<br>当Webpack-dev-server在浏览器自动刷新下运行的时候，CSS也会自动更新，不过有点不同的是，当你改变了一个 CSS 文件，属于那个文件的标签会更新新的内容但不会刷新。<br>注意，访问带webpack-dev-server的url会自动刷新，直接访问localhost:8080的可能不刷新。</p>
+<h2 id="独立打包样式文件"><a href="#独立打包样式文件" class="headerlink" title="独立打包样式文件"></a>独立打包样式文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var ExtractTextPlugin = require(&quot;extract-text-webpack-plugin&quot;);</div><div class="line">// webpack.config.js 中</div><div class="line">...</div><div class="line">plugins: [</div><div class="line">  ...</div><div class="line">  new ExtractTextPlugin(&quot;[name].css&quot;), // 如果只有一个 style.css 就行</div><div class="line">],</div><div class="line">loaders:[</div><div class="line">  ...</div><div class="line">  &#123;</div><div class="line">    test: /\.less$/,</div><div class="line">    loader: ExtractTextPlugin.extract(&apos;style-loader&apos;, &apos;css-loader!less-loader&apos;,&#123; publicPath: &apos;./&apos;&#125;)</div><div class="line">  &#125;,</div><div class="line">],</div></pre></td></tr></table></figure>
+<h2 id="CSS压缩、去重"><a href="#CSS压缩、去重" class="headerlink" title="CSS压缩、去重"></a>CSS压缩、去重</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">const OptimizeCssAssetsPlugin = require(&apos;optimize-css-assets-webpack-plugin&apos;);</div><div class="line">// webpack.config.js 中</div><div class="line">...</div><div class="line">plugins: [</div><div class="line">  ...</div><div class="line">  new OptimizeCssAssetsPlugin(&#123;</div><div class="line">    assetNameRegExp: /\.css$/g,</div><div class="line">    cssProcessor: require(&apos;cssnano&apos;),</div><div class="line">    cssProcessorOptions: &#123; discardComments: &#123;removeAll: true &#125; &#125;,</div><div class="line">    canPrint: true</div><div class="line">  &#125;),</div><div class="line">],</div></pre></td></tr></table></figure>
+<h2 id="分离应用和第三方"><a href="#分离应用和第三方" class="headerlink" title="分离应用和第三方"></a>分离应用和第三方</h2><p>当你的应用依赖其他库尤其是像 ReactJS 这种大型库的时候，你需要考虑把这些依赖分离出去，这样就能够让用户在你更新应用之后不需要再次下载第三方文件。记住要把这些文件都加入到你的 HTML 代码中，不然你会得到一个错误。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">entry: &#123;</div><div class="line">    app: path.resolve(__dirname, &apos;app/main.js&apos;),</div><div class="line">    // 当 React 作为一个 node 模块安装的时候，</div><div class="line">    // 我们可以直接指向它，就比如 require(&apos;react&apos;)</div><div class="line">    vendors: [&apos;react&apos;, &apos;react-dom&apos;, &apos;jquery&apos;]</div><div class="line">&#125;,</div><div class="line">plugins: [</div><div class="line">    ...</div><div class="line">    new webpack.optimize.CommonsChunkPlugin(&apos;vendors&apos;, &apos;vendors.js&apos;)</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<h2 id="代码压缩"><a href="#代码压缩" class="headerlink" title="代码压缩"></a>代码压缩</h2><p>webpack打包后的文件可能会很大，生成环境应该去掉注释及依赖的copyright信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">plugins: [</div><div class="line">  ...</div><div class="line">  new webpack.optimize.UglifyJsPlugin(&#123;</div><div class="line">    output: &#123;</div><div class="line">      comments: false,</div><div class="line">    &#125;,</div><div class="line">    compress: &#123;</div><div class="line">      warnings: false,</div><div class="line">    &#125;</div><div class="line">  &#125;),</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<h2 id="多重入口"><a href="#多重入口" class="headerlink" title="多重入口"></a>多重入口</h2><p>你的应用可能有多个路径， 就是应用中有两个或者多个 URL 相应不同的页面，这里就是提供这样的解决方案。可能你有一个普通用户页和一个管理员页，他们共享了很多代码，但是不想在普通用户页中加载所有管理员页的代码，所以好方案是使用多重入口。</p>
+<h2 id="生成html、打开浏览器"><a href="#生成html、打开浏览器" class="headerlink" title="生成html、打开浏览器"></a>生成html、打开浏览器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var HtmlwebpackPlugin = require(&apos;html-webpack-plugin&apos;);</div><div class="line">var OpenBrowserPlugin = require(&apos;open-browser-webpack-plugin&apos;);</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">    entry: &apos;./main.js&apos;,</div><div class="line">    output: &#123;</div><div class="line">        filename: &apos;bundle.js&apos;</div><div class="line">    &#125;,</div><div class="line">    plugins: [</div><div class="line">        new HtmlwebpackPlugin(&#123;</div><div class="line">            title: &apos;Webpack-demos&apos;,</div><div class="line">            filename: &apos;index.html&apos;</div><div class="line">        &#125;),</div><div class="line">        new OpenBrowserPlugin(&#123;</div><div class="line">            url: &apos;http://localhost:8080&apos;</div><div class="line">        &#125;)</div><div class="line">    ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="在开发环境使用的代码"><a href="#在开发环境使用的代码" class="headerlink" title="在开发环境使用的代码"></a>在开发环境使用的代码</h2><p>main.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.write(<span class="string">'&lt;h1&gt;Hello World&lt;/h1&gt;'</span>);</div><div class="line"></div><div class="line"><span class="keyword">if</span> (__DEV__) &#123;</div><div class="line">  <span class="built_in">document</span>.write(<span class="keyword">new</span> <span class="built_in">Date</span>());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>webpack.config.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> devFlagPlugin = <span class="keyword">new</span> webpack.DefinePlugin(&#123;</div><div class="line">  __DEV__: <span class="built_in">JSON</span>.stringify(<span class="built_in">JSON</span>.parse(process.env.DEBUG || <span class="string">'false'</span>))</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  entry: <span class="string">'./main.js'</span>,</div><div class="line">  output: &#123;</div><div class="line">    filename: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  plugins: [devFlagPlugin]</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Linux &amp; Mac</span></div><div class="line">$ env DEBUG=<span class="literal">true</span> webpack-dev-server</div><div class="line"></div><div class="line"><span class="comment"># Windows</span></div><div class="line">$ <span class="built_in">set</span> DEBUG=<span class="literal">true</span></div><div class="line">$ webpack-dev-server</div></pre></td></tr></table></figure>
+<h2 id="代码分割"><a href="#代码分割" class="headerlink" title="代码分割"></a>代码分割</h2><p>方式一</p>
+<p>使用<code>require.ensure</code>定义一个分割点，<code>require.ensure</code>会告诉webpack被引入的文件要编译成单独的文件，与编译输出文件bundle.js分开，index.html和weback.config.js都不需要修改。从表面上也看不出有什么不同，实际上webpack把main.js和a.js编译成不同的块bundle.js和1.bundle.js，并在bundle.js需要1.bundle.js时才加载。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="string">'Hello World'</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="built_in">require</span>.ensure([<span class="string">'./a'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> content = <span class="built_in">require</span>(<span class="string">'./a'</span>);</div><div class="line">  <span class="built_in">document</span>.open();</div><div class="line">  <span class="built_in">document</span>.write(<span class="string">'&lt;h1&gt;'</span> + content + <span class="string">'&lt;/h1&gt;'</span>);</div><div class="line">  <span class="built_in">document</span>.close();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// index.html</div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  entry: <span class="string">'./main.js'</span>,</div><div class="line">  output: &#123;</div><div class="line">    filename: <span class="string">'bundle.js'</span></div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>如果要配合react-router使用，示例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">const app = (location, callback) =&gt; &#123;</div><div class="line">    require.ensure([], require =&gt; &#123;</div><div class="line">        callback(null, require(&apos;./containers/App&apos;).default)</div><div class="line">    &#125;, &apos;app&apos;)</div><div class="line">&#125;;</div><div class="line">...</div><div class="line">&lt;Route getComponent=&#123;app&#125; /&gt;</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>方式二</p>
+<p>使用<code>bundle-loader</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="keyword">var</span> load = <span class="built_in">require</span>(<span class="string">'bundle-loader!./a.js'</span>);</div><div class="line"></div><div class="line"><span class="comment">// You need to async wait until a.js is available (and get the exports)</span></div><div class="line">load(<span class="function"><span class="keyword">function</span>(<span class="params">file</span>) </span>&#123;</div><div class="line">  <span class="built_in">document</span>.open();</div><div class="line">  <span class="built_in">document</span>.write(<span class="string">'&lt;h1&gt;'</span> + file + <span class="string">'&lt;/h1&gt;'</span>);</div><div class="line">  <span class="built_in">document</span>.close();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="提取供应商模块"><a href="#提取供应商模块" class="headerlink" title="提取供应商模块"></a>提取供应商模块</h2><p>可以使用<code>CommonsChunkPlugin</code>提取供应商库到单独的文件中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="keyword">var</span> $ = <span class="built_in">require</span>(<span class="string">'jquery'</span>);</div><div class="line">$(<span class="string">'h1'</span>).text(<span class="string">'Hello World'</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// index.html</div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"vendor.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  entry: &#123;</div><div class="line">    app: <span class="string">'./main.js'</span>,</div><div class="line">    vendor: [<span class="string">'jquery'</span>],</div><div class="line">  &#125;,</div><div class="line">  output: &#123;</div><div class="line">    filename: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  plugins: [</div><div class="line">    <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(<span class="comment">/* chunkName= */</span><span class="string">'vendor'</span>, <span class="comment">/* filename= */</span><span class="string">'vendor.js'</span>)</div><div class="line">  ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>如果想在其它文件使用一个模块又不想使用require引入，如使用$和jQuery但是不用<code>require(&#39;jquery&#39;)</code>，就需要使用<code>ProvidePlugin</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line">$(<span class="string">'h1'</span>).text(<span class="string">'Hello World'</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  entry: &#123;</div><div class="line">    app: <span class="string">'./main.js'</span></div><div class="line">  &#125;,</div><div class="line">  output: &#123;</div><div class="line">    filename: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  plugins: [</div><div class="line">    <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</div><div class="line">      $: <span class="string">"jquery"</span>,</div><div class="line">      jQuery: <span class="string">"jquery"</span>,</div><div class="line">      <span class="string">"window.jQuery"</span>: <span class="string">"jquery"</span></div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="热模块替换"><a href="#热模块替换" class="headerlink" title="热模块替换"></a>热模块替换</h2><p>方式一</p>
+<p>启动命令添加参数<br><code>webpack-dev-server --hot --inline</code>  </p>
+<p>方式二</p>
+<p>修改webpack.config.js文件，添加HotModuleReplacementPlugin插件，修改entry<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  entry: [</div><div class="line">    <span class="string">'webpack/hot/dev-server'</span>,</div><div class="line">    <span class="string">'webpack-dev-server/client?http://localhost:8080'</span>,</div><div class="line">    <span class="string">'./index.js'</span></div><div class="line">  ],</div><div class="line">  output: &#123;</div><div class="line">    filename: <span class="string">'bundle.js'</span>,</div><div class="line">    publicPath: <span class="string">'/static/'</span></div><div class="line">  &#125;,</div><div class="line">  plugins: [</div><div class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin()</div><div class="line">  ],</div><div class="line">  <span class="built_in">module</span>: &#123;</div><div class="line">    loaders: [&#123;</div><div class="line">      test: <span class="regexp">/\.jsx?$/</span>,</div><div class="line">      exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">      loader: <span class="string">'babel-loader'</span>,</div><div class="line">      query: &#123;</div><div class="line">        presets: [<span class="string">'es2015'</span>, <span class="string">'react'</span>]</div><div class="line">      &#125;,</div><div class="line">      include: path.join(__dirname, <span class="string">'.'</span>)</div><div class="line">    &#125;]</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/01/git-base/" itemprop="url">
+                  Git-基础
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-01T12:29:43+08:00" content="2016-11-01">
+              2016-11-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>参考 <a href="http://www.ruanyifeng.com/blog/2014/06/git_remote.html" target="_blank" rel="external">Git远程操作详解</a> 和 <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/" target="_blank" rel="external">Git教程</a></p>
+<p>which -a git # 查看所有版本的 git<br>git –version # 查看使用 git 的版本<br>git xxx –help # 查看 xxx 命令相关的帮助文档<br>git config –global alias.别名 命令 # 给命令起别名<br>git log –oneline –decorate –graph –all # 查看提交记录</p>
+<h2 id="拉取和提交操作"><a href="#拉取和提交操作" class="headerlink" title="拉取和提交操作"></a>拉取和提交操作</h2><p>git clone url [name] – 从远程主机克隆一个版本库<br>git clone -b url – 拉取指定分支<br>git pull – 拉取远程仓库，默认为远程origin master分支<br>git pull origin [remoteBranchName] [localBranchName] – 拉取远程仓库remoteName分支到本地localBranchName分支<br>git fetch origin remoteBranchName –  从远程分支更新最新的版本到origin/remoteBranchName分支上，没有更新到工作区，默认情况下取回所有分支的更新<br>git merge origin/localBranchName –  合并内容到本地localBranchName分支，更新到工作区<br>git diff master origin/master – 比较本地的master分支和origin/master分支的差别<br>git status – 列出当前目录所有还没有被git管理的文件和被git管理且被修改但还未提交( commit)的文件<br>git add fillname – 把文件添加到仓库，新添加的文件必须add后提交才生效<br>git rm fillname – 把文件从仓库删除，被删除的文件必须rm后提交才生效<br>git commit -m “description” – 把文件提交到本地仓库<br>git push origin [name] – 把所有本地提交推送到远程库name分支，默认为master分支  </p>
+<h2 id="临时备份"><a href="#临时备份" class="headerlink" title="临时备份"></a>临时备份</h2><p>git stash – 备份当前的工作区的内容，从最近的一次提交中读取相关内容，让工作区保证和上次提交的内容一致，同时将当前的工作区内容保存到Git栈中<br>git stash pop stash@{id} – 从Git栈中读取最近一次保存的内容，恢复工作区的相关内容，由于可能存在多个Stash的内容，所以用栈来管理，pop会从最近的一个stash中读取内容并恢复，将对应的stash id 从stash list里删除<br>git stash apply stash@{id} – 与stash pop的区别是会继续保存stash id<br>git stash list – 显示Git栈内的所有备份，可以利用这个列表来决定从那个地方恢复<br>git stash clear – 清空Git栈<br>git stash show stash@{0} – 查看压入Git栈的版本为0的文件列表<br>git stash drop – 如果不加stash编号，默认的就是删除最新的，也就是编号为0的那个，加编号就是删除指定编号的stash</p>
+<h2 id="忽略文件不提交"><a href="#忽略文件不提交" class="headerlink" title="忽略文件不提交"></a>忽略文件不提交</h2><p>在仓库根目录下创建名称为“.gitignore”的文件，写入不需要的文件夹名或文件，每个元素占一行即可，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">*.log</div><div class="line">node_modules/</div></pre></td></tr></table></figure></p>
+<h2 id="恢复操作"><a href="#恢复操作" class="headerlink" title="恢复操作"></a>恢复操作</h2><p>git reset – 将当前的分支重设(reset)到指定的commit或者HEAD(默认，即最新的一次提交)，可有–hard 或 –soft 参数<br>git revert filename – 恢复指定文件<br>git rebase localBranchName – 用于把localBranchName分支的修改合并到当前分支，该命令会把当前分支里的每个提交(commit)取消掉，然后把当前分支更新为最新的localBranchName分支  </p>
+<h2 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h2><p>git branch – 查看本地分支<br>git branch -r – 查看远程分支<br>git branch [name] – 创建本地分支<br>git checkout [name] – 切换分支<br>git checkout -b [name] [commit 引用] – 基于指定的 commit 新建并切换到该分支<br>git branch -d [name] – 删除分支，-d选项只能删除已经参与了合并的分支，对于未有合并的分支是无法删除的，如果想强制删除一个分支，可以使用-D选项<br>git merge [name] – 将指定分支合并到当前分支<br>git push origin [name] – 本地分支push到远程同名分支，远程没有该分支则创建<br>git push origin :heads/[name] – 删除远程分支<br>git push origin :master – 删除远程分支<br>git push origin –delete master – 删除远程分支<br>git push origin [remoteBranchName] [localBranchName] – 提交本地local分支作为远程的remote分支，如果没有则创建<br>git push –force origin – 如果远程主机的版本比本地版本更新，可以使用–force选项，结果导致远程主机上更新的版本被覆盖<br>git branch –set-upstream dev origin/dev – 指定本地dev分支与远程origin/dev分支的链接  </p>
+<h2 id="版本操作"><a href="#版本操作" class="headerlink" title="版本操作"></a>版本操作</h2><p>git tag – 查看版本<br>git tag [localTagName] – 创建版本<br>git push origin –tags – 把本地tag推送到远程<br>git fetch origin tag <remotetagname> – 获取远程tag<br>git tag -d [localTagName] – 删除本地tag<br>git push origin :refs/tags/[remoteTagName] – 删除远程tag<br>git checkout tagName – 切换到指定版本</remotetagname></p>
+<h2 id="fork的项目与原项目同步"><a href="#fork的项目与原项目同步" class="headerlink" title="fork的项目与原项目同步"></a>fork的项目与原项目同步</h2><p>fork一个项目并clone到本地，如果原项目已经更新了，要保持github上fork的项目和本地的项目与原项目同步，只需执行以下操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 远程拉取更新项目，先将原包作为 remote 加到本地项目中，A_REPOSITORY_URL需替换</div><div class="line">git remote add upstream A_REPOSITORY_URL</div><div class="line"># 从上游仓库获取到分支</div><div class="line">git fetch upstream</div><div class="line"># 合并到本地当前分支</div><div class="line">git merge upstream/master</div><div class="line"># 提交到自己的 fork</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
+<h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">git add .</div><div class="line">git commit -m &quot;first commit&quot;</div><div class="line">git remote add origin https://github.com/zhulichao/react-native-hello.git</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/29/react-router-base/" itemprop="url">
+                  React Router-基础
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T13:13:11+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Router/" itemprop="url" rel="index">
+                    <span itemprop="name">React Router</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="React-Router"><a href="#React-Router" class="headerlink" title="React Router"></a>React Router</h2><p>参考：<br><a href="http://www.ruanyifeng.com/blog/2016/05/react_router.html" target="_blank" rel="external">React Router 使用教程</a><br><a href="https://github.com/reactjs/react-router-tutorial/tree/master/lessons" target="_blank" rel="external">react-router-tutorial</a><br><a href="https://github.com/ReactTraining/react-router" target="_blank" rel="external">react-router</a>  </p>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p>React-Router 路由库，是官方维护的路由库，事实上也是唯一可选的路由库。它通过管理 URL，实现组件的切换和状态的变化，开发复杂的应用几乎肯定会用到。</p>
+<p>一般在src/index.jsx中定义路由，进行整个工程路由的管理。路由匹配规则是从上到下执行，一旦发现匹配，就不再走其余的规则了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import &#123; Router, Route, hashHistory &#125; from &apos;react-router&apos;;</div><div class="line"></div><div class="line">render((</div><div class="line">    &lt;Router history=&#123;hashHistory&#125;&gt;</div><div class="line">        &lt;Route path=&quot;/&quot; component=&#123;App&#125;&gt;</div><div class="line">            &lt;Route path=&quot;/home&quot; component=&#123;CommonMainPage&#125; /&gt;</div><div class="line">        &lt;/Route&gt;</div><div class="line">    &lt;/Router&gt;</div><div class="line">), document.getElementById(&apos;app&apos;));</div></pre></td></tr></table></figure></p>
+<p>子路由也可以不写在Router组件里面，单独传入Router组件的routes属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let routes = &lt;Route path=&quot;/&quot; component=&#123;App&#125;&gt;</div><div class="line">    &lt;Route path=&quot;/home&quot; component=&#123;CommonMainPage&#125; /&gt;</div><div class="line">&lt;/Route&gt;;</div><div class="line">&lt;Router routes=&#123;routes&#125; history=&#123;browserHistory&#125;/&gt;</div></pre></td></tr></table></figure></p>
+<p>用户访问/home时，会先加载App组件，然后在它的内部再加载CommonMainPage组件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;App&gt;</div><div class="line">    &lt;Repos/&gt;</div><div class="line">&lt;/App&gt;</div></pre></td></tr></table></figure></p>
+<p>App组件要写成下面的样子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">export default React.createClass(&#123;</div><div class="line">  render() &#123;</div><div class="line">    return &lt;div&gt;</div><div class="line">      &#123;this.props.children&#125;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="path属性"><a href="#path属性" class="headerlink" title="path属性"></a>path属性</h2><p>Route组件的path属性指定路由的匹配规则。这个属性是可以省略的，这样的话，不管路径是否匹配，总是会加载指定组件。path属性也可以使用相对路径（不以/开头），匹配时就会相对于父组件的路径。嵌套路由如果想摆脱这个规则，可以使用绝对路由。</p>
+<p>path可以使用通配符，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;Route path=&quot;/list/:servId&quot; component=&#123;ListPage&#125; /&gt;</div></pre></td></tr></table></figure></p>
+<p>在ListPage组件中通过<code>this.props.params.servId</code>可获取该变量对于在url中的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;Route path=&quot;/hello/:name&quot;&gt;</div><div class="line">// 匹配 /hello/michael</div><div class="line">// 匹配 /hello/ryan</div><div class="line"></div><div class="line">&lt;Route path=&quot;/hello(/:name)&quot;&gt;</div><div class="line">// 匹配 /hello</div><div class="line">// 匹配 /hello/michael</div><div class="line">// 匹配 /hello/ryan</div><div class="line"></div><div class="line">&lt;Route path=&quot;/files/*.*&quot;&gt;</div><div class="line">// 匹配 /files/hello.jpg</div><div class="line">// 匹配 /files/hello.html</div><div class="line"></div><div class="line">&lt;Route path=&quot;/files/*&quot;&gt;</div><div class="line">// 匹配 /files/ </div><div class="line">// 匹配 /files/a</div><div class="line">// 匹配 /files/a/b</div><div class="line"></div><div class="line">&lt;Route path=&quot;/**/*.jpg&quot;&gt;</div><div class="line">// 匹配 /files/hello.jpg</div><div class="line">// 匹配 /files/path/to/file.jpg</div></pre></td></tr></table></figure>
+<h3 id="IndexRoute"><a href="#IndexRoute" class="headerlink" title="IndexRoute"></a>IndexRoute</h3><p>IndexRoute显式指定根路由的子组件，注意没有路径参数path，即指定默认情况下加载的子组件，如访问路径/，会加载该组件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;Router&gt;</div><div class="line">  &lt;Route path=&quot;/&quot; component=&#123;App&#125;&gt;</div><div class="line">    &lt;IndexRoute component=&#123;Home&#125;/&gt;</div><div class="line">    &lt;Route path=&quot;accounts&quot; component=&#123;Accounts&#125;/&gt;</div><div class="line">&lt;/Router&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="Redirect"><a href="#Redirect" class="headerlink" title="Redirect"></a>Redirect</h3><p>Redirect组件用于路由的跳转，即用户访问一个路由，会自动跳转到另一个路由。<br><code>＜Redirect from=&quot;/messages/:id&quot; to=&quot;/infos/:id&quot; /&gt;</code></p>
+<h3 id="IndexRedirect"><a href="#IndexRedirect" class="headerlink" title="IndexRedirect"></a>IndexRedirect</h3><p>IndexRedirect组件用于访问根路由的时候，将用户重定向到某个子组件。<br><code>＜IndexRedirect to=&quot;/welcome&quot; /&gt;</code><br>用户访问根路径时，将自动重定向到子组件welcome。</p>
+<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><p>Link组件用于取代<code>&lt;a&gt;</code>元素，生成一个链接，允许用户点击后跳转到另一个路由。它基本上就是<code>&lt;a&gt;</code>元素的React 版本，可以接收Router的状态。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 点击About会跳转到/about路由</div><div class="line">&lt;Link to=&quot;/about&quot;&gt;About&lt;/Link&gt;</div><div class="line"></div><div class="line">// 点击About跳转到/about是文字显示为红色</div><div class="line">&lt;Link to=&quot;/about&quot; activeStyle=&#123;&#123;color: &apos;red&apos;&#125;&#125;&gt;About&lt;/Link&gt;</div><div class="line"></div><div class="line">// 也可以指定class </div><div class="line">&lt;Link to=&quot;/about&quot; activeClassName=&quot;active&quot;&gt;About&lt;/Link&gt;</div></pre></td></tr></table></figure>
+<p>在Router组件之外，导航到路由页面，可以使用浏览器的History API。这种方式，对于以前没有访问过的路由是不好使的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import &#123; browserHistory &#125; from &apos;react-router&apos;;</div><div class="line">browserHistory.push(&apos;/some/path&apos;);</div></pre></td></tr></table></figure></p>
+<p>或者使用context对象。注意，pathname和state名称是固定的，跳转到pathname时会带着state的信息。在跳转进入的组件中，使用<code>this.props.location.state</code>获取这个state信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 路由跳转</div><div class="line">this.context.router.push(&#123;</div><div class="line">    pathname: &apos;/card/&apos; + this.props.servDef.SERV_ID,</div><div class="line">    state: this.props.listQueryData</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="IndexLink"><a href="#IndexLink" class="headerlink" title="IndexLink"></a>IndexLink</h3><p>如果链接到根路由/，不要使用Link组件，而要使用IndexLink组件。这是因为对于根路由来说，activeStyle和activeClassName总是生效，因为’/‘会匹配任何子路由，而IndexLink组件会使用路径的精确匹配。<br><code>&lt;IndexLink to=&quot;/&quot; activeClassName=&quot;active&quot;&gt;</code><br>或者使用<br><code>&lt;Link to=&quot;/&quot; activeClassName=&quot;active&quot; onlyActiveOnIndex={true}&gt;Home&lt;/Link&gt;</code></p>
+<h3 id="histroy"><a href="#histroy" class="headerlink" title="histroy"></a>histroy</h3><p>Router组件的history属性，是用来监听浏览器地址栏变化的，并将URL解析成一个地址对象，供 React Router 匹配。history属性，一共可以设置三种值。  </p>
+<ul>
+<li><p><strong>createMemoryHistory：</strong>主要用于服务器渲染，它创建一个内存中的history对象，不与浏览器URL互动，<code>const history = createMemoryHistory(location)</code></p>
+</li>
+<li><p><strong>hashHistory：</strong>路由将通过URL的hash部分#切换，类似example.com/#/some/path</p>
+</li>
+<li><p><strong>browserHistory：</strong>不再通过Hash完成，而显示正常的路径example.com/some/path，背后调用的是浏览器的History API。这种情况需要对<a href="https://github.com/ReactTraining/react-router/blob/master/docs/guides/Histories.md#configuring-your-server" target="_blank" rel="external">服务器改造</a>，否则用户直接向服务器请求某个子路由，会显示网页找不到的404错误。<br>如果开发服务器使用的是webpack-dev-server，加上–history-api-fallback参数<br><code>webpack-dev-server --inline --content-base . --history-api-fallback</code>，index.html中用绝对路径引入编译后的文件<code>&lt;script src=&quot;/bundle.js&quot;&gt;&lt;/script&gt;</code></p>
+</li>
+</ul>
+<h3 id="路由的钩子"><a href="#路由的钩子" class="headerlink" title="路由的钩子"></a>路由的钩子</h3><p>每个路由都有Enter和Leave钩子，用户进入或离开该路由时触发。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Route path=&quot;about&quot; component=&#123;About&#125; /&gt;  </div><div class="line">＜Route path=&quot;inbox&quot; component=&#123;Inbox&#125;&gt;  </div><div class="line">    ＜Redirect from=&quot;messages/:id&quot; to=&quot;/messages/:id&quot; /&gt;</div><div class="line">&lt;/Route&gt;</div></pre></td></tr></table></figure></p>
+<p>如果用户离开/messages/:id，进入/about时，会依次触发以下的钩子:  </p>
+<blockquote>
+<p>/messages/:id的onLeave<br>/inbox的onLeave<br>/about的onEnter  </p>
+</blockquote>
+<p>进行路由跳转<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Route</div><div class="line">    path=&quot;messages/:id&quot;</div><div class="line">    onEnter=&#123;(&#123;params&#125;, replace) =&gt; replace(`/messages/$&#123;params.id&#125;`)&#125; </div><div class="line">/&gt;</div></pre></td></tr></table></figure></p>
+<p>进行登录验证<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;Route path=&quot;/home&quot; component=&#123;CommonMainPage&#125; onEnter=&#123;requireAuth&#125;&gt;</div><div class="line"></div><div class="line">function requireAuth(nextState, replace) &#123;</div><div class="line">    if (!storage.get(&apos;token&apos;)) &#123;</div><div class="line">        replace(&#123;</div><div class="line">            pathname: &apos;/login&apos;,</div><div class="line">            state: &#123; nextPathname: nextState.location.pathname &#125;</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当用户离开一个路径的时候，跳出一个提示框，要求用户确认是否离开。setRouteLeaveHook方法为Leave钩子指定routerWillLeave函数，该方法如果返回false，将阻止路由的切换，否则就返回一个字符串，提示用户决定是否要切换。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">const Home = withRouter(</div><div class="line">  React.createClass(&#123;</div><div class="line">    componentDidMount() &#123;</div><div class="line">      this.props.router.setRouteLeaveHook(</div><div class="line">        this.props.route, </div><div class="line">        this.routerWillLeave</div><div class="line">      )</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    routerWillLeave(nextLocation) &#123;</div><div class="line">      // 返回 false 会继续停留当前页面，</div><div class="line">      // 否则，返回一个字符串，会显示给用户，让其自己决定</div><div class="line">      if (!this.state.isSaved)</div><div class="line">        return &apos;确认要离开？&apos;;</div><div class="line">    &#125;,</div><div class="line">  &#125;)</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<h3 id="生产环境相关"><a href="#生产环境相关" class="headerlink" title="生产环境相关"></a>生产环境相关</h3><p><strong>if-env 依赖：</strong> 如果想简化开发、在任何情况运行npm start都执行正确的脚本启动，可以安装if-env依赖<code>npm install if-env --save</code>并在package.json中这样部署，再运行<code>NODE_ENV=production npm start</code>启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;start&quot;: &quot;if-env NODE_ENV=production &amp;&amp; npm run start:prod || npm start:dev&quot;,</div><div class="line">  &quot;start:dev&quot;: &quot;webpack&quot;,</div><div class="line">  &quot;start:prod&quot;: &quot;start-cluster&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>为了限制浏览器可访问的文件，通常创建一个浏览器可访问的文件夹，如public，将index.html、index.css放入该目录，并在server.js中指定可访问的静态资源路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">app.use(express.static(path.join(__dirname, &apos;public&apos;)))</div><div class="line">app.get(&apos;*&apos;, function (req, res) &#123;</div><div class="line">  res.sendFile(path.join(__dirname, &apos;public&apos;, &apos;index.html&apos;))</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>并指定webpack输入目录也为该目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">output: &#123;</div><div class="line">  path: &apos;public&apos;,</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>最后启动命令添加参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;start:dev&quot;: &quot;webpack-dev-server --inline --content-base public --history-api-fallback&quot;,</div></pre></td></tr></table></figure></p>
+<p><strong>compression 依赖:</strong> 用该中间件压缩和处理静态内容。开启gzip压缩对Web应用会产生巨大影响，当一个gzip压缩浏览器请求某些资源的时候，服务器会在响应返回给浏览器之前进行压缩。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var app = express();</div><div class="line">// 必须放在第一行</div><div class="line">app.use(compression());</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p><strong>服务器端渲染:</strong> </p>
+<p>需要一个服务器渲染的webpack配置<code>webpack.server.config.js</code>，原来的webpack配置webpack.config.js还是保留的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">var path = require(&apos;path&apos;);</div><div class="line">module.exports = &#123;</div><div class="line">  entry: path.resolve(__dirname, &apos;server.js&apos;),</div><div class="line">  output: &#123;</div><div class="line">    filename: &apos;server.bundle.js&apos;</div><div class="line">  &#125;,</div><div class="line">  target: &apos;node&apos;,</div><div class="line">  // keep node_module paths out of the bundle</div><div class="line">  externals: fs.readdirSync(path.resolve(__dirname, &apos;node_modules&apos;)).concat([</div><div class="line">    &apos;react-dom/server&apos;, &apos;react/addons&apos;,</div><div class="line">  ]).reduce(function (ext, mod) &#123;</div><div class="line">    ext[mod] = &apos;commonjs &apos; + mod</div><div class="line">    return ext</div><div class="line">  &#125;, &#123;&#125;),</div><div class="line">  node: &#123;</div><div class="line">    __filename: true,</div><div class="line">    __dirname: true</div><div class="line">  &#125;,</div><div class="line">  module: &#123;</div><div class="line">    loaders: [</div><div class="line">      &#123; test: /\.js$/, exclude: /node_modules/, loader: &apos;babel-loader?presets[]=es2015&amp;presets[]=react&apos; &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>更新<code>package.json</code>文件，用<code>NODE_ENV=production npm start</code>启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;start&quot;: &quot;if-env NODE_ENV=production &amp;&amp; npm run start:prod || npm run start:dev&quot;,</div><div class="line">  &quot;start:dev&quot;: &quot;webpack-dev-server --inline --content-base public/ --history-api-fallback&quot;,</div><div class="line">  &quot;start:prod&quot;: &quot;npm run build &amp;&amp; node server.bundle.js&quot;,</div><div class="line">  &quot;build:client&quot;: &quot;webpack&quot;,</div><div class="line">  &quot;build:server&quot;: &quot;webpack --config webpack.server.config.js&quot;,</div><div class="line">  &quot;build&quot;: &quot;npm run build:client &amp;&amp; npm run build:server&quot;</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<p>把路由管理放到单独的文件中，以便客户端和服务器端都能获取它。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// modules/routes.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> &#123; Route, IndexRoute &#125; <span class="keyword">from</span> <span class="string">'react-router'</span></div><div class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></div><div class="line"><span class="keyword">import</span> About <span class="keyword">from</span> <span class="string">'./About'</span></div><div class="line"><span class="keyword">import</span> Repos <span class="keyword">from</span> <span class="string">'./Repos'</span></div><div class="line"><span class="keyword">import</span> Repo <span class="keyword">from</span> <span class="string">'./Repo'</span></div><div class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./Home'</span></div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = (</div><div class="line">  &lt;Route path="/" component=&#123;App&#125;&gt;</div><div class="line">    &lt;IndexRoute component=&#123;Home&#125; /&gt;</div><div class="line">    &lt;Route path="/repos" component=&#123;Repos&#125;&gt;</div><div class="line">      &lt;Route path="/repos/:userName/:repoName" component=&#123;Repo&#125; /&gt;</div><div class="line">    &lt;/Route&gt;</div><div class="line">    &lt;Route path="/about" component=&#123;About&#125; /&gt;</div><div class="line">  &lt;/Route&gt;</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// index.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span></div><div class="line"><span class="keyword">import</span> &#123; Router, browserHistory &#125; <span class="keyword">from</span> <span class="string">'react-router'</span></div><div class="line"><span class="comment">// import routes and pass them into &lt;Router/&gt;</span></div><div class="line"><span class="keyword">import</span> routes <span class="keyword">from</span> <span class="string">'./modules/routes'</span></div><div class="line"></div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">Router</span> <span class="attr">routes</span>=<span class="string">&#123;routes&#125;</span> <span class="attr">history</span>=<span class="string">&#123;browserHistory&#125;/</span>&gt;</span>,</span></div><div class="line">  document.getElementById('app')</div><div class="line">)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="comment">// import some new stuff</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="comment">// we'll use this to render our app to an html string</span></div><div class="line"><span class="keyword">import</span> &#123; renderToString &#125; <span class="keyword">from</span> <span class="string">'react-dom/server'</span></div><div class="line"><span class="comment">// and these to match the url to routes and then render</span></div><div class="line"><span class="keyword">import</span> &#123; match, RouterContext &#125; <span class="keyword">from</span> <span class="string">'react-router'</span></div><div class="line"><span class="keyword">import</span> routes <span class="keyword">from</span> <span class="string">'./modules/routes'</span></div><div class="line"></div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line"><span class="comment">// send all requests to index.html so browserHistory works</span></div><div class="line"></div><div class="line">app.get(<span class="string">'*'</span>, (req, res) =&gt; &#123;</div><div class="line">  <span class="comment">// match the routes to the url</span></div><div class="line">  match(&#123; routes: routes, location: req.url &#125;, (err, redirect, props) =&gt; &#123;</div><div class="line">    <span class="comment">// `RouterContext` is the what `Router` renders. `Router` keeps these</span></div><div class="line">    <span class="comment">// `props` in its state as it listens to `browserHistory`. But on the</span></div><div class="line">    <span class="comment">// server our app is stateless, so we need to use `match` to</span></div><div class="line">    <span class="comment">// get these props before rendering.</span></div><div class="line">    <span class="keyword">const</span> appHtml = renderToString(&lt;RouterContext &#123;...props&#125;/&gt;)</div><div class="line"></div><div class="line">    // dump the HTML into a template, lots of ways to do this, but none are</div><div class="line">    // really influenced by React Router, so we're just using a little</div><div class="line">    // function, `renderPage`</div><div class="line">    res.send(renderPage(appHtml))</div><div class="line">  &#125;)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">function renderPage(appHtml) &#123;</div><div class="line">  return `</div><div class="line">    &lt;!doctype html public="storage"&gt;</div><div class="line">    &lt;html&gt;</div><div class="line">    &lt;meta charset=utf-8/&gt;</div><div class="line">    &lt;title&gt;My First React Router App&lt;/title&gt;</div><div class="line">    &lt;link rel=stylesheet href=/index.css&gt;</div><div class="line">    &lt;div id=app&gt;$&#123;appHtml&#125;&lt;/div&gt;</div><div class="line">    &lt;script src="/bundle.js"&gt;&lt;/script&gt;</div><div class="line">   `</div><div class="line">&#125;</div><div class="line"></div><div class="line">var PORT = process.env.PORT || 8080</div><div class="line">app.listen(PORT, function() &#123;</div><div class="line">  console.log('Production Express server running at localhost:' + PORT)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/29/babel-base/" itemprop="url">
+                  Babel-入门
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T12:13:35+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ES6/" itemprop="url" rel="index">
+                    <span itemprop="name">ES6</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://babeljs.io/" target="_blank" rel="external">Babel</a>是一个广泛使用的转码器，可以将ES6代码转为ES5代码，从而在现有环境执行。</p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>Babel的配置文件是.babelrc，存放在项目的根目录下，该文件用来设置转码规则和插件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;presets&quot;: [], -- 设定转码规则</div><div class="line">    &quot;plugins&quot;: []  -- 设定支持的插件，如&apos;antd&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>ES2015转码规则<br><code>npm install --save-dev babel-preset-es2015</code><br>react转码规则<br><code>npm install --save-dev babel-preset-react</code><br>ES7不同阶段语法提案的转码规则（共有4个阶段），选装一个<br><code>npm install --save-dev babel-preset-stage-0</code><br><code>npm install --save-dev babel-preset-stage-1</code><br><code>npm install --save-dev babel-preset-stage-2</code><br><code>npm install --save-dev babel-preset-stage-3</code>  </p>
+<h3 id="babel-cli"><a href="#babel-cli" class="headerlink" title="babel-cli"></a>babel-cli</h3><p><code>npm install --global babel-cli</code> 用于命令行转码的工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"># 转码结果输出到标准输出</div><div class="line">$ babel example.js</div><div class="line"></div><div class="line"># 转码结果写入一个文件</div><div class="line"># --out-file 或 -o 参数指定输出文件</div><div class="line">$ babel example.js --out-file compiled.js</div><div class="line"># 或者</div><div class="line">$ babel example.js -o compiled.js</div><div class="line"></div><div class="line"># 整个目录转码</div><div class="line"># --out-dir 或 -d 参数指定输出目录</div><div class="line">$ babel src --out-dir lib</div><div class="line"># 或者</div><div class="line">$ babel src -d lib</div><div class="line"></div><div class="line"># -s 参数生成source map文件</div><div class="line">$ babel src -d lib -s</div></pre></td></tr></table></figure>
+<p>babel-cli工具自带一个babel-node命令，提供一个支持ES6的REPL环境。它支持Node的REPL环境的所有功能，而且可以直接运行ES6代码。</p>
+<h3 id="babel-register"><a href="#babel-register" class="headerlink" title="babel-register"></a>babel-register</h3><p>babel-register模块改写require命令，为它加上一个钩子。此后，每当使用require加载.js、.jsx、.es和.es6后缀名的文件，就会先用Babel进行转码。注意，它只会对require命令加载的文件转码，而不会对当前文件转码。另外，由于它是实时转码，所以只适合在开发环境使用。</p>
+<h3 id="babel-core"><a href="#babel-core" class="headerlink" title="babel-core"></a>babel-core</h3><p>如果某些代码需要调用Babel的API进行转码，就要使用babel-core模块，配置对象为<a href="http://babeljs.io/docs/usage/options/" target="_blank" rel="external">options</a>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var babel = require(&apos;babel-core&apos;);</div><div class="line"></div><div class="line">// 字符串转码</div><div class="line">babel.transform(&apos;code();&apos;, options);</div><div class="line">// =&gt; &#123; code, map, ast &#125;</div><div class="line"></div><div class="line">// 文件转码（异步）</div><div class="line">babel.transformFile(&apos;filename.js&apos;, options, function(err, result) &#123;</div><div class="line">  result; // =&gt; &#123; code, map, ast &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 文件转码（同步）</div><div class="line">babel.transformFileSync(&apos;filename.js&apos;, options);</div><div class="line">// =&gt; &#123; code, map, ast &#125;</div><div class="line"></div><div class="line">// Babel AST转码</div><div class="line">babel.transformFromAst(ast, code, options);</div><div class="line">// =&gt; &#123; code, map, ast &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="babel-polyfill"><a href="#babel-polyfill" class="headerlink" title="babel-polyfill"></a>babel-polyfill</h3><p>Babel默认只转换新的JavaScript句法（syntax），而不转换新的API，比如Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise等全局对象，以及一些定义在全局对象上的方法（比如Object.assign）都不会转码。如果想让这些代码执行，必须使用babel-polyfill，为当前环境提供一个垫片。</p>
+<h3 id="浏览器环境"><a href="#浏览器环境" class="headerlink" title="浏览器环境"></a>浏览器环境</h3><p>Babel也可以用于浏览器环境。可在网页中插入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;node_modules/babel-core/browser.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script type=&quot;text/babel&quot;&gt;</div></pre></td></tr></table></figure></p>
+<p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script type=&quot;text/babel&quot;&gt;</div></pre></td></tr></table></figure></p>
+<p>网页中实时将ES6代码转为ES5，对性能会有影响。生产环境需要加载已经转码完成的脚本。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1135,897 +1838,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/28/css-scattered/" itemprop="url">
-                  CSS-零散知识
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-28T08:08:35+08:00" content="2016-09-28">
-              2016-09-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="text-indent"><a href="#text-indent" class="headerlink" title="text-indent"></a>text-indent</h2><p>段落的第一行缩进</p>
-<h2 id="css-hack"><a href="#css-hack" class="headerlink" title="css hack"></a>css hack</h2><p><a href="http://baike.baidu.com/view/1119452.htm?subLemmaId=1119452&amp;fromenter=CSShack" target="_blank" rel="external">css hack</a> 目的就是使你的CSS代码兼容不同的浏览器</p>
-<h2 id="CSS-border实现各个方向等腰直角三角"><a href="#CSS-border实现各个方向等腰直角三角" class="headerlink" title="CSS border实现各个方向等腰直角三角"></a>CSS border实现各个方向等腰直角三角</h2><p>HTML代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;span class=&quot;border_cort&quot;&gt;&lt;/span&gt;</div><div class="line">&lt;span class=&quot;border_corb&quot;&gt;&lt;/span&gt;</div><div class="line">&lt;span class=&quot;border_corl&quot;&gt;&lt;/span&gt;</div><div class="line">&lt;span class=&quot;border_corr&quot;&gt;&lt;/span&gt;</div></pre></td></tr></table></figure></p>
-<p>CSS代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">.border_cort, .border_corr, .border_corb, .border_corl &#123;</div><div class="line">    display: inline-block;</div><div class="line">    width: 0;</div><div class="line">    height: 0;</div><div class="line">    border-width: 6px;</div><div class="line">    overflow: hidden;</div><div class="line">    background-color: red;</div><div class="line">&#125;</div><div class="line">.border_cort &#123;</div><div class="line">    border-color: #333 transparent transparent;</div><div class="line">    border-style: solid dotted dotted;</div><div class="line">&#125;</div><div class="line">.border_corr &#123;</div><div class="line">    border-color: transparent #333 transparent transparent;</div><div class="line">    border-style: dotted solid dotted dotted;</div><div class="line">&#125;</div><div class="line">.border_corb &#123;</div><div class="line">    border-color: transparent transparent #333;</div><div class="line">    border-style: dotted dotted solid;</div><div class="line">&#125;</div><div class="line">.border_corl &#123;</div><div class="line">    border-color: transparent transparent transparent #333;</div><div class="line">    border-style: dotted dotted dotted solid;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<img src="/2016/09/28/css-scattered/transparent.png" title="结果如图">
-<img src="/2016/09/28/css-scattered/transparent2.png" title="原理如图">
-<h2 id="important"><a href="#important" class="headerlink" title="!important"></a>!important</h2><p>使用!important定义的样式拥有最高的优先级，IE6不支持，会按正常优先级显示，可以解决一些浏览器的兼容性问题。</p>
-<h2 id="两个div显示在一行，分居左右"><a href="#两个div显示在一行，分居左右" class="headerlink" title="两个div显示在一行，分居左右"></a>两个div显示在一行，分居左右</h2><p>对两个div元素A、B都添加diaplay:inline-block属性，对居右元素B添加float:right属性，在B元素的后面需添加一个div并有clear:both属性用于清除float。</p>
-<h2 id="min-height"><a href="#min-height" class="headerlink" title="min-height"></a>min-height</h2><p>由于某些原因导致相同元素不同高度，在IE浏览器下导致页面布局发生变化(有空位)，可以给这些相同元素添加min-height属性，取值大于等于这些不同高度中的最大值，即可是页面布局恢复正常。</p>
-<h2 id="必填样式"><a href="#必填样式" class="headerlink" title="必填样式"></a>必填样式</h2><p>常见的必填样式都是在label前添加一个红色星号，可以在判断该项为必填项时给label添加一个class如notNull，并使用伪类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.notNull::before &#123;</div><div class="line">    color: red;</div><div class="line">    content: &quot;*&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="元素居中"><a href="#元素居中" class="headerlink" title="元素居中"></a>元素居中</h2><p>top: 50%;<br>left: 50%;<br>margin-top: 50px;// 居中元素的高度/2<br>margin-left: 50px;// 居中元素的宽度/2</p>
-<p>img {<br>    display: block;<br>    margin: 0 auto;<br>}</p>
-<h2 id="文字居中"><a href="#文字居中" class="headerlink" title="文字居中"></a>文字居中</h2><p>text-align: center; // 水平居中<br>line-height: @divHeight; // 垂直居中，属性值等于文字所在块的高度</p>
-<h2 id="word-break属性"><a href="#word-break属性" class="headerlink" title="word-break属性"></a>word-break属性</h2><p>word-break属性规定自动换行的处理方法，通过使用该属性，可以让浏览器实现在任意位置的换行。</p>
-<blockquote>
-<p>normal，使用浏览器默认的换行规则<br>break-all，允许在单词内换行<br>keep-all，只能在半角空格或连字符处换行</p>
-</blockquote>
-<img src="/2016/09/28/css-scattered/word-break.png" title="word-break属性">
-<h2 id="word-wrap属性"><a href="#word-wrap属性" class="headerlink" title="word-wrap属性"></a>word-wrap属性</h2><p>word-wrap属性允许长单词或URL地址换行到下一行。</p>
-<blockquote>
-<p>normal，只在允许的断字点换行（浏览器保持默认处理）<br>break-word，在长单词或URL地址内部进行换行</p>
-</blockquote>
-<img src="/2016/09/28/css-scattered/word-wrap.png" title="word-wrap属性">
-<h2 id="图片未加载完成的占位"><a href="#图片未加载完成的占位" class="headerlink" title="图片未加载完成的占位"></a>图片未加载完成的占位</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.imgWrapper &#123;</div><div class="line">  position: relative;</div><div class="line">  height: 0;</div><div class="line">  padding-top: 190%; // 图片高度 / 图片宽度 * 100%</div><div class="line">  overflow: hidden;</div><div class="line">&#125;</div><div class="line"></div><div class="line">img &#123;</div><div class="line">  position: absolute;</div><div class="line">  top: 0;</div><div class="line">  width: 100vw;</div><div class="line">  height: auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="获取滚动条宽度"><a href="#获取滚动条宽度" class="headerlink" title="获取滚动条宽度"></a>获取滚动条宽度</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置一个不可见的div，查看设置 scroll 前后的宽度差</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getScrollWidth</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">const</span> oDiv = <span class="built_in">document</span>.createElement(<span class="string">"DIV"</span>);</div><div class="line">    oDiv.style.cssText = <span class="string">"position:absolute;top:-1000px;width:100px;height:100px; overflow:hidden;"</span>;</div><div class="line">    <span class="keyword">const</span> noScroll = <span class="built_in">document</span>.body.appendChild(oDiv).clientWidth;</div><div class="line">    oDiv.style.overflowY = <span class="string">"scroll"</span>;</div><div class="line">    <span class="keyword">const</span> scroll = oDiv.clientWidth;</div><div class="line">    <span class="built_in">document</span>.body.removeChild(oDiv);</div><div class="line">    <span class="keyword">return</span> noScroll-scroll;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="英文单词使用连字符换行"><a href="#英文单词使用连字符换行" class="headerlink" title="英文单词使用连字符换行"></a>英文单词使用连字符换行</h2><p>设置标签的 <code>lang=&quot;en&quot;</code>，css 中添加 <code>hyphens: auto;</code>。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">            p &#123;</div><div class="line">                width: 80px;</div><div class="line">                border: 1px solid black;</div><div class="line">                hyphens: auto;</div><div class="line">            &#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">lang</span>=<span class="string">"en"</span> <span class="attr">class</span>=<span class="string">"auto"</span>&gt;</span>An extremely long English word<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<img src="/2016/09/28/css-scattered/hyphens.png" title="hyphens 属性">
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/21/css-layout2/" itemprop="url">
-                  CSS-布局基础2
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-21T22:52:59+08:00" content="2016-09-21">
-              2016-09-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="长度单位"><a href="#长度单位" class="headerlink" title="长度单位"></a>长度单位</h2><p><strong>绝对长度单位</strong></p>
-<p>in（英寸）、cm（厘米）、mm（毫米）、pt（磅）、pc（pica）  </p>
-<p><strong>相对长度单位</strong>  </p>
-<ul>
-<li>px 像素  </li>
-<li>em 是相对于文字大小的值，实际大小是受到字体尺寸影响的。例如：定义某个元素的文字大小为12pt，那么，对于这个元素来说1em就是12pt。  </li>
-<li>ex 和em类似，指的是相对于文本中字母x的高度，因为不同的字体的x的高度是不同的，所以ex的实际大小，受到字体和字体尺寸两个因素的影响。 </li>
-<li>% 相对于包含块的计量单位  </li>
-<li>vw 基于视窗宽度的大小，10vw表示视窗宽度的10%</li>
-<li>vh 基于视窗高度的大小，10vh表示视窗高度的10%</li>
-</ul>
-<h2 id="替换元素和非替换元素"><a href="#替换元素和非替换元素" class="headerlink" title="替换元素和非替换元素"></a>替换元素和非替换元素</h2><p><strong>替换元素</strong></p>
-<p>替换元素是浏览器根据其标签的元素与属性来判断显示具体的内容，如<code>&lt;img&gt;、&lt;input&gt;、&lt;textarea&gt;、&lt;select&gt;、&lt;object&gt;</code></p>
-<p><strong>非替换元素</strong></p>
-<p>大多数元素是不可替换元素，他们将内容直接告诉浏览器，将其显示出来，如<code>&lt;p&gt;</code></p>
-<h2 id="块级元素和行内元素"><a href="#块级元素和行内元素" class="headerlink" title="块级元素和行内元素"></a>块级元素和行内元素</h2><p><strong>块级元素</strong></p>
-<p>最明显的特征就是独自占领一行，自动充满父级元素的内容区域，如<code>div、p、form、header、footer、section</code><br>通过CSS设定了浮动（float）以及设定显示（display）属性为’block’或’list-item’的元素都是块级元素</p>
-<p><strong>行内元素</strong></p>
-<p>允许左右都可以有元素，最常见的就是<a></a><br>通过display:’inline’设置以后都会变成行内元素</p>
-<h2 id="浏览器的标准模式和怪异模式"><a href="#浏览器的标准模式和怪异模式" class="headerlink" title="浏览器的标准模式和怪异模式"></a>浏览器的标准模式和怪异模式</h2><ul>
-<li>标准模式(strict mode)：浏览器按W3C标准解析执行代码</li>
-<li><p>怪异模式(quirks mode)：使用浏览器自己的方式解析执行代码</p>
-<p>  浏览器解析时到底使用标准模式还是怪异模式，与网页中的DTD声明直接相关，DTD声明定义了标准文档的类型（标准模式解析）文档类型，会使浏览器使用相应的方式加载网页并显示，忽略DTD声明,将使网页进入怪异模式(quirks mode)。  </p>
-</li>
-</ul>
-<p>怪异模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;html&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;title&gt;重庆PHP&lt;/title&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">        &lt;h3&gt;重庆PHP，最专业的PHP社区&lt;/h3&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
-<p>标准模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</div><div class="line">&lt;html&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;title&gt;重庆PHP&lt;/title&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">        &lt;h3&gt;重庆PHP，最专业的PHP社区&lt;/h3&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
-<h2 id="margin属性"><a href="#margin属性" class="headerlink" title="margin属性"></a>margin属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">margin:2cm 4cm 3cm 4cm;// 值分别代表上外边距、右外边距、下外边距、左外边距</div><div class="line">margin:10px 5px 15px;// 值分别代表上外边距、右外和左外边距、下外边距</div><div class="line">margin:10px 5px;// 值分别代表上外和下外边距、右外和左外边距</div><div class="line">margin:10px;// 值代表四个外边据</div></pre></td></tr></table></figure>
-<p>可选的属性值如下：  </p>
-<blockquote>
-<p><strong>auto:</strong> 浏览器计算外边距<br><strong>length:</strong> 具体单位计的外边距值，比如<code>px、cm</code>等，默认值是 0px<br><strong>%:</strong> 基于父元素的宽度的百分比<br><strong>inherit:</strong> 从父元素继承  </p>
-</blockquote>
-<p>说明如下：  </p>
-<ul>
-<li>块级元素的垂直相邻外边距会合并，由于块级元素独占一行，不考虑水平外边距 </li>
-<li>行内元素实际上不占上下外边距，左右外边距不会合并</li>
-<li>浮动元素的外边距也不会合并  </li>
-<li>允许指定负的外边距值，不过使用时要小心</li>
-</ul>
-<p>设置块级元素的 width 可以阻止它从左到右撑满容器，再设置左右外边距为 auto 来使其水平居中。但是，当浏览器窗口比元素的宽度还要窄时，浏览器会显示一个水平滚动条来容纳页面。此时可以使用 max-width 替代 width 可以使浏览器更好地处理小窗口的情况。</p>
-<h2 id="float属性"><a href="#float属性" class="headerlink" title="float属性"></a>float属性</h2><p>可选的属性值如下： </p>
-<blockquote>
-<p><strong>left:</strong> 元素向左浮动<br><strong>right:</strong> 元素向右浮动<br><strong>none(默认):</strong> 元素不浮动，并会显示在其在文本中出现的位置<br><strong>inherit:</strong> 从父元素继承 </p>
-</blockquote>
-<p>说明如下：</p>
-<ul>
-<li>用来定义元素在哪个方向浮动，浮动元素会生成一个块级框，而不论它本身是何种元素  </li>
-<li>这个属性总应用于图像，使文本围绕在图像周围</li>
-<li>如果浮动非替换元素，如div，则要指定一个明确的宽度；否则，它们会按元素内容尽可能地窄</li>
-<li>如果行内有极少的空间可供浮动元素，那么这个元素会跳至下一行，直到某一行拥有足够的空间为止</li>
-<li>如果浮动元素超出父容器，在父容器添加overflow:auto即可根据浮动的元素撑开容器-  clear属性可清除浮动，值可为left或right，分别表示清除向左浮动或向右浮动</li>
-</ul>
-<h2 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h2><h3 id="W3C标准盒模型"><a href="#W3C标准盒模型" class="headerlink" title="W3C标准盒模型"></a>W3C标准盒模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">外盒尺寸计算(元素空间尺寸)</div><div class="line">element 空间高度 = 内容高度 + 内距 + 边框 + 外距</div><div class="line">element 空间宽度 = 内容宽度 + 内距 + 边框 + 外距</div><div class="line">内盒尺寸计算(元素大小)</div><div class="line">element 高度 = 内容高度 + 内距 + 边框 （height为内容高度）</div><div class="line">element 宽度 = 内容宽度 + 内距 + 边框 （width为内容宽度）</div></pre></td></tr></table></figure>
-<h3 id="IE传统盒模型-IE6以下"><a href="#IE传统盒模型-IE6以下" class="headerlink" title="IE传统盒模型(IE6以下)"></a>IE传统盒模型(IE6以下)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">外盒尺寸计算(元素空间尺寸)</div><div class="line">element 空间高度 = 内容高度 + 外距（height包含了元素内容高度、边框、内距）</div><div class="line">element 空间宽度 = 内容宽度 + 外距（height包含了元素内容高度、边框、内距）</div><div class="line">内盒尺寸计算(元素大小)</div><div class="line">element 高度 = 内容高度（height包含了元素内容高度、边框、内距）</div><div class="line">element 宽度 = 内容宽度（width包含了元素内容宽度、边框、内距）</div></pre></td></tr></table></figure>
-<p>边框和内距都包含在宽度或高度内！！！</p>
-<h2 id="box-sizing属性"><a href="#box-sizing属性" class="headerlink" title="box-sizing属性"></a>box-sizing属性</h2><p>可选的属性值如下：</p>
-<blockquote>
-<p><strong>content-box(默认):</strong> 维持W3C的标准盒模型<br><strong>border-box:</strong> 维持IE的传统盒模型<br><strong>padding-box(Firefox浏览器):</strong> 指定元素的宽度或高度包含内容的宽度或高度和内距<br><strong>inherit:</strong> 从父元素继承</p>
-</blockquote>
-<p>说明如下：</p>
-<ul>
-<li>定义盒模型的尺寸解析方式，主要目的是控制元素的总宽度  </li>
-</ul>
-<h2 id="outline属性"><a href="#outline属性" class="headerlink" title="outline属性"></a>outline属性</h2><ul>
-<li><p>外轮廓outline的效果和边框border的效果极其相似，不同之处在于outline不占用网页布局空间，不一定是矩形，属于一种动态样式，可以向内扩展。</p>
-</li>
-<li><p>将outline属性设置在:focus上，可以实现在元素获取到焦点或者被激活时呈现边框的效果。</p>
-</li>
-<li><p>为了给元素添加边框效果又不影响页面布局，可以使用outline属性。</p>
-</li>
-</ul>
-<h2 id="position属性"><a href="#position属性" class="headerlink" title="position属性"></a>position属性</h2><p>可选的属性值如下：</p>
-<blockquote>
-<p><strong>static(默认):</strong> 元素不会被特殊的定位，top, right, bottom, left 和 z-index 属性无效。<br><strong>relative:</strong> 相对定位，相对于其在普通流中的正常位置进行定位，元素仍保持其未定位前的形状，它原本所占的空间仍保留。<br><strong>absolute:</strong> 绝对定位，不为元素预留空间。元素相对于最近的非static定位的祖先元素来定位。<br><strong>fixed:</strong> 固定定位，不为元素预留空间。元素会相对于视窗来来定位，当出现滚动条时，对象不会随着滚动。<br><strong>inherit:</strong> 从父元素继承。</p>
-</blockquote>
-<p>说明如下：</p>
-<p>position: sticky，类似relative和fixed的合体，当目标区域在屏幕中可见时，它的行为就像relative; 当页面滚动超出目标区域时，它的行为就像fixed，固定在目标位置。目前支持该属性的浏览器比较少。</p>
-<h2 id="top、right、bottom、left-属性"><a href="#top、right、bottom、left-属性" class="headerlink" title="top、right、bottom、left 属性"></a>top、right、bottom、left 属性</h2><p>top、right、bottom、left 分别定义了定位元素上、右、下、左外边距边界与其包含块右边界之间的偏移。可选的取值如下：</p>
-<blockquote>
-<p><strong>auto(默认):</strong> 通过浏览器计算的位置<br><strong>%:</strong> 设置以包含元素的百分比计的位置，可使用负值<br><strong>length:</strong> 使用 px、cm 等单位设置元素的位置，可使用负值<br><strong>inherit:</strong> 规定应该从父元素继承属性的值</p>
-</blockquote>
-<p>说明如下：</p>
-<p>对于 static 元素，为 auto。对于相对定义元素，如果 top 和 bottom 都是 auto，其计算值则都是 0；如果其中之一为 auto，则取另一个值的相反数；如果二者都不是 auto，bottom 将取 top 值的相反数；当 left 和 right​ ​​​​​同时指定时，如果容器是从左到右时，left的值会被优先设定，如果容器是从右到左时，right的值会被优先设定。</p>
-<h2 id="overflow-属性"><a href="#overflow-属性" class="headerlink" title="overflow 属性"></a>overflow 属性</h2><p>可选的属性值如下：</p>
-<blockquote>
-<p><strong>visible(默认):</strong> 内容不会被修剪，会呈现在元素框之外<br><strong>hidden:</strong> 内容会被修剪，并且其余内容是不可见的<br><strong>scroll:</strong> 内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容<br><strong>auto:</strong> 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容<br><strong>inherit:</strong> 从父元素继承</p>
-</blockquote>
-<p>说明如下：</p>
-<p>如果值为 scroll，不论是否需要，用户代理都会提供一种滚动机制。因此，有可能即使元素框中可以放下所有内容也会出现滚动条。</p>
-<h2 id="clip-属性"><a href="#clip-属性" class="headerlink" title="clip 属性"></a>clip 属性</h2><p>用于裁剪绝对定位元素，可选的属性值如下：</p>
-<blockquote>
-<p><strong>auto(默认):</strong> 不应用任何剪裁<br><strong>shape:</strong> 设置元素的形状，唯一合法的形状值是：rect(top, right, bottom, left)<br><strong>inherit:</strong> 从父元素继承</p>
-</blockquote>
-<h2 id="z-index-属性"><a href="#z-index-属性" class="headerlink" title="z-index 属性"></a>z-index 属性</h2><p>设置元素的堆叠顺序，仅能在定位元素上奏效，即 position 为 relative 或 absolute 的元素上。</p>
-<h2 id="vertical-align-属性"><a href="#vertical-align-属性" class="headerlink" title="vertical-align 属性"></a>vertical-align 属性</h2><p>可选的属性值如下：</p>
-<blockquote>
-<p><strong>baseline(默认):</strong> 元素放置在父元素的基线上<br><strong>sub:</strong> 垂直对齐文本的下标<br><strong>super:</strong> 垂直对齐文本的上标<br><strong>top:</strong> 把元素的顶端与行中最高元素的顶端对齐<br><strong>text-top:</strong> 把元素的顶端与父元素字体的顶端对齐<br><strong>middle:</strong> 把此元素放置在父元素的中部<br><strong>bottom:</strong> 把元素的底端与行中最低的元素的底端对齐<br><strong>text-bottom:</strong> 把元素的底端与父元素字体的底端对齐<br><strong>lenght:</strong> 用长度值指定由基线算起的偏移量，允许使用负值<br><strong>%:</strong> 使用 “line-height” 属性的百分比值来排列此元素，允许使用负值<br><strong>inherit:</strong> 从父元素继承</p>
-</blockquote>
-<p>说明如下：</p>
-<p>vertical-align 影响 inline-level 元素，这些元素的 display 属性为 inline、inline-block、inline-table，基本的inline元素都是标签裹着文字。</p>
-<p>inline 的元素在一行中一个挨着一个，当这些元素超出了他们的所在行，一个新行便会建立在它下方。这里的每一行就叫做line box。每一行不同尺寸的元素意味着 line box 不同的高度。在这些 line boxes 里面 vertical-align 属性负责摆放单独的元素。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/21/scattered-knowledge/" itemprop="url">
-                  零散知识
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-21T17:53:42+08:00" content="2016-09-21">
-              2016-09-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Other/" itemprop="url" rel="index">
-                    <span itemprop="name">Other</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="window-parent和window-opener区别"><a href="#window-parent和window-opener区别" class="headerlink" title="window.parent和window.opener区别"></a>window.parent和window.opener区别</h2><ul>
-<li>window.parent能获取一个框架的父窗口或父框架。顶层窗口的parent引用的是它本身。</li>
-<li>window.opener引用的是window.open打开的页面的父页面。</li>
-</ul>
-<h2 id="解决不支持html5标签的办法"><a href="#解决不支持html5标签的办法" class="headerlink" title="解决不支持html5标签的办法"></a>解决不支持html5标签的办法</h2><p>方式一：自己创建标签节点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    document.createElement(e[i]);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
-<p>方式二：使用Google的html5shiv包（推荐）<br><code>&lt;script src=&quot;http://html5shiv.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;</code></p>
-<p><strong>不管使用以上哪种方法,都要初始化新标签的CSS</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">article,aside,dialog,footer,header,section,footer,nav,figure,menu&#123;</div><div class="line">    display: block;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>方式三：防弹衣技术<br>Bulletproof技术，防弹衣技术，建议在所有新的HTML5块级元素中增加一个内部的div元素，然后包含一个CSS class，用这个元素来替代HTML元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;section&gt;</div><div class="line">　　&lt;div class=&quot;section&quot;&gt;</div><div class="line">　　&lt;!-- content --&gt;</div><div class="line">　　&lt;/div&gt;</div><div class="line">&lt;/section&gt;</div><div class="line"></div><div class="line">.section &#123;</div><div class="line">   　　color: blue;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
-<h2 id="outerHTML、innerText、innerHTML"><a href="#outerHTML、innerText、innerHTML" class="headerlink" title="outerHTML、innerText、innerHTML"></a>outerHTML、innerText、innerHTML</h2><img src="/2016/09/21/scattered-knowledge/innerHTML.gif" title="一张图了解outerHTML和innerText、innerHTML">
-<h2 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h2><p>cmd中输入<code>echo %PATH%</code> 可查看path环境变量</p>
-<h2 id="Chrome浏览器用户名、密码回填问题"><a href="#Chrome浏览器用户名、密码回填问题" class="headerlink" title="Chrome浏览器用户名、密码回填问题"></a>Chrome浏览器用户名、密码回填问题</h2><p>前几天发现一个奇怪的问题，使用Chrome浏览器在登录输入用户名、密码后，点击了保存用户名密码，在其它页面发生了用户名、密码的回填。</p>
-<img src="/2016/09/21/scattered-knowledge/login1.png" title="登录输入">
-<img src="/2016/09/21/scattered-knowledge/save.png" title="点击保存密码">
-<img src="/2016/09/21/scattered-knowledge/card.png" title="其它页面表单">
-<p>解决方案：在使用到Input的地方，都添加了autoComplete属性值为off和name属性，但是不同的name属性值，有的可能不会回填有的可能就会回填，我有点怀疑人生了。</p>
-<img src="/2016/09/21/scattered-knowledge/card1.png" title="回填登录信息">
-<img src="/2016/09/21/scattered-knowledge/card2.png" title="没有回填登录信息">
-<p><strong>而且对于没有回填用户信息的情况，在点击密码框的时候，还是会有用户密码信息的提示，这个还没有找到解决方案。</strong></p>
-<img src="/2016/09/21/scattered-knowledge/card3.png" title="提示用户密码">
-<h2 id="端口占用"><a href="#端口占用" class="headerlink" title="端口占用"></a>端口占用</h2><h3 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h3><p>netstat -aon | findstr 8088 # 查看指定端口被哪个进程占用，会返回一个进程号<br>tasklist | findstr 6808 # 查看指定进程号是哪个程序的<br>taskkill -F -IM javaw.exe # 杀死应用程序</p>
-<h3 id="mac"><a href="#mac" class="headerlink" title="mac"></a>mac</h3><p>sudo lsof -i :4000<br>sudo kill -9 [PID]</p>
-<h2 id="eclipse分配内存"><a href="#eclipse分配内存" class="headerlink" title="eclipse分配内存"></a>eclipse分配内存</h2><p>右键项目 -&gt; Run As -&gt; -Run Configurations -&gt; Arguments， 添加下面的信息到VM arguments中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-Xms256m</div><div class="line">-Xmx512m -XX:MaxNewSize=256m -XX:MaxPermSize=512m</div></pre></td></tr></table></figure></p>
-<h2 id="Xshell指令更新环境"><a href="#Xshell指令更新环境" class="headerlink" title="Xshell指令更新环境"></a>Xshell指令更新环境</h2><p>停 tomcat 重新启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ps -ef|grep java            # 查进程号，12997</div><div class="line">kill -9 12997               # 杀死进程</div><div class="line">cd /usr/local/tomcat6/bin/  # 进入到目录</div><div class="line">./catalina.sh start         # 启动</div><div class="line">cd ..                       </div><div class="line">cd logs</div><div class="line">tail -f catalina.out        # 打日志</div></pre></td></tr></table></figure></p>
-<h2 id="Chrome插件生成crx文件"><a href="#Chrome插件生成crx文件" class="headerlink" title="Chrome插件生成crx文件"></a>Chrome插件生成crx文件</h2><p>扩展程序-&gt;开发者模式-&gt;打包扩展程序-&gt;根据扩展程序ID，如hgmloofddffdnphfgcellkdfbfbjeloo，在C:\Users\Administrator\AppData\Local\Google\Chrome\User Data\Default\Extensions\路径下找到指定ID(hgmloofddffdnphfgcellkdfbfbjeloo)文件，双击进入，选择文件夹-&gt;打包扩展程序，即可生成crx文件。</p>
-<h2 id="Thunk函数的含义"><a href="#Thunk函数的含义" class="headerlink" title="Thunk函数的含义"></a>Thunk函数的含义</h2><p>编译器的”传名调用”实现，往往是将参数放到一个临时函数之中，再将这个临时函数传入函数体。这个临时函数就叫做Thunk函数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function f(m)&#123;</div><div class="line">  return m * 2;</div><div class="line">&#125;</div><div class="line">f(x + 5);</div><div class="line"></div><div class="line">// 等同于</div><div class="line">var thunk = function () &#123;</div><div class="line">  return x + 5;</div><div class="line">&#125;;</div><div class="line">function f(thunk)&#123;</div><div class="line">  return thunk() * 2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在JavaScript语言中，Thunk函数替换的不是表达式，而是多参数函数，将其替换成单参数的版本，且只接受回调函数作为参数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 正常版本的readFile（多参数版本）</div><div class="line">fs.readFile(fileName, callback);</div><div class="line"></div><div class="line">// Thunk版本的readFile（单参数版本）</div><div class="line">var Thunk = function (fileName)&#123;</div><div class="line">  return function (callback)&#123;</div><div class="line">    return fs.readFile(fileName, callback);</div><div class="line">  &#125;;</div><div class="line">&#125;;</div><div class="line">var readFileThunk = Thunk(fileName);</div><div class="line">readFileThunk(callback);</div></pre></td></tr></table></figure>
-<h2 id="数据库表回滚"><a href="#数据库表回滚" class="headerlink" title="数据库表回滚"></a>数据库表回滚</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 表sy_org_user1回滚到2015-01-09 15:00:00时间</div><div class="line">alter table sy_org_user1 enable row movement;</div><div class="line">flashback table sy_org_user1 to timestamp to_timestamp(&apos;2015-01-09 15:00:00&apos;,&apos;yyyy-mm-dd hh24:mi:ss&apos;);</div></pre></td></tr></table></figure>
-<h2 id="Oracle数据库导入导出"><a href="#Oracle数据库导入导出" class="headerlink" title="Oracle数据库导入导出"></a>Oracle数据库导入导出</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># 导出库</div><div class="line">exp DEV_BASE/DEV_BASE@pcmdb_192.168.100.30 file=E:\DEV_BASE.dmp owner=DEV_BASE</div><div class="line"># 如果以前导入过，删除用户再重建</div><div class="line">drop user DEV_BASE cascade;</div><div class="line">create user DEV_BASE identified by DEV_BASE;</div><div class="line">grant resource, connect, dba to DEV_BASE;</div><div class="line">alter user DEV_BASE quota unlimited on PCMDB;</div><div class="line"># 导入库</div><div class="line">imp system/sys1234@orcl fromuser=DEV_BASE touser=DEV_BASE file=E:\DEV_BASE.dmp</div></pre></td></tr></table></figure>
-<h2 id="响应式编程"><a href="#响应式编程" class="headerlink" title="响应式编程"></a>响应式编程</h2><p>响应式编程是一种面向数据流和变化传播的编程范式，这意味着可以在编程语言中很方便地表达静态或动态的数据流，而相关的计算模型会自动将变化的值通过数据流进行传播。响应式编程最初是为了简化交互式用户界面的创建和实时系统动画的绘制而提出来的一种方法，但它本质上是一种通用的编程范式。在MVC软件架构中，响应式编程允许将相关模型的变化自动反映到视图上，反之亦然。</p>
-<h2 id="检测浏览器版本"><a href="#检测浏览器版本" class="headerlink" title="检测浏览器版本"></a>检测浏览器版本</h2><p>最近做的项目对浏览器的类型及版本有要求，同事写了检测浏览器版本的代码如下，我在此处进行记录，供以后参考。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--在工程入口html文件的body标签中添加如下script内容--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">id</span>=<span class="string">"body"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"react-content"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">      <span class="function"><span class="keyword">function</span> <span class="title">cheackBowser</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> userAgent = navigator.userAgent; <span class="comment">//取得浏览器的userAgent字符串</span></div><div class="line">        <span class="keyword">var</span> version = navigator.appVersion; <span class="comment">// 浏览器版本信息</span></div><div class="line">        <span class="keyword">var</span> isOpera = userAgent.indexOf(<span class="string">"Opera"</span>) &gt; <span class="number">-1</span>; <span class="comment">//判断是否Opera浏览器</span></div><div class="line">        <span class="keyword">var</span> isChrome = userAgent.indexOf(<span class="string">"Chrome"</span>) &gt; <span class="number">-1</span>; <span class="comment">//判断是否Chrome浏览器</span></div><div class="line">        <span class="keyword">var</span> isIE = userAgent.indexOf(<span class="string">"compatible"</span>) &gt; <span class="number">-1</span> &amp;&amp; userAgent.indexOf(<span class="string">"MSIE"</span>) &gt; <span class="number">-1</span> &amp;&amp; !isOpera; <span class="comment">//判断是否IE浏览器</span></div><div class="line">        <span class="keyword">var</span> isFF = userAgent.indexOf(<span class="string">"Firefox"</span>) &gt; <span class="number">-1</span>; <span class="comment">//判断是否Firefox浏览器</span></div><div class="line">        <span class="keyword">var</span> isSafari = userAgent.indexOf(<span class="string">"Safari"</span>) &gt; <span class="number">-1</span>; <span class="comment">//判断是否Safari浏览器</span></div><div class="line"></div><div class="line">        <span class="comment">//如果是 IE 火狐 opera，提示下载qq浏览器</span></div><div class="line">        <span class="keyword">if</span>(isIE || isFF || isOpera) &#123;</div><div class="line">          <span class="comment">//主页面不显示只显示弹出框，弹出弹框提示下载qq浏览器</span></div><div class="line">          <span class="keyword">if</span>(confirm(<span class="string">"您使用的浏览器存在兼容问题，为了您更好的用户体验，建议您点击确定下载QQ浏览器"</span>)) &#123;</div><div class="line">              <span class="built_in">document</span>.getElementById(<span class="string">"react-content"</span>).style.display = <span class="string">"none"</span>;</div><div class="line">              <span class="built_in">window</span>.open(<span class="string">"http://browser.qq.com/?adtag=SEM1"</span>, <span class="string">"_self"</span>);</div><div class="line">          &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">//点击取消关闭此页面</span></div><div class="line">            <span class="built_in">window</span>.close();</div><div class="line">            <span class="comment">//如果关闭此页面被阻止则把页面清空</span></div><div class="line">            <span class="keyword">if</span>(<span class="built_in">window</span>)&#123;</div><div class="line">               <span class="built_in">window</span>.location.href=<span class="string">"about:blank"</span>;</div><div class="line">            &#125;</div><div class="line">          &#125;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(isChrome)&#123;</div><div class="line">            <span class="keyword">var</span> detailVersion = <span class="built_in">Number</span>(VersionFilter(version)[<span class="number">0</span>].substring(<span class="number">7</span>,<span class="number">9</span>));</div><div class="line">            <span class="keyword">if</span>(detailVersion &lt; <span class="number">45</span>) &#123;</div><div class="line">              <span class="built_in">document</span>.getElementById(<span class="string">"react-content"</span>).style.display = <span class="string">"none"</span>;</div><div class="line">              <span class="keyword">if</span>(confirm(<span class="string">"您使用的浏览器版本太低，为了您更好的用户体验，建议您点击确定下载QQ浏览器"</span>)) &#123;</div><div class="line">                <span class="built_in">window</span>.open(<span class="string">"https://dldir1.qq.com/invc/tt/QQBrowser_Setup_SEM1.exe"</span>,<span class="string">"_self"</span>);</div><div class="line">              &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">              <span class="comment">//谷歌浏览器,版本符合要求</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="comment">// 获取详细的chrome版本</span></div><div class="line">      <span class="function"><span class="keyword">function</span> <span class="title">VersionFilter</span> (<span class="params">value</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> reg = <span class="regexp">/Chrome\/\d&#123;2&#125;\.\d+\.\d+/</span></div><div class="line">         <span class="keyword">return</span> reg.exec(value)</div><div class="line">      &#125;</div><div class="line">      cheackBowser()</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="打版本号"><a href="#打版本号" class="headerlink" title="打版本号"></a>打版本号</h2><p>在做项目时，测试环境只要更新，最好打个版本号(tag)，这样如果这次测试的结果比较稳定，要向线上更新，直接更新指定tag的代码到线上就行了，开发人员还是正常开发提交代码。</p>
-<h2 id="元编程"><a href="#元编程" class="headerlink" title="元编程"></a>元编程</h2><p>简单的理解可以说成是“关于编程的编程”，或者说“与编程相关的编程”，如程序甲可以输出 A ~ Z，而程序乙可以生成程序甲，那么编写程序乙的活动就可以算作元编程。元编程更狭义的意思应该是指“编写能改变语言语法特性或者运行时特性的程序”，一种语言本来做不到的事情，通过编程来修改它，使得它可以做到了，这就是元编程。</p>
-<h2 id="robots-txt"><a href="#robots-txt" class="headerlink" title="robots.txt"></a>robots.txt</h2><p><a href="https://baike.baidu.com/item/robots%E5%8D%8F%E8%AE%AE/2483797?fromtitle=robots.txt&amp;fromid=9518761&amp;fr=aladdin" target="_blank" rel="external">【百度百科】</a>robots协议也叫robots.txt（统一小写）是一种存放于网站根目录下的ASCII编码的文本文件，它通常告诉网络搜索引擎的漫游器（又称网络蜘蛛），此网站中的哪些内容是不应被搜索引擎的漫游器获取的，哪些是可以被漫游器获取的。因为一些系统中的URL是大小写敏感的，所以robots.txt的文件名应统一为小写。robots.txt应放置于网站的根目录下。如果想单独定义搜索引擎的漫游器访问子目录时的行为，那么可以将自定的设置合并到根目录下的robots.txt，或者使用robots元数据（Metadata，又称元数据）。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/18/css-layout1/" itemprop="url">
-                  CSS-布局基础1
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-18T21:08:17+08:00" content="2016-09-18">
-              2016-09-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="display属性"><a href="#display属性" class="headerlink" title="display属性"></a>display属性</h2><p>大多数元素的默认值通常是 block 或 inline 。一个 block 元素通常被叫做块级元素。一个 inline 元素通常被叫做行内元素。注意是控制当前元素的，而不是其内部元素。  </p>
-<p><strong>none:</strong></p>
-<ul>
-<li>在不删除元素的情况下隐藏元素，不会保留元素本该显示的空间    </li>
-<li>visibility:hidden 会保留元素的空间  </li>
-</ul>
-<p><strong>block:</strong> </p>
-<ul>
-<li>前后有换行符，如不指定宽度，会尽可能撑满容器  </li>
-<li>高度，行高及顶和底边距都可控制   </li>
-<li>常见块级元素：<code>div、p、form、header、footer、section</code>等</li>
-</ul>
-<p><strong>inline（默认）:</strong> </p>
-<ul>
-<li>前后没有换行符、不撑满容器  </li>
-<li>高，行高及顶和底边距不可改变  </li>
-<li>包裹一些文字而不会打乱段落的布局</li>
-</ul>
-<p><strong>inline-block:</strong>  </p>
-<ul>
-<li>将对象呈递为内联对象，但是对象的内容作为块对象呈递（准确地说，应用此特性的元素呈现为内联对象，周围元素保持在同一行，但可以设置宽度和高度地块元素的属性）  </li>
-<li>可以实现浮动（float）的效果，如果HTML源代码中元素之间有空格，那么元素之间会产生空隙，使用float不会有空隙；但不能实现float的文字环绕图片  </li>
-<li>如果不设置width和height，会按元素的内容大小显示  </li>
-<li>这一行的高度为该行内最大高度的元素高度，vertical-align属性会影响到元素在垂直方向的对齐方式  </li>
-</ul>
-<p><strong>list-item:</strong> </p>
-<ul>
-<li>此元素会作为列表显示，如果不设置width和height，每个列表项尽可能撑满容器</li>
-</ul>
-<p><strong>flex:</strong>  </p>
-<ul>
-<li>详见下文</li>
-</ul>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display" target="_blank" rel="external">display其它属性值详细列表</a>  </p>
-<hr>
-<h2 id="Flexbox-布局"><a href="#Flexbox-布局" class="headerlink" title="Flexbox 布局"></a>Flexbox 布局</h2><p>参考阮一峰的网络日志：<br><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="external">《Flex 布局教程：语法篇》</a><br><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="external">《Flex 布局教程：实例篇》</a>  </p>
-<blockquote>
-<p><code>display: flex |inline-flex</code> </p>
-<p>指定Flex布局后，子元素的float、clear和vertical-align属性将失效</p>
-<p>几个基本概念： 容器、项目、主轴、交叉轴</p>
-</blockquote>
-<h3 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h3><p><strong>flex-direction</strong>  </p>
-<ul>
-<li>主轴的方向（即项目的排列方向） </li>
-<li>row | row-reverse | column | column-revers</li>
-</ul>
-<p><strong>flex-wrap</strong> </p>
-<ul>
-<li>owrap | wrap | wrap-reverse</li>
-<li>一条轴线排不下，如何换行  </li>
-</ul>
-<p><strong>flex-flow</strong></p>
-<ul>
-<li>flex-direction属性和flex-wrap属性的简写形式  </li>
-<li>默认值为row nowrap</li>
-</ul>
-<p><strong>justify-content</strong></p>
-<ul>
-<li>项目在主轴上的对齐方式</li>
-<li>flex-start | flex-end | center | space-between | space-around</li>
-</ul>
-<p><strong>align-items</strong></p>
-<ul>
-<li>项目在交叉轴上的对齐方式</li>
-<li>flex-start | flex-end | center | baseline | stretch</li>
-</ul>
-<p><strong>align-content</strong></p>
-<ul>
-<li>多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用</li>
-<li>flex-start | flex-end | center | space-between | space-around | stretch</li>
-</ul>
-<h3 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h3><p><strong>order</strong></p>
-<ul>
-<li>项目的排列顺序，数值越小，排列越靠前</li>
-<li>整数，默认为0</li>
-</ul>
-<p><strong>flex-grow</strong></p>
-<ul>
-<li>项目的放大比例，0表示如果存在剩余空间，也不放大</li>
-<li>整数，默认为0</li>
-<li>如果所有项目的属性都为1，则它们将等分剩余空间；如果一个项目的属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍</li>
-</ul>
-<p><strong>flex-shrink</strong></p>
-<ul>
-<li>项目的缩小比例，1表示如果空间不足，该项目将缩小</li>
-<li>非负整数，默认为1</li>
-<li>如果所有项目的属性都为1，当空间不足时，都将等比例缩小；如果一个项目的属性为0，其他项目都为1，则空间不足时，前者不缩小</li>
-</ul>
-<p><strong>flex-basis</strong></p>
-<ul>
-<li>在分配多余空间之前，项目占据的主轴空间，浏览器根据这个属性，计算主轴是否有多余空间</li>
-<li>[length] | auto，默认为auto</li>
-<li>可以设为跟width或height属性一样的值，则项目将占据固定空间</li>
-</ul>
-<p><strong>flex</strong>  </p>
-<ul>
-<li>flex-grow, flex-shrink 和 flex-basis的简写，后两个属性可选</li>
-<li>默认值为 0 1 auto</li>
-<li>none (0 0 auto) 表示无论窗口如何变化宽度不变</li>
-<li>auto (1 1 auto) 表示空间足够时放大，空间不足时缩小</li>
-<li>initial (0 1 auto) 表示空间足够时不放大，空间不足时缩小</li>
-<li>建议优先使用这个属性，因为浏览器会推算相关值</li>
-</ul>
-<p><strong>align-self</strong></p>
-<ul>
-<li>允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性</li>
-<li>auto | flex-start | flex-end | center | baseline | stretch，默认值为auto</li>
-<li>auto 表示继承父元素的align-items属性，如果没有父元素，则等同于stretch</li>
-</ul>
-<hr>
-<h2 id="多列布局"><a href="#多列布局" class="headerlink" title="多列布局"></a>多列布局</h2><p>CSS3多列布局可以自动将内容按指定的列数排列，这种特性实现的布局效果和报纸、杂志排版非常相似。<br>常用属性如下：</p>
-<p><strong>column-width:</strong></p>
-<blockquote>
-<p>auto 默认值，元素多列的列宽由其它属性决定，没有显示设置的情况下，将默认显示一列<br>[length] 数值和长度单位组成，非负；如果单独使用，容器超出列宽时显示多列，小于列宽时显示一列</p>
-</blockquote>
-<p><strong>column-count:</strong></p>
-<blockquote>
-<p>auto 默认值，表示元素只有一列，依靠浏览器计算自动设置<br>[integer] 正整数值，定义想要的列数和最大列数，当容器没有足够空间来包含具有指定宽度的列数，元素列数会自动往下计算；如果单独使用，显示固定列数<br>列数 = (容器宽度 - 列间距)/列宽 向下取整</p>
-</blockquote>
-<p><strong>columns:</strong></p>
-<blockquote>
-<p>column-width和column-count的缩写</p>
-</blockquote>
-<p><strong>column-gap:</strong></p>
-<blockquote>
-<p>normal 默认值，一般情况相当于1em<br>[length] 浮点数据和单位标识符组成的长度值，非负，常用px、em单位的任何整数值；<br>如果同时设置了column-width属性，可能会导致列被撑破，使列数减1</p>
-</blockquote>
-<p><strong>column-rule:</strong></p>
-<blockquote>
-<p>定义列之间的边框宽度、样式、颜色，类似border属性，但不占用任何空间位置<br>[column-rule-width]|[column-rule-style]|[column-rule-color]<br>默认值分别为 medium | none | 前景色color值<br>如果column-rule-width宽度超过列间距，列边框就会消失</p>
-</blockquote>
-<p><strong>column-span:</strong></p>
-<blockquote>
-<p>定义一个分列元素中的子元素能跨多少列<br>none 默认值，表示不跨任何列<br>all 表示跨所有列，并定位在列的Z轴之上  </p>
-</blockquote>
-<p><strong>column-fill:</strong></p>
-<blockquote>
-<p>定义多列中每一列的高度是否统一<br>auto 默认值，各列的高度随其内容的变化自动变化<br>balance 各列的高度将会根据内容最多的一列的高度进行统一  </p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/14/ant-design-study/" itemprop="url">
-                  Ant Design 组件学习经验
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-14T14:39:06+08:00" content="2016-09-14">
-              2016-09-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Ant-Design/" itemprop="url" rel="index">
-                    <span itemprop="name">Ant Design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<h2 id="Tree组件"><a href="#Tree组件" class="headerlink" title="Tree组件"></a>Tree组件</h2><p>参考 <a href="https://ant.design/components/tree-select/" target="_blank" rel="external">TreeSelect</a></p>
-<h3 id="异步加载数据"><a href="#异步加载数据" class="headerlink" title="异步加载数据"></a>异步加载数据</h3><p>使用redux时，TreeSelect异步加载数据需要通过触发action调用后台获取数据，根据reducer更新的state显示出加载的数据。需添加loadData属性，值为一个方法，如onLoadData，内容如下。<br>这个函数的返回值好像必须是一个Promise对象，如果不这么写，会报<code>Uncaught TypeError: Cannot read property &#39;then&#39; of undefined(…)</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">onLoadData(treeNode) &#123;</div><div class="line">    return new Promise((resolve) =&gt; &#123;</div><div class="line">        // 树形显示的数据在this.state.treeData中，在this.state.treeData中找到当前操作节点</div><div class="line">        const pathArr = treeNode.props.pos.split(&apos;-&apos;);</div><div class="line">        let findTreeNode = null;</div><div class="line">        for (let i=1,len=pathArr.length; i &lt; len ; i++) &#123;</div><div class="line">            if( i === 1)&#123;</div><div class="line">                findTreeNode = this.state.treeData[pathArr[i]];</div><div class="line">            &#125; else &#123;</div><div class="line">                findTreeNode = findTreeNode.children[pathArr[i]];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        // 如果该节点没有子节点，表示没加载过其子节点，进行加载</div><div class="line">        if (findTreeNode.children.length &lt;= 0) &#123;</div><div class="line">            // 设置展开的节点为当前节点</div><div class="line">            this.state.openKey = treeNode.props.eventKey;</div><div class="line">            // 组织后台查询条件</div><div class="line">            const queryData = &#123;</div><div class="line">                LEVEL: 1, // TODO  不知道什么规则</div><div class="line">                _extWhere: this.state.queryData._extWhere,</div><div class="line">                PID: treeNode.props.eventKey,</div><div class="line">                NAME: treeNode.props.title,</div><div class="line">                checkstate: &apos;&apos;</div><div class="line">            &#125;</div><div class="line">            const dict = &#123;</div><div class="line">                dictId: this.state.dictId,</div><div class="line">                dictData: this.props.dict.dictData</div><div class="line">            &#125;</div><div class="line">            // 发起action，获取数据</div><div class="line">            this.props.updataDictByPid(this.props.servId, this.props.itemCode, objectUtils.clone(dict), queryData, this.props.servType, this.props.opeCode, this.props.queryServId);</div><div class="line">        &#125;</div><div class="line">        resolve();</div><div class="line">        &#125;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="Form组件"><a href="#Form组件" class="headerlink" title="Form组件"></a>Form组件</h2><p>参考 <a href="https://ant.design/components/form/" target="_blank" rel="external">Form</a> 和 <a href="http://react-component.github.io/form/" target="_blank" rel="external">rc-form</a></p>
-<h3 id="使用mapPropsToFields和onFieldsChange的校验问题"><a href="#使用mapPropsToFields和onFieldsChange的校验问题" class="headerlink" title="使用mapPropsToFields和onFieldsChange的校验问题"></a>使用mapPropsToFields和onFieldsChange的校验问题</h3><p>Form组件如下方式使用，获取不到校验信息了，浏览器的控制台会有打印的校验结果，但没有反映在页面上，但如果不使用mapPropsToFields是好使的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// 必填校验</div><div class="line">const validateArray = [&#123;</div><div class="line">    rules: [&#123;</div><div class="line">        required: true,</div><div class="line">        message: &apos;邮箱必填&apos;</div><div class="line">    &#125;],</div><div class="line">    trigger: [&apos;onChange&apos;]</div><div class="line">&#125;];</div><div class="line"></div><div class="line">let fieldPropsOptions = &#123;</div><div class="line">    validate: validateArray</div><div class="line">&#125;;</div><div class="line">...</div><div class="line">&lt;FormItem</div><div class="line">    label=&quot;email&quot;</div><div class="line">    validateStatus=&#123;getFieldError(&apos;email&apos;) ? &apos;success&apos; : &apos;error&apos;&#125;</div><div class="line">    help=&#123;isFieldValidating(&apos;email&apos;) ? &apos;&apos; : errMessage&#125;</div><div class="line">&gt;</div><div class="line">    &lt;Input &#123;...getFieldProps(&apos;email&apos;, fieldPropsOptions)&#125; /&gt;;</div><div class="line">&lt;/FormItem&gt;</div><div class="line">...</div><div class="line">NewForm = Form.create(&#123;onFieldsChange, mapPropsToFields&#125;)(NewForm);</div></pre></td></tr></table></figure></p>
-<p>解决方法是调用Form组件是传入一个props及更新该props的方法，如formErrItem、updateFormErrItem，在onFieldsChange中添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function onFieldsChange(props, fields)&#123;</div><div class="line">    // 调用父组件更新formErrItem的方法</div><div class="line">    const newFormErrItem = &#123;</div><div class="line">        ...props.formErrItem,</div><div class="line">        ...fields,</div><div class="line">    &#125;;</div><div class="line">    props.updateFormErrItem(newFormErrItem);</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在Form组件中通过，this.props.formErrItem可获取校验信息。</p>
-<h3 id="ref引用"><a href="#ref引用" class="headerlink" title="ref引用"></a>ref引用</h3><p>在使用Form组件时，在Form.create时需要添加<code>withRef: true</code>才能获取到组件内部定义的方法或state。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// MyForm.jsx中，定义了 MyForm 组件，是对Form组件的封装，返回的是antd的Form组件。</div><div class="line">class MyForm extends Component &#123;</div><div class="line">    render() &#123;</div><div class="line">        return &lt;Form /&gt;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">MyForm = Form.create(&#123;onFieldsChange, mapPropsToFields, withRef: true&#125;)(MyForm);</div><div class="line">export default MyForm;</div><div class="line">// App.jsx中，引用了MyForm组件，如果要引用到MyForm组件内部定义的方法或state，需要使用如下方式。</div><div class="line">class App extends Component &#123;</div><div class="line">    clickHandler() &#123;</div><div class="line">        // 引用MyForm组件中定义的方法或state</div><div class="line">        const formRef = this.refs.myForm.refs.wrappedComponent.refs.formWrappedComponent;</div><div class="line">    &#125;</div><div class="line">    render() &#123;</div><div class="line">        return (</div><div class="line">            &lt;div&gt;</div><div class="line">                &lt;MyForm ref=&quot;myForm&quot; /&gt;</div><div class="line">                &lt;Button onClick=&#123;this.clickHandler.bind(this)&#125;&gt;点击&lt;/Button&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="Table组件"><a href="#Table组件" class="headerlink" title="Table组件"></a>Table组件</h2><p>参考 <a href="https://ant.design/components/table/" target="_blank" rel="external">Table</a></p>
-<h3 id="单选"><a href="#单选" class="headerlink" title="单选"></a>单选</h3><p>如果Table组件中要进行单选，需要进行如下配置：</p>
-<ul>
-<li>将Table组件rowSelection属性的type值设置为radio，当前选中的数据由radioIndex控制</li>
-<li>注意，ant-design的Table组件，对于单选类型的，无法自己管理radioIndex值，如果想要自己管理radioIndex值，需要在Table组件中添加如下代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if ((&apos;radioIndex&apos; in nextProps) &amp;&amp; nextProps.radioIndex !== null ) &#123;</div><div class="line">    this.setState(&#123;</div><div class="line">        radioIndex: nextProps.radioIndex || null</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="行样式"><a href="#行样式" class="headerlink" title="行样式"></a>行样式</h3><p>Table组件的rowClassName属性，如：<code>rowClassName={(record, index) =&gt; record[&#39;_delete_&#39;] ? &#39;ant-table-row-delete&#39; : &#39;&#39; }</code></p>
-<h3 id="不显示页码"><a href="#不显示页码" class="headerlink" title="不显示页码"></a>不显示页码</h3><p>Table组件的pagination属性为false</p>
-<h3 id="pagination"><a href="#pagination" class="headerlink" title="pagination"></a>pagination</h3><p>pagination.pageSize不为10、20、30、40中的值时，分页处显示的只有一个值，如15，而不是像10 条/页这样<br>需要给Table组件传入的pagination中有自定义的pageSizeOptions属性，该属性的值为所有需要显示的每页条数的数组</p>
-<h3 id="列表勾选行样式问题"><a href="#列表勾选行样式问题" class="headerlink" title="列表勾选行样式问题"></a>列表勾选行样式问题</h3><p>在勾选列表行的checkbox或是列表可编辑的下拉框时，点击所在的行会发生颜色抖动，直接运行官方例子也有这个问题。后来发现可能是Chrome浏览器的问题，如果用360浏览器就不会有这个问题。很奇怪！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2046,7 +1863,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

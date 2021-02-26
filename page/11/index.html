@@ -275,7 +275,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">156</span>
+              <span class="site-state-item-count">161</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -389,6 +389,943 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/27/findjob-react-router/" itemprop="url">
+                  React Router-简单原理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-27T15:07:53+08:00" content="2017-08-27">
+              2017-08-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/FJ/" itemprop="url" rel="index">
+                    <span itemprop="name">FJ</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>以下内容主要参考自<br><a href="http://www.cnblogs.com/wyaocn/p/5805777.html" target="_blank" rel="external">深入理解 react-router 路由系统</a><br><a href="https://segmentfault.com/a/1190000004527878" target="_blank" rel="external">react-router的实现原理</a><br><a href="http://web.jobbole.com/86407/" target="_blank" rel="external">前端路由实现与 react-router 源码分析</a></p>
+<ul>
+<li><p>react-router怎么实现页面局部刷新和url变化的</p>
+<p>  路由的原理并不复杂，即保证视图和URL的同步，只要URL一致，那么返回的UI界面总是相同的。从性能和用户体验的层面来比较的话，后端路由每次访问一个新页面的时候都要向服务器发送请求，然后服务器再响应请求，这个过程肯定会有延迟。而前端路由在访问一个新页面的时候仅仅是变换了一下路径而已，没有了网络延迟，对于用户体验来说会有相当大的提升。</p>
+<p>  在HTML5的historyAPI出现之前，前端的路由都是通过hash来实现的，hash能兼容低版本的浏览器。Web服务并不会解析hash，也就是说#后的内容Web服务都会自动忽略，但是JavaScript是可以通过window.location.hash读取到的，读取到路径加以解析之后就可以响应不同路径的逻辑处理。</p>
+<p>  history是HTML5才有的新API，可以用来操作浏览器的session history(会话历史)。基于history来实现的路由可以和最初的路径规则一样，即不带#。用户可能都察觉不到该访问地址是Web服务实现的路由还是前端实现的路由。</p>
+<p>  react-router路由系统的核心是history对象，它的很多特性也与React保持了一致，比如声明式组件、组件嵌套、状态机特性等，毕竟它就是基于React构建并且为之所用的。路由进入时装载匹配的组件离开时卸载该组件的策略可以做到合理利用资源，不会一下把所有的组件都装载进来使内存占用飙升，也不会离开时没有卸载而时内存泄漏，每一个路由中声明的组件在渲染之前都会被传入一些props，主要包括history对象和location对象，这两个对象同时存在于路由组件的context中，还可以通过React的context API在组件的子级组件中获取到这两个对象。</p>
+<p>  <strong>点击Link后路由系统发生了什么？</strong></p>
+<p>  Link组件最终会渲染为HTML的a标签，它的to、query、hash属性会被组合在一起并渲染为href属性。虽然Link被渲染为超链接，但在内部实现上使用脚本拦截了浏览器的默认行为，然后调用了history.pushState方法。history包中底层的pushState方法支持传入两个参数state和path，在函数体内又将这两个参数传输到createLocation方法中，返回location。系统会将这个location对象作为参数传入到TransitionTo方法中，然后调用window.location.hash或者window.history.pushState()修改了应用的URL，这取决于你创建history对象的方式。同时会触发history.listen中注册的事件监听器。</p>
+<p>  接下来请看路由系统内部是如何修改UI的。在得到了新的location对象后，系统内部的matchRoutes方法会匹配出Route组件树中与当前location对象匹配的一个子集，并且得到了nextState。在Router组件的componentWillMount生命周期方法中调用了history.listen(listener)方法。listener会在上述matchRoutes方法执行成功后执行listener(nextState)，nextState对象里面包含location、routes、params、components属性，接下来执行this.setState(nextState)就可以实现重新渲染Router组件。</p>
+<p>  <strong>点击浏览器的前进和后退按钮发生了什么？</strong></p>
+<p>  前进与后退的实现，是通过监听popstate以及hashchange的事件，当前进或后退url更新时，触发这两个事件的回调函数。可以简单地把web浏览器的历史记录比做成一个仅有入栈操作的栈，当用户浏览器到某一个页面时将该文档存入到栈中，点击后退或前进按钮时移动指针到history栈中对应的某一个文档。在传统的浏览器中，文档都是从服务端请求过来的。不过现代的浏览器一般都会支持两种方式用于动态的生成并载入页面。</p>
+<p>  第一种方式</p>
+<p>  location.hash与hashchange事件，这也是比较简单并且兼容性也比较好的一种方式，会在浏览器的URL中添加一个#号，对应history包中的createHashHistory方法，出于兼容性的考虑（ie8+），路由系统内部将这种方式作为创建history对象的默认方法。详细请看下面几点：</p>
+<blockquote>
+<p>使用hashchange事件来监听window.location.hash的变化<br>hash发生变化浏览器会更新URL，并且在history栈中产生一条记录<br>路由系统会将所有的路由信息都保存到location.hash中<br>在react-router内部注册了window.addEventListener(‘hashchange’, listener, false)事件监听器<br>listener内部可以通过hash fragment获取到当前URL对应的location对象<br>接下来的过程与点击<code>&lt;Link/&gt;</code>时保持一致</p>
+</blockquote>
+<p>  当然，你会想到不仅仅在前进和后退会触发hashchange事件，应该说每次路由操作都会有hash的变化。确实如此，为了解决这个问题，路由系统内部通过判断currentLocation与nextLocation是否相等来处理该问题。不过，从它的实现原理上来看，由于路由操作hash发生变化而重复调用transitonTo(location)这一步确实无可避免。</p>
+<p>  第二种方式</p>
+<p>  history.pushState与popstate事件，新的HTML5规范中还提出了一个相对复杂但更加健壮的方式来解决该问题，对应history包中的createBrowserHistory方法，使用这种方式进行路由需要服务端要做一个路由的配置将所有请求重定向到入口文件位置，否则在用户刷新页面时会报404错误。详细请看下面几点：</p>
+<blockquote>
+<p>可以通过window.history.pushState(state, title, path)方法来改变浏览器的URL，实际上该方法同时在history栈中存入了state对象<br>在浏览器前进和后退时触发popstate事件，然后注册window.addEventListener(‘popstate’, listener, false)，并且可以在事件对象中取出对应的state对象<br>state对象可以存储一些恢复该页面所需要的简单信息，state会作为属性存储在location对象中，这样你就可以在组件中通过location.state来获取到<br>在react-router内部将该对象存储到了sessionStorage中，也就是上图中的saveState操作<br>接下来的操作与第一种方式一致</p>
+</blockquote>
+<p>  实际上，上面提到的state对象不仅仅在第二种路由方式中可以使用。react-router内部做了polyfill，统一了API。在使用第一种方式创建路由时你会发现URL中多了一个类似_key=s1gvrm的query，这个_key就是为react-router内部在sessionStorage中读取state对象所提供的。</p>
+</li>
+<li><p>react-router中的几类history</p>
+<blockquote>
+<p>老浏览器的history: 主要通过hash来实现，对应createHashHistory<br>高版本浏览器: 通过html5里面的history，对应createBrowserHistory<br>node环境下: 主要存储在memeory里面，对应createMemoryHistory</p>
+</blockquote>
+<p>  上面针对不同的环境提供了三个API，但是三个API有一些共性的操作，将其抽象了一个公共的文件createHistory，createHashHistory、createBrowserHistory、createMemoryHistory只是覆盖其中的某些方法而已。需要注意的是，这里的location跟浏览器原生的location是不相同的，最大的区别就在于里面多了key字段，history内部通过key来进行location的操作。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// 内部的抽象实现</div><div class="line">function createHistory(options=&#123;&#125;) &#123;</div><div class="line">  ...</div><div class="line">  return &#123;</div><div class="line">    listenBefore, // 内部的hook机制，可以在location发生变化前执行某些行为，AOP的实现</div><div class="line">    listen, // location发生改变时触发回调</div><div class="line">    transitionTo, // 执行location的改变</div><div class="line">    push, // 改变location</div><div class="line">    replace,</div><div class="line">    go,</div><div class="line">    goBack,</div><div class="line">    goForward,</div><div class="line">    createKey, // 创建location的key，用于唯一标示该location，是随机生成的</div><div class="line">    createPath,</div><div class="line">    createHref,</div><div class="line">    createLocation, // 创建location</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  执行URL前进</p>
+<blockquote>
+<p>createBrowserHistory: pushState、replaceState<br>createHashHistory: location.hash=<em>*</em>、location.replace()<br>createMemoryHistory: 在内存中进行历史记录的存储</p>
+</blockquote>
+<p>  伪代码如下：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">// createBrowserHistory(HTML5)中的前进实现</div><div class="line">function finishTransition(location) &#123;</div><div class="line">  ...</div><div class="line">  const historyState = &#123; key &#125;;</div><div class="line">  ...</div><div class="line">  if (location.action === &apos;PUSH&apos;) ) &#123;</div><div class="line">    window.history.pushState(historyState, null, path);</div><div class="line">  &#125; else &#123;</div><div class="line">    window.history.replaceState(historyState, null, path)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// createHashHistory的内部实现</div><div class="line">function finishTransition(location) &#123;</div><div class="line">  ...</div><div class="line">  if (location.action === &apos;PUSH&apos;) ) &#123;</div><div class="line">    window.location.hash = path;</div><div class="line">  &#125; else &#123;</div><div class="line">    window.location.replace(</div><div class="line">    window.location.pathname + window.location.search + &apos;#&apos; + path</div><div class="line">  );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// createMemoryHistory的内部实现</div><div class="line">entries = [];</div><div class="line">function finishTransition(location) &#123;</div><div class="line">  ...</div><div class="line">  switch (location.action) &#123;</div><div class="line">    case &apos;PUSH&apos;:</div><div class="line">      entries.push(location);</div><div class="line">      break;</div><div class="line">    case &apos;REPLACE&apos;:</div><div class="line">      entries[current] = location;</div><div class="line">      break;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  检测URL回退</p>
+<blockquote>
+<p>createBrowserHistory: popstate<br>createHashHistory: hashchange<br>createMemoryHistory: 因为是在内存中操作，跟浏览器没有关系，不涉及UI层面的事情，所以可以直接进行历史信息的回退</p>
+</blockquote>
+<p>  伪代码实现如下：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">// createBrowserHistory(HTML5)中的后退检测</div><div class="line">function startPopStateListener(&#123; transitionTo &#125;) &#123;</div><div class="line">  function popStateListener(event) &#123;</div><div class="line">    ...</div><div class="line">    transitionTo( getCurrentLocation(event.state) );</div><div class="line">  &#125;</div><div class="line">  addEventListener(window, &apos;popstate&apos;, popStateListener);</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">// createHashHistory的后退检测</div><div class="line">function startPopStateListener(&#123; transitionTo &#125;) &#123;</div><div class="line">  function hashChangeListener(event) &#123;</div><div class="line">    ...</div><div class="line">    transitionTo( getCurrentLocation(event.state) );</div><div class="line">  &#125;</div><div class="line">  addEventListener(window, &apos;hashchange&apos;, hashChangeListener);</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">// createMemoryHistory的内部实现</div><div class="line">function go(n) &#123;</div><div class="line">  if (n) &#123;</div><div class="line">    ...</div><div class="line">    current += n;</div><div class="line">    const currentLocation = getCurrentLocation();</div><div class="line">    // change action to POP</div><div class="line">    history.transitionTo(&#123; ...currentLocation, action: POP &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  为了维护state的状态，将其存储在sessionStorage里面:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">// createBrowserHistory/createHashHistory中state的存储</div><div class="line">function saveState(key, state) &#123;</div><div class="line">  ...</div><div class="line">  window.sessionStorage.setItem(createKey(key), JSON.stringify(state));</div><div class="line">&#125;</div><div class="line">function readState(key) &#123;</div><div class="line">  ...</div><div class="line">  json = window.sessionStorage.getItem(createKey(key));</div><div class="line">  return JSON.parse(json);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// createMemoryHistory仅仅在内存中，所以操作比较简单</div><div class="line">const storage = createStateStorage(entries);</div><div class="line">function saveState(key, state) &#123;</div><div class="line">  storage[key] = state;</div><div class="line">&#125;</div><div class="line">function readState(key) &#123;</div><div class="line">  return storage[key];</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/26/findjob-es6/" itemprop="url">
+                  ES6-常用知识
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-26T14:32:50+08:00" content="2017-08-26">
+              2017-08-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/FJ/" itemprop="url" rel="index">
+                    <span itemprop="name">FJ</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="ES6相关"><a href="#ES6相关" class="headerlink" title="ES6相关"></a>ES6相关</h2><ul>
+<li><p>let、const与var相比</p>
+<blockquote>
+<p>使用未声明的变量，直接报错<br>重复声明同一个变量，直接报错<br>是块级作用域<br>必须声明 ‘use strict’ 后才能使用let声明变量</p>
+</blockquote>
+</li>
+<li><p>数组的解构赋值，是值的拷贝，不是深拷贝</p>
+</li>
+<li>对象的解构赋值，是值的拷贝，不是深拷贝，let {a: { b }} = {a: { b: 1 }} 给b赋值，此时a是未定义的</li>
+<li><p>箭头函数</p>
+<p>  （1）函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。<br>  （2）不可以当作构造函数，也就是不可以使用new命令，否则会抛出错误。<br>  （3）不可以使用arguments对象，该对象在函数体内不存在，如果要用，可以使用rest参数代替。<br>  （4）不可以使用yield命令，因为箭头函数不能用作Generator函数。</p>
+<p>  理解定义时所在的作用域。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    a: 1,</div><div class="line">    fn: function () &#123;console.log(this.a)&#125;</div><div class="line">&#125;;</div><div class="line">obj.fn(); // 1</div><div class="line"></div><div class="line">var obj = &#123;</div><div class="line">    a: 1,</div><div class="line">    fn: () =&gt; &#123;console.log(this.a)&#125;</div><div class="line">&#125;;</div><div class="line">obj.fn(); // undefined</div><div class="line"></div><div class="line">var obj = &#123;</div><div class="line">    a: 1,</div><div class="line">    fn: function () &#123;</div><div class="line">        setTimeout(() =&gt; &#123;console.log(this.a)&#125;, 0)</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">obj.fn(); // 1</div><div class="line"></div><div class="line">var obj = &#123;</div><div class="line">    a: 1,</div><div class="line">    fn: function () &#123;console.log(this.a)&#125;</div><div class="line">&#125;;</div><div class="line">setTimeout(obj.fn, 0); // undefined</div><div class="line"></div><div class="line">var obj = &#123;</div><div class="line">    a: 1,</div><div class="line">    fn: () =&gt; &#123;console.log(this.a)&#125;</div><div class="line">&#125;;</div><div class="line">setTimeout(obj.fn, 0); // undefined</div></pre></td></tr></table></figure>
+</li>
+<li><p>super</p>
+<p>  super关键字，既可以当作函数使用，也可以当作对象使用。使用super的时候，必须显式指定是作为函数、还是作为对象使用，否则会报错。由于对象总是继承其他对象的，所以可以在任意一个对象中，使用super关键字。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">class A &#123;&#125;</div><div class="line">class B extends A &#123;</div><div class="line">  constructor() &#123;</div><div class="line">    super();</div><div class="line">    /*</div><div class="line">    Uncaught SyntaxError: &apos;super&apos; keyword unexpected here</div><div class="line">    无法看出super是作为函数使用，还是作为对象使用</div><div class="line">    */</div><div class="line">    console.log(super);</div><div class="line">    /*</div><div class="line">    super.valueOf()表明super是一个对象</div><div class="line">    */</div><div class="line">    console.log(super.valueOf() instanceof B); // true</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var obj = &#123;</div><div class="line">  toString() &#123;</div><div class="line">    return &quot;MyObject: &quot; + super.toString();</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">obj.toString(); // MyObject: [object Object]</div></pre></td></tr></table></figure>
+<p>  第一种情况，当作函数使用，代表父类的构造函数，super虽然代表了父类的构造函数，但是返回的是子类的实例，即super内部的this指的是子类。super()只能用在子类的构造函数中，用在其它地方就会报错。ES6要求，子类的构造函数必须执行一次super函数。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">class A&#123;&#125;</div><div class="line">class B extends A &#123;</div><div class="line">    constructor() &#123;</div><div class="line">        /*</div><div class="line">        当作函数使用，代表父类的构造函数，相当于</div><div class="line">        A.prototype.constructor.call(this)</div><div class="line">        */</div><div class="line">        super();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  第二种情况，super作为对象时，在普通方法中指向父类的原型对象，在静态方法中指向父类。ES6规定，通过super调用父类的方法时，super会绑定子类的this。由于绑定子类的this，所以如果通过super对某个属性赋值，这时super就是this，赋值的属性会变成子类实例的属性。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">class A &#123;</div><div class="line">  constructor() &#123;</div><div class="line">    this.q = 2;</div><div class="line">  &#125;</div><div class="line">  p() &#123;</div><div class="line">    return 2;</div><div class="line">  &#125;</div><div class="line">  print() &#123;</div><div class="line">    /*</div><div class="line">    通过B的super.print()虽然调用的是A.prototype.print()，但是A.prototype.print()会绑定子类B的this，相当于</div><div class="line">    super.print.call(this)</div><div class="line">    */</div><div class="line">    console.log(this.q);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">class B extends A &#123;</div><div class="line">  constructor() &#123;</div><div class="line">    super();</div><div class="line">    this.q = 3;</div><div class="line">    /*</div><div class="line">    当作对象使用，这是普通方法，super指向A.prototype，相当于</div><div class="line">    A.prototype.p()</div><div class="line">    q是父类A实例的属性，super.q就引用不到它</div><div class="line">    */</div><div class="line">    console.log(super.p()); // 2</div><div class="line">    console.log(super.q); // undefined</div><div class="line">  &#125;</div><div class="line">  subPrint() &#123;</div><div class="line">    super.print();</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">let b = new B();</div><div class="line">b.subPrint(); // 3</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">class Parent &#123;</div><div class="line">  static myMethod(msg) &#123;</div><div class="line">    console.log(&apos;static&apos;, msg);</div><div class="line">  &#125;</div><div class="line">  myMethod(msg) &#123;</div><div class="line">    console.log(&apos;instance&apos;, msg);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Child extends Parent &#123;</div><div class="line">  static myMethod(msg) &#123;</div><div class="line">    // 静态方法，super指向父类</div><div class="line">    super.myMethod(msg);</div><div class="line">  &#125;</div><div class="line">  myMethod(msg) &#123;</div><div class="line">    // 普通方法，super指向父类的原型对象</div><div class="line">    super.myMethod(msg);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Child.myMethod(1); // static 1</div><div class="line">var child = new Child();</div><div class="line">child.myMethod(2); // instance 2</div></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/26/findjob-javascript-ajax/" itemprop="url">
+                  JavaScript-AJAX
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-26T14:30:05+08:00" content="2017-08-26">
+              2017-08-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/FJ/" itemprop="url" rel="index">
+                    <span itemprop="name">FJ</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://www.w3school.com.cn/jquery/ajax_ajax.asp" target="_blank" rel="external">http://www.w3school.com.cn/jquery/ajax_ajax.asp</a></p>
+<p>AJAX(Asynchronous JavaScript and XML)，最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。编写常规的AJAX代码并不容易，因为不同的浏览器对 AJAX 的实现并不相同，不过jQuery为我们解决了这个难题。</p>
+<h2 id="jQuery-AJAX-使用"><a href="#jQuery-AJAX-使用" class="headerlink" title="jQuery AJAX 使用"></a>jQuery AJAX 使用</h2><p><code>$.ajax([settings])</code> 返回其创建的 XMLHttpRequest 对象，大多数情况下你无需直接操作该函数，除非你需要操作不常用的选项以获得更多的灵活性。参数对象settings可选，参数中的所有的选项都可以通过$.ajaxSetup() 函数来全局设置。</p>
+<ul>
+<li><p>global: Boolean  默认为true，表示触发全局AJAX事件</p>
+</li>
+<li><p>options: Object  可选，AJAX请求设置</p>
+</li>
+<li><p>async: Boolean  默认为true，表示异步请求</p>
+</li>
+<li><p>cache: Boolean  默认为true，dataType为script和jsonp时默认为false，false表示不缓存此页面</p>
+</li>
+<li><p>ifModified: Boolean  默认为false，true表示仅在服务器数据改变时获取新数据</p>
+</li>
+<li><p>timeout: Number  设置请求超时时间（毫秒），此设置将覆盖全局设置</p>
+</li>
+<li><p>traditional: Boolean  如果想要用传统的方式来序列化数据，那么就设置为true</p>
+</li>
+<li><p>processData: Boolean  默认为true，true表示通过data选项传递进来的数据会被转化成一个查询字符串</p>
+</li>
+<li><p>context: Object  设置AJAX相关回调函数的上下文，也就是回调函数内的this，如果不设定那么this指向调用本次AJAX请求时传递的options参数</p>
+</li>
+<li><p>username: String  用于响应 HTTP 访问认证请求的用户名</p>
+</li>
+<li><p>password: String  用于响应 HTTP 访问认证请求的密码</p>
+</li>
+<li><p>contentType: String  默认为”application/x-www-form-urlencoded”，表示发送信息至服务器时内容编码类型</p>
+</li>
+<li><p>dataType: String  预期服务器返回的数据类型，如不指定jQuery将自动根据HTTP包MIME信息来智能判断，可用值：”xml”、”html”、”script”、”json”、”jsonp”、”text”</p>
+</li>
+<li><p>type: String  默认为GET，可选”POST”或”GET”</p>
+</li>
+<li><p>headers: Object  设置请求头</p>
+</li>
+<li><p>url: String  发送请求的地址，默认为当前页地址</p>
+</li>
+<li><p>data: String  发送到服务器的数据、请求参数，将自动转换为请求字符串格式，processData 选项可禁止此自动转换，GET请求中将附加在URL后</p>
+</li>
+<li><p>jsonp: String  在一个jsonp请求中重写回调函数的名字，来替代在”callback”</p>
+</li>
+<li><p>jsonpCallback: String  为jsonp请求指定一个回调函数名，将用来取代jQuery自动生成的随机函数名。想让浏览器缓存GET请求的时候，指定这个回调函数名</p>
+</li>
+<li><p>scriptCharset: String  只有当请求时dataType为”jsonp”或”script”，并且type是”GET”才会用于强制修改 charset。通常只在本地和远程的内容编码不同时使用。</p>
+</li>
+<li><p>xhr: Function  需要返回一个 XMLHttpRequest 对象，默认在 IE 下是 ActiveXObject 而其他情况下是 XMLHttpRequest 。用于重写或者提供一个增强的 XMLHttpRequest 对象。</p>
+</li>
+<li><p>beforeSend: Function(XMLHttpRequest)  发送请求前可修改XMLHttpRequest对象的函数，如添加自定义HTTP头。参数为XMLHttpRequest。如果返回false可以取消本次ajax请求</p>
+</li>
+<li><p>complete: Function(XMLHttpRequest, TS)  请求完成后回调函数(请求成功或失败之后均调用)，参数为XMLHttpRequest 对象和一个描述请求类型的字符串</p>
+</li>
+<li><p>error: Function(XMLHttpRequest, textStatus, errorThrown)  请求失败时调用此函数，参数为XMLHttpRequest对象、错误信息、捕获的异常对象</p>
+</li>
+<li><p>success: Function(responseData, TS)  请求成功后的回调函数，参数为根据dataType参数进行处理后的数据和描述状态的字符串。</p>
+</li>
+<li><p>dataFilter: Function(data, type)  给Ajax返回的原始数据的进行预处理的函数，data是返回的原始数据，type是dataType参数</p>
+</li>
+</ul>
+<p>示例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;/jquery/jquery.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">    $(document).ready(function()&#123;</div><div class="line">      $(&quot;#b01&quot;).click(function()&#123;</div><div class="line">        // 同步</div><div class="line">        htmlobj=$.ajax(&#123;url:&quot;/jquery/test1.txt&quot;,async:false&#125;);</div><div class="line">        $(&quot;#myDiv&quot;).html(htmlobj.responseText);</div><div class="line">        // 异步</div><div class="line">        $.ajax(&#123;</div><div class="line">            url: &quot;/jquery/test1.txt&quot;,</div><div class="line">            success: function(responseData) &#123;</div><div class="line">                $(&quot;#myDiv&quot;).html(responseData);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">      &#125;);</div><div class="line">    &#125;);</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;div id=&quot;myDiv&quot;&gt;&lt;h2&gt;通过 AJAX 改变文本&lt;/h2&gt;&lt;/div&gt;</div><div class="line">&lt;button id=&quot;b01&quot; type=&quot;button&quot;&gt;改变内容&lt;/button&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="AJAX实现"><a href="#AJAX实现" class="headerlink" title="AJAX实现"></a>AJAX实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">function ajax(options) &#123;</div><div class="line">    options = options || &#123;&#125;;</div><div class="line">    options.type = (options.type || &quot;GET&quot;).toUpperCase();</div><div class="line">    options.dataType = options.dataType || &quot;json&quot;;</div><div class="line">    var params = formatParams(options.data);</div><div class="line">    var xhr;</div><div class="line"></div><div class="line">    //创建 - 第一步</div><div class="line">    if (window.XMLHttpRequest) &#123;</div><div class="line">        xhr = new XMLHttpRequest();</div><div class="line">    &#125; else if(window.ActiveObject) &#123;//IE6及以下</div><div class="line">        xhr = new ActiveXObject(&apos;Microsoft.XMLHTTP&apos;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //连接 和 发送 - 第二步</div><div class="line">    if (options.type == &quot;GET&quot;) &#123;</div><div class="line">        xhr.open(&quot;GET&quot;, options.url + &quot;?&quot; + params, true);</div><div class="line">        xhr.send(null);</div><div class="line">    &#125; else if (options.type == &quot;POST&quot;) &#123;</div><div class="line">        xhr.open(&quot;POST&quot;, options.url, true);</div><div class="line">        //设置表单提交时的内容类型</div><div class="line">        xhr.setRequestHeader(&quot;Content-Type&quot;, &quot;application/x-www-form-urlencoded&quot;);</div><div class="line">        xhr.send(params);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //接收 - 第三步</div><div class="line">    xhr.onreadystatechange = function () &#123;</div><div class="line">        if (xhr.readyState == 4) &#123;</div><div class="line">            var status = xhr.status;</div><div class="line">            if (status &gt;= 200 &amp;&amp; status &lt; 300 || status == 304) &#123;</div><div class="line">                options.success &amp;&amp; options.success(xhr.responseText, xhr.responseXML);</div><div class="line">            &#125; else &#123;</div><div class="line">                options.error &amp;&amp; options.error(status);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//格式化参数</div><div class="line">function formatParams(data) &#123;</div><div class="line">    var arr = [];</div><div class="line">    for (var name in data) &#123;</div><div class="line">        arr.push(encodeURIComponent(name) + &quot;=&quot; + encodeURIComponent(data[name]));</div><div class="line">    &#125;</div><div class="line">    arr.push((&quot;v=&quot; + Math.random()).replace(&quot;.&quot;, &quot;&quot;));</div><div class="line">    return arr.join(&quot;&amp;&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="GET跨域提交表单"><a href="#GET跨域提交表单" class="headerlink" title="GET跨域提交表单"></a>GET跨域提交表单</h2><p>前台代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">&lt;!doctype html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;meta charset=&quot;utf-8&quot; /&gt;</div><div class="line">        &lt;title&gt;跨域&lt;/title&gt;</div><div class="line">        &lt;script src=&quot;./jquery.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">        &lt;script&gt;</div><div class="line">        function flightHandler(data) &#123;</div><div class="line">            console.log(&apos;2: &apos;,data)</div><div class="line">        &#125;</div><div class="line">        window.onload = function() &#123;</div><div class="line">            $.ajax(&#123;</div><div class="line">                url: &quot;http://localhost:9432&quot;,</div><div class="line">                type: &quot;get&quot;, // jsonp必须是get方式，post不支持，注意</div><div class="line">                dataType: &quot;jsonp&quot;,</div><div class="line">                jsonp: &quot;callback&quot;, // 回调函数名称变量名</div><div class="line">                jsonpCallback: &quot;flightHandler&quot;, // 回调函数名称的值</div><div class="line">                data: &#123;param: &apos;参数&apos;&#125;,</div><div class="line">                beforeSend: function () &#123;</div><div class="line">                    console.log(&apos;1&apos;);</div><div class="line">                &#125;,</div><div class="line">                success: function (msg) &#123;</div><div class="line">                    console.log(&apos;3: &apos;,msg);</div><div class="line">                &#125;,</div><div class="line">                error: function (XMLHttpRequest, textStatus, errorThrown) &#123;</div><div class="line">                    console.log(&apos;4: &apos;,XMLHttpRequest, textStatus, errorThrown);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;;</div><div class="line">        &lt;/script&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>后台代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var http = require(&apos;http&apos;),</div><div class="line">    fs = require(&apos;fs&apos;),</div><div class="line">    url=require(&quot;url&quot;);</div><div class="line"></div><div class="line">http.createServer(function(req, res) &#123;</div><div class="line">    var query = url.parse(req.url, true).query;</div><div class="line">    var func = query.callback;</div><div class="line">    console.log(query);</div><div class="line">    var msg = `$&#123;func&#125;(&#123;&quot;txt&quot;: &quot;success&quot;&#125;)`;</div><div class="line">    res.write(msg);</div><div class="line">    res.end();  </div><div class="line">&#125;).listen(9432);</div></pre></td></tr></table></figure></p>
+<p>运行结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1</div><div class="line">2:  &#123;txt: &quot;success&quot;&#125;</div><div class="line">3:  &#123;txt: &quot;success&quot;&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="POST跨域提交表单"><a href="#POST跨域提交表单" class="headerlink" title="POST跨域提交表单"></a>POST跨域提交表单</h2><p>CORS（跨域资源共享，Cross-Origin Resource Sharing），定义一种跨域访问的机制，可以让AJAX实现跨域访问。CORS允许一个域上的网络应用向另一个域提交跨域AJAX请求。实现此功能非常简单，只需由服务器发送一个响应标头即可。</p>
+<p>header(“Access-Control-Allow-Origin: *”);<br>header(“Access-Control-Allow-Origin: <a href="http://www.test2.com" target="_blank" rel="external">http://www.test2.com</a>“);</p>
+<p>CORS提供了一种跨域请求方案，但没有为安全访问提供足够的保障机制，如果需要信息的绝对安全，不要依赖CORS当中的权限制度，应当使用更多其它的措施来保障，比如OAuth2。CORS使用场景：</p>
+<ul>
+<li>CORS在移动终端支持的不错，可以考虑在移动端全面尝试</li>
+<li>jsonp是get形式，承载的信息量有限，所以信息量较大时CORS是不二选择</li>
+<li>配合新的JSAPI(fileapi、xhr2等)一起使用，实现强大的新体验功能</li>
+</ul>
+<p>前台代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&lt;!doctype html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;meta charset=&quot;utf-8&quot; /&gt;</div><div class="line">        &lt;title&gt;跨域&lt;/title&gt;</div><div class="line">        &lt;script src=&quot;./jquery.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">        &lt;script&gt;</div><div class="line">        window.onload = function() &#123;</div><div class="line">            $.ajax(&#123;</div><div class="line">                url: &quot;http://localhost:9432&quot;,</div><div class="line">                type: &quot;post&quot;,</div><div class="line">                dataType: &quot;json&quot;,</div><div class="line">                data: &#123;param: &apos;参数&apos;&#125;,</div><div class="line">                success: function (msg) &#123;</div><div class="line">                    console.log(&apos;3: &apos;,msg);</div><div class="line">                &#125;,</div><div class="line">                error: function (XMLHttpRequest, textStatus, errorThrown) &#123;</div><div class="line">                    console.log(&apos;4: &apos;,XMLHttpRequest, textStatus, errorThrown);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;;</div><div class="line">        &lt;/script&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>后台代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">var http = require(&apos;http&apos;),</div><div class="line">    fs = require(&apos;fs&apos;),</div><div class="line">    url=require(&quot;url&quot;);</div><div class="line"></div><div class="line">http.createServer(function(req, res) &#123;</div><div class="line">    res.writeHead(200,&#123;&quot;Access-Control-Allow-Origin&quot;:&quot;*&quot;&#125;);</div><div class="line">    // res.setHeader(&quot;Access-Control-Allow-Origin&quot;,&quot;*&quot;);</div><div class="line"></div><div class="line">    // 设置接收数据编码格式为 UTF-8</div><div class="line">    req.setEncoding(&apos;utf-8&apos;);</div><div class="line">    //POST &amp; GET ： name=zzl&amp;email=zzl@sina.com</div><div class="line">    var postData = &quot;&quot;;</div><div class="line">    // 数据块接收中</div><div class="line">    req.addListener(&quot;data&quot;, function (postDataChunk) &#123;</div><div class="line">        postData += postDataChunk;</div><div class="line">    &#125;);</div><div class="line">    // 数据接收完毕，执行回调函数</div><div class="line">    req.addListener(&quot;end&quot;, function () &#123;</div><div class="line">        console.log(&apos;数据接收完毕&apos;);</div><div class="line">        //GET &amp; POST  ////解释表单数据部分&#123;name=&quot;zzl&quot;,email=&quot;zzl@sina.com&quot;&#125;</div><div class="line">        var params = querystring.parse(postData);</div><div class="line">        console.log(params);</div><div class="line">    &#125;);</div><div class="line">    var msg = `&#123;&quot;txt&quot;: &quot;success&quot;&#125;`;</div><div class="line">    res.write(msg);</div><div class="line">    res.end();</div><div class="line">&#125;).listen(9432);</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/26/findjob-javascript1/" itemprop="url">
+                  JavaScript-基础知识
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-26T14:23:17+08:00" content="2017-08-26">
+              2017-08-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/FJ/" itemprop="url" rel="index">
+                    <span itemprop="name">FJ</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>数据类型</p>
+<p>  6种数据类型，其中包括5个基本数据类型：String、Number、Boolean、Null、Undefined，按值访问；1个复杂数据类型：Object，按引用访问。</p>
+</li>
+<li><p>html允许跨域的标签</p>
+<p>  script、link、img、video、audio、frame、iframe、embed等有src属性的标签，以及object（data属性）、applet（code属性），css中的@font-face。</p>
+</li>
+<li><p>call、applay和bind的区别</p>
+<p>  bind通常用来重新绑定函数体中的this并放回一个具有指定this的函数，多次bind是无效的。call和apply则表示重新指定this并调用返回结果，区别在于call采用多个实参的方式传参，apply则是使用一个数组。</p>
+<p>  共同点：第一个参数指定为this，第二个参数起为参数传递。</p>
+<p>  不同点：bind是用来返回具有特定this的函数，call和apply都是改变上下文中的this并立即执行这个函数。</p>
+</li>
+<li><p>单页应用(SPA)和多页应用(MPA)</p>
+<p>  单页应用将所有的活动局限于一个Web页面中，仅在该Web页面初始化时加载相应的HTML、JavaScript和CSS。一旦页面加载完成了，SPA不会因为用户的操作而进行页面的重新加载或跳转。取而代之的是利用JavaScript动态的变换HTML的内容，从而实现UI与用户的交互。由于避免了页面的重新加载，SPA可以提供较为流畅的用户体验，但不利于SEO。MVVM这类最适合做单页面应用。</p>
+<p>  多页面一般每个页面都有一个入口页面，页面跳转用普通的<code>&lt;a href=\&quot;\&quot;&gt;&lt;/a&gt;</code>，会进行整个页面的刷新。</p>
+</li>
+<li><p>发布订阅模式</p>
+<p>  订阅发布模式定义了一种一对多的依赖关系，让多个订阅者对象同时监听某一个主题对象。这个主题对象在自身状态变化时，会通知所有订阅者对象，使它们能够自动更新自己的状态。当一个对象的改变需要同时改变其它对象，而且它还不知道具体有多少对象需要改变时，就可以使用订阅发布模式了。</p>
+<p>  观察者模式与发布订阅模式很像，虽然两种模式都存在订阅者和发布者（具体观察者可认为是订阅者、具体目标可认为是发布者），区别是观察者模式是由具体目标调度的，而发布订阅模式是统一由调度中心调的，所以观察者模式的订阅者与发布者之间是存在依赖的，而发布订阅模式则不会。</p>
+</li>
+<li><p>纯函数</p>
+<p>  纯函数是这样一种函数，即相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用，JavaScript中指不依赖于且不改变它作用域之外的变量状态的函数。只要是跟函数外部环境发生的交互就都是副作用，副作用可能包含但不限于：</p>
+<blockquote>
+<p>更改文件系统<br>往数据库插入记录<br>发送一个 http 请求<br>可变数据<br>打印/log等IO操作<br>获取用户输入<br>DOM 查询<br>访问系统状态<br>访问系统时钟</p>
+</blockquote>
+</li>
+<li><p>属性特性</p>
+<p>  ES5定义了一个名叫“属性描述符”的对象，用于描述属性的各种特征，只能在Object.defineProperty或Object.defineProperties中使用。属性描述符对象有：</p>
+<p>  4个属性：</p>
+<blockquote>
+<p>configurable: 可配置性，表示能否修改属性特性，能否把属性修改为访问器属性，或者能否通过delete删除属性从而重新定义属性，默认true。设置为false后，再调用Object.defineProperty修改属性特性都会报错。<br>enumerable: 可枚举性，表示能否通过for-in遍历得到属性，默认true。<br>writable: 可写性，表示能否修改属性的值，默认为true。<br>value: 数据属性，表示属性的值，默认为undefined。</p>
+</blockquote>
+<p>  2个存取器属性，分别是get和set，可以代替value和writable，存取器和value、writable不能同时存在：</p>
+<blockquote>
+<p>get: 在读取属性时调用的函数，只指定get则表示属性为只读属性，默认值为undefined。<br>set: 在写入属性时调用的函数，只指定set则表示属性为只写属性，默认值为undefined。</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">// 修改obj的name属性特性</div><div class="line">Object.defineProperty(obj, &apos;name&apos;, &#123;</div><div class="line">    writable: false,</div><div class="line">    value: &apos;Tom&apos;,</div><div class="line">)&#125;;</div><div class="line">// 一次修改obj的多个属性特性</div><div class="line">Object.defineProperties(obj, &#123;</div><div class="line">    _year: &#123;</div><div class="line">        value: 2017,</div><div class="line">    &#125;,</div><div class="line">    edition: &#123;</div><div class="line">        value: 1,</div><div class="line">        writable: true,</div><div class="line">    &#125;,</div><div class="line">    year: &#123;</div><div class="line">        get: function() &#123;</div><div class="line">            return this._year;</div><div class="line">        &#125;,</div><div class="line">        set: function() &#123; ... &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">// 读取属性特性</div><div class="line">Object.getOwnPrototypeDescriptor(obj, &apos;_year&apos;);</div><div class="line">// 读取所有属性特性</div><div class="line">Object.getOwnPrototypeDescriptors(obj);</div></pre></td></tr></table></figure>
+<p>  Object.preventExtensions(obj) 禁止扩展，禁止给对象添加属性和方法，原有的属性可修改<br>  Object.isExtensible(obj) 检查是否可扩展<br>  Object.seal() 密封对象，不可扩展、不可删除属性<br>  Object.isSeal() 检查是否密封<br>  Object.freeze() 冻结对象，不可扩展、不可删除、不可修改属性<br>  Object.isFrozen() 检查是否冻结</p>
+</li>
+<li><p>事件冒泡</p>
+<p>  事件冒泡，从内到外；事件捕获，从外到内；DOM事件流，从外到内再从内到外回到原点。事件冒泡允许多个操作被集中处理，把事件处理器添加到一个父级元素上，避免把事件处理器添加到多个子级元素上，可以优化性能，在页面动态添加新元素后，这些新增的元素也不用再绑定事件，它还可以让你在对象层的不同级别捕获事件。</p>
+<p>  blur、focus、load、unload不冒泡。使用addEventListener绑定事件的方法第三个参数可以控制事件触发顺序，true为事件捕获，false为事件冒泡，默认为false。使用attatchEvent绑定事件的方法不能控制事件触发顺序。</p>
+<p>  阻止事件冒泡不能阻止对象默认行为，如submit按钮会提交表单数据。</p>
+<p>  事件对象：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">event.keyCode // 返回keydown何keyup事件发生的时候按键的代码</div><div class="line">event.target // 发生事件的目标元素</div><div class="line">event.currentTarget // 当前处理事件的元素</div></pre></td></tr></table></figure>
+<p>  阻止冒泡：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">event.stopPropagation();</div><div class="line">event.stopImmediatePropagation(); // 除了该事件的冒泡行为被阻止之外，该元素绑定的后序相同类型事件的监听函数的执行也将被阻止</div><div class="line">window.event.cancelBubble = true; // IE下</div></pre></td></tr></table></figure>
+<p>  阻止默认行为：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">event.preventDefault();</div><div class="line">window.event.returnValue = false; // IE下</div></pre></td></tr></table></figure>
+<p>  在body上处理事件：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">window.onload = function() &#123;</div><div class="line">  document.body.addEventListener(&apos;click&apos;, function(e)&#123;</div><div class="line">    console.log(e.target.id);</div><div class="line">  &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>cookie和session的区别与联系，怎么实现</p>
+<p>  cookie和session都是用来跟踪浏览器用户身份的会话方式。cookie数据保存在客户端，session数据保存在服务器端。考虑到安全应当使用session，考虑到减轻服务器性能方面，应当使用cookie。</p>
+<p>  如果web服务器端使用的是session，那么所有的数据都保存在服务器上，客户端每次请求服务器的时候会发送当前会话的sessionid，保存sessionid的方式可以采用cookie、url重写等方式，存储于浏览器内存中，服务器根据当前sessionid判断相应的用户数据标志，以确定用户是否登录或具有某种权限。由于数据是存储在服务器上面，所以你不能伪造，但是如果你能够获取某个登录用户的sessionid，用特殊的浏览器伪造该用户的请求也是能够成功的。sessionid是服务器和客户端链接时候随机分配的，一般来说是不会有重复，但如果有大量的并发请求，也不是没有重复的可能性。</p>
+<p>  如果浏览器使用的是cookie，那么所有的数据都保存在浏览器端，比如你登录以后，服务器设置了cookie用户名，那么当你再次请求服务器的时候，浏览器会将用户名一块发送给服务器，这些变量有一定的特殊标记。如果不设置过期时间，则表示这个cookie的生命期为浏览器会话期间，关闭浏览器窗口cookie就消失。如果设置了的过期时间，浏览器会将cookie保存在客户端的硬盘上，下次再访问该网站的时候，浏览器先检查有没有cookie，如果有的话就读取该cookie，然后发送给服务器。如果直接将cookie文件拷贝到别人的浏览器目录下面，浏览器是不认的，因为它有一个index.dat文件，存储了cookie文件的建立时间，以及是否有修改，所以必须要先有该网站的cookie文件，并且要从保证时间上骗过浏览器，才能保证拷贝的cookie能生效。所以，cookie是可以伪造的，使用cookie被攻击的可能性比较大。</p>
+</li>
+<li><p>Web Storage包括哪几种方式，区别是什么，没出现之前怎么做的</p>
+<p>  HTML5中的Web Storage包括了两种存储方式：sessionStorage和localStorage。在没有Web Storage之前，是通过Cookie来在客户端存储数据的。</p>
+<p>  sessionStorage用于本地存储一个会话（session）中的数据，这些数据只有在同一个会话中的页面才能访问，刷新页面数据依旧存在，但是当会话结束也就是页面关闭后数据也随之销毁。因此sessionStorage不是一种持久化的本地存储，仅仅是会话级别的存储。</p>
+<p>  localStorage用于持久化的本地存储，可用于所有同源窗口或标签页（相同的域名、协议和端口），除非主动删除数据，否则数据是永远不会过期的。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Cookie</th>
+<th style="text-align:left">Web Storage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">4KB左右</td>
+<td style="text-align:left">5MB左右</td>
+</tr>
+<tr>
+<td style="text-align:left">自己封装setCookie、getCookie</td>
+<td style="text-align:left">提供setItem、getItem等api</td>
+</tr>
+<tr>
+<td style="text-align:left">可设置失效时间</td>
+<td style="text-align:left">localStorage永久保存、sessionStorage会话级别</td>
+</tr>
+<tr>
+<td style="text-align:left">HTTP规范的一部分，同源的请求都带Cookie</td>
+<td style="text-align:left">仅在客户端保存数据，不参与和服务器的通信</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>正则表达式中test、exec、match</p>
+<p>  <strong>test</strong>查找对应的字符串中是否存在模式，返回Boolean。当一个具有g标志的正则表达式调用test方法时，它的行为和exec相同，会从上个匹配的位置(index + 当前匹配项的长度)开始查找，这样我们就可以使用方法test来遍历字符串了。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var str = &quot;1a1b1c&quot;;</div><div class="line">var reg = new RegExp(&quot;1.&quot;, &quot;g&quot;);</div><div class="line">console.log(reg.test(str)); // true</div><div class="line">console.log(reg.test(str)); // true</div><div class="line">console.log(reg.test(str)); // true</div><div class="line">console.log(reg.test(str)); // false</div></pre></td></tr></table></figure>
+<p>  <strong>exec</strong>查找并返回当前的匹配结果，并以数组的形式返回，如果不存在模式则返回null，否则总是返回一个长度为1的数组，其值就是当前匹配项，还有两个属性：index为当前匹配项的位置；input就是参数字符串。exec方法受参数g的影响。若指定了g，则下次调用exec时，会从上个匹配的位置(index+当前匹配项的长度)开始查找。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var str = &quot;1a1b1c&quot;;</div><div class="line">var reg = new RegExp(&quot;1.&quot;, &quot;g&quot;);</div><div class="line">console.log(reg.exec(str)); // [&quot;1a&quot;, index: 0, input: &quot;1a1b1c&quot;]</div><div class="line">console.log(reg.exec(str)); // [&quot;1b&quot;, index: 2, input: &quot;1a1b1c&quot;]</div></pre></td></tr></table></figure>
+<p>  <strong>match</strong>是String对象的一个方法。match这个方法有点像exec，但exec是RegExp对象的方法。二者有一个不同点，就是对参数g的解释。如果指定了参数g，那么match一次返回所有的结果组成的数组，没有匹配则返回null。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var str = &quot;1a1b1c&quot;;</div><div class="line">var reg = new RegExp(&quot;1.&quot;, &quot;g&quot;);</div><div class="line">console.log(str.match(reg)); // [&quot;1a&quot;, &quot;1b&quot;, &quot;1c&quot;]</div></pre></td></tr></table></figure>
+</li>
+<li><p>dom ready 的实现</p>
+<p>  window.onload事件是等到页面上的所有资源被加载才激活，包括页面上的许多图片、音乐或falsh等资源。如果要做绑定事件、DOM操作某节点等事情，使用window.onload有点太“迟”了，比较影响用户体验。为了解决这个问题，Firefox为DOM纳入一个全新事件DOMContentLoaded，也就是后来所说的DOMReady，是在DOM树构建完毕执行，无需等待其它资源的加载，因此是在onload前加载的。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">// DOM已加载，比window.onload快，可以有多个，按序执行</div><div class="line">jQuery(document).ready(function() &#123;</div><div class="line">    ...</div><div class="line">&#125;);</div><div class="line">// 也是在页面所有元素加载完毕后执行的，但是可加载多个函数，并且可以做到js和html完全分离</div><div class="line">$(window).load(function() &#123;</div><div class="line">    ...</div><div class="line">&#125;);</div><div class="line">$(window).load(function() &#123;</div><div class="line">    ...</div><div class="line">&#125;);</div><div class="line">// 页面关闭时引发</div><div class="line">$(window).unload(function() &#123;</div><div class="line">    ...</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// IE浏览器没有添加DOMContentLoaded事件，以下是jQuery对该事件的兼容性实现</div><div class="line">function domReady() &#123;</div><div class="line">    if (readyBound) return;</div><div class="line">    readyBound = true;</div><div class="line">    if (document.addEventListener) &#123;// 对于非IE的处理</div><div class="line">        document.addEventListener(&quot;DOMContentLoaded&quot;, function() &#123;</div><div class="line">            document.removeEventListener(&quot;DOMContentLoaded&quot;, arguments.callee, false);</div><div class="line">            jQuery.ready();</div><div class="line">        &#125;, false);</div><div class="line">    &#125; else if (document.attachEvent) &#123;// 对于IE的处理</div><div class="line">        // 如果是在iframe中，通过document的onReadyStateChange实现</div><div class="line">        document.attachEvent(&quot;onReadyStateChange&quot;, function() &#123;</div><div class="line">            if (document.readyState === &quot;complete&quot;) &#123;</div><div class="line">                document.detachEvent(&quot;onReadyStateChange&quot;, arguments.callee);</div><div class="line">                jQuery.ready();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        // 如果页面不在iframe中，通过setTimeout不断调用documentElement的doScroll方法直到调用成功</div><div class="line">        if (document.documentElement.doScroll &amp;&amp; typeof window.frameElement === &quot;undefined&quot;) &#123;</div><div class="line">            (function() &#123;</div><div class="line">                if (jQuery.isReady) return;</div><div class="line">                try &#123;</div><div class="line">                    document.documentElement.doScroll(&quot;left&quot;);</div><div class="line">                &#125; catch(error) &#123;</div><div class="line">                    setTimeout(arguments.callee, 0);</div><div class="line">                    return;</div><div class="line">                &#125;</div><div class="line">                jQuery.ready();</div><div class="line">            &#125;)();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    jQuery.event.add(window, &quot;load&quot;, jQuery.ready);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>img标签的图片怎么占高</p>
+<p>  img外层要有div，如果已知图片宽高可直接指定div的宽高，然后将img的width样式设成100%。也可以使用预览图占位。</p>
+<p>  获取图片原始尺寸：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">// js获取</div><div class="line">var img = document.getElementsByTagName(&apos;img&apos;)[0];</div><div class="line">function getImgNaturalDimensions(img, callback) &#123;</div><div class="line">    var nWidth, nHeight</div><div class="line">    if (img.naturalWidth) &#123; // 现代浏览器</div><div class="line">        nWidth = img.naturalWidth</div><div class="line">        nHeight = img.naturalHeight</div><div class="line">    &#125; else &#123; // IE6/7/8</div><div class="line">        // js创建一个Image</div><div class="line">        var imgae = new Image();</div><div class="line">        image.src = img.src;</div><div class="line">        image.onload = function() &#123;</div><div class="line">            callback(image.width, image.height);</div><div class="line">        &#125;</div><div class="line">        // jQuery创建img</div><div class="line">        $(&quot;&lt;img/&gt;&quot;).attr(&quot;src&quot;, $(img).attr(&quot;src&quot;)).load(function() &#123;</div><div class="line">            callback(image.width, image.height);</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    return [nWidth, nHeight];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>js跨域的解决办法</p>
+<p>  浏览器都有一个同源策略，其限制之一是不能通过ajax的方法去请求不同源中的文档；第二是限制浏览器中不同域的框架之间是不能进行js的交互操作的。但是不同的框架之间（父子或同辈），是能够获取到彼此的window对象的，但却不能使用获取到的window对象的属性和方法，<strong>postMessage方法除外，</strong>可以当做是只能获取到一个几乎无用的window对象。只要协议、域名、端口有任何一个不同，都被当作是不同的域。要解决跨域的问题，我们可以使用以下几种方法：</p>
+<p>  <strong>方式一、通过jsonp跨域</strong></p>
+<p>  jsonp是利用<code>&lt;script&gt;</code>标签可以引入不同域上的js脚本文件来实现的，通过script标签引入一个js文件，这个js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。所以jsonp是需要服务器端的页面进行相应的配合的。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">js原生写法，通过http://example.com/data.php?callback=dosomething得到的js文件，就是我们之前定义的dosomething函数,并且它的参数就是我们需要的json数据，这样就跨域获得了我们需要的数据。</div><div class="line">*/</div><div class="line">&lt;script&gt;</div><div class="line">    function dosomething(jsondata) &#123;</div><div class="line">        // 相应操作</div><div class="line">    &#125;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script src=&quot;http://example.com/data.php?callback=dosomething&quot;&gt;&lt;/script&gt;</div><div class="line"></div><div class="line">/*</div><div class="line">jQuery写法，jQuery会自动生成一个全局函数来替换callback=?中的问号，之后获取到数据后又会自动销毁。$.getJSON方法会自动判断是否跨域，不跨域就调用普通的ajax方法，跨域会以异步加载js文件的形式来调用jsonp的回调函数。</div><div class="line">*/</div><div class="line">&lt;script&gt;</div><div class="line">    $.getJSON(&apos;http://example.com/data.php?callback=?&apos;, function(jsondata)&#123;</div><div class="line">        // 相应操作</div><div class="line">    &#125;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>  <br></p>
+<p>  <strong>方式二、通过修改document.domain来跨子域</strong></p>
+<p>  针对不同域的框架这种情况，是无法通过在页面中书写js代码来获取iframe中的东西的，这个时候可以使用document.domain，把这两个页面的document.domain都设成相同的域名就可以了。但要注意，只能把document.domain设置成自身或更高一级的父域，且主域必须相同，如果当前文档的domain就是要设置的域名，还是必须显示的设置<br>  document.domain。这样我们就可以通过js访问到iframe中的各种属性和对象了。</p>
+<p>  <code>http://www.example.com/a.html</code>中：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;iframe src=&quot;http://example.com/b.html&quot; id=&quot;iframe&quot; onLoad=&quot;test()&quot;&gt;&lt;/iframe&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    document.domain = &apos;example.com&apos;; // 设置成主域</div><div class="line">    function test() &#123;</div><div class="line">        alert(document.getElementById(&apos;iframe&apos;).contentWindow);</div><div class="line">    &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>  <code>http://example.com/b.html</code>中：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    // 在iframe载入的这个页面也设置document.domain，使之与主页面的document.domain相同</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>  但是如果想在a.html页面中通过ajax直接请求b.html页面，即使设置了相同的document.domain也还是不行的，修改document.domain的方法只适用于不同子域的框架间的交互。如果想通过ajax的方法去与不同子域的页面交互，除了使用jsonp的方法外，还可以用一个隐藏的iframe来做一个代理。原理就是让这个iframe载入一个与你想要通过ajax获取数据的目标页面处在相同域的页面，这个iframe中的页面是可以正常使用ajax去获取你要的数据的，然后通过修改document.domain的方法，通过js完全控制这个iframe，这样就可以让iframe去发送ajax请求，然后收到的数据我们也可以获取到。</p>
+<p>  <strong>方式三、使用window.name来进行跨域</strong></p>
+<p>  window.name属性有个特征，即在一个窗口(window)的生命周期内，窗口载入的所有的页面都是共享一个window.name的，即使这些页面是不同域的或url发生变化，每个页面对window.name都有读写的权限，window.name是持久存在一个窗口载入过的所有页面中的，不会因新页面的载入而进行重置。window.name的值只能是字符串的形式，最大能允许2M左右甚至更大的一个容量，具体取决于不同的浏览器，但一般是够用了。例如<code>www.example.com/a.html</code>页面里的js需要获取另一个位于不同域的页面<code>www.cnblogs.com/data.html</code>里的数据，示例代码如下：</p>
+<p>  <code>www.cnblogs.com/data.html</code>中：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    window.name = &apos;我就是页面a.html想要的数据，所有可以转化成字符串来传递的数据都可以在这里使用！！！&apos;;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>  <code>www.example.com/a.html</code>中：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;!doctype html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;meta charset=&quot;utf-8&quot; /&gt;</div><div class="line">        &lt;title&gt;window.name跨域&lt;/title&gt;</div><div class="line">        &lt;script&gt;</div><div class="line">            function getData() &#123;</div><div class="line">                var iframe = document.getElementById(&apos;proxy&apos;);</div><div class="line">                // 这个时候a.html与iframe已经是同源了，可以互相访问</div><div class="line">                iframe.onload = function() &#123;</div><div class="line">                    // 获取iframe里的window.name，也就是data.html页面给它设置的数据</div><div class="line">                    var data = iframe.contentWindow.name;</div><div class="line">                    alert(data);</div><div class="line">                &#125;;</div><div class="line">                // 这里的b.html为随便的一个页面，只要与a.html同源的就行</div><div class="line">                iframe.src = &apos;b.html&apos;;</div><div class="line">            &#125;</div><div class="line">        &lt;/script&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">        &lt;iframe id=&quot;proxy&quot; src=&quot;http://www.cnblogs.com/data.html&quot; style=&quot;display:none&quot; onload=&quot;getData()&quot; /&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>  <strong>方式四、使用HTML5中新引进的window.postMessage方法来跨域传送数据</strong></p>
+<p>  <code>window.postMessage(message, targetOrigin)</code>方法是html5新引进的特性，不支持IE6、7旧浏览器，可以向其它的window对象发送消息，无论这个window对象是属于同源或不同源，该方法的第一个参数message为要发送的消息，类型只能为字符串；第二个参数targetOrigin用来限定接收消息的那个window对象所在的域，如果不想限定域，可以使用通配符 * 。接收消息的window对象，通过监听自身的message事件来获取传过来的消息，消息内容储存在该事件对象的data属性中。</p>
+<p>  <code>test.com/a.html</code>中：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    function onLoad() &#123;</div><div class="line">        var iframe = document.getElementById(&quot;iframe&quot;);</div><div class="line">        var win = iframe.contentWindow;</div><div class="line">        // 向不同域发送消息</div><div class="line">        win.postMessage(&apos;我是来自页面a的消息！&apos;, &apos;*&apos;);</div><div class="line">    &#125;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;iframe id=&quot;iframe&quot; src=&quot;http://www.test.com/b.html&quot; onload=&quot;onLoad()&quot; /&gt;</div></pre></td></tr></table></figure>
+<p>  <code>www.test.com/b.html</code>中：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    window.onmessage = function(e) &#123;</div><div class="line">        e = e || event;</div><div class="line">        alert(e.data);</div><div class="line">    &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>有分号和没分号的区别</p>
+<p>  <a href="https://www.zhihu.com/question/20298345" target="_blank" rel="external">JavaScript 语句后应该加分号么？</a></p>
+<p>  通常情况下，解释器会自动添加分号，但有些时候不加分号还是容易引起解析错误，特别是在代码压缩的情况下，所以出于严谨考虑，还是推荐在语句结束时添加分号。还有不要把分号单单认为只是用来结束某段代码，它还可以用来隔离某段代码和别人划清界限。</p>
+<p>  如果遇到无法解析下去则javascript解析器会尝试给其添加一个分号，如果还是解析不了则报错。javascript解析器会尽可能多的去匹配，但也有几个例外，它们是retrun、break、continue，当javascript解析器解析到这几个关键字时，它不会把换行后的内容当成是自身的，而是直接在换行之前添加分号。</p>
+<p>  JavaScript自动加分号规则，有3条：</p>
+<blockquote>
+<p>当有换行符（包括含有换行符的多行注释），并且下一个token没法跟前面的语法匹配时，会自动补分号。<br>当有<code>}</code>时，如果缺少分号，会补分号。<br>当程序源代码结束时，如果缺少分号，会补分号。</p>
+</blockquote>
+<p>  真正会导致上下行解析出问题的 token 有5个：括号，方括号，正则开头的斜杠，加号，减号。实际代码中几乎没有用正则、加号、减号作为行首的情况，所以一行开头是括号或者方括号的时候加上分号就可以了，其它时候全部不需要。</p>
+<blockquote>
+<p>在return、break、continue、后自增、后自减五种语句中，换行符可以完全替代分号的作用。<br>var if do while for continue break return with switch throw try debugger几种关键字开头的语句，以及空语句，上一行加不加分号影响不大。<br>凡表达式语句和函数表达式语句，后面不加分号非常危险，情况极其复杂。<br>凡<code>(</code>和<code>[</code>开头的语句，前面不加分号极度危险。</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 例子1</div><div class="line">var a = 10;</div><div class="line">var b = 5;</div><div class="line">var c = a + b</div><div class="line">(a + b).toString() // b is not a function，同 var c = a + b(a + b).toString();</div><div class="line"></div><div class="line">// 例子2</div><div class="line">function test()&#123;</div><div class="line">  return </div><div class="line">  123;</div><div class="line">&#125;</div><div class="line">console.log(test()); // undefined，同 return;</div></pre></td></tr></table></figure>
+</li>
+<li><p>变量提升基础</p>
+<p>  注意js运行时先执行变量提升，然后在从上往下执行。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">相当于：</div><div class="line">var a;</div><div class="line">function a() &#123;&#125;</div><div class="line">a = 1;</div><div class="line">*/</div><div class="line">var a = 1;</div><div class="line">function a() &#123;&#125;</div><div class="line">console.log(a); // 输出 1</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">相当于：</div><div class="line">var a;</div><div class="line">a = &#123;</div><div class="line">    x: &apos;x&apos;,</div><div class="line">    a: a, // 此时a是undefined</div><div class="line">&#125;;</div><div class="line">*/</div><div class="line">var a = &#123;</div><div class="line">    x: &apos;x&apos;,</div><div class="line">    a: a,</div><div class="line">&#125;;</div><div class="line">console.log(a); // 输出 &#123;x: &quot;x&quot;, a: undefined&#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = &#123;x:&apos;x&apos;&#125;;</div><div class="line">a.a = a;</div><div class="line">console.log(a); // 输出 &#123;x: &quot;x&quot;, a: &#123;…&#125;&#125; a可以无限展开</div></pre></td></tr></table></figure>
+</li>
+<li><p>prototype基础</p>
+<p>  任何对象都有<code>__proto__</code>，只有函数对象才有<code>prototype</code>，prototype.constructor指回自己，函数被当作构造函数创建实例时它的prototype将作为实例的<code>__proto__</code>。在定义prototype是显示的将constructor指向函数自己，否则constructor将指向Object，通过constructor已经无法确定对象的类型了。还有显示定义了constructor后在对象实例中是可枚举的。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function feed() &#123;</div><div class="line">    this.a = &apos;hello&apos;;</div><div class="line">&#125;</div><div class="line">feed.a = &apos;word&apos;;</div><div class="line">var f = new feed();</div><div class="line">console.log(f.a); // 输出 &apos;hello&apos;</div><div class="line">console.log(f.__proto__.a); // 输出 undefined</div><div class="line">console.log(f.__proto__.constructor.a); // 输出 &apos;word&apos;</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function feed() &#123;</div><div class="line">    this.a = &apos;hello&apos;;</div><div class="line">&#125;</div><div class="line">feed.prototype = &#123;</div><div class="line">    b: &apos;www&apos;,</div><div class="line">&#125;;</div><div class="line">console.log(feed.prototype.constructor); // 输出 ƒunction Object() &#123; [native code] &#125;</div><div class="line">feed.prototype = &#123;</div><div class="line">    constructor: feed,</div><div class="line">    b: &apos;www&apos;,</div><div class="line">&#125;;</div><div class="line">console.log(feed.prototype.constructor); // 输出 ƒunction feed() &#123; this.a = &apos;hello&apos;; &#125;</div><div class="line">var f = new feed();</div><div class="line">for(var key in f) &#123;</div><div class="line">    console.log(key); // 依次输出 a、constructor、b</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>左值和右值</p>
+<p>  按字面意思，通俗地说，以赋值符号=为界，=左边的就是左值，=右边就是右值。更深一层，可以将L-value的L，理解成Location，表示定位、地址。将R-value的R理解成 Read，表示读取数据。现在的计算机数据放在内存。内存有两个很基本的属性：内存地址和内存里面放的数据。想象完全一样的箱子。每个箱子有个编号，用来区分到底是哪个箱子，箱子里面可以放东西。内存地址相当于箱子的编号，内存的数据，相当于箱子里面放的东西。变量名编译之后，会映射成内存地址。操作a=b的含义，其实就是将”b地址内存里面的数据”，放到”a地址内存”中。</p>
+<p>  可以放在赋值符号左边的变量，即具有对应的可以由用户访问的存储单元，并且能够由用户去改变其值的量。左值表示存储在计算机内存的对象，而不是常量或计算的结果。或者说左值是代表一个内存地址值，并且通过这个内存地址，就可以对内存进行读并且写（主要是能写）操作；这也就是为什么左值可以被赋值的原因了。相对应的还有右值：当一个符号或者常量放在操作符右边的时候，计算机就读取他们的“右值”，也就是其代表的真实值。简单来说就是，左值相当于地址值，右值相当于数据值。右值指的是引用了一个存储在某个内存地址里的数据。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1 = 2; // Uncaught ReferenceError: Invalid left-hand side in assignment</div><div class="line">const a; // Uncaught SyntaxError: Missing initializer in const declaration</div><div class="line">const b = 1;</div><div class="line">b = 2; // Uncaught TypeError: Assignment to constant variable</div></pre></td></tr></table></figure>
+</li>
+<li><p>undefined</p>
+<p>  undefined 表示一个未声明的变量，或已声明但没有赋值的变量，或一个并不存在的对象属性，函数没有返回值时，默认返回undefined。这是undefined的几种典型用法，而判断一个变量是不是undefined，用typeof函数，typeof函数主要是返回的是字符串，主要有：”number”、”string”、”boolean”、”object”、”function”、”undefined”。注意对于未声明的变量，typeof 也会返回undefined。</p>
+<p>  null 是一个空的对象引用，undefined是声明但没有被赋值的变量，利用这两个就可以区分空对象指针和未经初始化的变量。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">console.log(null == undefined); // true</div><div class="line">console.log(null === undefined); // false</div></pre></td></tr></table></figure>
+</li>
+<li><p>实现super</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">Object.prototype.mysuper = function()&#123;</div><div class="line">    // 返回一个对函数的引用，该函数调用了当前函数，不能使用arguments.callee.name，arguments.callee.name的值为mysuper</div><div class="line">    var caller = arguments.callee.caller;</div><div class="line">    var name;</div><div class="line">    for(var key in this)&#123;</div><div class="line">        if(this[key] === caller)&#123;</div><div class="line">            name = key;</div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    __proto = this.__proto__ || this.constructor.prototype;</div><div class="line">    return __proto[name]();</div><div class="line">&#125;</div><div class="line">function Class()&#123;</div><div class="line">    this.name = &quot;class&quot;;</div><div class="line">    this.setName = function(name)&#123;</div><div class="line">        this.name = name;</div><div class="line">    &#125;</div><div class="line">    this.getName = function()&#123;</div><div class="line">        return this.name;</div><div class="line">    &#125;</div><div class="line">    this.method = function() &#123;</div><div class="line">        console.log(&quot;父类方法&quot;);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">function Test()&#123;</div><div class="line">    this.getName = function()&#123;</div><div class="line">        return &apos;sub-&apos; +  this.mysuper();</div><div class="line">    &#125;</div><div class="line">    this.method = function() &#123;</div><div class="line">        this.mysuper();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">// 实现继承</div><div class="line">Test.prototype = new Class();</div><div class="line">Test.prototype.constructor = Test;</div><div class="line"></div><div class="line">var a = new Test();</div><div class="line">console.log(a.getName()); // sub-class</div><div class="line">a.method(); // 父类方法</div></pre></td></tr></table></figure>
+</li>
+<li><p>如何使用CSS实现如图效果，其中矩形：width=200px height=100px，三角形：底为40px 高为50px，并垂直居中于矩形右侧。</p>
+<img src="/2017/08/26/findjob-other/css1.png" title="效果图">
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">        * &#123;</div><div class="line">            margin: 0;</div><div class="line">            padding: 0;</div><div class="line">        &#125;</div><div class="line">        .rec &#123;</div><div class="line">            width: 200px;</div><div class="line">            height: 100px;</div><div class="line">            background-color: #000;</div><div class="line">        &#125;</div><div class="line">        /* 第一个 */</div><div class="line">        .main1 &#123;</div><div class="line">            position: relative;</div><div class="line">        &#125;</div><div class="line">        #triangle-right1 &#123;</div><div class="line">            width: 0;</div><div class="line">            height: 0;</div><div class="line">            border-top: 20px solid transparent;</div><div class="line">            border-left: 50px solid red;</div><div class="line">            border-bottom: 20px solid transparent;</div><div class="line">            position: absolute;</div><div class="line">            top: 50%;</div><div class="line">            left: 200px;</div><div class="line">            margin-top: -20px;</div><div class="line">        &#125;</div><div class="line">        /* 第二个 */</div><div class="line">        .main2 &#123;</div><div class="line">            margin-top: 10px;</div><div class="line">            display: -webkit-flex; </div><div class="line">            display: -o-flex;   // 欧鹏浏览器</div><div class="line">            display: -ms-flex;  // ie</div><div class="line">            display: -moz-flex; //火狐</div><div class="line">            display: flex;</div><div class="line">            align-items: center; // 侧轴，垂直方向</div><div class="line">        &#125;</div><div class="line">        #triangle-right2 &#123;</div><div class="line">            width: 0;</div><div class="line">            height: 0;</div><div class="line">            border-top: 20px solid transparent;</div><div class="line">            border-left: 50px solid red;</div><div class="line">            border-bottom: 20px solid transparent;</div><div class="line">        &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main1"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"rec"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"triangle-right1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main2"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"rec"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"triangle-right2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/26/findjob-react1/" itemprop="url">
+                  React-基础知识
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-26T14:22:55+08:00" content="2017-08-26">
+              2017-08-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/FJ/" itemprop="url" rel="index">
+                    <span itemprop="name">FJ</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>react的优缺点</p>
+<p>  优点：</p>
+<blockquote>
+<p>虚拟dom加diff算法减少dom操作来提高渲染性能<br>虚拟dom也帮助我们解决了跨浏览器问题<br>使用声明式语法JSX来重新定义视图开发<br>代码更加模块化，重用代码更容易<br>单向数据流，灵活、可预计、可控制<br>将DOM操作抽象为状态的改变<br>只从this.props和this.state生成HTML，非常的函数式编程<br>能够快速上手react-native开发ios或者android项目</p>
+</blockquote>
+<p>  缺点：</p>
+<blockquote>
+<p>本身只是View，如果是大型项目基本都需要加上React Router和Redux<br>大多数坑没踩出来  </p>
+</blockquote>
+</li>
+<li><p>AMD(Asynchronous Module Definition)、CMD(Common Module Definition)、CommonJS</p>
+<p>  AMD、CMD、CommonJS是JS模块化开发的标准，CommonJS是用在服务器端的，同步的，如Node.js。AMD、CMD是用在浏览器端的，异步的，如RequireJS和SeaJS。其中，AMD先提出，CMD是根据CommonJS和AMD基础上提出的。 </p>
+<p>  CommonJS 加载模块是同步的，所以只有加载完成才能执行后面的操作。像Node.js主要用于服务器的编程，加载的模块文件一般都已经存在本地硬盘，所以加载起来比较快，不用考虑异步加载的方式，所以CommonJS规范比较适用。但如果是浏览器环境，要从服务器加载模块，这是就必须采用异步模式，所以就有了AMD和CMD解决方案。 </p>
+<p>  AMD和CMD的区别有以下几点： </p>
+</li>
+</ul>
+<pre><code>&gt; **AMD推崇依赖前置，CMD推崇依赖就近。AMD和CMD最大的区别是对依赖模块的执行时机处理不同** 
+&gt; 对于依赖的模块AMD是提前执行，CMD是延迟执行。不过RequireJS从2.0开始，也改成可以延迟执行。 
+&gt; AMD的api默认是一个当多个用，CMD严格的区分推崇职责单一。例如：AMD里require分全局的和局部的。CMD里面没有全局的require，提供seajs.use()来实现模块系统的加载启动。CMD里每个API都简单纯粹。 
+
+UMD(Universal Module Definition 通用模块规范)，因为AMD，CommonJS规范是两种不一致的规范，虽然他们应用的场景也不太一致，但是人们仍然是期望有一种统一的规范来支持这两种规范。于是，UMD规范诞生了。
+</code></pre><ul>
+<li><p>为什么不能改变原有state，需要使用setState并传入修改的部分state，执行setState后怎么更新</p>
+<p>  是否调用render进行再次渲染是由state是否变化决定的。setState本质是通过一个队列机制实现state更新的，执行setState时，会将要更新的state合并后放入状态队列，而不会立刻更新state，队列机制可以批量更新state。如果不通过setState而直接修改this.state，那么这次state的变化不会放入状态队列中，下次调用setState再进行状态队列进行合并时，会忽略之前直接直接对state修改，这样就无法合并到这次变化，实际也就没有将想要的state更新上去。setState是异步的。</p>
+<p>  只要调用了setState，就会在合并后生成一个新的state，只要判断state指向的是否是同一个内存地址就知道state是否发生了变化，以此来决定是否进行render重新渲染。如果不用这种方式都直接操作this.state，也就是同一块内存，要侦测state是否发生变化（如angular中的deepwatch）来决定是否重新渲染会非常复杂和低效。redux的reducer中返回新的对象也是同理。react状态管理库还有redux-sagas、redux-observable、MobX等。</p>
+</li>
+<li><p>为什么组件中定义的方法要bind(this)</p>
+<p>  ES5里，function内部的this默认为window，在严格模式下，this为undefined。ES5的写法React.createClass会自动绑定每个方法的this到当前组件实例，ES6的写法class XXX extends Component则不会自动为方法绑定this。</p>
+<p>  bind()方法会创建一个新函数，当这个新函数被调用时，它的this值是传递给bind()的第一个参数，它的参数是bind()的其它参数和原本参数，这个函数不论怎么调用都有同样的this，也就是当前类的实例，否则this为undefined。绑定this的几种方式：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// 方式一</div><div class="line">&lt;div onClick=&#123;this.handleClick.bind(this)&#125;&gt;save&lt;/div&gt;</div><div class="line">// 方式二</div><div class="line">constructor() &#123;</div><div class="line">    ...</div><div class="line">    this.handleClick = this.handleClick.bind(this);</div><div class="line">&#125;</div><div class="line">// 方式三</div><div class="line">&lt;div onClick=&#123;() =&gt; this.handleClick()&#125;&gt;save&lt;/div&gt;</div><div class="line">// 方式四</div><div class="line">handleClik = () =&gt; &#123;&#125;</div><div class="line">&lt;div onClick=&#123;this.handleClick&#125;&gt;save&lt;/div&gt;</div><div class="line">// 方式五</div><div class="line">ES6 Decorator,core-decorator.js提供了@autobind修饰器</div></pre></td></tr></table></figure>
+<p>  方式一会在每次点击时通过bind创建一个新方法，一般使用方式二、方式三或方式四，其中方式三的箭头函数总是匿名的，如果打算移除监听事件可使用方式四。方式二在构造函数里绑定this后方法是属于实例的，而定义在类里的是非静态函数，在类的<code>prototype</code>上，实例的<code>__proto__</code>原型上。方式四使用箭头函数定义的方法也是这个效果。</p>
+</li>
+<li><p>数据获取为什么一定要在componentDidMount里面调用</p>
+<p>  不建议在constructor和componentWillMount里写的原因是：会阻碍组件的实例化，阻碍组件的渲染；在componentWillMount里面触发setState不会重新渲染，在componentDidMount里面会触发setState会重新渲染，有副作用的代码都会集中在componentDidMount方法里。</p>
+</li>
+<li><p>webpack 打包常用</p>
+<blockquote>
+<p>webpack.optimize.CommonsChunkPlugin 分离应用和第三方</p>
+<p>webpack.optimize.UglifyJsPlugin 清除打包后文件中的注释和copyright</p>
+<p>webpack.optimize.DedupePlugin 保证重复的代码不被打包到bundle文件</p>
+<p>extract-text-webpack-plugin 独立打包样式</p>
+<p>optimize-css-assets-webpack-plugin css去重 </p>
+<p>html-webpack-plugin 根据模板创建html入口文件，为引入的外部资源如script、link动态添加每次compile后的hash，防止引用缓存的外部文件问题</p>
+<p>require.ensure 代码分割，可跟react-router的getComponent配合使用</p>
+</blockquote>
+<p>  常用loader：style-loader、css-loader、less-loader、url-loader、file-loader、babel-loader、react-hot</p>
+</li>
+<li><p>redux-thunk源码</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">// ES6 写法</div><div class="line">function createThunkMiddleware(extraArgument) &#123;</div><div class="line">  return (&#123; dispatch, getState &#125;) =&gt; next =&gt; action =&gt; &#123;</div><div class="line">    if (typeof action === &apos;function&apos;) &#123;</div><div class="line">      return action(dispatch, getState, extraArgument);</div><div class="line">    &#125;</div><div class="line">    return next(action);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// ES5写法</div><div class="line">function createThunkMiddleware(extraArgument) &#123;</div><div class="line">  return function (_ref) &#123;</div><div class="line">    var dispatch = _ref.dispatch,</div><div class="line">        getState = _ref.getState;</div><div class="line">    return function (next) &#123;</div><div class="line">      return function (action) &#123;</div><div class="line">        if (typeof action === &apos;function&apos;) &#123;</div><div class="line">          return action(dispatch, getState, extraArgument);</div><div class="line">        &#125;</div><div class="line">        return next(action);</div><div class="line">      &#125;;</div><div class="line">    &#125;;</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>web端路由react-router和react-native的navigator有什么区别</p>
+<p>  纯属个人理解：web端路由是保证url和UI一致的，进行的是局部刷新；react-native的Navigator是管理导航堆栈的，让用户清楚的知道自己当前所处的页面和返回的页面，进行的是整屏刷新。</p>
+</li>
+<li><p>Vue，React，Angular</p>
+<p>  Vue。轻量级框架，双向数据绑定，语法和原理所需要的学习成本不是很高。具有高覆盖率的文档，绝大部分操作已被记录在案。但是如果一个操作没有文档记录，能在线上找到解决方案的几率也很小，因为Vue不如Angular或React更流行。Vue也有被称为Flux架构实现的Vuex，移动端跨平台方案Weex使用Vue的语法，但是Weex并不太完善。</p>
+<p>  React。React通过使用VirtualDOM获得高效，单向数据流，可以使用JSX语法。与框架相关的Redux是一个非常棒的类Flux架构的实现，掌握React的知识后，可以直接上手基于ReactNative的移动客户端开发。随着React将会有一个能够向后兼容的重写版React Fiber的消息放出，React的”第二春”很快就会到来。</p>
+<p>  AngularJS。以HTML为中心，适配和扩展了传统的HTML来呈现动态内容，双向数据绑定，自定义指令，是一个比较完善的前端框架，适合大型项目。入门很容易，但框架复杂、深入后概念很多，学习中较难理解，文档例子非常少。使用脏检查，当watcher越来越多时会变得越来越慢。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1065,643 +2002,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/17/react-native-base3/" itemprop="url">
-                  React-Native-基础3
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-17T12:17:23+08:00" content="2017-06-17">
-              2017-06-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/React-Native/" itemprop="url" rel="index">
-                    <span itemprop="name">React Native</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>已经用react-native开发过3个项目，经过这段时间的使用，对react-native总结如下。</p>
-<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
-<li>个人感觉react-native的主要优点还是快速构建页面，无论是使用antd-mobile的组件库还是使用react-native官方提供的组件，都能相对快速的搭建页面，但是，无论使用哪种方式也都存在着同一个问题，就是样式问题，如果要完全按照UI设计做出一套页面，还是不太容易。</li>
-<li>个人感觉react-native在页面交互上还是比较方便的，可以通过组件、组件提供的方法进行事件的控制，如页面跳转、点击、关联刷新等，目前很少发现有不支持的事件。</li>
-<li>个人感觉，在android上开发的react-native项目，调试出一版ios的困难并不大，如果开发中使用的第三方依赖都是兼容ios的且不考虑ios适配问题，预计一周时间是可以调出一版兼容ios的。</li>
-<li>开源的第三方组件比较多，目前使用过的第三方依赖可参考<a href="/2017/04/02/react-native-dependencies/">React-Native-依赖</a>，而且已经确认友盟、bugtags都可以支持react-native。</li>
-</ul>
-<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><h3 id="项目名称修改不方便"><a href="#项目名称修改不方便" class="headerlink" title="项目名称修改不方便"></a>项目名称修改不方便</h3><p>react-native项目名称修改不方便，个人认为目前就是不能修改项目名称。使用react-native-cli初始化的项目，android目录和ios目录中都有很多地方使用了项目名称，不是修改根目录文件夹的名称就能修改项目名称的，因此如果想使用已有的稳定项目生成新的项目，只能先初始化一个新的项目，再手动移代码，很不方便。</p>
-<p>目前已经试验过针对android的项目名称修改的方法，参见<a href="/2016/11/30/react-native-base/">React-Native-基础1</a>中“项目名称修改”部分，但针对ios的项目名称修改还没有找到解决办法，因此还不敢使用这种方法。</p>
-<h3 id="不支持web端"><a href="#不支持web端" class="headerlink" title="不支持web端"></a>不支持web端</h3><p>直接使用react-native开发的项目，可以做到兼容android和ios，但不能运行在web端。react-native-web声称能将react-native开发的项目运行在web端，个人只试验过将直接初始化的项目运行在web端，但对于已经使用了很多第三方依赖的项目运行在web端报错了，想要将react-native开发的项目运行在web端不是那么容易的。京东是自己实现了从React Native向React JS进行转换的方案。</p>
-<h3 id="开发中常见错误"><a href="#开发中常见错误" class="headerlink" title="开发中常见错误"></a>开发中常见错误</h3><p>开发中常见两个错误，截图如下，目前只在开发环境有，打包后的生产环境暂时还没发现。开发环境下OOM错误非常频繁，查找react-native在github上的<a href="https://github.com/facebook/react-native/issues/13379" target="_blank" rel="external">issues列表</a>建议将使用图片的ListView换成FlatList。</p>
-<img src="/2017/06/17/react-native-base3/langPressIn.jpg" width="300" title="RESPONDER_ACTIVE_LONG_PRESS_IN错误">
-<img src="/2017/06/17/react-native-base3/oom.png" width="300" title="OOM错误">
-<h3 id="多个异步请求-redux-saga"><a href="#多个异步请求-redux-saga" class="headerlink" title="多个异步请求 redux-saga"></a>多个异步请求 redux-saga</h3><p>在业务逻辑比较复杂、需要多次网络请求及本地数据库操作的情况下，例如下面的业务，写出来的代码会很复杂，原因就是使用redux发起了多个异步action，除了图片上传，个人感觉应该是使用同步请求的逻辑会容易些，因为后面的处理是基于前一个请求结果进行的，但fetch没有同步请求方法，所以逻辑写起来就复杂些。目前已知的解决发起多个异步请求的方法有redux-sequence-action和redux-sage，redux-sequence-action在web端使用过，但感觉还是有些局限，redux-sage应该是比较好的解决方案，但目前还没研究过怎么使用。</p>
-<p>“带有图片的本地数据进行web端提交后，无论提交是否成功，都需要进行本地保存；如果提交成功，根据请求返回结果删除本地业务数据、更新图片关系表，再将图片上传到web端，并根据图片上传成功的返回结果更新本地图片关系表。”</p>
-<h3 id="打包耗时"><a href="#打包耗时" class="headerlink" title="打包耗时"></a>打包耗时</h3><p>打包问题，就像react-native项目有时需要很多次启动才能启动成功（最多一次启动了6、7次），打包通常也是需要多次，几乎没有一次就能打包成功的时候，这时候代码不能修改，只能干等，后期希望引入持续集成解决这个问题，也能解决使用不同机器打的包可能不一致的问题。</p>
-<h3 id="其它问题"><a href="#其它问题" class="headerlink" title="其它问题"></a>其它问题</h3><ul>
-<li>样式不好调整，如果要完全按照UI设计做出一套页面，还是不太容易，而且目前还做过屏幕适配，不知道好不好处理</li>
-<li>react-native版本升级有时变动较大，如0.44去掉了Navigator和BackAndroid，最主要的是许多第三方依赖对高版本rn支持的不好</li>
-<li>react-native或其它组件可能存在手机适配问题，目前发现的是在工程机“VT5000”上，ListView的Item如果包装了滑动删除，几乎无法触发Item的onPress事件</li>
-<li>开发环境和打包后的生产环境可能不一致，具体原因还不清楚，怀疑是开发时打开浏览器调试能使用了一些浏览器的解析功能，导致离开浏览器的打包后的生产环境可能存在问题</li>
-<li>数据库操作使用的<a href="https://github.com/andpor/react-native-sqlite-storage" target="_blank" rel="external">react-native-sqlite-storage</a>，个人感觉还是不太好用，多个查询的嵌套看上去很乱，写起来也不方便</li>
-<li>本人没有做过原生开发，不了解更新升级，京东在GMTC会议演讲中提到更新升级需要依赖第三方框架，在我目前的项目中更新升级时本地库的处理还没有查找解决方案</li>
-<li>Small等插件化框架是支持原生的，目前没有看到支持react-native的文档，有没有支持react-native插件化的框架还不清楚</li>
-<li>复杂场景下内存性能有瓶颈，页面跳转可能卡顿，有些偶发问题很难复现也不好定位原因，目前发现的是ListView中数据重复的问题，还没定位原因</li>
-<li>react-native项目运行时有时需要android studio先编译，这就需要保持开发人员android studio环境的一致，有时候我运行项目没问题，但其它人运行就有问题，需要打开android studio看一下编译信息</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/17/react-native-baidu-map-android/" itemprop="url">
-                  React-Native-Android使用百度地图
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-17T11:31:13+08:00" content="2017-06-17">
-              2017-06-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/React-Native/" itemprop="url" rel="index">
-                    <span itemprop="name">React Native</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="百度地图key值"><a href="#百度地图key值" class="headerlink" title="百度地图key值"></a>百度地图key值</h2><ul>
-<li><a href="http://developer.baidu.com/，注册开发者帐号" target="_blank" rel="external">http://developer.baidu.com/，注册开发者帐号</a></li>
-<li>进入百度地图-&gt;API控制台，创建应用，应用类型选择Android SDK，输入发布版SHA1和包名提交即可</li>
-</ul>
-<img src="/2017/06/17/react-native-baidu-map-android/key.png" title="申请百度地图key">
-<h2 id="显示地图及定位"><a href="#显示地图及定位" class="headerlink" title="显示地图及定位"></a>显示地图及定位</h2><p>使用<a href="https://github.com/lovebing/react-native-baidu-map" target="_blank" rel="external">react-native-baidu-map</a>依赖。</p>
-<ul>
-<li><p><code>NPM install</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install react-native-baidu-map --save</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>android/setting.gradle</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">include &apos;:react-native-baidu-map&apos;</div><div class="line">project(&apos;:react-native-baidu-map&apos;).projectDir = new File(settingsDir, &apos;../node_modules/react-native-baidu-map/android&apos;)</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>android/app/build.gradle</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile project(&apos;:react-native-baidu-map&apos;)</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>MainApplication.java</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import org.lovebing.reactnative.baidumap.BaiduMapPackage;</div><div class="line"></div><div class="line">      return Arrays.&lt;ReactPackage&gt;asList(</div><div class="line">          ...</div><div class="line">          , new BaiduMapPackage(getApplicationContext())</div><div class="line">          ...</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>AndroidManifest.xml</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&lt;!--用于进行网络定位--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--用于访问GPS定位--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--获取运营商信息，用于支持提供运营商信息相关的接口--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--用于访问wifi网络信息，wifi信息会用于进行网络定位--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.CHANGE_WIFI_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--用于访问网络，网络定位需要上网--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--用于读取手机当前的状态--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--写入扩展存储，向扩展卡写入数据，用于写入缓存定位数据--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line"></div><div class="line">&lt;application</div><div class="line">  android:name=&quot;.MainApplication&quot;</div><div class="line">  android:allowBackup=&quot;true&quot;</div><div class="line">  android:label=&quot;@string/app_name&quot;</div><div class="line">  android:icon=&quot;@mipmap/ic_launcher&quot;</div><div class="line">  android:theme=&quot;@style/AppTheme&quot;&gt;</div><div class="line">  &lt;service android:name=&quot;com.amap.api.location.APSService&quot;&gt;&lt;/service&gt;</div><div class="line">  &lt;meta-data</div><div class="line">    android:name=&quot;com.baidu.lbsapi.API_KEY&quot;</div><div class="line">    android:value=&quot;baidu-key&quot;/&gt;&lt;!--百度地图key值--&gt;</div><div class="line">   ...</div></pre></td></tr></table></figure>
-</li>
-<li><p>Usage</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div></pre></td><td class="code"><pre><div class="line">import React, &#123; Component &#125; from &apos;react&apos;;</div><div class="line">import &#123;</div><div class="line">  View,</div><div class="line">  Text,</div><div class="line">  TouchableHighlight,</div><div class="line">  StyleSheet,</div><div class="line">  InteractionManager,</div><div class="line">  Dimensions,</div><div class="line">  Platform,</div><div class="line">  StatusBar,</div><div class="line">  NativeAppEventEmitter,</div><div class="line">  Alert,</div><div class="line">&#125; from &apos;react-native&apos;;</div><div class="line">import &#123; Button &#125; from &apos;antd-mobile&apos;;</div><div class="line">import &#123; MapView, MapTypes, MapModule, Geolocation &#125; from &apos;react-native-baidu-map&apos;;</div><div class="line"></div><div class="line">class BaiduLocationTest extends Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;</div><div class="line">      mayType: MapTypes.NORMAL,</div><div class="line">      zoom: 15,</div><div class="line">      center: &#123;</div><div class="line">        longitude: 113.981718,</div><div class="line">        latitude: 22.542449</div><div class="line">      &#125;,</div><div class="line">      trafficEnabled: false,</div><div class="line">      baiduHeatMapEnabled: false,</div><div class="line">      markers: [&#123;</div><div class="line">        longitude: 113.981718,</div><div class="line">        latitude: 22.542449,</div><div class="line">        title: &quot;Window of the world&quot;</div><div class="line">      &#125;,&#123;</div><div class="line">        longitude: 113.995516,</div><div class="line">        latitude: 22.537642,</div><div class="line">        title: &quot;&quot;</div><div class="line">      &#125;]</div><div class="line">    &#125;;</div><div class="line">    this.timer = null;</div><div class="line">  &#125;</div><div class="line">  componentDidMount() &#123;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">  componentWillUnmount () &#123;</div><div class="line">    this.timer &amp;&amp; clearInterval(this.timer);</div><div class="line">  &#125;</div><div class="line">  getLocation = () =&gt; &#123;</div><div class="line">    this.timer = setInterval(</div><div class="line">      () =&gt; &#123;</div><div class="line">        Geolocation.getCurrentPosition()</div><div class="line">          .then(data =&gt; &#123;</div><div class="line">            console.log(JSON.stringify(data));</div><div class="line">            this.setState(&#123;</div><div class="line">              marker: &#123;</div><div class="line">                latitude: data.latitude,</div><div class="line">                longitude: data.longitude,</div><div class="line">                title: &apos;Your location&apos;</div><div class="line">              &#125;,</div><div class="line">              center: &#123;</div><div class="line">                latitude: data.latitude,</div><div class="line">                longitude: data.longitude,</div><div class="line">                rand: Math.random()</div><div class="line">              &#125;</div><div class="line">            &#125;);</div><div class="line">          &#125;)</div><div class="line">          .catch(e =&gt;&#123;</div><div class="line">            console.warn(e, &apos;error&apos;);</div><div class="line">          &#125;)</div><div class="line">      &#125;,</div><div class="line">      2000</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;View style=&#123;styles.container&#125;&gt;</div><div class="line">        &lt;MapView</div><div class="line">          trafficEnabled=&#123;this.state.trafficEnabled&#125;</div><div class="line">          baiduHeatMapEnabled=&#123;this.state.baiduHeatMapEnabled&#125;</div><div class="line">          zoom=&#123;this.state.zoom&#125;</div><div class="line">          mapType=&#123;this.state.mapType&#125;</div><div class="line">          center=&#123;this.state.center&#125;</div><div class="line">          marker=&#123;this.state.marker&#125;</div><div class="line">          markers=&#123;this.state.markers&#125;</div><div class="line">          style=&#123;styles.map&#125;</div><div class="line">          onMarkerClick=&#123;(e) =&gt; &#123;</div><div class="line">            console.warn(JSON.stringify(e));</div><div class="line">          &#125;&#125;</div><div class="line">          onMapClick=&#123;(e) =&gt; &#123;</div><div class="line">          &#125;&#125;</div><div class="line">        &gt;</div><div class="line">        &lt;/MapView&gt;</div><div class="line">        &lt;View style=&#123;styles.row&#125;&gt;</div><div class="line">          &lt;Button style=&#123;styles.btn&#125; onClick=&#123;this.getLocation&#125;&gt;获取位置信息&lt;/Button&gt;</div><div class="line">        &lt;/View&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const styles = StyleSheet.create(&#123;</div><div class="line">  button: &#123;</div><div class="line">    margin: 20,</div><div class="line">  &#125;,</div><div class="line">  row: &#123;</div><div class="line">    flexDirection: &apos;row&apos;,</div><div class="line">    height: 40</div><div class="line">  &#125;,</div><div class="line">  container: &#123;</div><div class="line">    flex: 1,</div><div class="line">    justifyContent: &apos;flex-start&apos;,</div><div class="line">    alignItems: &apos;center&apos;,</div><div class="line">    backgroundColor: &apos;#F5FCFF&apos;,</div><div class="line">  &#125;,</div><div class="line">  map: &#123;</div><div class="line">    width: Dimensions.get(&apos;window&apos;).width,</div><div class="line">    height: Dimensions.get(&apos;window&apos;).height - 200,</div><div class="line">    marginBottom: 16</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">export default BaiduLocationTest;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<img src="/2017/06/17/react-native-baidu-map-android/map.gif" width="300" title="百度地图">
-<img src="/2017/06/17/react-native-baidu-map-android/location.png" width="500" title="位置信息">
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/17/fetch-timeout-wrapper/" itemprop="url">
-                  Fetch-Timeout-Wrapper
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-17T09:52:18+08:00" content="2017-06-17">
-              2017-06-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/React-Native/" itemprop="url" rel="index">
-                    <span itemprop="name">React-Native</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在使用react-native进行开发时，用到网络请求的地方，如果服务端未启动或存在网络问题，会弹出Network request failed，想自己设置客户端超时时间及超时提示信息，在react-native问题列表和网上查找后，已确认react-native用的fetch没有直接提供timeout设置的。</p>
-<p>在网上查到了使用ES6的promise封装fetch的方式，自己修改成如下timeout_fetch.js工具类，经过验证可以解决使用fetch时timeout的设置问题，将项目所有使用fetch的地方替换成使用timeout_fetch即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">config中配置了系统默认的请求超时时间，方便后期统一修改</div><div class="line">*/</div><div class="line">import &#123; default as config &#125; from &apos;../config/base&apos;;</div><div class="line"></div><div class="line">/**</div><div class="line"> * @param &#123;Promise&#125; fetch_promise fetch请求返回的Promise</div><div class="line"> * @param &#123;number&#125; timeout 超时时间，单位为毫秒</div><div class="line"> * @return 返回Promise</div><div class="line"> */</div><div class="line">function promise_fetch(fetch_promise, timeout) &#123;</div><div class="line">  let timeout_fn = null;</div><div class="line">  // 这是一个可以被reject的promise</div><div class="line">  let timeout_promise = new Promise((resolve, reject) =&gt; &#123;</div><div class="line">    timeout_fn = () =&gt; &#123;</div><div class="line">      const error = new Error(&apos;网络请求超时&apos;);</div><div class="line">      reject(error);</div><div class="line">    &#125;;</div><div class="line">  &#125;);</div><div class="line">  /*</div><div class="line">  这里使用Promise.race，以先返回的 resolve 或 reject 的结果来传入后续绑定的回调。</div><div class="line">  timeout不是请求连接超时的含义，它表示请求的response时间，fetch的timeout即使超时发生了，本次请求也不会被abort丢弃掉，它在后台仍然会发送到服务器端，只是本次请求的响应内容被丢弃而已。</div><div class="line">  */</div><div class="line">  const abortable_promise = Promise.race([</div><div class="line">    fetch_promise,</div><div class="line">    timeout_promise</div><div class="line">  ]);</div><div class="line">  setTimeout(function() &#123;</div><div class="line">    timeout_fn();</div><div class="line">  &#125;, timeout);</div><div class="line">  return abortable_promise;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * @param &#123;string&#125; url 请求地址</div><div class="line"> * @param &#123;object&#125; params 请求参数，其中timeout是超时设置，如果没有取全局配置的默认值</div><div class="line"> * @return 返回Promise</div><div class="line"> */</div><div class="line">export function timeout_fetch(url, params) &#123;</div><div class="line">  return new Promise((resolve, reject) =&gt; &#123;</div><div class="line">    promise_fetch(fetch(url, params), params.timeout ? params.timeout : config.clientTimeout * 1000)</div><div class="line">      .then((responseData) =&gt; &#123;</div><div class="line">          resolve(responseData);</div><div class="line">      &#125;)</div><div class="line">      .catch((err) =&gt; &#123;</div><div class="line">          reject(err);</div><div class="line">      &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/22/react-native-floder/" itemprop="url">
-                  React-Native-目录结构
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-22T09:15:02+08:00" content="2017-05-22">
-              2017-05-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/React-Native/" itemprop="url" rel="index">
-                    <span itemprop="name">React Native</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="项目目录"><a href="#项目目录" class="headerlink" title="项目目录"></a>项目目录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">jxtrq_rn                                </div><div class="line">  ├── /_test_                  # RN生成，测试目录</div><div class="line">  ├── /android                 # RN生成，android代码目录，具体见下图</div><div class="line">  ├── /ios                     # RN生成，代码目录，具体见下图</div><div class="line">  ├── /node_modules            # 自动生成，安装依赖的目录，不会被提交</div><div class="line">  ├── .babelrc                 # RN生成，Babel配置文件</div><div class="line">  ├── .buckconfig              # RN生成，Buck是Mac OS X和Linux使用的构建工具</div><div class="line">  ├── .flowconfig              # RN生成，Flow是一个静态的类型检查工具</div><div class="line">  ├── .gitattributes           # RN生成，配置Git对一个特定的子目录或子文件集运用那些设置项</div><div class="line">  ├── .gitignore               # RN生成，配置Git忽略提交的文件</div><div class="line">  ├── .watchmanconfig          # RN生成，Watchman用于监控文件变化，辅助实现工程修改所见即所得</div><div class="line">  ├── yarn.lock                # RN生成，Yarn是node包管理器，yarn.lock文件使程序在不同的机器上以同样的方式安装依赖</div><div class="line">  ├── package.json             # RN生成，用于描述项目的基本信息以及需要的依赖信息</div><div class="line">  ├── index.android.js         # RN生成，android入口文件</div><div class="line">  ├── index.ios.js             # RN生成，ios入口文件</div><div class="line">  |</div><div class="line">  ├── index.web.js             # 自定义，web入口文件</div><div class="line">  ├── CHANGELOG.md             # 自定义，版本更新日志</div><div class="line">  ├── README.md                # 自定义，项目运行说明</div><div class="line">  ├── /docs                    # 自定义，项目相关的说明目录</div><div class="line">  |     ├── /dev                    # 开发相关目录</div><div class="line">  |     |     ├── api                   # 接口相关目录</div><div class="line">  |     ├── /work                   # 工作内容、计划目录</div><div class="line">  |     └── /training               # 培训相关文档</div><div class="line">  └── /app                     # 自定义，项目主体RN代码</div><div class="line">        ├── config                  # 项目相关的配置信息，配置后台接口等</div><div class="line">        ├── resources               # 项目资源目录，目前主要是图片资源</div><div class="line">        ├── actions                 # redux的action的目录</div><div class="line">        ├── reducers                # redux的reducer的目录，一般与actions对应</div><div class="line">        ├── components              # 组件目录，这些组件在项目中属于展示组件，不直接关联redux</div><div class="line">        ├── containers              # 组件目录，这些组件在项目中属于智能组件，直接关联redux，里面再返回展示组件</div><div class="line">        ├── store                   # 初始化redux的目录</div><div class="line">        ├── utils                   # 相当于工具类</div><div class="line">        ├── styles                  # 项目公共样式、主题相关的目录</div><div class="line">        └── App.js                  # 平台无关的项目入口文件，通常根据条件决定显示欢迎页、登录页或主页</div></pre></td></tr></table></figure>
-<img src="/2017/05/22/react-native-floder/android.png" width="300" title="android目录截图">
-<img src="/2017/05/22/react-native-floder/ios.png" width="300" title="ios目录截图">
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/21/ant-design-mobile-notice/" itemprop="url">
-                  Ant Design Mobile 组件注意
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-21T00:03:42+08:00" content="2017-05-21">
-              2017-05-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Ant-Design/" itemprop="url" rel="index">
-                    <span itemprop="name">Ant Design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><ul>
-<li>Popover、Progress外面如果没有View并且给高度的话可能不显示，外层是ScrollView应该也可以显示</li>
-<li>Tabs最好指定activeKey否则可能有奇怪的返回第一个TabPane问题</li>
-<li>SwipeAction放在TouchableHighlight外，否则会报 undefined is not an object (evaluation ‘this.refs.swipeoutContent.measure’) 错误</li>
-</ul>
-<h2 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h2><ul>
-<li>PickerView 编辑不了，官方也没有给出RN上的demo</li>
-<li>Range 使用不了，直接红屏报错<code>Expected a component class,got [object Object]</code></li>
-<li>Steps 不能水平方向</li>
-<li>ListView中使用SwipeAction时效果不好，左右滑动会触发上下滑动，造成ListView滚动，不容易出现删除按钮，在部分Android机型上，目前已知的是“VT5000”上，点击时触发的是SwipeAction的onOpen方法，很少会触发ListView的onPress方法</li>
-<li>Tabs.TabPane 在官网上写的tab属性支持 React.Element，目前经过确认是不支持的</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1722,7 +2027,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -275,7 +275,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">156</span>
+              <span class="site-state-item-count">161</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -389,6 +389,641 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/28/react-dependencies/" itemprop="url">
+                  React-依赖
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-28T17:18:39+08:00" content="2017-04-28">
+              2017-04-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://github.com/facebookincubator/create-react-app" target="_blank" rel="external">create-react-app</a> 初始化空的react项目</p>
+<p><a href="http://leonshi.com/redux-saga-in-chinese/index.html" target="_blank" rel="external">redux-saga</a> 处理异步利器</p>
+<p><a href="https://github.com/jasonslyvia/redux-sequence-action" target="_blank" rel="external">redux-sequence-action</a> 按序发起action</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/07/react-native-open/" itemprop="url">
+                  React-Native-打开文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-07T16:32:03+08:00" content="2017-04-07">
+              2017-04-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Native/" itemprop="url" rel="index">
+                    <span itemprop="name">React Native</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="本地应用打开文件-react-native-file-opener"><a href="#本地应用打开文件-react-native-file-opener" class="headerlink" title="本地应用打开文件  react-native-file-opener"></a>本地应用打开文件  <a href="https://github.com/huangzuizui/react-native-file-opener" target="_blank" rel="external">react-native-file-opener</a></h2><ul>
+<li><p><code>NPM install</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save react-native-file-opener</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>IOS install</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在Xcode中，将node_modules/react-native-file-opener/ios/RNFileOpener.xcodeproj添加到项目的Libraries目录；</div><div class="line">将Libraries/RNFileOpener.xcodeproj/Products/libRNFileOpener.a拖拽到Build Phases -&gt; Link Binary With Libraries中。</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>Android install</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// file: android/settings.gradle</div><div class="line">...</div><div class="line">include &apos;:react-native-file-opener&apos;</div><div class="line">project(&apos;:react-native-file-opener&apos;).projectDir = new File(settingsDir, &apos;../node_modules/react-native-file-opener/android&apos;)</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// file: android/app/build.gradle</div><div class="line">...</div><div class="line">dependencies &#123;</div><div class="line">    ...</div><div class="line">    compile project(&apos;:react-native-file-opener&apos;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// file: MainActivity.java</div><div class="line">...</div><div class="line">import com.fileopener.FileOpenerPackage;//&lt;- import package</div><div class="line"></div><div class="line">public class MainActivity extends ReactActivity &#123;</div><div class="line">    @Override</div><div class="line">    protected List&lt;ReactPackage&gt; getPackages() &#123;</div><div class="line">        return Arrays.&lt;ReactPackage&gt;asList(</div><div class="line">            new MainReactPackage(),</div><div class="line">            new FileOpenerPackage() //&lt;- Add package</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>Usage</code><br>在上一篇<a href="/2017/04/03/react-native-upload/">React-Native-上传下载</a>例子的基础上，添加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">import FileOpener from &apos;react-native-file-opener&apos;;</div><div class="line">...</div><div class="line">class TestFileStream extends Component &#123;</div><div class="line">  ...</div><div class="line">  openFile(fileName) &#123;</div><div class="line">    const FilePath = Platform.OS === &apos;android&apos; ? dirs.DCIMDir + &apos;/&apos; + fileName : dirs.DocumentDir + &apos;/&apos; + fileName;</div><div class="line">    const FileMimeType = &apos;image/jpg&apos;;</div><div class="line">    FileOpener.open(</div><div class="line">        FilePath,</div><div class="line">        FileMimeType</div><div class="line">    ).then((msg) =&gt; &#123;</div><div class="line">        console.log(&apos;success!!&apos;)</div><div class="line">    &#125;,(err) =&gt; &#123;</div><div class="line">        console.log(&apos;打开失败:&apos;, err)</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line">export default TestFileStream;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<img src="/2017/04/07/react-native-open/open.gif" width="300" title="运行结果">
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/03/http-base/" itemprop="url">
+                  Http-基础
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-03T23:39:16+08:00" content="2017-04-03">
+              2017-04-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Http/" itemprop="url" rel="index">
+                    <span itemprop="name">Http</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写，是用于从万维网（WWW）服务器传输超文本到本地浏览器的传送协议。它基于TCP/IP通信协议来传递数据，是一个属于应用层的面向对象的协议，由于其简捷、快速的方式，适用于分布式超媒体信息系统。HTTP协议通常承载于TCP协议之上，有时也承载于TLS或SSL协议层之上，这个时候，就成了我们常说的HTTPS。HTTP协议是无状态协议，无状态是指协议对于事务处理没有记忆能力，如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。从HTTP/1.1起，默认都开启了Keep-Alive，保持连接特性，简单地说，当一个网页打开完成后，客户端和服务器之间用于传输HTTP数据的TCP连接不会关闭，如果客户端再次访问这个服务器上的网页，会继续使用这一条已经建立的连接。Keep-Alive不会永久保持连接，它有一个保持时间。HTTP协议永远都是客户端发起请求，服务器回送响应。这样就限制了使用HTTP协议，无法实现在客户端没有发起请求的时候，服务器将消息推送给客户端。</p>
+<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p>一次HTTP操作称为一个事务，其工作过程可分为四步：</p>
+<ul>
+<li>首先客户机与服务器需要建立连接。只要单击某个超级链接，HTTP的工作开始。</li>
+<li>建立连接后，客户机发送一个请求给服务器，请求方式的格式为：统一资源标识符（URL）、协议版本号，后边是MIME信息包括请求修饰符、客户机信息和可能的内容。</li>
+<li>服务器接到请求后，给予相应的响应信息，其格式为一个状态行，包括信息的协议版本号、一个成功或错误的代码，后边是MIME信息包括服务器信息、实体信息和可能的内容。</li>
+<li>客户端接收服务器所返回的信息通过浏览器显示在用户的显示屏上，然后客户机与服务器断开连接。</li>
+</ul>
+<p>如果在以上过程中的某一步出现错误，那么产生错误的信息将返回到客户端，有显示屏输出。对于用户来说，这些过程是由HTTP自己完成的，用户只要用鼠标点击，等待信息显示就可以了。</p>
+<h2 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h2><p>根据HTTP标准，HTTP请求可以使用多种请求方法。HTTP1.0定义了三种请求方法： GET, POST 和 HEAD方法。HTTP1.1新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT 方法。</p>
+<ul>
+<li>GET      – 请求指定的页面信息，并返回实体主体。</li>
+<li>HEAD     – 类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头</li>
+<li>POST     – 向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。</li>
+<li>PUT      – 从客户端向服务器传送的数据取代指定的文档的内容。</li>
+<li>DELETE   – 请求服务器删除指定的页面。</li>
+<li>CONNECT  – HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。</li>
+<li>OPTIONS  – 允许客户端查看服务器的性能。</li>
+<li>TRACE    – 回显服务器收到的请求，主要用于测试或诊断。</li>
+</ul>
+<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a><a href="http://www.runoob.com/http/http-status-codes.html" target="_blank" rel="external">状态码</a></h2><p>状态代码有三位数字组成，第一个数字定义了响应的类别，且有五种可能取值：</p>
+<ul>
+<li>1xx：指示信息–表示请求已接收，继续处理</li>
+<li>2xx：成功–表示请求已被成功接收、理解、接受</li>
+<li>3xx：重定向–要完成请求必须进行更进一步的操作</li>
+<li>4xx：客户端错误–请求有语法错误或请求无法实现</li>
+<li>5xx：服务器端错误–服务器未能实现合法的请求</li>
+</ul>
+<p>常见状态代码、状态描述、说明：</p>
+<p>1**(信息类)：表示接收到请求并且继续处理<br>100——客户必须继续发出请求<br>101——客户要求服务器根据请求转换HTTP协议版本</p>
+<p>2**(响应成功)：表示动作被成功接收、理解和接受<br>200——表明该请求被成功地完成，所请求的资源发送回客户端<br>201——提示知道新文件的URL<br>202——接受和处理、但处理未完成<br>203——返回信息不确定或不完整<br>204——请求收到，但返回信息为空<br>205——服务器完成了请求，用户代理必须复位当前已经浏览过的文件<br>206——服务器已经完成了部分用户的GET请求</p>
+<p>3**(重定向类)：为了完成指定的动作，必须接受进一步处理<br>300——请求的资源可在多处得到<br>301——本网页被永久性转移到另一个URL<br>302——请求的网页被转移到一个新的地址，但客户访问仍继续通过原始URL地址，重定向，新的URL会在response中的Location中返回，浏览器将会使用新的URL发出新的Request<br>303——建议客户访问其他URL或访问方式<br>304——自从上次请求后，请求的网页未修改过，服务器返回此响应时，不会返回网页内容，代表上次的文档已经被缓存了，还可以继续使用<br>305——请求的资源必须从服务器指定的地址得到<br>306——前一版本HTTP中使用的代码，现行版本中不再使用<br>307——申明请求的资源临时性删除</p>
+<p>4**(客户端错误类)：请求包含错误语法或不能正确执行<br>400——客户端请求有语法错误，不能被服务器所理解<br>401——请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用<br>402——保留有效ChargeTo头响应<br>403——禁止访问，服务器收到请求，但是拒绝提供服务<br>404——一个404错误表明可连接服务器，但服务器无法取得所请求的网页，请求资源不存在。eg：输入了错误的URL<br>405——用户在Request-Line字段定义的方法不允许<br>406——根据用户发送的Accept拖，请求资源不可访问<br>407——类似401，用户必须首先在代理服务器上得到授权<br>408——客户端没有在用户指定的饿时间内完成请求<br>409——对当前资源状态，请求不能完成<br>410——服务器上不再有此资源且无进一步的参考地址<br>411——服务器拒绝用户定义的Content-Length属性请求<br>412——一个或多个请求头字段在当前请求中错误<br>413——请求的资源大于服务器允许的大小<br>414——请求的资源URL长于服务器允许的长度<br>415——请求资源不支持请求项目格式<br>416——请求中包含Range请求头字段，在当前请求资源范围内没有range指示值，请求也不包含If-Range请求头字段<br>417——服务器不满足请求Expect头字段指定的期望值，如果是代理服务器，可能是下一级服务器不能满足请求长。</p>
+<p>5**(服务端错误类)：服务器不能正确执行一个正确的请求<br>500——服务器遇到错误，无法完成请求<br>501——未实现<br>502——网关错误<br>503——由于超载或停机维护，服务器目前无法使用，一段时间后可能恢复正常</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/03/base-concept/" itemprop="url">
+                  JavaScript-基础概念
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-03T11:08:24+08:00" content="2017-04-03">
+              2017-04-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h2><p>柯里化（Currying）是<strong>把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数</strong>，并且返回接受余下的参数且返回结果的新函数的技术。柯里化声称“如果你固定某些参数，你将得到接受余下参数的一个函数”。如对于有两个变量的函数yx，如果固定了 y = 2，则得到有一个变量的函数 2x。</p>
+<h2 id="不可变数据"><a href="#不可变数据" class="headerlink" title="不可变数据"></a>不可变数据</h2><p>不可变数据（Immutable Data）的思想就是，一旦创建就不能被修改的数据，所有对Immutable Data的改变，最终都会返回一份新复制的数据，各自的数据并不会互相影响。</p>
+<h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>函数式编程是一种编程范式，和面向对象的编程方式一样，是一种编程思想。它属于”结构化编程”的一种，<strong>主要思想是把运算过程尽量写成一系列嵌套的函数调用</strong>。它的原理将电脑运算视为函数的计算，它的基础是λ演算，λ演算的函数可以接受函数当作输入和输出。最主要的特征是，函数是第一等公民。和指令式编程相比，函数式编程强调函数的计算比指令的执行重要。和过程化编程相比，函数式编程里函数的计算可随时调用。函数式编程认为，只有纯的没有副作用的函数，才是合格的函数。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/03/react-native-upload/" itemprop="url">
+                  React-Native-上传下载
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-03T00:22:48+08:00" content="2017-04-03">
+              2017-04-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Native/" itemprop="url" rel="index">
+                    <span itemprop="name">React Native</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="文件的上传下载-react-native-fetch-blob"><a href="#文件的上传下载-react-native-fetch-blob" class="headerlink" title="文件的上传下载 react-native-fetch-blob"></a>文件的上传下载<a href="https://github.com/wkh237/react-native-fetch-blob" target="_blank" rel="external"> react-native-fetch-blob</a></h2><ul>
+<li><p><code>NPM install</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save react-native-fetch-blob</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>Automatically Link Native Modules</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">react-native link react-native-fetch-blob</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>AndroidManifest.xml</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot; /&gt;                                               </div><div class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt; </div><div class="line">...</div><div class="line">&lt;intent-filter&gt;</div><div class="line">    &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;</div><div class="line">    &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;</div><div class="line">    &lt;action android:name=&quot;android.intent.action.DOWNLOAD_COMPLETE&quot;/&gt;         </div><div class="line">&lt;/intent-filter&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>Notice</code><br>对于下载路径 RNFetchBlob.fs.dirs 的结论如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CacheDir:&quot;/data/user/0/com.gps/cache&quot; ---- ios需越狱；android需root权限才能看</div><div class="line">DocumentDir:&quot;/data/user/0/com.gps/files&quot; ---- ios需越狱；android需root权限才能看</div><div class="line">MainBundleDir:&quot;/data/user/0/com.gps&quot; ---- ios系统app才能用；android需root权限才能看</div><div class="line">DCIMDir:&quot;/storage/emulated/0/DCIM&quot; ---- 不支持ios；android的DCIM目录</div><div class="line">DownloadDir:&quot;/storage/emulated/0/Download&quot; ---- 不支持ios；android的Download目录</div><div class="line">MovieDir:&quot;/storage/emulated/0/Movies&quot; ---- 不支持ios；android的Download目录</div><div class="line">MusicDir:&quot;/storage/emulated/0/Music&quot; ---- 不支持ios；android的Download目录</div><div class="line">PictureDir:&quot;/storage/emulated/0/Pictures&quot; ---- 不支持ios；android的Download目录</div><div class="line">SDCardDir:&quot;/storage/emulated/0&quot; ---- 不支持ios；android的Download目录</div></pre></td></tr></table></figure>
+<p>  <strong>个人感觉下载时应该下载到DocumentDir或CacheDir中，这两个个目录是用户不可见的，只用当用户显示发出了保存到相册的动作时才应该把下载的图片放到相册，通过调用React Native 提供的CameraRoll可以达到这个效果，这样用户对相册中图片的任何操作才不会对系统产生影响。</strong></p>
+</li>
+<li><code>Usage</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div></pre></td><td class="code"><pre><div class="line">import React, &#123; Component &#125; from &apos;react&apos;;</div><div class="line">import &#123; View, Text, StyleSheet, ScrollView, Image, Platform, CameraRoll, TouchableHighlight, Dimensions &#125; from &apos;react-native&apos;;</div><div class="line">import &#123; Button &#125; from &apos;antd-mobile&apos;;</div><div class="line">import RNFetchBlob from &apos;react-native-fetch-blob&apos;;</div><div class="line">import Icon from &apos;react-native-vector-icons/FontAwesome&apos;;</div><div class="line"></div><div class="line">import Global from &apos;../styles/Global&apos;;</div><div class="line">import NavBar from &apos;./NavBar&apos;;</div><div class="line">import &#123; default as config &#125; from &apos;../config/base&apos;;</div><div class="line">import &#123; getCommonHeaders &#125; from &apos;../utils/fetchUtil&apos;;</div><div class="line"></div><div class="line">const dirs = RNFetchBlob.fs.dirs;</div><div class="line">const WINDOW_WIDTH = Dimensions.get(&apos;window&apos;).width;</div><div class="line">const WINDOW_HEIGHT = Dimensions.get(&apos;window&apos;).height;</div><div class="line"></div><div class="line">class TestFileStream extends Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;</div><div class="line">      downImageView: null,</div><div class="line">      fileList: [],</div><div class="line">    &#125;;</div><div class="line">    this.uploadFile = this.uploadFile.bind(this);</div><div class="line">    this.downloadFile = this.downloadFile.bind(this);</div><div class="line">    this.getFilesInfo = this.getFilesInfo.bind(this);</div><div class="line">    this.goBack = this.goBack.bind(this);</div><div class="line">  &#125;</div><div class="line">  goBack() &#123;</div><div class="line">    this.props.navigator.pop();</div><div class="line">  &#125;</div><div class="line">  uploadFile() &#123;</div><div class="line">    const data = &apos;&#123;\&quot;SERV_ID\&quot;:\&quot;&apos;+&apos;OPMS_EVENTATTACH_RECORD_PAGE&apos;+&apos;\&quot;,&apos;</div><div class="line">              + &apos;\&quot;FILE_CAT\&quot;:\&quot;&apos;+&apos;ATTACH_IMG&apos;+&apos;\&quot;,&apos;</div><div class="line">              + &apos;\&quot;DATA_ID\&quot;:\&quot;&apos;+&apos;0S8iwECYm1d68jb4FElvoKDb&apos;+&apos;\&quot;,&apos;</div><div class="line">              + &apos;\&quot;FILE_SORT\&quot;:&apos; + 0 +&apos;&#125;&apos;;</div><div class="line">    const commonHeader = getCommonHeaders();</div><div class="line">    const header = &#123;</div><div class="line">      &apos;ACCESS_TOKEN&apos;: commonHeader.ACCESS_TOKEN,</div><div class="line">      &apos;Content-Type&apos;: &apos;multipart/form-data&apos;,</div><div class="line">    &#125;;</div><div class="line">    RNFetchBlob.fetch(&apos;POST&apos;, `$&#123;config.applicationIpAndPort&#125;/file?data=$&#123;encodeURIComponent(data)&#125;`,</div><div class="line">      header,</div><div class="line">      [&#123;</div><div class="line">        name : &apos;Filedata&apos;,</div><div class="line">        filename : &apos;cdpImage.png&apos;,</div><div class="line">        data: RNFetchBlob.wrap(Platform.OS === &apos;android&apos; ? &apos;file://&apos;+ dirs.DCIMDir + &apos;/cdpImage.png&apos; : dirs.DocumentDir + &apos;/cdpImage.png&apos;)</div><div class="line">      &#125;]</div><div class="line">    ).then((res) =&gt; &#123;</div><div class="line">      console.log(&apos;上传成功：&apos;, res.text());</div><div class="line">      alert(&quot;上传成功,浏览器中有信息&quot;);</div><div class="line">    &#125;).catch((err) =&gt; &#123;</div><div class="line">      console.log(&apos;上传失败：&apos;, err);</div><div class="line">      alert(&quot;上传失败,浏览器中有信息&quot;);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  downloadFile() &#123;</div><div class="line">    RNFetchBlob.config(&#123;</div><div class="line">      fileCache : true,</div><div class="line">      path : Platform.OS === &apos;android&apos; ? dirs.DCIMDir + &apos;/logo.png&apos; : dirs.DocumentDir + &apos;/logo.png&apos;,</div><div class="line">    &#125;).fetch(&apos;GET&apos;, `https://facebook.github.io/react/img/logo_og.png`, &#123;</div><div class="line">      //some headers ..</div><div class="line">    &#125;).then((res) =&gt; &#123;</div><div class="line">      // 下载成功： /storage/emulated/0/Download/logo.png</div><div class="line">      console.log(&apos;下载成功：&apos;, res.path());</div><div class="line">      const imageStyle = &#123;</div><div class="line">        borderWidth: 1,</div><div class="line">        width: 100,</div><div class="line">        height: 100</div><div class="line">      &#125;;</div><div class="line">      const downImageView = (</div><div class="line">        &lt;View style=&#123;&#123;justifyContent: &apos;center&apos;, alignItems: &apos;center&apos;&#125;&#125;&gt;</div><div class="line">          &lt;Image source=&#123;&#123; uri : Platform.OS === &apos;android&apos; ? &apos;file://&apos; + res.path()  : &apos;&apos; + res.path() &#125;&#125; style=&#123;imageStyle&#125;/&gt;</div><div class="line">        &lt;/View&gt;</div><div class="line">      );</div><div class="line">      this.setState(&#123;</div><div class="line">        downImageView,</div><div class="line">      &#125;);</div><div class="line">      // 如果是 ios,同时下载到相册</div><div class="line">      if (Platform.OS === &apos;ios&apos;) &#123;</div><div class="line">        CameraRoll.saveToCameraRoll(res.path(), &apos;photo&apos;);</div><div class="line">      &#125;</div><div class="line">    &#125;).catch((err) =&gt; &#123;</div><div class="line">      console.log(&quot;下载失败：&quot;, err);</div><div class="line">      alert(&quot;下载失败,浏览器中有信息&quot;);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  getFilesInfo() &#123;</div><div class="line">    // 显示文件，返回数组</div><div class="line">    RNFetchBlob.fs.ls(Platform.OS === &apos;android&apos; ? dirs.DCIMDir : dirs.DocumentDir)</div><div class="line">    .then((files) =&gt; &#123;</div><div class="line">        console.log(&quot;dirs.DocumentDir目录中的文件：&quot;, files);</div><div class="line">        this.setState(&#123;</div><div class="line">          fileList: files,</div><div class="line">        &#125;);</div><div class="line">    &#125;).catch((err) =&gt; &#123;</div><div class="line">      console.log(&quot;获取失败：&quot;, err);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  openFile(fileName) &#123;</div><div class="line">    alert(`打开文件：$&#123;fileName&#125;`);</div><div class="line">  &#125;</div><div class="line">  showFileList() &#123;</div><div class="line">    return this.state.fileList.map((item, index) =&gt; &#123;</div><div class="line">      return (</div><div class="line">        &lt;TouchableHighlight</div><div class="line">          style=&#123;styles.container&#125;</div><div class="line">          underlayColor=&quot;rgba(34, 26, 38, 0.1)&quot;</div><div class="line">          onPress=&#123;() =&gt; this.openFile(item)&#125;</div><div class="line">          key=&#123;index&#125;</div><div class="line">        &gt;</div><div class="line">          &lt;View style=&#123;&#123;flexDirection:&apos;row&apos;&#125;&#125;&gt;</div><div class="line">            &lt;View style=&#123;styles.icon&#125;&gt;</div><div class="line">              &lt;Text style=&#123;styles.iconText&#125;&gt;&#123;index&#125;&lt;/Text&gt;</div><div class="line">            &lt;/View&gt;</div><div class="line">            &lt;View style=&#123;styles.textContent&#125;&gt;</div><div class="line">              &lt;Text style=&#123;[styles.title, ]&#125;&gt;&#123;item&#125;&lt;/Text&gt;</div><div class="line">            &lt;/View&gt;</div><div class="line">          &lt;/View&gt;</div><div class="line">        &lt;/TouchableHighlight&gt;</div><div class="line">      );</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;View style=&#123;[Global.flex1, &#123;width: WINDOW_WIDTH&#125;]&#125;&gt;</div><div class="line">        &lt;NavBar</div><div class="line">          title=&#123;this.props.route.params.title&#125;</div><div class="line">          goBack=&#123;this.goBack&#125;</div><div class="line">        /&gt;</div><div class="line">        &lt;ScrollView style=&#123;styles.temporaryTask&#125;&gt;</div><div class="line">          &lt;View style=&#123;[Global.containerCenter, styles.marginBottom20]&#125;&gt;</div><div class="line">            &lt;Text style=&#123;&#123;fontSize: 15&#125;&#125;&gt;测试上传、下载的服务为：&lt;/Text&gt;</div><div class="line">            &lt;Text style=&#123;&#123;fontSize: 15&#125;&#125;&gt;OPMS_EVENTATTACH_RECORD_PAGE&lt;/Text&gt;</div><div class="line">          &lt;/View&gt;</div><div class="line">          &lt;View style=&#123;Global.flex1&#125;&gt;</div><div class="line">            &#123;this.state.downImageView&#125;</div><div class="line">            &lt;Button</div><div class="line">              type=&quot;primary&quot;</div><div class="line">              onClick=&#123;this.downloadFile&#125;</div><div class="line">              style=&#123;styles.marginBottom20&#125;</div><div class="line">            &gt;</div><div class="line">              &lt;Icon name=&quot;cloud-download&quot; size=&#123;20&#125; /&gt;  下载文件</div><div class="line">            &lt;/Button&gt;</div><div class="line">            &lt;Button</div><div class="line">              type=&quot;primary&quot;</div><div class="line">              onClick=&#123;this.uploadFile&#125;</div><div class="line">              style=&#123;styles.marginBottom20&#125;</div><div class="line">            &gt;</div><div class="line">              &lt;Icon name=&quot;plus&quot; size=&#123;20&#125; /&gt;  上传文件</div><div class="line">            &lt;/Button&gt;</div><div class="line">            &lt;Button</div><div class="line">              type=&quot;primary&quot;</div><div class="line">              onClick=&#123;this.getFilesInfo&#125;</div><div class="line">              style=&#123;styles.marginBottom20&#125;</div><div class="line">            &gt;</div><div class="line">              &lt;Icon name=&quot;folder-open&quot; size=&#123;20&#125; /&gt;  获取文件列表</div><div class="line">            &lt;/Button&gt;</div><div class="line">            &#123;this.showFileList()&#125;</div><div class="line">          &lt;/View&gt;</div><div class="line">        &lt;/ScrollView&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const styles = StyleSheet.create(&#123;</div><div class="line">  temporaryTask: &#123;</div><div class="line">    marginTop: 20,</div><div class="line">    marginBottom: 10,</div><div class="line">    marginHorizontal: 20,</div><div class="line">    // alignItems: &apos;stretch&apos;,</div><div class="line">    flex: 1,</div><div class="line">    width: WINDOW_WIDTH - 40,</div><div class="line">  &#125;,</div><div class="line">  marginBottom20: &#123;</div><div class="line">    marginBottom: 20,</div><div class="line">  &#125;,</div><div class="line">  container: &#123;</div><div class="line">    width: WINDOW_WIDTH - 40,</div><div class="line">    flexDirection:&apos;row&apos;,</div><div class="line">    backgroundColor: &apos;#BFEFFF&apos;,</div><div class="line">    borderRadius: 7,</div><div class="line">    alignItems: &apos;flex-start&apos;,</div><div class="line">    marginBottom: 10,</div><div class="line">  &#125;,</div><div class="line">  content: &#123;</div><div class="line">    flex: 1,</div><div class="line">  &#125;,</div><div class="line">  icon: &#123;</div><div class="line">    width: 35,</div><div class="line">    height: 35,</div><div class="line">    margin: 10,</div><div class="line">    backgroundColor: &apos;#108ee9&apos;,</div><div class="line">    justifyContent: &apos;center&apos;,</div><div class="line">    alignItems: &apos;center&apos;,</div><div class="line">    flexDirection: &apos;row&apos;,</div><div class="line">  &#125;,</div><div class="line">  iconText: &#123;</div><div class="line">    fontSize: 28,</div><div class="line">    color: &apos;#fff&apos;,</div><div class="line">    fontWeight: &apos;400&apos;,</div><div class="line">  &#125;,</div><div class="line">  textContent: &#123;</div><div class="line">    flex: 1,</div><div class="line">    padding: 10</div><div class="line">  &#125;,</div><div class="line">  title: &#123;</div><div class="line">    color: &apos;#101010&apos;,</div><div class="line">    fontSize: 17,</div><div class="line">    fontWeight: &quot;400&quot;,</div><div class="line">  &#125;,</div><div class="line">&#125;);</div><div class="line"></div><div class="line">export default TestFileStream;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<img src="/2017/04/03/react-native-upload/file.gif" width="300" title="运行结果">
+<img src="/2017/04/03/react-native-upload/file.png" title="打印结果">
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1146,708 +1781,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/14/recursion/" itemprop="url">
-                  递归用法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-14T08:03:20+08:00" content="2017-03-14">
-              2017-03-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>前段时间有个刚学编程的人找我做了几道编程题，都用到了递归，让我写个使用递归的总结，我个人用到的递归不多，就这几道编程题总结如下，后期如有新的体会再补充。</p>
-<h2 id="适用点"><a href="#适用点" class="headerlink" title="适用点"></a>适用点</h2><p>想一下规模为n的问题是否可以经过计算换算成规模为n-1的问题，如阶乘计算，n!=n*(n-1)!，这时就可以用递归。使用递归主要是代码写起来比较方便，大多数情况使用栈和循环都可以替代使用递归。</p>
-<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>写递归算法时，要最先思考边界值，就是递归算法在什么情况下不应该再递归下去，如对于阶乘问题的n为1、0的时候，防止出现死循环。</p>
-<h2 id="优化点"><a href="#优化点" class="headerlink" title="优化点"></a>优化点</h2><p>用递归算法去解决问题，经常会比较耗性能，因为进行了大量循环，多进行一次递归可能会进行很多次循环，所以控制在哪些条件下无需递归很容易优化性能，如递归求最短路径时，如果当前递归处理的路径长度已经超过了当前最短路径的长度，那就不用再向下递归了。还要会利用数据结构，比如Map能够快速取值，如果是数组取值时需要进行遍历，尽量减少循环的次数。</p>
-<h2 id="调试点"><a href="#调试点" class="headerlink" title="调试点"></a>调试点</h2><p>递归问题最大的难点可能就在调试上了，因为进行了很多循环，无法跟进每一个循环去看当前的值对不对。这时一定要将问题范围缩小，比如题目要求100个点，可以先拿10个以内的点去调试，这时可以通过断点调试跟进每一次循环，看到所有变量当前的值，这样就容易看出问题出在哪了。如果有问题的标准答案，还要会利用答案，如果解题需要大量循环无法跟进时，可以写一个if条件在满足正确答案时进行输出，也可以在这里打个断点，看看为什么没有获得这个标准的答案，这时比较容易看出问题。</p>
-<p>以上都是我做那几个题时的思路和方法，以前我也就写过一两次递归，其实没什么经验，大多数方法都是以前调程序的经验。如果打算深入的往编程这方面发展，有如下建议：</p>
-<p>1、要进行编程练习，就像递归，完全自己手动去解决两三个问题也就会用了，也有调试的经验了；<br>2、一定要会分析问题，拆分问题，这个问题分几步，每一步都做什么，这样比较容易写出程序，容易调试，容易定位问题出在哪步了，其它地方就不用看了，也方便解决问题，问题细化后就容易描述小问题了，可以上网找找现成的例子；<br>3、一定要会分析现象，现在程序运行的结果不对，是什么样的现象，这个现象表明什么本质，切记不要直接一遍一遍的看代码，找哪里不对，这样很难找到问题的，如果你知道这样写有问题，那当时也就不会这样写了，一定要仔细思考、分析现象，找到问题本质，然后定位有问题的代码范围，再看代码。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/18/react-lifecycle/" itemprop="url">
-                  React-生命周期
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-18T11:11:56+08:00" content="2017-02-18">
-              2017-02-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index">
-                    <span itemprop="name">React</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>学了React快一年了，现在用的已经比较顺手了，单个组件的生命周期执行过程已经很清楚了，但是关于多个组件之间怎么进入生命周期方法的还是不确定，现在好好学习一下。</p>
-<h2 id="单个组件的生命周期过程"><a href="#单个组件的生命周期过程" class="headerlink" title="单个组件的生命周期过程"></a>单个组件的生命周期过程</h2><p>组件的生命周期函数按如下顺序执行，每个方法的说明如下：</p>
-<ul>
-<li><p>constructor</p>
-<p>  构造函数，对组件的state进行初始化，对函数进行this绑定。</p>
-</li>
-<li><p>componentWillMount</p>
-<p>  初始渲染前进入，只执行一次，如果这个函数里调用setState，不会执行渲染操作，而是等这个函数执行完成后再执行初始渲染。如果组件需要从本地存储中读取数据，一般放在这里执行。</p>
-</li>
-<li><p>render</p>
-<p>  返回值为页面要显示的组件，组件的重新渲染后触发所有子组件的重新渲染。</p>
-</li>
-<li><p>componentDidMount</p>
-<p>  初始渲染完成后进入，只执行一次。如果组件需要从网络侧读取数据，一般放在这里执行。</p>
-</li>
-<li><p>componentWillReceiveProps(nextProps, nextContext)</p>
-<p>  组件在初始渲染完成后，当接收到新的props时进入，state发生变化时不会进入，而无论props的内容是否发生变化都会进入。如果在这个函数中调用setState，不会执行渲染操作，而是等该方法执行完成一起渲染。</p>
-</li>
-<li><p>shouldComponentUpdate(nextProps, nextState, nextContext)</p>
-<p>  当组件接收到新的state或props时，这个函数将被调用，如果返回false可以阻止组件的重新渲染，也就不会进入本组件的componentWillUpdate、componentDidUpdate方法了。通过这个函数来阻止无必要的重新渲染可以提高程序的性能。</p>
-</li>
-<li><p>componentWillUpdate(nextProps, nextState, nextContext)</p>
-<p>  组件在重新渲染前进入，<strong>切记不能在这个函数中通过setState更新状态，</strong> 如果需要改变，则在componentWillReceiveProps函数中进行改变，否则会导致死循环。</p>
-</li>
-<li><p>componentDidUpdate(prevProps, prevState, prevContext)</p>
-<p>  组件在重新渲染完成时进入。</p>
-</li>
-<li><p>componentWillUnmount()</p>
-<p>  组件在卸载前进入，如果组件申请了某些资源或订阅了某些消息，需要要在这个函数中释放资源或取消订阅，常见的是在这里清除定时器。</p>
-</li>
-</ul>
-<img src="/2017/02/18/react-lifecycle/life.gif" title="单个组件的生命周期过程">
-<h2 id="多个组件的生命周期过程"><a href="#多个组件的生命周期过程" class="headerlink" title="多个组件的生命周期过程"></a>多个组件的生命周期过程</h2><p>父组件每次执行过setState更新了state后，无论state内容是否发生变化，都会进行所有子孙组件的重新渲染。</p>
-<p>先进入父组件的componentWillUnmount，再进入子组件的componentWillUnmount，就像先进入父组件的componentWillUpdate，再进入子组件的componentWillUpdate一样，只是React没有componentDidUnmount方法，看不到是先卸载子组件完成，再卸载父组件完成的。</p>
-<img src="/2017/02/18/react-lifecycle/mount.png" title="初始化">
-<img src="/2017/02/18/react-lifecycle/update.png" title="更新">
-<img src="/2017/02/18/react-lifecycle/unmount.png" title="卸载">
-<h2 id="forceUpdate函数"><a href="#forceUpdate函数" class="headerlink" title="forceUpdate函数"></a>forceUpdate函数</h2><p>forceUpdate函数不是组件的生命周期函数，组件通过调用<code>this.forceUpdate()</code>可以强制进行组件的重新渲染，并且会连带所有子组件都重新渲染。通过这种方式的重新渲染，不会进入本组件shouldComponentUpdate方法，会进入子组件的shouldComponentUpdate和componentWillReceiveProps方法及其它生命周期方法。</p>
-<img src="/2017/02/18/react-lifecycle/forceUpdate.png" title="forceUpdate操作">
-<h2 id="HOC（High-Order-Component-）高阶组件"><a href="#HOC（High-Order-Component-）高阶组件" class="headerlink" title="HOC（High Order Component ）高阶组件"></a>HOC（High Order Component ）高阶组件</h2><p>参考<a href="http://www.tuicool.com/articles/RFJJniN" target="_blank" rel="external">初识React中的High Order Component</a><br>HOC是一个抽象和公用代码的方案，它接受一个包含共用逻辑或者是状态的ReactComponent，并返回一个包含特定逻辑或者是状态的新ReactComponent，相当于对原组件做了一层包装，react-redux中的connect就算是HOC。组件的生命周期执行顺序与父子组件类型的执行顺序一样。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">class App extends React.Component &#123;</div><div class="line">    constructor(props) &#123;</div><div class="line">      super(props);</div><div class="line">      this.state = &#123;</div><div class="line">        value: &apos;&apos;,</div><div class="line">      &#125;;</div><div class="line">    &#125;</div><div class="line">    render() &#123;</div><div class="line">      return (</div><div class="line">        &lt;input ref=&quot;app&quot; value=&#123;this.state.value&#125; onChange=&#123;this.onChange&#125;/&gt;</div><div class="line">      );</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">const connect = (mapStateFromStore) =&gt; (WrappedComponent) =&gt; &#123;</div><div class="line">    class InnerComponent extends React.Component &#123;</div><div class="line">      constructor(props) &#123;</div><div class="line">        super(props);</div><div class="line">      &#125;</div><div class="line">      render () &#123;console.log(this)</div><div class="line">        return (</div><div class="line">          &lt;WrappedComponent ref=&quot;middle&quot; /&gt;</div><div class="line">        );</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    // 将新组件返回</div><div class="line">    return InnerComponent;</div><div class="line">&#125;</div><div class="line">const HOC = connect(() =&gt; (&#123;&#125;))(App);</div><div class="line"></div><div class="line">class Root extends React.Component &#123;</div><div class="line">    render() &#123;console.log(this)</div><div class="line">      return (</div><div class="line">        &lt;div&gt;</div><div class="line">          &lt;HOC ref=&quot;hoc&quot;/&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">      );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">    &lt;Root /&gt;,</div><div class="line">    document.getElementById(&apos;example&apos;)</div><div class="line">);</div></pre></td></tr></table></figure>
-<img src="/2017/02/18/react-lifecycle/hoc.png" title="HOC的ref结构">
-<img src="/2017/02/18/react-lifecycle/hocHtml.png" title="HOC渲染出的DOM结构">
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/18/ui-design/" itemprop="url">
-                  《写给大家看的设计书》笔记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-18T08:08:48+08:00" content="2017-01-18">
-              2017-01-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Reading-Notes/" itemprop="url" rel="index">
-                    <span itemprop="name">Reading Notes</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近看了《写给大家看的设计书》，对页面设计的原则有了基本的了解，以下是个人感觉书中比较好的内容，记录下来方便以后查看。</p>
-<h2 id="CRAP概念"><a href="#CRAP概念" class="headerlink" title="CRAP概念"></a>CRAP概念</h2><p>复杂的设计原理在书中被浓缩为4个词，对比、重复、对齐和对和亲密性，英文首字母缩写为CRAP。</p>
-<p>对比（Contrast）：对比的基本思想是，要避免页面上的元素太过相似。如果元素（字体、颜色、大小、线宽、形状、空间等）不相同，那就干脆让它们截然不同。要让页面引人注目，对比通常是最重要的一个因素，正是它能使读者首先看这个页面。要想实现有效的对比，对比就必须强烈。</p>
-<p>重复（Repetition）：让设计中的视觉要素在整个作品中重复出现。可以重复颜色、形状、材质、空间关系、线宽、字体、大小和图片，等等。这样一来，既能增加条理性，还可以加强统一性。不要把重复用的太滥，而应当尽量“采用多样性实现统一”。</p>
-<p>对齐（Alignment）：任何东西都不能在页面上随意安放。每个元素都应当与页面上的另一个元素有某种视觉联系。这样能建立一种清晰、精巧而且清爽的外观。元素之间会有一条看不见的线把它们连在一起，它会告诉读者，即使这些项并不靠近，但它们属于同一组。</p>
-<p>亲密性（Proximity）：彼此相关的项应当靠近，归组在一起。如果多个项彼此之间存在很近的亲密性，它们就会成为一个视觉单元，而不是多个孤立的元素。这有助于组织信息，减少混乱，为读者提供清晰的结构。</p>
-<h2 id="色轮的使用"><a href="#色轮的使用" class="headerlink" title="色轮的使用"></a>色轮的使用</h2><img src="/2017/01/18/ui-design/color.png" width="300" title="色轮">
-<ul>
-<li>类似色（analogous）组合由色轮上彼此相邻的颜色组成。</li>
-<li>色轮上相对的颜色为互补色（complement），最佳搭配是一种作为主色，另一种用于强调。</li>
-<li>彼此等间距的三种颜色通常会形成一个让人愉快的三色组（triad）。</li>
-<li>从色轮的一边选择一种颜色，再在色轮上找不他对面的互补色两侧的颜色，称为分裂互补三色组（split triad）。</li>
-<li>单色组合由一种色调及其相应的多种亮色和暗色组成。</li>
-</ul>
-<h2 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h2><ul>
-<li>把所有大写都变为小写，只保留合适的首字母大写，这样能留出更多的空间，使标题更大、更醒目。</li>
-<li>把圆角变为直角，可能会使外观更简洁、更突出。</li>
-<li>要有意识地注意你是怎样阅读的，视线怎样移动的。</li>
-<li>眯起眼睛，如果页面上的项超过3~5个，就要看看哪些孤立的元素可以归在一组了。</li>
-<li>居中对齐会创建一种更正式、更稳重的外观，这种外观显得更为中规中矩，但通常也很乏味。</li>
-<li>页面上直至用一种文本对齐。</li>
-<li>绝对不要在左对齐的正文或缩进的文本上方将标题居中。</li>
-<li>去掉Times Roman、Arial/Helvetica和Sand字体。</li>
-<li>由于颜色组合而导致发生视觉抖动的原因通常是色质过于接近。</li>
-<li>冷色（蓝色、绿色）总趋于后退，而暖色（红色、橙色）是趋近型的。如果要组合暖色和冷色，一定要少用些暖色。</li>
-<li>制作logo可以使用分裂互补三色组。</li>
-<li>不要对文本或图片的链接使用默认的蓝色。</li>
-<li>不要把文本链接放在有边框的粗笨表单元格中。</li>
-<li>正文不要用粗体，也不要占据整个页面的宽度。</li>
-<li>不要使用荧光背景色，特别是不要使用荧光文字。</li>
-<li>不要让用户移动滚动条，特别是不要让表的宽度超过600像素，否则用户在打印页面时会很恼火。</li>
-<li>Verdan字体是显示Web正文的一个绝好的选择。</li>
-<li>有时名人名言使用Decorative字体非常合适。</li>
-<li>向右上倾斜的字体产生一种前进的力量，向下倾斜的字体会产生一种反向的力量。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/08/javascript-event-loop/" itemprop="url">
-                  JavaScript-事件循环
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-08T11:50:11+08:00" content="2017-01-08">
-              2017-01-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>参考<br><a href="http://www.jb51.net/article/56022.htm" target="_blank" rel="external">JavaScript运行机制之事件循环(Event Loop)详解</a><br><a href="http://www.cnblogs.com/Medeor/p/4945687.html" target="_blank" rel="external">从setTimeout说事件循环模型</a></p>
-<h2 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h2><p>JavaScript语言是单线程的，这事因为作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。这是这门语言的核心特征。</p>
-<p>为了利用多核CPU的计算能力，HTML5提出Web Worker标准，允许JavaScript脚本创建多个线程，但是子线程完全受主线程控制，且不得操作DOM，并没有改变JavaScript单线程的本质。</p>
-<h2 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h2><p>单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。JavaScript就有两种执行方式：一种是CPU按顺序执行，前一个任务结束，再执行下一个任务，这叫做同步执行；另一种是CPU跳过等待时间长的任务，先处理后面的任务，这叫做异步执行。<br>异步执行的运行机制如下(同步执行也是如此，因为它可以被视为没有异步任务的异步执行)：</p>
-<ul>
-<li>所有任务(同步和异步的)都在主线程上执行，形成一个”执行栈”(execution context stack)</li>
-<li>主程之外，还存在一个”任务队列”(task queue)，系统把异步任务放到”任务队列”之中，然后继续执行后续的任务</li>
-<li>一旦”执行栈”中的所有任务执行完毕，系统就会读取”任务队列”，如果这个时候，异步任务已经结束了等待状态，就会从”任务队列”进入执行栈，恢复执行</li>
-<li>主线程不断重复上面的第三步，只要主线程空了，就会去读取”任务队列”，这就是JavaScript的运行机制</li>
-</ul>
-<h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p>“任务队列”实质上是一个事件的队列(也可以理解成消息的队列)，主线程读取”任务队列”，就是读取里面有哪些事件。如IO设备完成一项任务，就在”任务队列”中添加一个事件，表示相关的异步任务可以进入”执行栈”了；鼠标点击、页面滚动等只要指定过回调函数，这些事件发生时就会进入”任务队列”，等待主线程读取。</p>
-<p>所谓”回调函数”(callback)，就是那些会被主线程挂起来的代码。异步任务必须指定回调函数，当异步任务从”任务队列”回到执行栈，回调函数就会执行。</p>
-<p>Javascript执行引擎的主线程运行的时候，产生堆和栈。程序中代码依次进入栈中等待执行。栈中的代码调用各种外部API，在”任务队列”中加入各种事件，只要栈中的代码执行完毕，主线程就会去读取”任务队列”，依次执行那些事件所对应的回调函数。执行栈中的代码，总是在读取”任务队列”之前执行。不同的操作添加到任务队列的时机也不同。</p>
-<blockquote>
-<p>onclick 由浏览器内核的DOM Binding模块来处理，当事件触发的时候，回调函数会立即添加到任务队列中。<br>setTimeout 会由浏览器内核的timer模块来进行延时处理，当时间到达的时候，才会将回调函数添加到任务队列中。<br>ajax 则会由浏览器内核的network模块来处理，在网络请求完成返回之后，才将回调添加到任务队列中。  </p>
-</blockquote>
-<p>主线程从”任务队列”中读取事件，只要执行栈一清空，”任务队列”上第一位的事件就自动返回主线程，这个过程是循环不断的，所以整个的这种运行机制又称为事件循环(Event Loop)。</p>
-<p>示例一输出结果都是4，表明程序是先运行完4次循环后，再进入setTimeout的。<br>实例二输出结果是1001，表明程序是向下执行完while循环后，再进入setTimeout的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 示例一</div><div class="line">for(var i = 0; i&lt;=3; i++)&#123;</div><div class="line">    setTimeout(function() &#123;</div><div class="line">        console.log(i); // 输出4</div><div class="line">    &#125;, 0);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 实例二</div><div class="line">var startDate = new Date();</div><div class="line">setTimeout(function() &#123;</div><div class="line">    var endDate = new Date();</div><div class="line">    console.log(endDate - startDate); // 输出1001</div><div class="line">&#125;, 500);</div><div class="line">while(new Date() - startDate &lt; 1000)&#123;&#125;;</div></pre></td></tr></table></figure>
-<h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><p>“任务队列”除了放置异步任务，还可以放置定时事件，即指定某些代码在多少时间之后执行，即到达设置的延时时间时被添加至任务队列里。定时器功能主要由setTimeout()和setInterval()这两个函数来完成，它们的内部运行机制完全一样，区别在于前者指定的代码是一次性执行，后者则为反复执行。如果将setTimeout()的第二个参数设为0，就表示当前代码执行完（执行栈清空）以后，立即执行（0毫秒间隔）指定的回调函数。</p>
-<p><strong>需要注意的是，setTimeout()只是将事件插入了”任务队列”，必须等到当前代码（执行栈）执行完，主线程才会去执行它指定的回调函数。要是当前代码耗时很长，有可能要等很久，所以并没有办法保证，回调函数一定会在setTimeout()指定的时间执行。</strong></p>
-<p>HTML5标准规定了setTimeout()的第二个参数的最小值（最短间隔），不得低于4毫秒，如果低于这个值，就会自动增加。在此之前，老版本的浏览器都将最短间隔设为10毫秒。另外，对于那些DOM的变动（尤其是涉及页面重新渲染的部分），通常不会立即执行，而是每16毫秒执行一次。这时使用requestAnimationFrame()的效果要好于setTimeout()。</p>
-<p>Node.js除了setTimeout和setInterval这两个方法，还提供了另外两个与”任务队列”有关的方法：process.nextTick和setImmediate。</p>
-<ul>
-<li>process.nextTick方法可以在当前”执行栈”的尾部，也就是主线程下一次读取”任务队列”之前，触发回调函数。也就是说，它指定的任务总是发生在所有异步任务之前。</li>
-<li>setImmediate方法则是在当前”任务队列”的尾部触发回调函数，也就是说，它指定的任务总是在主线程下一次读取”任务队列”时执行，这与setTimeout很像，但一次”事件循环”只能触发一个由setImmediate指定的回调函数。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/29/react-native-base2/" itemprop="url">
-                  React-Native-基础2
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-29T07:51:49+08:00" content="2016-12-29">
-              2016-12-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/React-Native/" itemprop="url" rel="index">
-                    <span itemprop="name">React Native</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="View组件"><a href="#View组件" class="headerlink" title="View组件"></a>View组件</h2><p>View组件还有三个没有在官方文档中公布的回调函数：onTouchStart、onTouchMove、onTouchEnd。这三个回调函数都有一个特殊的性质，就是在React Native开发中，通常是在最上层的组建中(render函数靠后渲染的组件)处理触摸事件的；但这三个回调函数总能收到事件，而不管用户当前触摸区域是空白的，还是有其它组件已经处理了触摸事件。</p>
-<h2 id="pointEvents属性"><a href="#pointEvents属性" class="headerlink" title="pointEvents属性"></a>pointEvents属性</h2><p>在React Native中，触摸事件总是被传送给最上层的组件。当很多组件被布局在手机屏幕上时，有的组件可能会遮盖住它下方的其它组件。对于某些应用逻辑，被遮盖住的组件需要处理触摸事件，这时就可以使用pointerEvents属性。</p>
-<ul>
-<li>取值none，表示发生在本组件与本组件的子组件上的触摸事件都会交给本组件的父组件处理；</li>
-<li>取值box-none，表示发生在本组件显示范围内（但非本组件的子组件显示范围内）的事件将交由本组件的父组件处理，发生在本组件的子组件显示范围内的触摸事件由子组件处理；</li>
-<li>取值box-only，表示发生在本组件显示范围内的触摸事件将全部有本组件处理（即使触摸事件发生在本组件的子组件显示范围内）；</li>
-<li>取值auto会视组件的不同而不同。</li>
-</ul>
-<h2 id="设备放置状态、onLayout回调函数"><a href="#设备放置状态、onLayout回调函数" class="headerlink" title="设备放置状态、onLayout回调函数"></a>设备放置状态、onLayout回调函数</h2><p>使项目在两个平台行都能自动调整应用的显示方式来适应设备当前的放置状态，需要：</p>
-<ul>
-<li>在应用启动时能检测到设备是横置的还是竖置的；</li>
-<li>当设备从横置变为竖置或从竖置变为横置时，应用要能监测到这个事件。</li>
-</ul>
-<p>检测设备当前是竖置还是横置的一个方法是取当前设备屏幕的宽与高，正常的设备在竖置时宽小于高，在横置时宽大于高。Demensions API 可以获取屏幕的宽和高。</p>
-<p>通常，React Native 开发的应用有一个或多个根View，根View的特点是它没有父组件。onLayout回调函数在组件被加载或者布局被改变时会被调用，通过指定这个根View组件的onLayout回调函数可以很方便地得到初始设备的放置状态，检测设备放置状态的改变并得到改变后新的屏幕高度与宽度。为了实现这些功能，不能指定根View的宽和高，并需要设定根View组件的样式flex值为1。<strong>注意，模拟器显示方式被改变时不会触发Layout事件。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">&apos;user strick&apos;;</div><div class="line">var React = require(&apos;react-native&apos;);</div><div class="line">var &#123; AppRegister, StyleSheet, Text, View, Dimensions &#125; = React;</div><div class="line">var Project19 = React.createClass(&#123;</div><div class="line">    _onLayout: function (event) &#123;</div><div class="line">        console.log(&apos;屏幕的宽度：&apos;, Dimensions.get(&apos;window&apos;).width);</div><div class="line">        console.log(&apos;屏幕的高度：&apos;, Dimensions.get(&apos;window&apos;).height);</div><div class="line">        let &#123; x, y, width, height &#125; = event.nativeEvent.layout;</div><div class="line">        console.log(&apos;View的宽度：&apos;, width);</div><div class="line">        console.log(&apos;View的高度：&apos;, height);</div><div class="line">        console.log(&apos;View的左上顶点横坐标：&apos;, x);</div><div class="line">        console.log(&apos;View的左上顶点纵坐标：&apos;, y);</div><div class="line">    &#125;,</div><div class="line">    _onLayoutText: function(event) &#123;</div><div class="line">        let &#123; x, y, width, height &#125; = event.nativeEvent.layout;</div><div class="line">        console.log(&apos;Text的宽度：&apos;, width);</div><div class="line">        console.log(&apos;Text的高度：&apos;, height);</div><div class="line">        console.log(&apos;Text的左上顶点横坐标：&apos;, x);</div><div class="line">        console.log(&apos;Text的左上顶点纵坐标：&apos;, y);</div><div class="line">    &#125;,</div><div class="line">    render: function() &#123;</div><div class="line">        return (</div><div class="line">            &lt;View style=&#123;styles.container&#125; onLayout=&#123;this._onLayout&#125;&gt;</div><div class="line">                &lt;Text style=&#123;styles.welcom&#125; onLayout=&#123;this._onLayoutText&#125;&gt;</div><div class="line">                    Welcom to React Native!</div><div class="line">                &lt;/Text&gt;</div><div class="line">            &lt;/View&gt;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">var styles = StyleSheet.create(&#123;</div><div class="line">    container: &#123;</div><div class="line">        flex: 1,</div><div class="line">        justifyContent: &apos;center&apos;,</div><div class="line">        alignItem: &apos;center&apos;,</div><div class="line">        backgroundColor: &apos;#F5FCFF&apos;,</div><div class="line">    &#125;,</div><div class="line">    welcom: &#123;</div><div class="line">        fontSize: 20,</div><div class="line">        textAlign: &apos;center&apos;,</div><div class="line">        margin: 10,</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">AppRegister.registerComponent(&apos;Project19&apos;, () =&gt; Project19);</div></pre></td></tr></table></figure>
-<h2 id="setNativeProps成员函数"><a href="#setNativeProps成员函数" class="headerlink" title="setNativeProps成员函数"></a>setNativeProps成员函数</h2><p>每个React Native组件都有一个公开的成员函数setNativeProps，使用它可以增加或修改组件的属性，但不建议使用该函数，它是一个“简单、粗暴”的方法，可以直接操作任何层面组件的属性，而不是使用React Native组件的状态机变量，这样会使代码逻辑混乱。</p>
-<p>在不得不频繁刷新而又遇到性能瓶颈时，比如创建连续的动画，同时要避免渲染组件结构和同步太多的视图变化所带来的大量开销时，才考虑使用setNativeProps函数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">let Project19 = React.createClass(&#123;</div><div class="line">    getInitialState: function() &#123;</div><div class="line">        return &#123;</div><div class="line">            textInputValue: &apos;&apos;</div><div class="line">        &#125;;</div><div class="line">    &#125;,</div><div class="line">    buttonPressed: function() &#123;</div><div class="line">        let textInputValue = &apos;new value&apos;;</div><div class="line">        this.setState(&#123; textInputValue &#125;);</div><div class="line">        this.refs.textInputRefer.setNativeProps(&#123;</div><div class="line">            editable: false</div><div class="line">        &#125;);</div><div class="line">        this.refs.text2.setNativeProps(&#123;</div><div class="line">            style: &#123;</div><div class="line">                color: &apos;blue&apos;,</div><div class="line">                fontSize: 30</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;,</div><div class="line">    render: function() &#123;</div><div class="line">        return (</div><div class="line">            &lt;View style=&#123;styles.container&#125;&gt;</div><div class="line">                &lt;Text style=&#123;styles.buttonStyle&#125; onPress=&#123;this.buttonPressed&#125;&gt;</div><div class="line">                    Press me genterly</div><div class="line">                &lt;/Text&gt;</div><div class="line">                &lt;Text style=&#123;styles.textPromptStyle&#125; ref=&quot;text2&quot;</div><div class="line">                    文字提示</div><div class="line">                &lt;/Text&gt;</div><div class="line">                &lt;View&gt;</div><div class="line">                    &lt;TextInput</div><div class="line">                        style=&#123;styles.textInputStyle&#125;</div><div class="line">                        ref=&quot;textInputRefer&quot;</div><div class="line">                        value=&#123;this.state.textInputValue&#125;</div><div class="line">                        onChangeText=&#123;(textInputValue)=&gt;this.setState(&#123;textInputValue&#125;)&#125;</div><div class="line">                    /&gt;</div><div class="line">                &lt;/View&gt;</div><div class="line">            &lt;/View&gt;</div><div class="line">        );</div><div class="line">    &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h2 id="measure成员函数"><a href="#measure成员函数" class="headerlink" title="measure成员函数"></a>measure成员函数</h2><p>每一个React Native组件都有一个measure成员函数，调用它可以得到组件当前的宽、高与位置信息。使用View组件的onLayout回调函数是获取组件的宽、高与位置信息的好办法，但对某些代码生成的组件，使用组件的measure成员函数是唯一的方法。<strong>Ant Design Mobile组件无法使用measure方法。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">// 在componentDidMount执行完后才可以获取位置信息</div><div class="line">componentDidMount: function() &#123;</div><div class="line">    var aref = this.tempfunc;</div><div class="line">    window.setTimeout(aref, 1);</div><div class="line">&#125;,</div><div class="line">tempfunc: function() &#123;</div><div class="line">    this.refs.aTextInputRef.measure( this.getTextInputPosition);</div><div class="line">&#125;,</div><div class="line">getTextInputPosition: function(fx, fy, width, height, px, py) &#123;</div><div class="line">    console.log(&apos;getTextInputPosition方法&apos;);  </div><div class="line">    console.log(&apos;Component width: &apos; + width);</div><div class="line">    console.log(&apos;Component height: &apos; + height);</div><div class="line">    console.log(&apos;X offset to frame: &apos; + fx); // 这个值无用</div><div class="line">    console.log(&apos;Y offset to frame: &apos; + fy);</div><div class="line">    console.log(&apos;X offset to page: &apos; + px);</div><div class="line">    console.log(&apos;Y offset to page: &apos; + py);</div><div class="line">&#125;,</div><div class="line">...</div></pre></td></tr></table></figure>
-<img src="/2016/12/29/react-native-base2/measure.png" title="结果如图">
-<h2 id="AsyncStorage"><a href="#AsyncStorage" class="headerlink" title="AsyncStorage"></a>AsyncStorage</h2><p>React Native框架不支持调用JavaScript的fs包进行文件读写操作，<strong>但提供了AsyncStorage API将“字符串键值对”存储在手机存储空间中</strong>。AsyncStorage不提供索引、排序等数据库中经常使用的功能，每个AsyncStorage API提供的方法都会返回一个JavaScript的Promise对象。</p>
-<p>使用AsyncStorage的静态函数时，如果参数类型提供错误，try…catch机制将无法捕捉到这个错误。使用Promise机制的rejection状态处理函数中或者利用Promise机制发生错误时的回调函数可以捕捉到错误。但这三种机制中的任何一种都不能阻止手机屏幕的红屏错误。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1868,7 +1806,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="前端学习之路">
 <meta property="og:description" content="常用命令参考 Git远程操作详解 和 Git教程 which -a git # 查看所有版本的 gitgit –version # 查看使用 git 的版本git xxx –help # 查看 xxx 命令相关的帮助文档git config –global alias.别名 命令 # 给命令起别名git log –oneline –decorate –graph –all # 查看提交记录 拉取和">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-09-23T08:19:52.490Z">
+<meta property="og:updated_time" content="2021-01-22T09:11:51.111Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git-基础">
 <meta name="twitter:description" content="常用命令参考 Git远程操作详解 和 Git教程 which -a git # 查看所有版本的 gitgit –version # 查看使用 git 的版本git xxx –help # 查看 xxx 命令相关的帮助文档git config –global alias.别名 命令 # 给命令起别名git log –oneline –decorate –graph –all # 查看提交记录 拉取和">
@@ -284,7 +284,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">156</span>
+              <span class="site-state-item-count">161</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -498,7 +498,7 @@
 <h2 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h2><p>git branch – 查看本地分支<br>git branch -r – 查看远程分支<br>git branch [name] – 创建本地分支<br>git checkout [name] – 切换分支<br>git checkout -b [name] [commit 引用] – 基于指定的 commit 新建并切换到该分支<br>git branch -d [name] – 删除分支，-d选项只能删除已经参与了合并的分支，对于未有合并的分支是无法删除的，如果想强制删除一个分支，可以使用-D选项<br>git merge [name] – 将指定分支合并到当前分支<br>git push origin [name] – 本地分支push到远程同名分支，远程没有该分支则创建<br>git push origin :heads/[name] – 删除远程分支<br>git push origin :master – 删除远程分支<br>git push origin –delete master – 删除远程分支<br>git push origin [remoteBranchName] [localBranchName] – 提交本地local分支作为远程的remote分支，如果没有则创建<br>git push –force origin – 如果远程主机的版本比本地版本更新，可以使用–force选项，结果导致远程主机上更新的版本被覆盖<br>git branch –set-upstream dev origin/dev – 指定本地dev分支与远程origin/dev分支的链接  </p>
 <h2 id="版本操作"><a href="#版本操作" class="headerlink" title="版本操作"></a>版本操作</h2><p>git tag – 查看版本<br>git tag [localTagName] – 创建版本<br>git push origin –tags – 把本地tag推送到远程<br>git fetch origin tag <remotetagname> – 获取远程tag<br>git tag -d [localTagName] – 删除本地tag<br>git push origin :refs/tags/[remoteTagName] – 删除远程tag<br>git checkout tagName – 切换到指定版本</remotetagname></p>
 <h2 id="fork的项目与原项目同步"><a href="#fork的项目与原项目同步" class="headerlink" title="fork的项目与原项目同步"></a>fork的项目与原项目同步</h2><p>fork一个项目并clone到本地，如果原项目已经更新了，要保持github上fork的项目和本地的项目与原项目同步，只需执行以下操作。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 远程拉取更新项目，先将原包作为 remote 加到本地项目中，A_REPOSITORY_URL需替换</div><div class="line">git remote add upstream A_REPOSITORY_URL</div><div class="line"># 拉取远程代码</div><div class="line">git pull upstream master</div><div class="line"># 提交到自己的 fork</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 远程拉取更新项目，先将原包作为 remote 加到本地项目中，A_REPOSITORY_URL需替换</div><div class="line">git remote add upstream A_REPOSITORY_URL</div><div class="line"># 从上游仓库获取到分支</div><div class="line">git fetch upstream</div><div class="line"># 合并到本地当前分支</div><div class="line">git merge upstream/master</div><div class="line"># 提交到自己的 fork</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
 <h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">git add .</div><div class="line">git commit -m &quot;first commit&quot;</div><div class="line">git remote add origin https://github.com/zhulichao/react-native-hello.git</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
       
     </div>
@@ -578,7 +578,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

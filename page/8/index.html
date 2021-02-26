@@ -275,7 +275,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">156</span>
+              <span class="site-state-item-count">161</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -389,6 +389,638 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/08/25/wechat-data-analytics/" itemprop="url">
+                  小程序数据分析
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-08-25T13:45:13+08:00" content="2018-08-25">
+              2018-08-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/WeChat/" itemprop="url" rel="index">
+                    <span itemprop="name">WeChat</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>由于微信自己的机制，无论是用微信公众平台，还是用第三方的数据分析平台，都有可能存在数据不准确的情况。我们的小程序由于能够统计每天的收入情况，对比发现过微信公众平台和诸葛io都存在购买数据的偏差。</p>
+<h2 id="基于微信公众平台"><a href="#基于微信公众平台" class="headerlink" title="基于微信公众平台"></a>基于<a href="https://mp.weixin.qq.com" target="_blank" rel="external">微信公众平台</a></h2><p>微信公众平台中，也就是小程序管理后台，本身提供了基础的数据分析的功能，无需上报数据也能分析一部分数据。也可通过小程序开发文档中提供的自定义数据上报接口 <code>wx.reportAnalytics</code> 在代码中上报需要的数据，使用前，需要在小程序管理后台自定义分析中新建事件，配置好事件名与字段。使用小程序管理后台很简单，不用做用户标识，因为微信自己是能通过 openId 区分用户的，无需自己处理，也不用上报场景值和用户画像等基本信息。缺点是，小程序管理后台：</p>
+<ul>
+<li>不能自定义面板</li>
+<li>对自定义分析的查询日期跨度不能超过31天</li>
+<li>不能添加自定义的用户属性，不能创建用户分群</li>
+<li>不能查看原始数据，更不能下载了</li>
+<li>没有渠道分析，当然这个可以自己做</li>
+</ul>
+<h2 id="基于诸葛io"><a href="#基于诸葛io" class="headerlink" title="基于诸葛io"></a>基于<a href="https://zhugeio.com/" target="_blank" rel="external">诸葛io</a></h2><p>为了解决小程序管理后台数据分析存在的问题，我们对比了很多支持小程序的数据分析产品，列表如下，最后选择了诸葛io。</p>
+<ul>
+<li><a href="http://mta.qq.com/mta/ctr_index/opd" target="_blank" rel="external">腾讯移动分析</a></li>
+<li><a href="https://www.aldwx.com/" target="_blank" rel="external">阿拉丁小程序统计平台</a></li>
+<li><a href="https://www.sensorsdata.cn/manual/mp_sdk.html" target="_blank" rel="external">神策数据</a></li>
+<li><a href="https://www.talkingdata.com/" target="_blank" rel="external">TalkingData</a></li>
+<li><a href="https://jice.io/" target="_blank" rel="external">及策</a></li>
+<li><a href="https://ark.analysys.cn/" target="_blank" rel="external">易观方舟</a></li>
+<li><a href="https://www.growingio.com/" target="_blank" rel="external">GrowingIO</a></li>
+<li><a href="https://zhugeio.com/" target="_blank" rel="external">诸葛io</a></li>
+</ul>
+<p>总体来说，诸葛io解决了上述小程序后台存在的所有问题，而且提供了下载原始数据的方式，集成简单，调试也快，后台也可以添加多个用户并授予不同权限。后台创建用户分群、创建面板方式比较简单，不需要工程师去创建，业务人员可以自己创建。缺点就是付费😂，上面也说过了，数据会有些偏差，但是很有可能没办法避免。</p>
+<h2 id="基于Google-Analytics"><a href="#基于Google-Analytics" class="headerlink" title="基于Google Analytics"></a>基于<a href="https://analytics.google.com/" target="_blank" rel="external">Google Analytics</a></h2><p>小程序中集成 <a href="https://github.com/rchunping/wxapp-google-analytics" target="_blank" rel="external">wxapp-google-analytics</a> 后，<strong>按照文档进行操作</strong>，可上报数据到 Google Analytics，经试验以下功能都可正常使用：</p>
+<ul>
+<li>可上报页面访问，支持自定义维度和指标</li>
+<li>可上报事件，若要上报自定义维度和指标，需修改 ga.js 文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">EventBuilder.prototype.build = function() &#123;</div><div class="line">  // 去除无效字段字段</div><div class="line">  hit_delete_if(this, &apos;ev&apos;, 0);</div><div class="line">  hit_delete_if(this, &apos;el&apos;, &apos;&apos;);</div><div class="line"></div><div class="line">  // 添加--处理自定义维度和指标</div><div class="line">  var cd_arr = this.custom_dimensions;</div><div class="line">  var cm_arr = this.custom_metrics;</div><div class="line">  var i;</div><div class="line"></div><div class="line">  for (i = 0; i &lt; cd_arr.length; i++) &#123;</div><div class="line">    var cd = cd_arr[i];</div><div class="line">    this.hit[&apos;cd&apos; + cd[0]] = cd[1];</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  for (i = 0; i &lt; cm_arr.length; i++) &#123;</div><div class="line">    var cm = cm_arr[i];</div><div class="line">    this.hit[&apos;cm&apos; + cm[0]] = cm[1];</div><div class="line">  &#125;</div><div class="line">  // 添加--结束</div><div class="line"></div><div class="line">  return HitBuilder.prototype.build.apply(this, arguments);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li>渠道分析</li>
+<li>跟踪场景值</li>
+<li>跟踪二维码参数</li>
+<li>可标识用户，清除 storage/_ga_cid 后，将产生一个新用户，这也意味着用户删除小程序后再次进入将作为一个新用户</li>
+</ul>
+<p>Google Analytics 中受众群体下的报告反映都很慢，想看到用户数据上报情况很可能第二天才能看到，有时第二天也没看到数据，还需要重新测，很担心线上环境也会出现这种情况。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/08/25/wechat-review/" itemprop="url">
+                  小程序审核相关
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-08-25T13:03:18+08:00" content="2018-08-25">
+              2018-08-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/WeChat/" itemprop="url" rel="index">
+                    <span itemprop="name">WeChat</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="小程序如何提审"><a href="#小程序如何提审" class="headerlink" title="小程序如何提审"></a>小程序如何提审</h2><p>小程序中只要修改了代码，上线就需要审核，如果通过修改 url 的形式来决定是访问测试服务器还是线上服务器，就需要进行2次审核，而且需要后端先上线。解决这个问题，可以前端和后端都维护一个版本号，前端可以使用动态拼接 url 的方式访问后端接口，如 /api1/xxx，/api2/xxx，或者在请求参数里带上版本号，后端收到请求时拿到的版本号，与自己保存的版本号做对比决定是访问测试服务器还是线上服务器。</p>
+<h2 id="小程序审核被拒情形"><a href="#小程序审核被拒情形" class="headerlink" title="小程序审核被拒情形"></a>小程序审核被拒情形</h2><ul>
+<li>购买在线课程会被指定为虚拟支付</li>
+<li>打卡返现会被指定为赌博活动</li>
+<li>电子课程含“未解锁”课程，并引导至公众号解锁课程会被指定为内容不符合规则</li>
+<li>没有课程的用户如果直接显示暂无课程，会被指定为可用性和完整性不符合规则</li>
+<li>微信测试人员账号可能会出现奇怪的问题，可能会没有 unionId，导致使用小程序里面的功能出现问题</li>
+</ul>
+<p>注意：提交审核如果被拒了，经过排查发现是微信自己的问题，可在社区中发帖子描述问题，可能会过审。在小程序后台提交审核没有填写描述的地方，但是使用微信开发者工具上传代码时可以添加项目备注，到小程序后台会出现在描述字段，这里的信息审核人员是会看的。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/08/25/wechat-problem/" itemprop="url">
+                  小程序开发遇到问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-08-25T13:03:13+08:00" content="2018-08-25">
+              2018-08-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/WeChat/" itemprop="url" rel="index">
+                    <span itemprop="name">WeChat</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>以下记录的为开发过程中遇到的零散问题及解决方案。</p>
+<h2 id="登录流程"><a href="#登录流程" class="headerlink" title="登录流程"></a>登录流程</h2><img src="/2018/08/25/wechat-problem/flow.png" title="小程序登录流程">
+<h2 id="部分用户没有-unionId"><a href="#部分用户没有-unionId" class="headerlink" title="部分用户没有 unionId"></a>部分用户没有 unionId</h2><p>如上面登录逻辑梳理所述，进入小程序时，如果判断当前进行了用户授权，会使用 wx.getUserInfo 获取用户加密信息 encryptedData 和 iv 以及 wx.login 返回的 code 调用后台接口，后台处理会调用微信接口，通常微信接口会返回用户的 unionId，但发现有的用户就没有返回 unionId。在社区搜了一下这个问题，发现可能会存在微信接口没有返回 unionId 的情况，但通过解密 encryptedData 一定能拿到 unionId，因此改变了获取 unionId 的方式就解决了这个问题。</p>
+<h2 id="登录加载慢"><a href="#登录加载慢" class="headerlink" title="登录加载慢"></a>登录加载慢</h2><p>小程序线上环境，有部分用户会登录加载很慢，但是我自己没有复现过这个现象，也没办法排查问题。后来发现本地使用<strong> ngrok 进行内网穿透</strong> 调试时，有时就会出现这个登录加载慢的问题，经过排查发现，前端在进入小程序时，先使用 wx.login 获取 code，然后调用后台 getInfo 接口拿到用户 openId 进行数据上报，同时也调用后台 login 接口进行用户登录，这两个后台接口都调用了 <a href="https://api.weixin.qq.com/sns/jscode2session" target="_blank" rel="external">https://api.weixin.qq.com/sns/jscode2session</a> 接口获取 session_key。后台本身是做了通过将 code 值存入数据库来防止重复使用 code 的兼容的，但是可能会存在同时进入后台的这两个请求，还没有完成存入数据库的操作，后台报了 code 被重复使用的错误没有继续向下执行，因此前端一直处于等待状态，导致登录加载卡死在等待中。</p>
+<h2 id="iOS-上头像不显示"><a href="#iOS-上头像不显示" class="headerlink" title="iOS 上头像不显示"></a>iOS 上头像不显示</h2><p>问题：在【我的】页面，进入时查询用户信息，如果没有用户信息，显示默认头像图片，如果有用户信息，显示指定 url 的用户头像，但在 iOS 上返回用户信息后仍然显示默认图像，image 组件的 src 属性是正确的头像链接。</p>
+<p>解决：在 iOS 上 image 组件在 src 变化后不一定能显示更新后的图片，使用两个 image 组件，根据有没有 url 值决定显示默认头像还是用户头像，就没有问题了。</p>
+<h2 id="重复进入页面"><a href="#重复进入页面" class="headerlink" title="重复进入页面"></a>重复进入页面</h2><p>问题：在网络条件不好时可能存在点击按钮跳转页面，可能会多次跳转同一个页面，也要点击多次返回才能返回到正确的页面。</p>
+<p>解决：在跳转前判断要进入的页面是否在路由栈已经存在。示例代码如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Page(&#123;</div><div class="line">    ...</div><div class="line">    navigateToPage() &#123;</div><div class="line">        <span class="keyword">const</span> pages = getCurrentPages();</div><div class="line">        <span class="keyword">if</span> (pages[pages.length - <span class="number">1</span>].route === <span class="string">'pages/xxx/xxx'</span>) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        wx.navigateTo(&#123;</div><div class="line">            url: <span class="string">'/pages/xxx/xxx'</span>,</div><div class="line">        &#125;);</div><div class="line">    &#125;,</div><div class="line">    ...</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="网络图片存在缓存"><a href="#网络图片存在缓存" class="headerlink" title="网络图片存在缓存"></a>网络图片存在缓存</h2><p>小程序中使用的网络图片，如果 url 没有发生变化，但后台更新了图片，使用小程序时可能会存在图片没有更新过来，把小程序从记录中删除了再打开，就可以了。也可以在使用图片的 url 后面添加查询参数 <code>url + &#39;?&#39; + Dare.parse(new Date())</code> 的方式不让小程序缓存图片。web-view 中打卡的网页链接也可以这么处理。</p>
+<h2 id="一个值得思考的-bug"><a href="#一个值得思考的-bug" class="headerlink" title="一个值得思考的 bug"></a>一个值得思考的 bug</h2><p>问题描述：A 页面 -&gt; B 页面 -&gt; C 页面，在 C 页面中，进行背景音频播放，并添加了背景音频播放的监听，onPlay、onPause、onTimeUpdate、onEnded、onStop，这些监听中主要是更新当前页面的 data 值，来控制页面中的显示，如显示播放/暂停按钮，显示当前播放进度等，<strong>并更新全局的当前播放音频的信息</strong>，在从 C 页面返回到 B 页面及 A 页面时，会显示一个悬浮播放的控件，显示正在播放的背景音频的信息及播放进度。问题是在从 C 页面返回后，如果是从背景音频点击的暂停，悬浮播放控件中显示的当前播放进度会显示从 C 页面返回时的进度，而不是当前播放进度。</p>
+<p>分析原因：经过大概1小时的 bug 追踪，发现问题的原因是背景音频播放的监听是在 C 页面内的，在 onPause 监听中，更新全局播放音频信息的代码是如下代码中的第一段，但从 C 页面返回后，C 页面已经销毁了，这时再获取 this.data.tipRecord 是销毁页面前的数据（刚开始这么写的时候我以为会报错），也就是从 C 返回时的数据。将代码修改为第二段，主要是更新全局提示记录的处理是基于全局 store 中的数据，而不是当前页面的 data，该问题就解决了。</p>
+<p>在 C 页面中的音频播放监听方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">// 第一段，有问题的</div><div class="line">this.backgroundAudioManager.onPause(() =&gt; &#123;</div><div class="line">    // 全局提示记录处理，更新 store 中的全局信息</div><div class="line">    this.setTipRecord(&#123;</div><div class="line">        ...this.data.tipRecord,</div><div class="line">        show: true,</div><div class="line">        paused: true,</div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 第二段，修正后的</div><div class="line">this.backgroundAudioManager.onPause(() =&gt; &#123;</div><div class="line">    // 获取全局 store 中的音频播放信息</div><div class="line">    const storeData = this.store.getState();</div><div class="line">    // 全局提示记录处理，更新 store 中的全局信息</div><div class="line">    this.setTipRecord(&#123;</div><div class="line">        ...storeData.tipRecord,</div><div class="line">        show: true,</div><div class="line">        paused: true,</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h2 id="微信用户可能没有头像"><a href="#微信用户可能没有头像" class="headerlink" title="微信用户可能没有头像"></a>微信用户可能没有头像</h2><p>在开发打卡生成图片的功能时，很多都需要使用用户的头像，注意会存在没有头像的微信用户，需要处理该种情况。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/08/25/wechat-canvas/" itemprop="url">
+                  小程序 canvas 使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-08-25T13:02:51+08:00" content="2018-08-25">
+              2018-08-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/WeChat/" itemprop="url" rel="index">
+                    <span itemprop="name">WeChat</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我们的小程序中有一个功能，会根据用户信息生成图片，并可以保存到相册。第一次是使用前端发起请求，后端生成图片上传到阿里云后给前端返回图片地址，但是上线后发现图片出来的很慢，平均要6~7秒。第二次是使用小程序的 canvas api 在前端绘制图片，可达到平局在3秒左右，但这个过程也遇到了一些问题，描述如下。</p>
+<h3 id="多屏幕适配问题"><a href="#多屏幕适配问题" class="headerlink" title="多屏幕适配问题"></a>多屏幕适配问题</h3><p>设计稿是基于 375 * 667 尺寸的，如果是用 image 显示图片，我们可以通过计算或使用适配的单位来进行多屏适配。但是 canvas 中不能使用适配的单位，但是可以获取到屏幕的宽度，自己计算每一个尺寸应该有多大，比较麻烦。更好的做法是在绘制前使用 canvasContext.scale api 进行缩放，后面直接使用设计稿中固定的尺寸绘制即可。</p>
+<h3 id="绘制圆形用户微信头像"><a href="#绘制圆形用户微信头像" class="headerlink" title="绘制圆形用户微信头像"></a>绘制圆形用户微信头像</h3><p>canvas 中绘制图片时，需要先使用 wx.downloadFile api 下载文件到本地，再使用返回的临时路径绘制图片。注意下载的图片的域名需要添加在 downloadFile 合法域名中，否则 iOS 不显示图片。之后使用 canvasContext.clip api 将图片切成圆形。</p>
+<h3 id="居中显示不同样式的文字"><a href="#居中显示不同样式的文字" class="headerlink" title="居中显示不同样式的文字"></a>居中显示不同样式的文字</h3><p>图片的中间需要显示“第 xxx 天”，整行文字需要居中显示，但数字的字体比较大，因此无法直接使用 canvasContext.setTextAlign api 进行文字居中设置。可使用 canvasContext.measureText<br> api 先计算出数字显示需要的宽度，然后将 “第 ” 和 “ 天” 放在计算后的位置居右和距左对齐。</p>
+<h3 id="Modal-形式的图片被-canvas-覆盖"><a href="#Modal-形式的图片被-canvas-覆盖" class="headerlink" title="Modal 形式的图片被 canvas 覆盖"></a>Modal 形式的图片被 canvas 覆盖</h3><p>canvas 属于原生组件，层级是最高的，页面中如果有需要弹出 Modal 的地方，是无法显示在 canvas 上面的。经试验，如果使用两个 canvas，是可以达到一个 canvas 在另一个 canvas 上面的，但是因为我们的项目中弹出的 Modal 有一个按钮，因此无法使用这种方式。我们采用了在屏幕的外面绘制图片，绝对定位，top 为负值，然后下载到本地，用 image 标签引用本地路径来显示图片。</p>
+<h3 id="完整示例代码"><a href="#完整示例代码" class="headerlink" title="完整示例代码"></a>完整示例代码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 图片宽度为 330，该值为图片水平居中的位置</span></div><div class="line"><span class="keyword">const</span> midpoint = <span class="number">330</span> / <span class="number">2</span>;</div><div class="line"></div><div class="line">Page(&#123;</div><div class="line">  ...</div><div class="line">  onLoad(<span class="keyword">this</span>: PageData, options: Options) &#123;</div><div class="line">    <span class="keyword">const</span> canvasContext = wx.createCanvasContext(<span class="string">'clockImage'</span>);</div><div class="line">    <span class="keyword">this</span>.canvasContext = canvasContext;</div><div class="line">    <span class="comment">// 多屏幕适配问题</span></div><div class="line">    canvasContext.scale(</div><div class="line">      app.globalData.windowWidth / <span class="number">375</span>,</div><div class="line">      app.globalData.windowWidth / <span class="number">375</span>,</div><div class="line">    );</div><div class="line"></div><div class="line">    canvasContext.drawImage(<span class="string">`../../images/clock_bg.png`</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">330</span>, <span class="number">400</span>);</div><div class="line">    canvasContext.setTextAlign(<span class="string">'center'</span>);</div><div class="line">    canvasContext.setFillStyle(<span class="string">'white'</span>);</div><div class="line">    canvasContext.setFontSize(<span class="number">16</span>);</div><div class="line">    canvasContext.fillText(<span class="string">`我在这里学习`</span>, midpoint, <span class="number">124</span>);</div><div class="line">    canvasContext.fillText(<span class="string">`坚持学习《占位占位占位占位》`</span>, midpoint, <span class="number">150</span>);</div><div class="line">    canvasContext.setFillStyle(<span class="string">'rgba(255, 255, 255, 0.15)'</span>);</div><div class="line">    canvasContext.fillRect(<span class="number">15</span>, <span class="number">258</span>, <span class="number">300</span>, <span class="number">50</span>);</div><div class="line">    canvasContext.setFillStyle(<span class="string">'#8FADFF'</span>);</div><div class="line">    canvasContext.setFontSize(<span class="number">14</span>);</div><div class="line">    canvasContext.setTextAlign(<span class="string">'left'</span>);</div><div class="line">    canvasContext.setFillStyle(<span class="string">'#fff'</span>);</div><div class="line">    canvasContext.fillText(<span class="string">'The truth is that there is the pinnacle of'</span>, <span class="number">22</span>, <span class="number">278</span>);</div><div class="line">    canvasContext.fillText(<span class="string">'justice in practice is to use the truth.'</span>, <span class="number">22</span>, <span class="number">298</span>);</div><div class="line">    canvasContext.setTextAlign(<span class="string">'center'</span>);</div><div class="line"></div><div class="line">    canvasContext.draw();</div><div class="line">    <span class="comment">// 用户头像</span></div><div class="line">    <span class="keyword">this</span>.drawAvatar(wxInfo);</div><div class="line">    <span class="comment">// 二维码</span></div><div class="line">    <span class="keyword">this</span>.drawQrcode();</div><div class="line">    <span class="comment">// 天数</span></div><div class="line">    <span class="keyword">this</span>.drawDays();</div><div class="line">  &#125;,</div><div class="line">  drawAvatar(<span class="keyword">this</span>: PageData, wxInfo: WxInfo) &#123;</div><div class="line">    <span class="keyword">const</span> canvasContext = <span class="keyword">this</span>.canvasContext;</div><div class="line">    wx.downloadFile(&#123;</div><div class="line">      url: <span class="string">'path to avatar'</span>,</div><div class="line">      success: res =&gt; &#123;</div><div class="line">        <span class="comment">// 绘制圆形用户微信头像</span></div><div class="line">        canvasContext.beginPath();</div><div class="line">        canvasContext.arc(midpoint, <span class="number">40</span>, <span class="number">24</span>, <span class="number">0</span>, <span class="number">2</span> * <span class="built_in">Math</span>.PI);</div><div class="line">        canvasContext.clip();</div><div class="line">        canvasContext.drawImage(res.tempFilePath, midpoint - <span class="number">24</span>, <span class="number">16</span>, <span class="number">48</span>, <span class="number">48</span>);</div><div class="line">        canvasContext.setFontSize(<span class="number">12</span>);</div><div class="line">        canvasContext.draw(<span class="literal">true</span>, () =&gt; &#123;</div><div class="line">          <span class="keyword">this</span>.setData(</div><div class="line">            &#123;</div><div class="line">              showAvatar: <span class="literal">true</span>,</div><div class="line">              canSave: <span class="keyword">this</span>.data.showDays &amp;&amp; <span class="keyword">this</span>.data.showQrcode,</div><div class="line">            &#125;,</div><div class="line">            () =&gt; &#123;</div><div class="line">              <span class="keyword">this</span>.saveTempImage();</div><div class="line">            &#125;,</div><div class="line">          );</div><div class="line">        &#125;);</div><div class="line">      &#125;,</div><div class="line">      fail: () =&gt; &#123;</div><div class="line">        <span class="keyword">this</span>.drawAvatar();</div><div class="line">      &#125;,</div><div class="line">    &#125;);</div><div class="line">  &#125;,</div><div class="line">  drawQrcode(<span class="keyword">this</span>: PageData) &#123;</div><div class="line">    <span class="keyword">const</span> canvasContext = <span class="keyword">this</span>.canvasContext;</div><div class="line">    wx.downloadFile(&#123;</div><div class="line">      url: <span class="string">'https://res.wx.qq.com/mpres/htmledition/images/mp_qrcode3a7b38.gif'</span>,</div><div class="line">      success: res =&gt; &#123;</div><div class="line">        canvasContext.drawImage(res.tempFilePath, <span class="number">68</span>, <span class="number">328</span>, <span class="number">56</span>, <span class="number">56</span>);</div><div class="line">        canvasContext.draw(<span class="literal">true</span>, () =&gt; &#123;</div><div class="line">          <span class="keyword">this</span>.setData(</div><div class="line">            &#123;</div><div class="line">              showQrcode: <span class="literal">true</span>,</div><div class="line">              canSave: <span class="keyword">this</span>.data.showAvatar &amp;&amp; <span class="keyword">this</span>.data.showDays,</div><div class="line">            &#125;,</div><div class="line">            () =&gt; &#123;</div><div class="line">              <span class="keyword">this</span>.saveTempImage();</div><div class="line">            &#125;,</div><div class="line">          );</div><div class="line">        &#125;);</div><div class="line">      &#125;,</div><div class="line">      fail: () =&gt; &#123;</div><div class="line">        <span class="keyword">this</span>.drawQrcode();</div><div class="line">      &#125;,</div><div class="line">    &#125;);</div><div class="line">  &#125;,</div><div class="line">  drawDays(<span class="keyword">this</span>: PageData) &#123;</div><div class="line">    <span class="keyword">const</span> canvasContext = <span class="keyword">this</span>.canvasContext;</div><div class="line">    <span class="comment">// 居中显示不同样式的文字</span></div><div class="line">    canvasContext.setFontSize(<span class="number">48</span>);</div><div class="line">    <span class="keyword">const</span> days = <span class="string">'99'</span>;</div><div class="line">    <span class="keyword">const</span> dayWidth = canvasContext.measureText(days).width / <span class="number">2</span>;</div><div class="line"></div><div class="line">    canvasContext.setFillStyle(<span class="string">'#8FADFF'</span>);</div><div class="line">    canvasContext.setFontSize(<span class="number">16</span>);</div><div class="line">    canvasContext.setTextAlign(<span class="string">'right'</span>);</div><div class="line">    canvasContext.fillText(<span class="string">'第 '</span>, midpoint - dayWidth, <span class="number">210</span>);</div><div class="line">    canvasContext.setFillStyle(<span class="string">'#FF9F65'</span>);</div><div class="line">    canvasContext.setFontSize(<span class="number">48</span>);</div><div class="line">    canvasContext.setTextAlign(<span class="string">'center'</span>);</div><div class="line">    canvasContext.fillText(days, midpoint, <span class="number">210</span>);</div><div class="line">    canvasContext.setFillStyle(<span class="string">'#8FADFF'</span>);</div><div class="line">    canvasContext.setFontSize(<span class="number">16</span>);</div><div class="line">    canvasContext.setTextAlign(<span class="string">'left'</span>);</div><div class="line">    canvasContext.fillText(<span class="string">' 天'</span>, midpoint + dayWidth, <span class="number">210</span>);</div><div class="line">    canvasContext.draw(<span class="literal">true</span>, () =&gt; &#123;</div><div class="line">      <span class="keyword">this</span>.setData(</div><div class="line">        &#123;</div><div class="line">          showDays: <span class="literal">true</span>,</div><div class="line">          canSave: <span class="keyword">this</span>.data.showAvatar &amp;&amp; <span class="keyword">this</span>.data.showQrcode,</div><div class="line">        &#125;,</div><div class="line">        () =&gt; &#123;</div><div class="line">          <span class="keyword">this</span>.saveTempImage();</div><div class="line">        &#125;,</div><div class="line">      );</div><div class="line">    &#125;);</div><div class="line">  &#125;,</div><div class="line">  saveTempImage(<span class="keyword">this</span>: PageData) &#123;</div><div class="line">    <span class="comment">// 下载图片</span></div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.data.canSave &amp;&amp; !<span class="keyword">this</span>.data.saving) &#123;</div><div class="line">      <span class="keyword">this</span>.setData(&#123;</div><div class="line">        saving: <span class="literal">true</span>,</div><div class="line">      &#125;);</div><div class="line">      wx.canvasToTempFilePath(&#123;</div><div class="line">        canvasId: <span class="string">'clockImage'</span>,</div><div class="line">        success: res =&gt; &#123;</div><div class="line">          <span class="comment">// image 组件的 src 值为 clockImagePath</span></div><div class="line">          <span class="keyword">this</span>.setData(&#123;</div><div class="line">            clockImagePath: res.tempFilePath,</div><div class="line">          &#125;);</div><div class="line">          <span class="keyword">this</span>.setData(&#123;</div><div class="line">            saving: <span class="literal">false</span>,</div><div class="line">          &#125;);</div><div class="line">        &#125;,</div><div class="line">        fail: () =&gt; &#123;</div><div class="line">          <span class="keyword">this</span>.setData(&#123;</div><div class="line">            saving: <span class="literal">false</span>,</div><div class="line">          &#125;);</div><div class="line">        &#125;,</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<img src="/2018/08/25/wechat-canvas/1.jpg" width="300" title="canvas 绘制的图片">
+<img src="/2018/08/25/wechat-canvas/2.jpg" width="300" title="点击 Modal 效果">
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/08/25/wechat-download/" itemprop="url">
+                  小程序下载文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-08-25T13:02:46+08:00" content="2018-08-25">
+              2018-08-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/WeChat/" itemprop="url" rel="index">
+                    <span itemprop="name">WeChat</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>需求为点击文件列表，可预览文件，可下载文件或以其它方式能在桌面端看文件。首先需要在小程序后台配置业务域名。经探索，需要使用 wx.downloadFile 先下载文件，再使用 wx.saveFile 将下载的临时文件保存到本地，再使用 wx.openDocument 打开保存后的文件。</p>
+<p>在 android 手机（华为荣耀8）上，文件下载或保存后，是保存在 <code>本地/内部存储/Tecent/MicroMsg/wxafiles/此处为appId</code> 目录中，下载的文件为临时文件，文件以 temp 开头，保存的文件以 store 开头。很奇怪，使用远程调试时输出的路径都是带有后缀的路径，但在文件系统中打开文件查看详情都是没有后缀的，如图1、图2所示。</p>
+<p>在小程序中使用 wx.openDocument 打开文件后，在 android 上点击右上角三个点发送到微信传输助手在桌面端打开时都显示为 exec 文件，没办法直接打开，如图3、图4所示，重命名添加后缀后是可以的。</p>
+<img src="/2018/08/25/wechat-download/directory.png" width="300" title="文件目录">
+<img src="/2018/08/25/wechat-download/log.png" width="300" title="输出">
+<img src="/2018/08/25/wechat-download/send.jpg" width="300" title="发送">
+<img src="/2018/08/25/wechat-download/desktop.png" width="300" title="发送">
+<p>示例代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">Page(&#123;</div><div class="line">  downloadFile() &#123;</div><div class="line">    <span class="comment">// 下载文件</span></div><div class="line">    wx.downloadFile(&#123;</div><div class="line">      url: <span class="string">'http://example.com/somefile.pdf'</span>,</div><div class="line">      success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</div><div class="line">        <span class="keyword">const</span> tempFilePath = res.tempFilePath;</div><div class="line">        <span class="comment">// 保存文件</span></div><div class="line">        wx.saveFile(&#123;</div><div class="line">          tempFilePath,</div><div class="line">          success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</div><div class="line">            <span class="keyword">const</span> savedFilePath = res.savedFilePath;</div><div class="line">            <span class="comment">// 打开文件</span></div><div class="line">            wx.openDocument(&#123;</div><div class="line">              filePath: savedFilePath,</div><div class="line">              success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'打开文档成功'</span>)</div><div class="line">              &#125;,</div><div class="line">            &#125;);</div><div class="line">          &#125;,</div><div class="line">          fail: <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'保存失败：'</span>, err)</div><div class="line">          &#125;</div><div class="line">        &#125;);</div><div class="line">      &#125;,</div><div class="line">      fail: <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'下载失败：'</span>, err);</div><div class="line">      &#125;,</div><div class="line">    &#125;);</div><div class="line">  &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1061,615 +1693,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/08/23/communication-problem/" itemprop="url">
-                  沟通问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-08-23T16:30:58+08:00" content="2018-08-23">
-              2018-08-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/沟通/" itemprop="url" rel="index">
-                    <span itemprop="name">沟通</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="2018-08-23-记"><a href="#2018-08-23-记" class="headerlink" title="2018-08-23 记"></a>2018-08-23 记</h2><p>昨天发现了自己一个非常反常的行为，我还在尝试解决问题的过程中就问了我们老大当前的方案是不是可接受，虽然后来问题解决了，但我还是仔细思考了自己为什么会出现这种反常行为。通常我会把各种方法都尝试过、网上查了几遍后，如果还没解决问题才会向上汇报，而且我也非常明确的知道我们老大非常讨厌别人还没有上网查查有没有解决方案就去问他。跟着我的心去思考了一下，我发现是因为之前有人问了我什么时候能提审，我觉得他在催我，所以着急了。但实际上人家可能不是催我的意思，只是问问，《关键对话》中强调过不要对别人说的话主观臆断，导致自己产生情绪或产生其它不好的影响。所以第二天我就跟这位同事简单聊了聊，表示以后他可以把期望的时间直接说出来，我也会把当前的情况跟他描述一下，双方对当前的进度及项目要求的时间达成一致，而不是互相去猜对方想要的是什么、会怎么做，逐步建立互相的信任。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/08/20/problem-thought/" itemprop="url">
-                  解决问题的思路
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-08-20T09:44:57+08:00" content="2018-08-20">
-              2018-08-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Ideas/" itemprop="url" rel="index">
-                    <span itemprop="name">Ideas</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="项目重构后-Modal-组件样式不正确"><a href="#项目重构后-Modal-组件样式不正确" class="headerlink" title="项目重构后 Modal 组件样式不正确"></a>项目重构后 Modal 组件样式不正确</h2><p>我们的项目基于 create-react-app 重构后，运行一段时间突然发现 Modal 组件样式有问题了。现象是：通常的 Modal 样式是正确的，在一个固定地方点击的 Modal 样式不正确，而且一旦出现不对的样式后其它的 Modal 样式也不正确了。经过与正确的 Modal 对比样式，发现样式没有问题。无意中点击了编译后的 css 文件，发现 keyframes 不是 modules 命名的，而是命名为 a、b、c 等，被其它文件中同名的 keyframes 覆盖了。这也解释了为什么其它地方的 Modal 是正确的，而某个地方的 Modal 出现不正确样式后其它 Modal 都被影响了的问题。我的第一反应就是代码里面命名重复了，但查看代码发现没有问题。再仔细一看发现其它样式都是 modules 形式的，如类名为 .Modal_content__14s1u，只有 keyframes 不是，都是 a、b、c 这种形式的。</p>
-<p>之后就开始查 webpack 相关编译的问题，没有解决方案。后来想起来，项目基于 create-react-app 后，webpack 配置相关的都是在 react-scripts 中配置的，也就是 create-react-app，去查了 issuse 列表，找到有人问相同的问题了，解决方式如下。</p>
-<p>事后回想一下，我已经定位到时编译问题后，首先想到的就应该是 create-react-app 的问题，不应该盲目的乱查 webpack 配置相关的东西。<strong>切记遇到问题还需仔细思考，理清思路，准确定位，不应乱查。</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// create-react-app/packages/react-scripts/config/webpack.config.prod.js</span></div><div class="line">...</div><div class="line">module.exports = &#123;</div><div class="line">  ...</div><div class="line">  optimization: &#123;</div><div class="line">    minimizer: [</div><div class="line">      ...,</div><div class="line">      <span class="keyword">new</span> OptimizeCSSAssetsPlugin(&#123; cssProcessorOptions: &#123; safe: <span class="literal">true</span> &#125; &#125;),</div><div class="line">    ],</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="奇怪问题"><a href="#奇怪问题" class="headerlink" title="奇怪问题"></a>奇怪问题</h2><p>如果自己确认代码没有问题，但效果有奇怪的问题，尤其是移植过来的代码，跟原代码运行时效果不一样，首先考虑是否有包的版本有问题，将相关包的版本处理成一样的，再试试是否还存在问题。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/08/17/common-ideas/" itemprop="url">
-                  常用思路
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-08-17T16:48:28+08:00" content="2018-08-17">
-              2018-08-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Ideas/" itemprop="url" rel="index">
-                    <span itemprop="name">Ideas</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>遇到如下一些问题时可参考的思路：</p>
-<ul>
-<li>缓存问题，可使用在 url 后面拼接当前时间参数的方式，<code>url + &#39;?&#39; + Dare.parse(new Date())</code></li>
-<li>如果在一些 api 中报了页面路径不正确，确认后面是否多了或少了 <code>/</code></li>
-<li>对于开发过程中还没定下来的页面，后期也可能会经常变化，尤其对于小程序这种上线需要审核的，可以考虑使用网络图片或 web-view 的方式，减少开发成本</li>
-<li>需要下载文件的需求，可考虑能否通过提供下载链接、在服务号中发送指定内容通过自动回复下载链接等方式满足需求</li>
-<li>如果需要在一个时候加入权限，这个权限相对固定，可以复制出一个新的项目，再在此基础上进行权限的设置</li>
-<li>render 中可以循环遍历 props 进行显示，在render中定义局部变量，只要显示的位置在遍历之后，就可正常显示，必要时可使用 flex 布局调整页面显示顺序，但代码是先遍历后展示的</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/07/17/javascript-good-parts/" itemprop="url">
-                  《JavaScript语言精粹》笔记（未完成）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-07-17T22:02:59+08:00" content="2018-07-17">
-              2018-07-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Reading-Notes/" itemprop="url" rel="index">
-                    <span itemprop="name">Reading Notes</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/07/08/google-analytics/" itemprop="url">
-                  集成谷歌分析
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-07-08T12:53:24+08:00" content="2018-07-08">
-              2018-07-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/数据分析/" itemprop="url" rel="index">
-                    <span itemprop="name">数据分析</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="网站跟踪"><a href="#网站跟踪" class="headerlink" title="网站跟踪"></a>网站跟踪</h2><p>登录 <a href="https://analytics.google.com/" target="_blank" rel="external">Google Analytics</a> 后，根据项目情况创建媒体资源并集成到项目中，通常包括以下步骤：</p>
-<ul>
-<li>初始化跟踪实例</li>
-<li>上报页面访问事件，集成 Google Analytics 后会自动上报页面访问事件，但现在的应用通常是单页应用，需要特殊处理一下，在路由发生变化时上报页面信息</li>
-<li>标识用户<ul>
-<li>Google 后台，管理 -&gt; 媒体资源/.js 跟踪信息 -&gt; User-ID，启用 User-ID 功能，可查看示例代码</li>
-<li>代码中再获取到用户信息时进行上报，如 <code>gtag(&#39;set&#39;, {&#39;user_id&#39;: &#39;USER_ID&#39;});</code></li>
-<li>清除 cookie 后，将产生一个新用户，即使设置了相同的 user_id</li>
-<li>在报告 -&gt; 受众群体 -&gt; 行为 -&gt; User ID 覆盖率中，可查看被标识用户的比例</li>
-</ul>
-</li>
-<li>跟踪流量来源<ul>
-<li>在页面 url 中带有的 <code>utm_</code> 系列参数会自动上报，utm_source 是必须的，否则无法收集其它数据</li>
-<li>也可通过代码手动上报</li>
-<li>utm_source，广告系列来源，用于确定具体的搜索引擎、简报或其他来源，如 google 或 weixin</li>
-<li>utm_medium，广告系列媒介，用于确定电子邮件或采用每次点击费用的广告等媒介，如 cpc 或 appmessage 或 timeline</li>
-<li>utm_campaign，广告系列名称，用于关键字分析，以标识具体的产品推广活动或战略广告系列，如 spring_sale 或 sharePlan</li>
-<li>utm_term，广告系列字词，用于付费搜索，为广告提供关键字，如 running + shoes</li>
-<li>utm_content，广告系列内容，用于 A/B 测试和内容定位广告，以区分指向相同网址的不同广告或链接，如 logolink 或 textlink</li>
-</ul>
-</li>
-<li><p>上报事件，可上报自定义指标和维度</p>
-<ul>
-<li>事件类别，如购买</li>
-<li>事件操作，如购买成功、购买失败</li>
-<li>事件标签，如单品1、单品2</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">gtag(&apos;config&apos;, config.gaTrackingId, &#123;</div><div class="line">  custom_map: &#123;</div><div class="line">    dimension1: &apos;viewerId&apos;,</div><div class="line">    dimension2: &apos;activityName&apos;,</div><div class="line">  &#125;,</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gtag(&apos;event&apos;, &apos;事件操作&apos;, &#123;</div><div class="line">  event_category: &apos;事件类别&apos;,</div><div class="line">  event_label: &apos;事件标签&apos;,</div><div class="line">  viewerId: &apos;维度1&apos;,</div><div class="line">  activityName: &apos;维度2&apos;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1690,7 +1718,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
