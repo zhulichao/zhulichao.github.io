@@ -1,0 +1,871 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CSS," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="CSS Grid 网格布局教程 简介Grid 布局与 Flex 布局有一定的相似性，都可以指定容器内部多个项目的位置。但是，Flex 布局是轴线布局，只能指定”项目”针对轴线的位置，可以看作是一维布局。Grid 布局则是将容器划分成”行”和”列”，产生单元格，然后指定”项目所在”的单元格，可以看作是二维布局。Grid 布局远比 Flex 布局强大。 采用网格布局的区域，称为”容器”（contain">
+<meta name="keywords" content="CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS-网格布局">
+<meta property="og:url" content="https://zhulichao.github.io/2019/12/25/css-grid/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="CSS Grid 网格布局教程 简介Grid 布局与 Flex 布局有一定的相似性，都可以指定容器内部多个项目的位置。但是，Flex 布局是轴线布局，只能指定”项目”针对轴线的位置，可以看作是一维布局。Grid 布局则是将容器划分成”行”和”列”，产生单元格，然后指定”项目所在”的单元格，可以看作是二维布局。Grid 布局远比 Flex 布局强大。 采用网格布局的区域，称为”容器”（contain">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://zhulichao.github.io/2019/12/25/css-grid/auto-fit.png">
+<meta property="og:image" content="https://zhulichao.github.io/2019/12/25/css-grid/area.png">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.278Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS-网格布局">
+<meta name="twitter:description" content="CSS Grid 网格布局教程 简介Grid 布局与 Flex 布局有一定的相似性，都可以指定容器内部多个项目的位置。但是，Flex 布局是轴线布局，只能指定”项目”针对轴线的位置，可以看作是一维布局。Grid 布局则是将容器划分成”行”和”列”，产生单元格，然后指定”项目所在”的单元格，可以看作是二维布局。Grid 布局远比 Flex 布局强大。 采用网格布局的区域，称为”容器”（contain">
+<meta name="twitter:image" content="https://zhulichao.github.io/2019/12/25/css-grid/auto-fit.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> CSS-网格布局 | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容器属性"><span class="nav-number">2.</span> <span class="nav-text">容器属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#display"><span class="nav-number">2.1.</span> <span class="nav-text">display</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大小"><span class="nav-number">2.2.</span> <span class="nav-text">大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#间距"><span class="nav-number">2.3.</span> <span class="nav-text">间距</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区域"><span class="nav-number">2.4.</span> <span class="nav-text">区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序"><span class="nav-number">2.5.</span> <span class="nav-text">顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器对齐"><span class="nav-number">2.6.</span> <span class="nav-text">容器对齐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目对齐"><span class="nav-number">2.7.</span> <span class="nav-text">项目对齐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并简写"><span class="nav-number">2.8.</span> <span class="nav-text">合并简写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目属性"><span class="nav-number">3.</span> <span class="nav-text">项目属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#位置"><span class="nav-number">3.1.</span> <span class="nav-text">位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对齐"><span class="nav-number">3.2.</span> <span class="nav-text">对齐</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CSS-网格布局
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-25T10:55:31+08:00" content="2019-12-25">
+              2019-12-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html" target="_blank" rel="external">CSS Grid 网格布局教程</a></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Grid 布局与 Flex 布局有一定的相似性，都可以指定容器内部多个项目的位置。但是，Flex 布局是轴线布局，只能指定”项目”针对轴线的位置，可以看作是一维布局。Grid 布局则是将容器划分成”行”和”列”，产生单元格，然后指定”项目所在”的单元格，可以看作是二维布局。Grid 布局远比 Flex 布局强大。</p>
+<p>采用网格布局的区域，称为”容器”（container）。容器内部采用网格定位的子元素，称为”项目”（item）。项目只能是容器的顶层子元素，不包含项目的子元素。Grid 布局只对项目生效。Grid 布局的属性分成两类，一类定义在容器上面，称为容器属性；另一类定义在项目上面，称为项目属性。</p>
+<p>容器里面的水平区域称为”行”（row），垂直区域称为”列”（column）。行和列的交叉区域，称为”单元格”（cell）。划分网格的线，称为”网格线”（grid line）。</p>
+<h2 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h2><h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><p><code>display: grid</code> 指定一个容器内部采用网格布局，块级元素<br><code>display: inline-grid</code> 指定一个容器内部采用网格布局，行内元素</p>
+<p>容器设为网格布局以后，子元素（项目）的 <code>float</code>、<code>display: inline-block</code>、<code>display: table-cell</code>、<code>vertical-align</code> 和 <code>column-*</code> 等设置都将失效。</p>
+<h3 id="大小"><a href="#大小" class="headerlink" title="大小"></a>大小</h3><p><code>grid-template-columns</code> 属性设置每一列的列宽<br><code>grid-template-rows</code> 属性设置每一行的行高<br><code>grid-auto-columns</code> 属性设置浏览器自动创建的多余网格的列宽<br><code>grid-auto-rows</code> 属性设置浏览器自动创建的多余网格的行高</p>
+<p>有时候，一些项目的指定位置，在现有网格的外部。这时，浏览器会自动生成多余的网格，以便放置项目。如果不指定 <code>grid-auto-columns</code> 和 <code>grid-auto-rows</code> 这两个属性，浏览器完全根据单元格内容的大小，决定新增网格的列宽和行高。</p>
+<p>(1) 绝对单位或百分比</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">100px</span> <span class="number">100px</span> <span class="number">100px</span>;</div><div class="line">  <span class="attribute">grid-template-rows</span>: <span class="number">33.33%</span> <span class="number">33.33%</span> <span class="number">33.33%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(2) repeat()</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(3, 33.33%);</div><div class="line">  <span class="attribute">grid-template-rows</span>: <span class="built_in">repeat</span>(3, 100px 20px 80px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(3) fr</p>
+<p>表示比例关系，可以与绝对长度的单位结合使用</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">100px</span> <span class="number">1</span>fr <span class="number">2</span>fr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(4) minmax()</p>
+<p>表示长度就在这个范围之中</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">1</span>fr <span class="built_in">minmax</span>(100px, 1fr);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(5) auto</p>
+<p>表示由浏览器自己决定长度</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">100px</span> auto <span class="number">100px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(6) auto-fit</p>
+<p>限制单元格的最小宽度，如果容器宽度足够就平均分配剩余空间给每个子元素</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(auto-fit, minmax(50px, 1fr));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(7) auto-fill</p>
+<p>限制单元格的最小宽度，如果容器宽度足够保留剩余空间，不进行分配</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(auto-fill, minmax(50px, 1fr));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<img src="/2019/12/25/css-grid/auto-fit.png" title="auto-fit VS. auto-fill">
+<p>(8) 网格线名称</p>
+<p>使用方括号，指定每一根网格线的名字，同一根线可以有多个名字</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-template-columns</span>: [c1] <span class="number">100px</span> [c2] <span class="number">100px</span> [c3] auto [c4 right-line];</div><div class="line">  <span class="attribute">grid-template-rows</span>: [r1] <span class="number">100px</span> [r2] <span class="number">100px</span> [r3] auto [r4 bottom-line];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="间距"><a href="#间距" class="headerlink" title="间距"></a>间距</h3><p><code>grid-column-gap</code> 属性设置列间距<br><code>grid-row-gap</code> 属性设置行间距<br><code>grid-gap: &lt;grid-row-gap&gt; &lt;grid-column-gap&gt;</code> 合并简写形式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: grid;</div><div class="line">  <span class="attribute">grid-row-gap</span>: <span class="number">20px</span>;</div><div class="line">  <span class="attribute">grid-column-gap</span>: <span class="number">20px</span>;</div><div class="line">  <span class="attribute">grid-gap</span>: <span class="number">20px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="区域"><a href="#区域" class="headerlink" title="区域"></a>区域</h3><p><code>grid-template-areas</code> 指定”区域”（area），一个区域由单个或多个单元格组成，如果某些区域不需要利用，则使用”点”（.），每个区域的起始网格线，会自动命名为 <code>区域名-start</code>，终止网格线自动命名为 <code>区域名-end</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">.area &#123;</div><div class="line">    display: grid;</div><div class="line">    width: calc(5 * 60px);</div><div class="line">    height: calc(5 * 60px);</div><div class="line">    background: white;</div><div class="line">    grid-template-rows: repeat(5, 60px);</div><div class="line">    grid-template-columns: repeat(5, 60px);</div><div class="line">    grid-template-areas: ".  g  g  g  . " "o_ .  .  .  . " "o  .  e  e  . " "o  .  .  .  l " ".  g_ g_ g_ . ";</div><div class="line">&#125;</div><div class="line"></div><div class="line">.g &#123;</div><div class="line">    grid-area: g;</div><div class="line">    background: #ea4335;</div><div class="line">&#125;</div><div class="line">.o_ &#123;</div><div class="line">    grid-area: o_;</div><div class="line">    background: #ff9800;</div><div class="line">&#125;</div><div class="line">.o &#123;</div><div class="line">    grid-area: o;</div><div class="line">    background: #fbbc05;</div><div class="line">&#125;</div><div class="line">.g_ &#123;</div><div class="line">    grid-area: g_;</div><div class="line">    background: #34a853;</div><div class="line">&#125;</div><div class="line">.l &#123;</div><div class="line">    grid-area: l;</div><div class="line">    background: #00bcd4;</div><div class="line">&#125;</div><div class="line">.e &#123;</div><div class="line">    grid-area: e;</div><div class="line">    background: #4285f4;</div><div class="line">&#125;</div><div class="line">.x &#123;</div><div class="line">    grid-area: x;</div><div class="line">    background: #9e9e9e;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div><div class="line"></div><div class="line">&lt;div class="area"&gt;</div><div class="line">    &lt;div class="g"&gt;&lt;/div&gt;</div><div class="line">    &lt;div class="o_"&gt;&lt;/div&gt;</div><div class="line">    &lt;div class="o"&gt;&lt;/div&gt;</div><div class="line">    &lt;div class="g_"&gt;&lt;/div&gt;</div><div class="line">    &lt;div class="l"&gt;&lt;/div&gt;</div><div class="line">    &lt;div class="e"&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<img src="/2019/12/25/css-grid/area.png" width="300" title="area 效果图">
+<h3 id="顺序"><a href="#顺序" class="headerlink" title="顺序"></a>顺序</h3><p><code>grid-auto-flow</code> 默认值是 row，即”先行后列”，也可以将它设成 column，表示”先列后行”；row dense 表示”先行后列并且尽可能紧密填满”，column dense 表示”先列后行并且尽量填满空格”</p>
+<h3 id="容器对齐"><a href="#容器对齐" class="headerlink" title="容器对齐"></a>容器对齐</h3><p><code>justify-content</code> 属性是整个内容区域在容器里面的水平位置（左中右）<br><code>align-content</code> 属性是整个内容区域的垂直位置（上中下）<br><code>place-content: &lt;align-content&gt; &lt;justify-content&gt;</code> 合并简写形式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">justify-content</span>: start | end | center | stretch | space-around | space-between | space-evenly;</div><div class="line">  <span class="attribute">align-content</span>: start | end | center | stretch | space-around | space-between | space-evenly;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="项目对齐"><a href="#项目对齐" class="headerlink" title="项目对齐"></a>项目对齐</h3><p><code>justify-items</code> 属性设置单元格内容的水平位置（左中右）<br><code>align-items</code> 属性设置单元格内容的垂直位置（上中下）<br><code>place-items: &lt;align-items&gt; &lt;justify-items&gt;</code> 合并简写形式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span> &#123;</div><div class="line">  <span class="attribute">justify-items</span>: start | end | center | <span class="built_in">stretch</span>(默认);</div><div class="line">  <span class="attribute">align-items</span>: start | end | center | <span class="built_in">stretch</span>(默认);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="合并简写"><a href="#合并简写" class="headerlink" title="合并简写"></a>合并简写</h3><p><code>grid-template</code> 属性是 <code>grid-template-columns</code>、<code>grid-template-rows</code> 和 <code>grid-template-areas</code> 的合并简写形式</p>
+<p><code>grid</code> 属性是 <code>grid-template-rows</code>、<code>grid-template-columns</code>、<code>grid-template-areas</code>、<code>grid-auto-rows</code>、<code>grid-auto-columns</code> 和 <code>grid-auto-flow</code> 的合并简写形式</p>
+<h2 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h2><h3 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h3><p><code>grid-column-start</code> 属性设置项目左边框所在的垂直网格线，值为数字或网格线的名字<br><code>grid-column-end</code> 属性设置项目右边框所在的垂直网格线，值为数字或网格线的名字<br><code>grid-row-start</code> 属性设置项目上边框所在的水平网格线，值为数字或网格线的名字<br><code>grid-row-end</code> 属性设置项目下边框所在的水平网格线，值为数字或网格线的名字</p>
+<p>上面四个属性的值可以为数字、网格线的名字，也可以使用 <code>span</code> 关键字，表示”跨越”，即左右边框（上下边框）之间跨越多少个网格。使用这四个属性，如果产生了项目的重叠，则使用 <code>z-index</code> 属性指定项目的重叠顺序。</p>
+<p><code>grid-column: &lt;grid-column-start&gt;/&lt;grid-column-end&gt;</code> 属性是 <code>grid-column-start</code> 和 <code>grid-column-end</code> 的合并简写形式<br><code>grid-row: &lt;grid-row-start&gt;/&lt;grid-row-end&gt;</code> 属性是 <code>grid-row-start</code> 和 <code>grid-row-end</code> 的合并简写形式<br><code>grid-area</code> 属性指定项目放在哪一个区域，值可为区域名称或 <code>&lt;row-start&gt; / &lt;column-start&gt; / &lt;row-end&gt; / &lt;column-end&gt;</code> 的合并简写形式</p>
+<h3 id="对齐"><a href="#对齐" class="headerlink" title="对齐"></a>对齐</h3><p><code>justify-self</code> 属性设置单个单元格内容的水平位置（左中右）<br><code>align-self</code> 属性设置单个单元格内容的垂直位置（上中下）<br><code>place-self: &lt;align-self&gt; &lt;justify-self&gt;</code> 合并简写形式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.item</span> &#123;</div><div class="line">  <span class="attribute">justify-self</span>: start | end | center | <span class="built_in">stretch</span>(默认);</div><div class="line">  <span class="attribute">align-self</span>: start | end | center | <span class="built_in">stretch</span>(默认);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag">#CSS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/24/html-special-tag/" rel="next" title="HTML-特殊标签">
+                <i class="fa fa-chevron-left"></i> HTML-特殊标签
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/07/nolan-model/" rel="prev" title="诺兰模型">
+                诺兰模型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

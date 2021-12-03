@@ -1,0 +1,845 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="React," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="介绍styled-components 是一个针对 React 的 css in js 类库。和所有同类型的类库一样，通过 js 赋能解决了原生 css 所不具备的能力，比如变量、循环、函数等。解决了 css 全局命名空间，避免样式冲突的问题，维护起来更加方便。 优点 贯彻 React 的 everything in JS 理念，降低 js 对 css 文件的依赖 保留前端开发 CSS 书写习惯，">
+<meta name="keywords" content="React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="styled-components">
+<meta property="og:url" content="https://zhulichao.github.io/2019/12/11/styled-components/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="介绍styled-components 是一个针对 React 的 css in js 类库。和所有同类型的类库一样，通过 js 赋能解决了原生 css 所不具备的能力，比如变量、循环、函数等。解决了 css 全局命名空间，避免样式冲突的问题，维护起来更加方便。 优点 贯彻 React 的 everything in JS 理念，降低 js 对 css 文件的依赖 保留前端开发 CSS 书写习惯，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.277Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="styled-components">
+<meta name="twitter:description" content="介绍styled-components 是一个针对 React 的 css in js 类库。和所有同类型的类库一样，通过 js 赋能解决了原生 css 所不具备的能力，比如变量、循环、函数等。解决了 css 全局命名空间，避免样式冲突的问题，维护起来更加方便。 优点 贯彻 React 的 everything in JS 理念，降低 js 对 css 文件的依赖 保留前端开发 CSS 书写习惯，">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> styled-components | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-number">2.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺点"><span class="nav-number">3.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发环境"><span class="nav-number">4.</span> <span class="nav-text">开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IDE-插件"><span class="nav-number">4.1.</span> <span class="nav-text">IDE 插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Babel-配置"><span class="nav-number">4.2.</span> <span class="nav-text">Babel 配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stylelint-配置"><span class="nav-number">4.3.</span> <span class="nav-text">stylelint 配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">5.</span> <span class="nav-text">使用</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                styled-components
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-11T15:51:36+08:00" content="2019-12-11">
+              2019-12-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a href="https://www.styled-components.com/" target="_blank" rel="external">styled-components</a> 是一个针对 React 的 css in js 类库。和所有同类型的类库一样，通过 js 赋能解决了原生 css 所不具备的能力，比如变量、循环、函数等。解决了 css 全局命名空间，避免样式冲突的问题，维护起来更加方便。</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
+<li>贯彻 React 的 everything in JS 理念，降低 js 对 css 文件的依赖</li>
+<li>保留前端开发 CSS 书写习惯，无学习和迁移成本</li>
+<li>使用方便，不需要配置 webpack，开箱即用</li>
+<li>不用再担心样式命名的问题，移除样式与组件之间的对应关系</li>
+<li>样式可以使用变量，更加灵活</li>
+<li>组件的逻辑、生命周期、样式、结构完全和其它组件解耦，对组件维护很有帮助</li>
+</ul>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ul>
+<li>可读性差，不方便直接看出组件的 html 元素</li>
+</ul>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><h3 id="IDE-插件"><a href="#IDE-插件" class="headerlink" title="IDE 插件"></a>IDE 插件</h3><p>VSCode 插件 vscode-styled-components</p>
+<h3 id="Babel-配置"><a href="#Babel-配置" class="headerlink" title="Babel 配置"></a>Babel 配置</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="string">"plugins"</span>: [</div><div class="line">    [</div><div class="line">      <span class="string">"babel-plugin-styled-components"</span>,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"ssr"</span>: <span class="literal">true</span>,</div><div class="line">        <span class="string">"displayName"</span>: <span class="literal">true</span>,</div><div class="line">        <span class="string">"fileName"</span>: <span class="literal">false</span>,</div><div class="line">        <span class="string">"preprocess"</span>: <span class="literal">false</span></div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  ],</div><div class="line">...</div></pre></td></tr></table></figure>
+<h3 id="stylelint-配置"><a href="#stylelint-配置" class="headerlink" title="stylelint 配置"></a>stylelint 配置</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="string">"processors"</span>: [</div><div class="line">  <span class="string">"stylelint-processor-styled-components"</span></div><div class="line">],</div><div class="line"><span class="string">"extends"</span>: [</div><div class="line">  <span class="string">"stylelint-config-recommended"</span>,</div><div class="line">  <span class="string">"stylelint-config-styled-components"</span></div><div class="line">],</div><div class="line">...</div></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Button = styled.button<span class="string">`</span></div><div class="line">  background: <span class="subst">$&#123;props =&gt; props.primary ? "blue" : "white"&#125;</span>;</div><div class="line">`;</div><div class="line"></div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span>&gt;</span>Normal<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span> <span class="attr">primary</span>&gt;</span>Primary<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Button = styled.button<span class="string">`</span></div><div class="line">  color: blue;</div><div class="line">  border-radius: 3px;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> TomatoButton = styled(Button)<span class="string">`</span></div><div class="line">  color: tomato;</div><div class="line">`;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Button = styled.button<span class="string">`</span></div><div class="line">  display: inline-block;</div><div class="line">  color: blue;</div><div class="line">  font-size: 1em;</div><div class="line">`;</div><div class="line"><span class="keyword">const</span> TomatoButton = styled(Button)<span class="string">`</span></div><div class="line">  color: tomato;</div><div class="line">`;</div><div class="line"></div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span>&gt;</span>Normal Button<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span> <span class="attr">as</span>=<span class="string">"a"</span> <span class="attr">href</span>=<span class="string">"/"</span>&gt;</span>Link with Button styles<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span> <span class="attr">as</span>=<span class="string">&#123;TomatoButton&#125;</span>&gt;</span>Custom Button with Normal Button styles<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Thing = styled.div<span class="string">`</span></div><div class="line">  color: blue;</div><div class="line">  &amp;:hover &#123;</div><div class="line">    color: red;</div><div class="line">  &#125;</div><div class="line">  &amp; ~ &amp; &#123;</div><div class="line">    background: yellow; // &lt;Thing&gt; as a sibling of &lt;Thing&gt;, but maybe not directly next to it</div><div class="line">  &#125;</div><div class="line">  &amp; + &amp; &#123;</div><div class="line">    background: green; // &lt;Thing&gt; next to &lt;Thing&gt;</div><div class="line">  &#125;</div><div class="line">  &amp;.something &#123;</div><div class="line">    background: orange; // &lt;Thing&gt; tagged with an additional CSS class ".something"</div><div class="line">  &#125;</div><div class="line">  .other-thing &#123;</div><div class="line">    background: blue; // CSS class ".other-thing" inner &lt;Thing&gt;</div><div class="line">  &#125;</div><div class="line">  .something-else &amp; &#123;</div><div class="line">    background: red; // &lt;Thing&gt; inside another element labeled ".something-else"</div><div class="line">  &#125;</div><div class="line">`</div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">React.Fragment</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">Thing</span>&gt;</span>Hello world!<span class="tag">&lt;/<span class="name">Thing</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Thing</span>&gt;</span>green<span class="tag">&lt;/<span class="name">Thing</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Thing</span> <span class="attr">className</span>=<span class="string">"something"</span>&gt;</span>orange<span class="tag">&lt;/<span class="name">Thing</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Thing</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"other-thing"</span>&gt;</span>blue<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">Thing</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>Pretty nice day today.<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Thing</span>&gt;</span>yellow<span class="tag">&lt;/<span class="name">Thing</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"something-else"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Thing</span>&gt;</span>red<span class="tag">&lt;/<span class="name">Thing</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">React.Fragment</span>&gt;</span></div><div class="line">)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Input = styled.input.attrs(props =&gt; (&#123;</div><div class="line">  <span class="comment">// we can define static props</span></div><div class="line">  type: <span class="string">"password"</span>,</div><div class="line">  <span class="comment">// or we can define dynamic ones</span></div><div class="line">  size: props.size || <span class="string">"1em"</span>,</div><div class="line">&#125;))<span class="string">`</span></div><div class="line">  font-size: 1em;</div><div class="line">  margin: <span class="subst">$&#123;props =&gt; props.size&#125;</span>;</div><div class="line">  padding: <span class="subst">$&#123;props =&gt; props.size&#125;</span>;</div><div class="line">`;</div><div class="line"></div><div class="line">render(</div><div class="line">  &lt;div&gt;</div><div class="line">    &lt;Input placeholder="A small text input" /&gt;</div><div class="line">    &lt;br /&gt;</div><div class="line">    &lt;Input placeholder="A bigger text input" size="2em" /&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> rotate = keyframes<span class="string">`</span></div><div class="line">  from &#123;</div><div class="line">    transform: rotate(0deg);</div><div class="line">  &#125;</div><div class="line">  to &#123;</div><div class="line">    transform: rotate(360deg);</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"><span class="keyword">const</span> Rotate = styled.div<span class="string">`</span></div><div class="line">  display: inline-block;</div><div class="line">  animation: <span class="subst">$&#123;rotate&#125;</span> 2s linear infinite;</div><div class="line">`;</div><div class="line"></div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">Rotate</span>&gt;</span>&amp;lt; 💅 &amp;gt;<span class="tag">&lt;/<span class="name">Rotate</span>&gt;</span></span></div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Button = styled.button<span class="string">`</span></div><div class="line">  color: <span class="subst">$&#123;props =&gt; props.theme.fg&#125;</span>;</div><div class="line">  border: 2px solid <span class="subst">$&#123;props =&gt; props.theme.fg&#125;</span>;</div><div class="line">  background: <span class="subst">$&#123;props =&gt; props.theme.bg&#125;</span>;</div><div class="line">`;</div><div class="line">Button.defaultProps = &#123;</div><div class="line">  theme: &#123;</div><div class="line">    fg: <span class="string">"mediumseagreen"</span></div><div class="line">    bg: <span class="string">"white"</span>,</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">const</span> theme = &#123;</div><div class="line">  fg: <span class="string">"palevioletred"</span>,</div><div class="line">  bg: <span class="string">"white"</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">const</span> invertTheme = (&#123; fg, bg &#125;) =&gt; (&#123;</div><div class="line">  fg: bg,</div><div class="line">  bg: fg</div><div class="line">&#125;);</div><div class="line"></div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span>&gt;</span>mediumseagreen<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ThemeProvider</span> <span class="attr">theme</span>=<span class="string">&#123;theme&#125;</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">Button</span>&gt;</span>Default Theme<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">ThemeProvider</span> <span class="attr">theme</span>=<span class="string">&#123;invertTheme&#125;</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Button</span>&gt;</span>Inverted Theme<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">ThemeProvider</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ThemeProvider</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; withTheme &#125; <span class="keyword">from</span> <span class="string">'styled-components'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Current theme: '</span>, <span class="keyword">this</span>.props.theme);</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> withTheme(MyComponent);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; useContext &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; ThemeContext &#125; <span class="keyword">from</span> <span class="string">'styled-components'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> MyComponent = () =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> themeContext = useContext(ThemeContext);</div><div class="line"></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Current theme: '</span>, themeContext);</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Button = styled.button<span class="string">`</span></div><div class="line">  color: <span class="subst">$&#123;props =&gt; props.theme.main&#125;</span>;</div><div class="line">`;</div><div class="line"><span class="keyword">const</span> theme = &#123;</div><div class="line">  main: <span class="string">"mediumseagreen"</span></div><div class="line">&#125;;</div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span> <span class="attr">theme</span>=<span class="string">&#123;&#123;</span> <span class="attr">main:</span> "<span class="attr">royalblue</span>" &#125;&#125;&gt;</span>royalblue<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ThemeProvider</span> <span class="attr">theme</span>=<span class="string">&#123;theme&#125;</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">Button</span>&gt;</span>mediumseagreen<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">Button</span> <span class="attr">theme</span>=<span class="string">&#123;&#123;</span> <span class="attr">main:</span> "<span class="attr">darkorange</span>" &#125;&#125;&gt;</span>darkorange<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ThemeProvider</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React/" rel="tag">#React</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/10/javascript-practice/" rel="next" title="JavaScript-练习题">
+                <i class="fa fa-chevron-left"></i> JavaScript-练习题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/11/service-worker/" rel="prev" title="PWA">
+                PWA <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

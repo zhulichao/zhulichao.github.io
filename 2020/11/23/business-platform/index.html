@@ -1,0 +1,815 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="简介epipe-vp-web 用户端项目，epipe-vp-web-cms 后台项目。这两个项目独立开发，epipe-vp-web-cms 打包后，发布到 npm 上。epipe-vp-web 通过 npm install 安装后台项目，通过 iframe 引用后台项目，iframe 无法直接引用 node_modules 下的资源，可以通过 webpack 配置，将打包后的静态文件拷贝到当前项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="business-platform">
+<meta property="og:url" content="https://zhulichao.github.io/2020/11/23/business-platform/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="简介epipe-vp-web 用户端项目，epipe-vp-web-cms 后台项目。这两个项目独立开发，epipe-vp-web-cms 打包后，发布到 npm 上。epipe-vp-web 通过 npm install 安装后台项目，通过 iframe 引用后台项目，iframe 无法直接引用 node_modules 下的资源，可以通过 webpack 配置，将打包后的静态文件拷贝到当前项目">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.298Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="business-platform">
+<meta name="twitter:description" content="简介epipe-vp-web 用户端项目，epipe-vp-web-cms 后台项目。这两个项目独立开发，epipe-vp-web-cms 打包后，发布到 npm 上。epipe-vp-web 通过 npm install 安装后台项目，通过 iframe 引用后台项目，iframe 无法直接引用 node_modules 下的资源，可以通过 webpack 配置，将打包后的静态文件拷贝到当前项目">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> business-platform | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vuex-结构"><span class="nav-number">2.</span> <span class="nav-text">Vuex 结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#巧用-css"><span class="nav-number">3.</span> <span class="nav-text">巧用 css</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iView-按需引用"><span class="nav-number">4.</span> <span class="nav-text">iView 按需引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modal-组件"><span class="nav-number">5.</span> <span class="nav-text">Modal 组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modal-避让"><span class="nav-number">6.</span> <span class="nav-text">Modal 避让</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加新模块"><span class="nav-number">7.</span> <span class="nav-text">添加新模块</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                business-platform
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-11-23T13:41:21+08:00" content="2020-11-23">
+              2020-11-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>epipe-vp-web 用户端项目，epipe-vp-web-cms 后台项目。这两个项目独立开发，epipe-vp-web-cms 打包后，发布到 npm 上。epipe-vp-web 通过 npm install 安装后台项目，通过 iframe 引用后台项目，iframe 无法直接引用 node_modules 下的资源，可以通过 webpack 配置，将打包后的静态文件拷贝到当前项目中，iframe 就能引到了。</p>
+<h2 id="Vuex-结构"><a href="#Vuex-结构" class="headerlink" title="Vuex 结构"></a>Vuex 结构</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</div><div class="line">  modules: &#123;</div><div class="line">    user, <span class="comment">// 登录相关、用户信息</span></div><div class="line">    permission, <span class="comment">// 根据路由生成菜单信息</span></div><div class="line">    userConfig, <span class="comment">// 用户设置，主题、布局等</span></div><div class="line">    checkedLayer, <span class="comment">// 图层树中已勾选的图层</span></div><div class="line">    checkedProject, <span class="comment">// 项目过滤中已勾选的项目</span></div><div class="line">    companyInfo, <span class="comment">// 公司信息</span></div><div class="line">    createdModal, <span class="comment">// 已经初始化的 Modal 弹框，可全局控制关闭</span></div><div class="line">    currentPage, <span class="comment">// 当前页面</span></div><div class="line">  &#125;,</div><div class="line">  getters,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="巧用-css"><a href="#巧用-css" class="headerlink" title="巧用 css"></a>巧用 css</h2><p>select 用图片回填，可以用 css 绝对定位将要显示的元素，也就是图片，放在 select 输入框元素的上面，设置 <code>pointer-event: none;</code> 将鼠标事件穿透，来正常触发 select 点击事件。</p>
+<p>底图切换按钮，将 cesium 底图切换按钮用绝对定位放在自定义底图按钮下层，将图片透明度设置为 0，自定义的底图按钮设置 <code>pointer-event: none;</code> 将鼠标事件穿透，来触发 cesium 底图切换按钮。这时功能是没问题的，但是因为将自定义底图按钮的鼠标事件穿透了，也无法触发 hover 和 active 样式，效果不好。处理方式是将自定义底图按钮通过 <code>visibility: hidden;</code> 隐藏起来，cesium 底图按钮除了图片透明度为 0，还需要用 <code>:after</code> 设置按钮中的文字，背景色设置成按钮一样可切换主色，就实现了自定义底图按钮的效果。</p>
+<h2 id="iView-按需引用"><a href="#iView-按需引用" class="headerlink" title="iView 按需引用"></a>iView 按需引用</h2><p>项目里，除了主要使用的组件库，如 element-ui，其它使用的组件库，尽量使用按需引用，减少打包后的体积。</p>
+<h2 id="Modal-组件"><a href="#Modal-组件" class="headerlink" title="Modal 组件"></a>Modal 组件</h2><p>基于 el-dialog 组件进行封装，在 mounted 中根据传入的 left、right 等值，设置 Modal 的位置，<code>this.$refs.mapModal.$refs.dialog.style.setProperty(&#39;top&#39;, this.top);</code> ，在 watch 中监听 left、right 等参数的变化修改位置。使用 setProperty 是因为这种方式可以设置样式的 <code>!important</code>。</p>
+<p>在全局状态管理中管理 Modal，在 created 的时候将 Modal 的名字和关闭的回调函数添加到 vuex 中，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">created() &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.addCloseToStore) &#123;</div><div class="line">    <span class="keyword">this</span>.$store.dispatch(<span class="string">'AddCreatedModal'</span>, &#123;</div><div class="line">      name: <span class="keyword">this</span>.name,</div><div class="line">      handleModalClose: <span class="keyword">this</span>.handleModalClose,</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>在 vuex 中有关闭所有 Modal、关闭指定的多个 Modal、关闭除指定外的所有 Modal 的事件。</p>
+<h2 id="Modal-避让"><a href="#Modal-避让" class="headerlink" title="Modal 避让"></a>Modal 避让</h2><p>在要打开多个 Modal 的组件中，定义一个记录当前打开 Modal 的数组，每次打开一个 Modal 时调用 handleModalShow 方法将要打开的 Modal 的名字和宽度放入数组中，并调用 reCalculateLeft() 方法计算 left 值，该值时传入 Modal 组件的参数。每次关闭 Modal 时将数组中的对应元素去掉，并调用所有 Modal 对应的 reCalculateLeft() 方法重新计算位置，页面中添加动画。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">handleModalShow(refName) &#123;</div><div class="line">  <span class="keyword">let</span> position = <span class="number">-1</span>;</div><div class="line">  <span class="keyword">this</span>.openedModal.forEach((item, index) =&gt; &#123;</div><div class="line">    <span class="keyword">if</span> (item.name === <span class="keyword">this</span>.$refs[refName].name) &#123;</div><div class="line">      position = index;</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">if</span> (position &lt; <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.openedModal.push(&#123;</div><div class="line">      name: <span class="keyword">this</span>.$refs[refName].name,</div><div class="line">      width: <span class="keyword">this</span>.$refs[refName].width,</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">this</span>.$refs[refName].handleShow();</div><div class="line">  &#125;</div><div class="line">&#125;,</div><div class="line">handleModalClose(name) &#123;</div><div class="line">  <span class="keyword">let</span> position = <span class="number">-1</span>;</div><div class="line">  <span class="keyword">this</span>.openedModal.forEach((item, index) =&gt; &#123;</div><div class="line">    <span class="keyword">if</span> (item.name === name) &#123;</div><div class="line">      position = index;</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">if</span> (position &gt; <span class="number">-1</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.openedModal.splice(position, <span class="number">1</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">this</span>.$refs.pbsTreeModal &amp;&amp; <span class="keyword">this</span>.$refs.pbsTreeModal.reCalculateLeft();</div><div class="line">  <span class="keyword">this</span>.$refs.pbsIntroductionModal &amp;&amp; <span class="keyword">this</span>.$refs.pbsIntroductionModal.reCalculateLeft();</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<h2 id="添加新模块"><a href="#添加新模块" class="headerlink" title="添加新模块"></a>添加新模块</h2><ul>
+<li><p>/src/views/map/components 中添加新模块，如文件名为 XXX，有 handleOpen 方法入口</p>
+</li>
+<li><p>/src/views/map/header/Content/index.vue 中添加新组件 XXX 的引用</p>
+</li>
+<li><p>菜单管理中，需要有一个名为“用户端菜单”的菜单，它下面添加的菜单会显示在用户端Header中</p>
+</li>
+<li><p>菜单管理中，添加新菜单，路由地址中填入 XXX，与文件名或文件夹名保持一致</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/23/technology-platform/" rel="next" title="technology-platform">
+                <i class="fa fa-chevron-left"></i> technology-platform
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/04/qiankun-base/" rel="prev" title="qiankun 集成">
+                qiankun 集成 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

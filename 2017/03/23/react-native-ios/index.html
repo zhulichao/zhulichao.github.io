@@ -1,0 +1,871 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="React Native," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="最近在入门用React Native进行IOS开发，由于开始的时候没有设备，是在Android上开发的，开发出一部分功能后又在IOS上调试的，其中遇到的问题整理如下。 mac常用快捷键 Command+M             最小化当前窗口 Command+Option+M      最小化当前应用程序所有窗口 Command+H             隐藏除当前应用程序之外所有程序 Com">
+<meta name="keywords" content="React Native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-Native-IOS开发">
+<meta property="og:url" content="https://zhulichao.github.io/2017/03/23/react-native-ios/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="最近在入门用React Native进行IOS开发，由于开始的时候没有设备，是在Android上开发的，开发出一部分功能后又在IOS上调试的，其中遇到的问题整理如下。 mac常用快捷键 Command+M             最小化当前窗口 Command+Option+M      最小化当前应用程序所有窗口 Command+H             隐藏除当前应用程序之外所有程序 Com">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://zhulichao.github.io/2017/03/23/react-native-ios/ios-start-err.jpg">
+<meta property="og:image" content="https://zhulichao.github.io/2017/03/23/react-native-ios/Team.jpg">
+<meta property="og:image" content="https://zhulichao.github.io/2017/03/23/react-native-ios/tabs.png">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.207Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React-Native-IOS开发">
+<meta name="twitter:description" content="最近在入门用React Native进行IOS开发，由于开始的时候没有设备，是在Android上开发的，开发出一部分功能后又在IOS上调试的，其中遇到的问题整理如下。 mac常用快捷键 Command+M             最小化当前窗口 Command+Option+M      最小化当前应用程序所有窗口 Command+H             隐藏除当前应用程序之外所有程序 Com">
+<meta name="twitter:image" content="https://zhulichao.github.io/2017/03/23/react-native-ios/ios-start-err.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> React-Native-IOS开发 | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mac常用"><span class="nav-number">1.</span> <span class="nav-text">mac常用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#快捷键"><span class="nav-number">1.1.</span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-number">1.2.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#真机运行报错"><span class="nav-number">1.3.</span> <span class="nav-text">真机运行报错</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#错误1"><span class="nav-number">1.3.1.</span> <span class="nav-text">错误1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误2"><span class="nav-number">1.3.2.</span> <span class="nav-text">错误2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误3"><span class="nav-number">1.3.3.</span> <span class="nav-text">错误3</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Native-IOS模拟器调试"><span class="nav-number">2.</span> <span class="nav-text">React Native IOS模拟器调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Native-兼容问题"><span class="nav-number">3.</span> <span class="nav-text">React Native 兼容问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Native-连接原生"><span class="nav-number">4.</span> <span class="nav-text">React Native 连接原生</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打包ipa"><span class="nav-number">5.</span> <span class="nav-text">打包ipa</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React-Native-IOS开发
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-23T08:25:52+08:00" content="2017-03-23">
+              2017-03-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Native/" itemprop="url" rel="index">
+                    <span itemprop="name">React Native</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在入门用React Native进行IOS开发，由于开始的时候没有设备，是在Android上开发的，开发出一部分功能后又在IOS上调试的，其中遇到的问题整理如下。</p>
+<h2 id="mac常用"><a href="#mac常用" class="headerlink" title="mac常用"></a>mac常用</h2><h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><ul>
+<li>Command+M             最小化当前窗口</li>
+<li>Command+Option+M      最小化当前应用程序所有窗口</li>
+<li>Command+H             隐藏除当前应用程序之外所有程序</li>
+<li>Command+Option+M+H    隐藏所有应用程序窗口</li>
+<li>Command+Q             关闭当前应用程序</li>
+<li>Command+S             将模拟器屏幕截图保存到桌面</li>
+<li>Command+Tab 选中程序，松开Tab，按住Command不放的同时按住Opt，松开Command 将最小化的窗口恢复回来</li>
+<li>Command+Shift+K       Xcode中clean项目</li>
+<li>Simulator -&gt; window -&gt; Scale 调整模拟器窗口大小</li>
+</ul>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><ul>
+<li>xcodebuild -version   查看Xcode版本号</li>
+</ul>
+<h3 id="真机运行报错"><a href="#真机运行报错" class="headerlink" title="真机运行报错"></a>真机运行报错</h3><h4 id="错误1"><a href="#错误1" class="headerlink" title="错误1"></a>错误1</h4><img src="/2017/03/23/react-native-ios/ios-start-err.jpg" title="真机运行报错1">
+<p>需修改一下Bundle Identifier的值。</p>
+<h4 id="错误2"><a href="#错误2" class="headerlink" title="错误2"></a>错误2</h4><img src="/2017/03/23/react-native-ios/Team.jpg" title="真机运行报错2">
+<p>需在Xcode的<code>Select a project or target</code>中选择以Tests结尾的项目，然后选择Team。</p>
+<h4 id="错误3"><a href="#错误3" class="headerlink" title="错误3"></a>错误3</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1.BDVRClientSample requires a provisioning profile. Select a provisioning profile for the &quot;Debug&quot; build configuration in the project editor.</div><div class="line">2.Code signing is required for product type ‘Application‘ in SDK ‘iOS 10.0‘</div></pre></td></tr></table></figure>
+<p>需先取消Generate中Automatically manage signing的勾选，然后将Build Settings中Code Signing Identity下的4个值都改为iOS Developer（这之后可能需要关闭Xcode重新打开），在恢复Generate中Automatically manage signing的勾选。</p>
+<h2 id="React-Native-IOS模拟器调试"><a href="#React-Native-IOS模拟器调试" class="headerlink" title="React Native IOS模拟器调试"></a>React Native IOS模拟器调试</h2><ul>
+<li>Command+R 刷新</li>
+<li>Command+D 菜单</li>
+<li>Shift+Command+H 返回主界面</li>
+</ul>
+<h2 id="React-Native-兼容问题"><a href="#React-Native-兼容问题" class="headerlink" title="React Native 兼容问题"></a>React Native 兼容问题</h2><ul>
+<li>Text组件，要有backgroundColor，如果只设置color，会连背景都为color的颜色，就看不到字了</li>
+<li>WingBlank、WhiteSpace组件，背景色为透明色，需要显示设置为白色，否则可能有穿透效果</li>
+<li>Tabs在IOS需要paddingTop样式，原因如图</li>
+</ul>
+<img src="/2017/03/23/react-native-ios/tabs.png" title="Tabs在Android和IOS的不同">
+<ul>
+<li>TabBar的图标非常大，需要添加scale属性，表示图标缩小的比例，如<code>128*128</code>的图标，sacle为4，则显示效果为<code>32*32</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;TabBar</div><div class="line">    unselectedTintColor=&quot;#8a8a8a&quot;</div><div class="line">    tintColor=&quot;#108ee9&quot;</div><div class="line">    barTintColor=&quot;white&quot;</div><div class="line">&gt;</div><div class="line">    &lt;TabBar.Item</div><div class="line">        icon=&#123;&#123; uri: Icons.task, scale: 4 &#125;&#125;</div><div class="line">        selectedIcon=&#123;&#123; uri: Icons.taskActive, scale: 4 &#125;&#125;</div><div class="line">        title=&quot;任务&quot;</div><div class="line">        key=&quot;task&quot;</div><div class="line">        selected=&#123;this.state.selectedTab === &apos;task&apos;&#125;</div><div class="line">        onPress=&#123;this.onPress.bind(this, &apos;task&apos;)&#125;</div><div class="line">    &gt;</div><div class="line">        &lt;Tasks navigator=&#123;this.props.navigator&#125; /&gt;</div><div class="line">    &lt;/TabBar.Item&gt;</div><div class="line">&lt;/TabBar&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>根据平台使用不同样式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">const Global = StyleSheet.create(&#123;</div><div class="line">  container: &#123;</div><div class="line">    flex: 1,</div><div class="line">    justifyContent: &apos;center&apos;,</div><div class="line">    alignItems: &apos;center&apos;,</div><div class="line">    ...Platform.select(&#123;</div><div class="line">      ios: &#123;</div><div class="line">        height: WINDOW_HEIGHT-TABBAR_HEIGHT-TABS_HEIGHT-20,</div><div class="line">      &#125;,</div><div class="line">      android: &#123;</div><div class="line">        height: WINDOW_HEIGHT-TABBAR_HEIGHT-TABS_HEIGHT-StatusBar_HEIGHT,</div><div class="line">      &#125;,</div><div class="line">    &#125;),</div><div class="line">  &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>NetInfo.fetch() 为unknown</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">componentWillMount() &#123;</div><div class="line">  //如果不侦听网络状态变化，NetInfo.fetch()一直是unknown</div><div class="line">  NetInfo.isConnected.addEventListener(&apos;change&apos;, () =&gt; &#123;&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="React-Native-连接原生"><a href="#React-Native-连接原生" class="headerlink" title="React Native 连接原生"></a>React Native 连接原生</h2><p>由于之前是使用Windows在Android上开发的，使用到的依赖<br>react-native-vector-icons、react-native-image-picker需要与IOS原生连接，此时如果执行<code>react-native link</code>自动连接，担心会影响到已有的Android端的配置，因为Android是进行手动连接的，执行自动连接没有生效，而且也会将不需要连接的依赖一起连接了。所以想按照说明文档进行手动连接，但试过后并没有好使，即使是新初始化的项目，react-native-vector-icons在IOS上进行手动连接也是不好使的。后来我是新初始化了一个同名项目，安装完react-native-vector-icons、react-native-image-picker依赖后进行自动连接，运行好使了，我就把新项目与原项目ios目录中的文件进行了对比，将配置移到原项目中，运行后好使了。</p>
+<p>过了两天发现这种方式有点傻，因为那时不知道<code>react-native link</code>可以指定手动连接的依赖。虽然没有试验，但是感觉只需要单独执行<code>react-native link react-native-vector-icons</code>和<code>react-native link react-native-image-picker</code>，再将android目录下变化的文件恢复，应该就可以了。</p>
+<h2 id="打包ipa"><a href="#打包ipa" class="headerlink" title="打包ipa"></a>打包ipa</h2><p>在Xcode中，修改好Version和Build后，运行设备选择 Generic iOS Device， Product -&gt; archive，等待 Window -&gt; Organizer 弹出，点击Export，Select a method for export 选择 Save for Enterprise Deployment，Device Support 选择 Export one app for all compatible devices，Summary 不勾选，next 导出 ipa。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React-Native/" rel="tag">#React Native</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/18/react-native-android/" rel="next" title="React-Native-Android原生">
+                <i class="fa fa-chevron-left"></i> React-Native-Android原生
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/24/react-native-amap-android/" rel="prev" title="React-Native-Android使用高德地图">
+                React-Native-Android使用高德地图 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

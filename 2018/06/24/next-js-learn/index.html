@@ -1,0 +1,854 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Project Base," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="介绍Next.js 是一个轻量级的 React 服务端渲染应用框架，是 Create-React-App 的升级版。当使用 React 开发时，常常需要配置很多繁琐的参数，如 Webpack 配置、Router 配置和服务器配置等。如果需要做 SEO，要考虑的事情就更多了，怎么让服务端渲染和客户端渲染保持一致是一件很麻烦的事情，需要引入很多第三方库。针对这些问题，Next.js 提供了一个很好的解">
+<meta name="keywords" content="Project Base">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Next.js 学习">
+<meta property="og:url" content="https://zhulichao.github.io/2018/06/24/next-js-learn/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="介绍Next.js 是一个轻量级的 React 服务端渲染应用框架，是 Create-React-App 的升级版。当使用 React 开发时，常常需要配置很多繁琐的参数，如 Webpack 配置、Router 配置和服务器配置等。如果需要做 SEO，要考虑的事情就更多了，怎么让服务端渲染和客户端渲染保持一致是一件很麻烦的事情，需要引入很多第三方库。针对这些问题，Next.js 提供了一个很好的解">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.254Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Next.js 学习">
+<meta name="twitter:description" content="介绍Next.js 是一个轻量级的 React 服务端渲染应用框架，是 Create-React-App 的升级版。当使用 React 开发时，常常需要配置很多繁琐的参数，如 Webpack 配置、Router 配置和服务器配置等。如果需要做 SEO，要考虑的事情就更多了，怎么让服务端渲染和客户端渲染保持一致是一件很麻烦的事情，需要引入很多第三方库。针对这些问题，Next.js 提供了一个很好的解">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Next.js 学习 | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-number">2.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺点"><span class="nav-number">3.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Next-js-vs-create-react-app"><span class="nav-number">4.</span> <span class="nav-text">Next.js vs create-react-app</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">5.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Command"><span class="nav-number">5.1.</span> <span class="nav-text">Command</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pages"><span class="nav-number">5.2.</span> <span class="nav-text">Pages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Router-and-Link"><span class="nav-number">5.3.</span> <span class="nav-text">Router and Link</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Style"><span class="nav-number">5.4.</span> <span class="nav-text">Style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Fetching"><span class="nav-number">5.5.</span> <span class="nav-text">Data Fetching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有用的包"><span class="nav-number">5.6.</span> <span class="nav-text">有用的包</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Next.js 学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-06-24T11:56:27+08:00" content="2018-06-24">
+              2018-06-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Project-Base/" itemprop="url" rel="index">
+                    <span itemprop="name">Project Base</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a href="https://nextjs.org/" target="_blank" rel="external">Next.js</a> 是一个轻量级的 React 服务端渲染应用框架，是 <a href="https://github.com/facebook/create-react-app" target="_blank" rel="external">Create-React-App</a> 的升级版。当使用 React 开发时，常常需要配置很多繁琐的参数，如 Webpack 配置、Router 配置和服务器配置等。如果需要做 SEO，要考虑的事情就更多了，怎么让服务端渲染和客户端渲染保持一致是一件很麻烦的事情，需要引入很多第三方库。针对这些问题，Next.js 提供了一个很好的解决方案，使开发人员可以将精力放在业务上，从繁琐的配置中解放出来。</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
+<li><strong>服务端渲染（SSR）</strong></li>
+<li>基于文件系统的页面路由</li>
+<li>自动按页面拆分代码</li>
+<li>静态页面导出</li>
+<li>使用 styled-jsx</li>
+<li>零配置，基于 Webpack 的开发环境，支持热模块替换</li>
+<li>支持 Babel 和 Webpack 的配置项定制，可定制服务端、路由 和 next 插件</li>
+</ul>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ul>
+<li>注意 window、document 等只能在浏览器端使用的变量</li>
+<li>区分服务端还是客户端</li>
+<li>图片等静态文件只能放在 static 目录下，不能通过 require 来引入，也就是没办法通过 webpack 来进行模块化管理，如果各个组件有自身依赖的图片，也只能一股脑放 static 里，也很难实现版本管理控制浏览器缓存</li>
+</ul>
+<p>简单地说，很适合快速搭建简单站点，但自由度不高，且带样式或图片的 React 组件无法直接使用，个人看法是一个用自由度和通用性来换取易用性的框架</p>
+<h2 id="Next-js-vs-create-react-app"><a href="#Next-js-vs-create-react-app" class="headerlink" title="Next.js vs create-react-app"></a>Next.js vs create-react-app</h2><p>Next.js：优化首屏加载速度，有SEO，如着陆页项目<br>create-react-app：适用于 SPA，不需SEO、SSR的项目，如后台项目</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h3><p>next dev  开发模式，编译完后只是搭建基础模块，访问到哪些页面再进行编译，提升开发效率<br>next build 构建打包生产环境代码<br>next start 发布模式编译后本地运行 server<br>next export 导出静态页面，使用 next.config.js</p>
+<h3 id="Pages"><a href="#Pages" class="headerlink" title="Pages"></a>Pages</h3><p>Next.js 项目有两个特殊目录，pages 和 public。public 目录存放静态文件和 robots.txt 文件。pages 目录下的文件可以是页面路由或 api 路由，可通过文件名直接访问，pages/api 目录下的文件都是 api 路由，可通过 /api/* 访问，其它为页面路由。pages 目录下文件名由 [] 包裹的会产生动态路由，文件的名称会作为query参数传入页面，Link 中需要使用 as 属性。</p>
+<h3 id="Router-and-Link"><a href="#Router-and-Link" class="headerlink" title="Router and Link"></a>Router and Link</h3><p>useRouter() 可以获取 router 对象，withRouter() 可以将 router 对象传入组件。页面跳转不要使用 <code>&lt;a&gt;</code>，它不会执行客户端导航，而是浏览器发起请求到服务器页面，会刷新整个页面，使用 <code>&lt;Link&gt;</code> 是客户端导航，并且使用了 <code>location.history</code>。<code>Link</code> 只是一个接受 href 和类似属性的包装组件，如果想给链接标签添加属性，需要添加到它的子组件上，href 属性是到 pages 下的路径，as 属性是浏览器地址栏显示的地址。</p>
+<h3 id="Style"><a href="#Style" class="headerlink" title="Style"></a>Style</h3><p>使用 <code>&lt;style jsx&gt;</code> 内联样式，只作用在本组件内，可以通过 global 属性定义全局样式，也可以使用引用 css 文件的方式。可以通过 <code>[name].module.css</code> 命名方式使用 css module。可以继承 styled-components 来支持服务端渲染。</p>
+<h3 id="Data-Fetching"><a href="#Data-Fetching" class="headerlink" title="Data Fetching"></a>Data Fetching</h3><p>Next.js 有两种预渲染方式，Static Generation 和 Server-side Rendering。有3个方法可以用于预渲染获取数据：</p>
+<ul>
+<li>getStaticProps (Static Generation): 在打包构建生产环境时获取数据，因此无法获取 query 参数或 headers 等再请求发生时才有的信息，只在服务端执行，然后把获取到的数据用 props 传入页面</li>
+<li>getStaticPaths (Static Generation): 根据数据指定动态路由进行预渲染，如果一个动态路由页面使用了 getStaticProps 方法，那它也必须使用 getStaticPaths 方法</li>
+<li>getServerSideProps (Server-side Rendering): 每次请求时获取数据，只在服务端执行，</li>
+</ul>
+<p>除此之外，还可使用 getInitialProps API 获取数据，getInitialProps 适合通用数据抓取和服务器端渲染，有利于 SEO。这些方法只能在 page 页面导出。</p>
+<h3 id="有用的包"><a href="#有用的包" class="headerlink" title="有用的包"></a>有用的包</h3><ul>
+<li>使用 next-optimized-images 引入图片文件，并在部署时自动优化图片</li>
+<li>使用 next-css 加载 css 文件</li>
+<li>使用 next-compose-plugin 维护 next.config.js 文件整洁性</li>
+<li>使用 @next/bundle-analyzer 分析打包效果</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Project-Base/" rel="tag">#Project Base</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/26/create-react-app-learn/" rel="next" title="create-react-app 学习">
+                <i class="fa fa-chevron-left"></i> create-react-app 学习
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/07/ux-design/" rel="prev" title="《用户体验要素》笔记">
+                《用户体验要素》笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

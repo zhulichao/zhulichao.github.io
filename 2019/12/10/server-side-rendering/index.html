@@ -1,0 +1,852 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="React," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="How to implement server-side rendering in your React app in three simple stepsReact 服务端渲染从入门到精通 什么是服务端渲染当用户或爬虫程序访问页面 URL 时，将组件或页面通过服务器生成 HTML 字符串，再发送到浏览器，最后将静态标记”混合”为客户端上完全交互的应用程序。服务端渲染只发生在首屏，在客户端处理后面">
+<meta name="keywords" content="React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-SSR">
+<meta property="og:url" content="https://zhulichao.github.io/2019/12/10/server-side-rendering/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="How to implement server-side rendering in your React app in three simple stepsReact 服务端渲染从入门到精通 什么是服务端渲染当用户或爬虫程序访问页面 URL 时，将组件或页面通过服务器生成 HTML 字符串，再发送到浏览器，最后将静态标记”混合”为客户端上完全交互的应用程序。服务端渲染只发生在首屏，在客户端处理后面">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.277Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React-SSR">
+<meta name="twitter:description" content="How to implement server-side rendering in your React app in three simple stepsReact 服务端渲染从入门到精通 什么是服务端渲染当用户或爬虫程序访问页面 URL 时，将组件或页面通过服务器生成 HTML 字符串，再发送到浏览器，最后将静态标记”混合”为客户端上完全交互的应用程序。服务端渲染只发生在首屏，在客户端处理后面">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> React-SSR | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是服务端渲染"><span class="nav-number">1.</span> <span class="nav-text">什么是服务端渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端渲染和客户端渲染的区别"><span class="nav-number">2.</span> <span class="nav-text">服务端渲染和客户端渲染的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在页面中快速判断是否为服务端渲染"><span class="nav-number">3.</span> <span class="nav-text">如何在页面中快速判断是否为服务端渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在服务端渲染-React-的后果"><span class="nav-number">4.</span> <span class="nav-text">在服务端渲染 React 的后果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么时候应该使用服务端渲染"><span class="nav-number">5.</span> <span class="nav-text">什么时候应该使用服务端渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何工作"><span class="nav-number">6.</span> <span class="nav-text">如何工作</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React-SSR
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-12-10T10:25:14+08:00" content="2019-12-10">
+              2019-12-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://www.freecodecamp.org/news/server-side-rendering-your-react-app-in-three-simple-steps-7a82b95db82e/" target="_blank" rel="external">How to implement server-side rendering in your React app in three simple steps</a><br><a href="https://segmentfault.com/a/1190000018672269" target="_blank" rel="external">React 服务端渲染从入门到精通</a></p>
+<h2 id="什么是服务端渲染"><a href="#什么是服务端渲染" class="headerlink" title="什么是服务端渲染"></a>什么是服务端渲染</h2><p>当用户或爬虫程序访问页面 URL 时，将组件或页面通过服务器生成 HTML 字符串，再发送到浏览器，最后将静态标记”混合”为客户端上完全交互的应用程序。服务端渲染只发生在首屏，在客户端处理后面的请求。</p>
+<h2 id="服务端渲染和客户端渲染的区别"><a href="#服务端渲染和客户端渲染的区别" class="headerlink" title="服务端渲染和客户端渲染的区别"></a>服务端渲染和客户端渲染的区别</h2><ul>
+<li>客户端渲染时，浏览器下载一个最小的 HTML 页面，渲染 JavaScript 并填充进去</li>
+<li>服务端渲染时，在服务端渲染 React 组件，输出 HTML 内容</li>
+</ul>
+<p>可以组合使用这 2 种方式创建同构应用</p>
+<h2 id="如何在页面中快速判断是否为服务端渲染"><a href="#如何在页面中快速判断是否为服务端渲染" class="headerlink" title="如何在页面中快速判断是否为服务端渲染"></a>如何在页面中快速判断是否为服务端渲染</h2><ul>
+<li>鼠标右键查看源代码，在页面中看到的内容在源代码中也可以查看到，则是服务端渲染得到的</li>
+<li>鼠标右键查看源代码，页面中看到的内容在源代码中不可以查看到，则是客户端渲染得到的</li>
+</ul>
+<h2 id="在服务端渲染-React-的后果"><a href="#在服务端渲染-React-的后果" class="headerlink" title="在服务端渲染 React 的后果"></a>在服务端渲染 React 的后果</h2><ul>
+<li>如果应用很小，服务端渲染可以改善性能，但是如果应用很大会降低性能</li>
+<li>增大了响应时间，如果服务器很忙会更糟糕</li>
+<li>增大了响应大小，这意味着需要更长的时间来加载页面</li>
+<li>增大了应用的复杂度</li>
+<li>在服务端渲染时只会执行到 componentDidMount 之前的生命周期钩子，一些常用的浏览器的 api 可能无法正常使用</li>
+</ul>
+<h2 id="什么时候应该使用服务端渲染"><a href="#什么时候应该使用服务端渲染" class="headerlink" title="什么时候应该使用服务端渲染"></a>什么时候应该使用服务端渲染</h2><ul>
+<li>SEO，目前搜索引擎爬虫还不能解析 JavaScript，这是使用服务端渲染最主要的原因，特别是对于着陆页</li>
+<li>改善性能，在服务端渲染时，应用的性能依赖服务器的资源和用户的网速，这使服务端渲染对于内容密集型网站非常有用；另一个改善是首次用户交互时间，减少白屏等待时间</li>
+</ul>
+<h2 id="如何工作"><a href="#如何工作" class="headerlink" title="如何工作"></a>如何工作</h2><ul>
+<li>首次访问页面时创建一个新的 Redux Store</li>
+<li>选择性的 dispatch action，服务端渲染时客户端不需要初始化 state 的 action</li>
+<li>从 Store 中拿到 state 执行 SSR</li>
+<li>将上一步获取到的 state 一起返回，用这个 state 在客户端初始化 state</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// server rendered home page</span></div><div class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> &#123; preloadedState, content &#125; = ssr(initialState);</div><div class="line">  <span class="keyword">const</span> response = template(<span class="string">'Server Rendered Page'</span>, preloadedState, content);</div><div class="line">  res.setHeader(<span class="string">'Cache-Control'</span>, <span class="string">'assets, max-age=604800'</span>);</div><div class="line">  res.send(response);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ssr</span>(<span class="params">initialState</span>) </span>&#123;</div><div class="line">  <span class="comment">// Configure the store with the initial state provided</span></div><div class="line">  <span class="keyword">const</span> store = configureStore(initialState);</div><div class="line"></div><div class="line">  <span class="comment">// render the App store static markup ins content variable</span></div><div class="line">  <span class="keyword">let</span> content = renderToString(</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">Provider</span> <span class="attr">store</span>=<span class="string">&#123;store&#125;</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">App</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">Provider</span>&gt;</span></div><div class="line">  );</div><div class="line"></div><div class="line">  <span class="comment">// Get a copy of store data to create the same store on client side</span></div><div class="line">  <span class="keyword">const</span> preloadedState = store.getState();</div><div class="line"></div><div class="line">  <span class="keyword">return</span> &#123; content, preloadedState &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">template</span>(<span class="params">title, initialState = &#123;&#125;, content = ''</span>) </span>&#123;</div><div class="line">  <span class="comment">// Dynamically ship scripts based on render type</span></div><div class="line">  <span class="keyword">let</span> scripts = <span class="string">''</span>;</div><div class="line">  <span class="keyword">if</span> (content) &#123;</div><div class="line">    <span class="comment">// 服务端渲染</span></div><div class="line">    scripts = <span class="string">` &lt;script&gt;</span></div><div class="line">                   window.__STATE__ = <span class="subst">$&#123;JSON.stringify(initialState)&#125;</span></div><div class="line">                &lt;/script&gt;</div><div class="line">                &lt;script src="assets/client.js"&gt;&lt;/script&gt;</div><div class="line">                `;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="comment">// 客户端渲染</span></div><div class="line">    scripts = <span class="string">` &lt;script src="assets/bundle.js"&gt; &lt;/script&gt; `</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">let</span> page = <span class="string">`&lt;!DOCTYPE html&gt;</span></div><div class="line">              &lt;html lang="en"&gt;</div><div class="line">              &lt;head&gt;</div><div class="line">                &lt;meta charset="utf-8"&gt;</div><div class="line">                &lt;title&gt; <span class="subst">$&#123;title&#125;</span> &lt;/title&gt;</div><div class="line">                &lt;link href="assets/style.css" rel="stylesheet"&gt;</div><div class="line">              &lt;/head&gt;</div><div class="line">              &lt;body&gt;</div><div class="line">                &lt;div class="content"&gt;</div><div class="line">                   &lt;div id="app" class="wrap-inner"&gt;</div><div class="line">                      &lt;!--- magic happens here --&gt;  <span class="subst">$&#123;content&#125;</span></div><div class="line">                   &lt;/div&gt;</div><div class="line">                &lt;/div&gt;</div><div class="line"></div><div class="line">                  <span class="subst">$&#123;scripts&#125;</span></div><div class="line">              &lt;/body&gt;</div><div class="line">              `;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> page;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// client.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; hydrate &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Provider &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</div><div class="line"><span class="keyword">import</span> configureStore <span class="keyword">from</span> <span class="string">'./redux/configureStore'</span>;</div><div class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./components/app'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Read the state sent with markup</span></div><div class="line"><span class="keyword">const</span> state = <span class="built_in">window</span>.__STATE__;</div><div class="line"></div><div class="line"><span class="comment">// delete the state from global window object</span></div><div class="line"><span class="keyword">delete</span> <span class="built_in">window</span>.__STATE__;</div><div class="line"></div><div class="line"><span class="comment">// reproduce the store used to render the page on server</span></div><div class="line"><span class="keyword">const</span> store = configureStore(state);</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * hydrate the page to make sure both server and client</div><div class="line"> * side pages are identical. This includes markup checking,</div><div class="line"> * react comments to identify elements and more.</div><div class="line"> */</div><div class="line"></div><div class="line">hydrate(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">Provider</span> <span class="attr">store</span>=<span class="string">&#123;store&#125;</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">App</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">Provider</span>&gt;</span>,</div><div class="line">  <span class="built_in">document</span>.querySelector(<span class="string">'#app'</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React/" rel="tag">#React</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/08/mac-terminal/" rel="next" title="Mac-终端配置">
+                <i class="fa fa-chevron-left"></i> Mac-终端配置
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/10/javascript-practice/" rel="prev" title="JavaScript-练习题">
+                JavaScript-练习题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

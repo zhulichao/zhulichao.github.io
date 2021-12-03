@@ -1,0 +1,866 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="React Router," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="React Router参考：React Router 使用教程react-router-tutorialreact-router   基本使用React-Router 路由库，是官方维护的路由库，事实上也是唯一可选的路由库。它通过管理 URL，实现组件的切换和状态的变化，开发复杂的应用几乎肯定会用到。 一般在src/index.jsx中定义路由，进行整个工程路由的管理。路由匹配规则是从上到下执行">
+<meta name="keywords" content="React Router">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Router-基础">
+<meta property="og:url" content="https://zhulichao.github.io/2016/10/29/react-router-base/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="React Router参考：React Router 使用教程react-router-tutorialreact-router   基本使用React-Router 路由库，是官方维护的路由库，事实上也是唯一可选的路由库。它通过管理 URL，实现组件的切换和状态的变化，开发复杂的应用几乎肯定会用到。 一般在src/index.jsx中定义路由，进行整个工程路由的管理。路由匹配规则是从上到下执行">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.195Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React Router-基础">
+<meta name="twitter:description" content="React Router参考：React Router 使用教程react-router-tutorialreact-router   基本使用React-Router 路由库，是官方维护的路由库，事实上也是唯一可选的路由库。它通过管理 URL，实现组件的切换和状态的变化，开发复杂的应用几乎肯定会用到。 一般在src/index.jsx中定义路由，进行整个工程路由的管理。路由匹配规则是从上到下执行">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> React Router-基础 | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Router"><span class="nav-number">1.</span> <span class="nav-text">React Router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本使用"><span class="nav-number">1.1.</span> <span class="nav-text">基本使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#path属性"><span class="nav-number">2.</span> <span class="nav-text">path属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IndexRoute"><span class="nav-number">2.1.</span> <span class="nav-text">IndexRoute</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redirect"><span class="nav-number">2.2.</span> <span class="nav-text">Redirect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IndexRedirect"><span class="nav-number">2.3.</span> <span class="nav-text">IndexRedirect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Link"><span class="nav-number">2.4.</span> <span class="nav-text">Link</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IndexLink"><span class="nav-number">2.5.</span> <span class="nav-text">IndexLink</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#histroy"><span class="nav-number">2.6.</span> <span class="nav-text">histroy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由的钩子"><span class="nav-number">2.7.</span> <span class="nav-text">路由的钩子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生产环境相关"><span class="nav-number">2.8.</span> <span class="nav-text">生产环境相关</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React Router-基础
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T13:13:11+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Router/" itemprop="url" rel="index">
+                    <span itemprop="name">React Router</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="React-Router"><a href="#React-Router" class="headerlink" title="React Router"></a>React Router</h2><p>参考：<br><a href="http://www.ruanyifeng.com/blog/2016/05/react_router.html" target="_blank" rel="external">React Router 使用教程</a><br><a href="https://github.com/reactjs/react-router-tutorial/tree/master/lessons" target="_blank" rel="external">react-router-tutorial</a><br><a href="https://github.com/ReactTraining/react-router" target="_blank" rel="external">react-router</a>  </p>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p>React-Router 路由库，是官方维护的路由库，事实上也是唯一可选的路由库。它通过管理 URL，实现组件的切换和状态的变化，开发复杂的应用几乎肯定会用到。</p>
+<p>一般在src/index.jsx中定义路由，进行整个工程路由的管理。路由匹配规则是从上到下执行，一旦发现匹配，就不再走其余的规则了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import &#123; Router, Route, hashHistory &#125; from &apos;react-router&apos;;</div><div class="line"></div><div class="line">render((</div><div class="line">    &lt;Router history=&#123;hashHistory&#125;&gt;</div><div class="line">        &lt;Route path=&quot;/&quot; component=&#123;App&#125;&gt;</div><div class="line">            &lt;Route path=&quot;/home&quot; component=&#123;CommonMainPage&#125; /&gt;</div><div class="line">        &lt;/Route&gt;</div><div class="line">    &lt;/Router&gt;</div><div class="line">), document.getElementById(&apos;app&apos;));</div></pre></td></tr></table></figure></p>
+<p>子路由也可以不写在Router组件里面，单独传入Router组件的routes属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let routes = &lt;Route path=&quot;/&quot; component=&#123;App&#125;&gt;</div><div class="line">    &lt;Route path=&quot;/home&quot; component=&#123;CommonMainPage&#125; /&gt;</div><div class="line">&lt;/Route&gt;;</div><div class="line">&lt;Router routes=&#123;routes&#125; history=&#123;browserHistory&#125;/&gt;</div></pre></td></tr></table></figure></p>
+<p>用户访问/home时，会先加载App组件，然后在它的内部再加载CommonMainPage组件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;App&gt;</div><div class="line">    &lt;Repos/&gt;</div><div class="line">&lt;/App&gt;</div></pre></td></tr></table></figure></p>
+<p>App组件要写成下面的样子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">export default React.createClass(&#123;</div><div class="line">  render() &#123;</div><div class="line">    return &lt;div&gt;</div><div class="line">      &#123;this.props.children&#125;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="path属性"><a href="#path属性" class="headerlink" title="path属性"></a>path属性</h2><p>Route组件的path属性指定路由的匹配规则。这个属性是可以省略的，这样的话，不管路径是否匹配，总是会加载指定组件。path属性也可以使用相对路径（不以/开头），匹配时就会相对于父组件的路径。嵌套路由如果想摆脱这个规则，可以使用绝对路由。</p>
+<p>path可以使用通配符，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;Route path=&quot;/list/:servId&quot; component=&#123;ListPage&#125; /&gt;</div></pre></td></tr></table></figure></p>
+<p>在ListPage组件中通过<code>this.props.params.servId</code>可获取该变量对于在url中的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;Route path=&quot;/hello/:name&quot;&gt;</div><div class="line">// 匹配 /hello/michael</div><div class="line">// 匹配 /hello/ryan</div><div class="line"></div><div class="line">&lt;Route path=&quot;/hello(/:name)&quot;&gt;</div><div class="line">// 匹配 /hello</div><div class="line">// 匹配 /hello/michael</div><div class="line">// 匹配 /hello/ryan</div><div class="line"></div><div class="line">&lt;Route path=&quot;/files/*.*&quot;&gt;</div><div class="line">// 匹配 /files/hello.jpg</div><div class="line">// 匹配 /files/hello.html</div><div class="line"></div><div class="line">&lt;Route path=&quot;/files/*&quot;&gt;</div><div class="line">// 匹配 /files/ </div><div class="line">// 匹配 /files/a</div><div class="line">// 匹配 /files/a/b</div><div class="line"></div><div class="line">&lt;Route path=&quot;/**/*.jpg&quot;&gt;</div><div class="line">// 匹配 /files/hello.jpg</div><div class="line">// 匹配 /files/path/to/file.jpg</div></pre></td></tr></table></figure>
+<h3 id="IndexRoute"><a href="#IndexRoute" class="headerlink" title="IndexRoute"></a>IndexRoute</h3><p>IndexRoute显式指定根路由的子组件，注意没有路径参数path，即指定默认情况下加载的子组件，如访问路径/，会加载该组件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;Router&gt;</div><div class="line">  &lt;Route path=&quot;/&quot; component=&#123;App&#125;&gt;</div><div class="line">    &lt;IndexRoute component=&#123;Home&#125;/&gt;</div><div class="line">    &lt;Route path=&quot;accounts&quot; component=&#123;Accounts&#125;/&gt;</div><div class="line">&lt;/Router&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="Redirect"><a href="#Redirect" class="headerlink" title="Redirect"></a>Redirect</h3><p>Redirect组件用于路由的跳转，即用户访问一个路由，会自动跳转到另一个路由。<br><code>＜Redirect from=&quot;/messages/:id&quot; to=&quot;/infos/:id&quot; /&gt;</code></p>
+<h3 id="IndexRedirect"><a href="#IndexRedirect" class="headerlink" title="IndexRedirect"></a>IndexRedirect</h3><p>IndexRedirect组件用于访问根路由的时候，将用户重定向到某个子组件。<br><code>＜IndexRedirect to=&quot;/welcome&quot; /&gt;</code><br>用户访问根路径时，将自动重定向到子组件welcome。</p>
+<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><p>Link组件用于取代<code>&lt;a&gt;</code>元素，生成一个链接，允许用户点击后跳转到另一个路由。它基本上就是<code>&lt;a&gt;</code>元素的React 版本，可以接收Router的状态。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 点击About会跳转到/about路由</div><div class="line">&lt;Link to=&quot;/about&quot;&gt;About&lt;/Link&gt;</div><div class="line"></div><div class="line">// 点击About跳转到/about是文字显示为红色</div><div class="line">&lt;Link to=&quot;/about&quot; activeStyle=&#123;&#123;color: &apos;red&apos;&#125;&#125;&gt;About&lt;/Link&gt;</div><div class="line"></div><div class="line">// 也可以指定class </div><div class="line">&lt;Link to=&quot;/about&quot; activeClassName=&quot;active&quot;&gt;About&lt;/Link&gt;</div></pre></td></tr></table></figure>
+<p>在Router组件之外，导航到路由页面，可以使用浏览器的History API。这种方式，对于以前没有访问过的路由是不好使的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import &#123; browserHistory &#125; from &apos;react-router&apos;;</div><div class="line">browserHistory.push(&apos;/some/path&apos;);</div></pre></td></tr></table></figure></p>
+<p>或者使用context对象。注意，pathname和state名称是固定的，跳转到pathname时会带着state的信息。在跳转进入的组件中，使用<code>this.props.location.state</code>获取这个state信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 路由跳转</div><div class="line">this.context.router.push(&#123;</div><div class="line">    pathname: &apos;/card/&apos; + this.props.servDef.SERV_ID,</div><div class="line">    state: this.props.listQueryData</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="IndexLink"><a href="#IndexLink" class="headerlink" title="IndexLink"></a>IndexLink</h3><p>如果链接到根路由/，不要使用Link组件，而要使用IndexLink组件。这是因为对于根路由来说，activeStyle和activeClassName总是生效，因为’/‘会匹配任何子路由，而IndexLink组件会使用路径的精确匹配。<br><code>&lt;IndexLink to=&quot;/&quot; activeClassName=&quot;active&quot;&gt;</code><br>或者使用<br><code>&lt;Link to=&quot;/&quot; activeClassName=&quot;active&quot; onlyActiveOnIndex={true}&gt;Home&lt;/Link&gt;</code></p>
+<h3 id="histroy"><a href="#histroy" class="headerlink" title="histroy"></a>histroy</h3><p>Router组件的history属性，是用来监听浏览器地址栏变化的，并将URL解析成一个地址对象，供 React Router 匹配。history属性，一共可以设置三种值。  </p>
+<ul>
+<li><p><strong>createMemoryHistory：</strong>主要用于服务器渲染，它创建一个内存中的history对象，不与浏览器URL互动，<code>const history = createMemoryHistory(location)</code></p>
+</li>
+<li><p><strong>hashHistory：</strong>路由将通过URL的hash部分#切换，类似example.com/#/some/path</p>
+</li>
+<li><p><strong>browserHistory：</strong>不再通过Hash完成，而显示正常的路径example.com/some/path，背后调用的是浏览器的History API。这种情况需要对<a href="https://github.com/ReactTraining/react-router/blob/master/docs/guides/Histories.md#configuring-your-server" target="_blank" rel="external">服务器改造</a>，否则用户直接向服务器请求某个子路由，会显示网页找不到的404错误。<br>如果开发服务器使用的是webpack-dev-server，加上–history-api-fallback参数<br><code>webpack-dev-server --inline --content-base . --history-api-fallback</code>，index.html中用绝对路径引入编译后的文件<code>&lt;script src=&quot;/bundle.js&quot;&gt;&lt;/script&gt;</code></p>
+</li>
+</ul>
+<h3 id="路由的钩子"><a href="#路由的钩子" class="headerlink" title="路由的钩子"></a>路由的钩子</h3><p>每个路由都有Enter和Leave钩子，用户进入或离开该路由时触发。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Route path=&quot;about&quot; component=&#123;About&#125; /&gt;  </div><div class="line">＜Route path=&quot;inbox&quot; component=&#123;Inbox&#125;&gt;  </div><div class="line">    ＜Redirect from=&quot;messages/:id&quot; to=&quot;/messages/:id&quot; /&gt;</div><div class="line">&lt;/Route&gt;</div></pre></td></tr></table></figure></p>
+<p>如果用户离开/messages/:id，进入/about时，会依次触发以下的钩子:  </p>
+<blockquote>
+<p>/messages/:id的onLeave<br>/inbox的onLeave<br>/about的onEnter  </p>
+</blockquote>
+<p>进行路由跳转<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Route</div><div class="line">    path=&quot;messages/:id&quot;</div><div class="line">    onEnter=&#123;(&#123;params&#125;, replace) =&gt; replace(`/messages/$&#123;params.id&#125;`)&#125; </div><div class="line">/&gt;</div></pre></td></tr></table></figure></p>
+<p>进行登录验证<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;Route path=&quot;/home&quot; component=&#123;CommonMainPage&#125; onEnter=&#123;requireAuth&#125;&gt;</div><div class="line"></div><div class="line">function requireAuth(nextState, replace) &#123;</div><div class="line">    if (!storage.get(&apos;token&apos;)) &#123;</div><div class="line">        replace(&#123;</div><div class="line">            pathname: &apos;/login&apos;,</div><div class="line">            state: &#123; nextPathname: nextState.location.pathname &#125;</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当用户离开一个路径的时候，跳出一个提示框，要求用户确认是否离开。setRouteLeaveHook方法为Leave钩子指定routerWillLeave函数，该方法如果返回false，将阻止路由的切换，否则就返回一个字符串，提示用户决定是否要切换。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">const Home = withRouter(</div><div class="line">  React.createClass(&#123;</div><div class="line">    componentDidMount() &#123;</div><div class="line">      this.props.router.setRouteLeaveHook(</div><div class="line">        this.props.route, </div><div class="line">        this.routerWillLeave</div><div class="line">      )</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    routerWillLeave(nextLocation) &#123;</div><div class="line">      // 返回 false 会继续停留当前页面，</div><div class="line">      // 否则，返回一个字符串，会显示给用户，让其自己决定</div><div class="line">      if (!this.state.isSaved)</div><div class="line">        return &apos;确认要离开？&apos;;</div><div class="line">    &#125;,</div><div class="line">  &#125;)</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<h3 id="生产环境相关"><a href="#生产环境相关" class="headerlink" title="生产环境相关"></a>生产环境相关</h3><p><strong>if-env 依赖：</strong> 如果想简化开发、在任何情况运行npm start都执行正确的脚本启动，可以安装if-env依赖<code>npm install if-env --save</code>并在package.json中这样部署，再运行<code>NODE_ENV=production npm start</code>启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;start&quot;: &quot;if-env NODE_ENV=production &amp;&amp; npm run start:prod || npm start:dev&quot;,</div><div class="line">  &quot;start:dev&quot;: &quot;webpack&quot;,</div><div class="line">  &quot;start:prod&quot;: &quot;start-cluster&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>为了限制浏览器可访问的文件，通常创建一个浏览器可访问的文件夹，如public，将index.html、index.css放入该目录，并在server.js中指定可访问的静态资源路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">app.use(express.static(path.join(__dirname, &apos;public&apos;)))</div><div class="line">app.get(&apos;*&apos;, function (req, res) &#123;</div><div class="line">  res.sendFile(path.join(__dirname, &apos;public&apos;, &apos;index.html&apos;))</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>并指定webpack输入目录也为该目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">output: &#123;</div><div class="line">  path: &apos;public&apos;,</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>最后启动命令添加参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;start:dev&quot;: &quot;webpack-dev-server --inline --content-base public --history-api-fallback&quot;,</div></pre></td></tr></table></figure></p>
+<p><strong>compression 依赖:</strong> 用该中间件压缩和处理静态内容。开启gzip压缩对Web应用会产生巨大影响，当一个gzip压缩浏览器请求某些资源的时候，服务器会在响应返回给浏览器之前进行压缩。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var app = express();</div><div class="line">// 必须放在第一行</div><div class="line">app.use(compression());</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p><strong>服务器端渲染:</strong> </p>
+<p>需要一个服务器渲染的webpack配置<code>webpack.server.config.js</code>，原来的webpack配置webpack.config.js还是保留的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">var path = require(&apos;path&apos;);</div><div class="line">module.exports = &#123;</div><div class="line">  entry: path.resolve(__dirname, &apos;server.js&apos;),</div><div class="line">  output: &#123;</div><div class="line">    filename: &apos;server.bundle.js&apos;</div><div class="line">  &#125;,</div><div class="line">  target: &apos;node&apos;,</div><div class="line">  // keep node_module paths out of the bundle</div><div class="line">  externals: fs.readdirSync(path.resolve(__dirname, &apos;node_modules&apos;)).concat([</div><div class="line">    &apos;react-dom/server&apos;, &apos;react/addons&apos;,</div><div class="line">  ]).reduce(function (ext, mod) &#123;</div><div class="line">    ext[mod] = &apos;commonjs &apos; + mod</div><div class="line">    return ext</div><div class="line">  &#125;, &#123;&#125;),</div><div class="line">  node: &#123;</div><div class="line">    __filename: true,</div><div class="line">    __dirname: true</div><div class="line">  &#125;,</div><div class="line">  module: &#123;</div><div class="line">    loaders: [</div><div class="line">      &#123; test: /\.js$/, exclude: /node_modules/, loader: &apos;babel-loader?presets[]=es2015&amp;presets[]=react&apos; &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>更新<code>package.json</code>文件，用<code>NODE_ENV=production npm start</code>启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;start&quot;: &quot;if-env NODE_ENV=production &amp;&amp; npm run start:prod || npm run start:dev&quot;,</div><div class="line">  &quot;start:dev&quot;: &quot;webpack-dev-server --inline --content-base public/ --history-api-fallback&quot;,</div><div class="line">  &quot;start:prod&quot;: &quot;npm run build &amp;&amp; node server.bundle.js&quot;,</div><div class="line">  &quot;build:client&quot;: &quot;webpack&quot;,</div><div class="line">  &quot;build:server&quot;: &quot;webpack --config webpack.server.config.js&quot;,</div><div class="line">  &quot;build&quot;: &quot;npm run build:client &amp;&amp; npm run build:server&quot;</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<p>把路由管理放到单独的文件中，以便客户端和服务器端都能获取它。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// modules/routes.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> &#123; Route, IndexRoute &#125; <span class="keyword">from</span> <span class="string">'react-router'</span></div><div class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></div><div class="line"><span class="keyword">import</span> About <span class="keyword">from</span> <span class="string">'./About'</span></div><div class="line"><span class="keyword">import</span> Repos <span class="keyword">from</span> <span class="string">'./Repos'</span></div><div class="line"><span class="keyword">import</span> Repo <span class="keyword">from</span> <span class="string">'./Repo'</span></div><div class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./Home'</span></div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = (</div><div class="line">  &lt;Route path="/" component=&#123;App&#125;&gt;</div><div class="line">    &lt;IndexRoute component=&#123;Home&#125; /&gt;</div><div class="line">    &lt;Route path="/repos" component=&#123;Repos&#125;&gt;</div><div class="line">      &lt;Route path="/repos/:userName/:repoName" component=&#123;Repo&#125; /&gt;</div><div class="line">    &lt;/Route&gt;</div><div class="line">    &lt;Route path="/about" component=&#123;About&#125; /&gt;</div><div class="line">  &lt;/Route&gt;</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// index.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span></div><div class="line"><span class="keyword">import</span> &#123; Router, browserHistory &#125; <span class="keyword">from</span> <span class="string">'react-router'</span></div><div class="line"><span class="comment">// import routes and pass them into &lt;Router/&gt;</span></div><div class="line"><span class="keyword">import</span> routes <span class="keyword">from</span> <span class="string">'./modules/routes'</span></div><div class="line"></div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">Router</span> <span class="attr">routes</span>=<span class="string">&#123;routes&#125;</span> <span class="attr">history</span>=<span class="string">&#123;browserHistory&#125;/</span>&gt;</span>,</span></div><div class="line">  document.getElementById('app')</div><div class="line">)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="comment">// import some new stuff</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="comment">// we'll use this to render our app to an html string</span></div><div class="line"><span class="keyword">import</span> &#123; renderToString &#125; <span class="keyword">from</span> <span class="string">'react-dom/server'</span></div><div class="line"><span class="comment">// and these to match the url to routes and then render</span></div><div class="line"><span class="keyword">import</span> &#123; match, RouterContext &#125; <span class="keyword">from</span> <span class="string">'react-router'</span></div><div class="line"><span class="keyword">import</span> routes <span class="keyword">from</span> <span class="string">'./modules/routes'</span></div><div class="line"></div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line"><span class="comment">// send all requests to index.html so browserHistory works</span></div><div class="line"></div><div class="line">app.get(<span class="string">'*'</span>, (req, res) =&gt; &#123;</div><div class="line">  <span class="comment">// match the routes to the url</span></div><div class="line">  match(&#123; routes: routes, location: req.url &#125;, (err, redirect, props) =&gt; &#123;</div><div class="line">    <span class="comment">// `RouterContext` is the what `Router` renders. `Router` keeps these</span></div><div class="line">    <span class="comment">// `props` in its state as it listens to `browserHistory`. But on the</span></div><div class="line">    <span class="comment">// server our app is stateless, so we need to use `match` to</span></div><div class="line">    <span class="comment">// get these props before rendering.</span></div><div class="line">    <span class="keyword">const</span> appHtml = renderToString(&lt;RouterContext &#123;...props&#125;/&gt;)</div><div class="line"></div><div class="line">    // dump the HTML into a template, lots of ways to do this, but none are</div><div class="line">    // really influenced by React Router, so we're just using a little</div><div class="line">    // function, `renderPage`</div><div class="line">    res.send(renderPage(appHtml))</div><div class="line">  &#125;)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">function renderPage(appHtml) &#123;</div><div class="line">  return `</div><div class="line">    &lt;!doctype html public="storage"&gt;</div><div class="line">    &lt;html&gt;</div><div class="line">    &lt;meta charset=utf-8/&gt;</div><div class="line">    &lt;title&gt;My First React Router App&lt;/title&gt;</div><div class="line">    &lt;link rel=stylesheet href=/index.css&gt;</div><div class="line">    &lt;div id=app&gt;$&#123;appHtml&#125;&lt;/div&gt;</div><div class="line">    &lt;script src="/bundle.js"&gt;&lt;/script&gt;</div><div class="line">   `</div><div class="line">&#125;</div><div class="line"></div><div class="line">var PORT = process.env.PORT || 8080</div><div class="line">app.listen(PORT, function() &#123;</div><div class="line">  console.log('Production Express server running at localhost:' + PORT)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React-Router/" rel="tag">#React Router</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/29/babel-base/" rel="next" title="Babel-入门">
+                <i class="fa fa-chevron-left"></i> Babel-入门
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/01/git-base/" rel="prev" title="Git-基础">
+                Git-基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

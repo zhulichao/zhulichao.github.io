@@ -1,0 +1,858 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Webpack," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="技术平台借鉴 qiankun 的思路，如果项目中使用了 publicPath ，需要给 window 添加 __INJECTED_PUBLIC_PATH_BY_EPIPE__ 全局变量，然后技术平台需要引用静态资源的地方都拼接上这个变量。  入口文件  123456789class Viewer &amp;#123;  static __PUBLIC_PATH__;  // 入口方法  static as">
+<meta name="keywords" content="Webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="https-public-path">
+<meta property="og:url" content="https://zhulichao.github.io/2021/01/06/https-public-path/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="技术平台借鉴 qiankun 的思路，如果项目中使用了 publicPath ，需要给 window 添加 __INJECTED_PUBLIC_PATH_BY_EPIPE__ 全局变量，然后技术平台需要引用静态资源的地方都拼接上这个变量。  入口文件  123456789class Viewer &amp;#123;  static __PUBLIC_PATH__;  // 入口方法  static as">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.300Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="https-public-path">
+<meta name="twitter:description" content="技术平台借鉴 qiankun 的思路，如果项目中使用了 publicPath ，需要给 window 添加 __INJECTED_PUBLIC_PATH_BY_EPIPE__ 全局变量，然后技术平台需要引用静态资源的地方都拼接上这个变量。  入口文件  123456789class Viewer &amp;#123;  static __PUBLIC_PATH__;  // 入口方法  static as">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> https-public-path | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#技术平台"><span class="nav-number">1.</span> <span class="nav-text">技术平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务平台后台端"><span class="nav-number">2.</span> <span class="nav-text">业务平台后台端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务平台用户端"><span class="nav-number">3.</span> <span class="nav-text">业务平台用户端</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                https-public-path
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2021-01-06T14:24:26+08:00" content="2021-01-06">
+              2021-01-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">Webpack</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="技术平台"><a href="#技术平台" class="headerlink" title="技术平台"></a>技术平台</h2><p>借鉴 qiankun 的思路，如果项目中使用了 publicPath ，需要给 window 添加 <code>__INJECTED_PUBLIC_PATH_BY_EPIPE__</code> 全局变量，然后技术平台需要引用静态资源的地方都拼接上这个变量。</p>
+<ul>
+<li>入口文件</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Viewer</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> __PUBLIC_PATH__;</div><div class="line">  <span class="comment">// 入口方法</span></div><div class="line">  <span class="keyword">static</span> <span class="keyword">async</span> createDefaultViewer(id, callback = GisComponent.BaseMap.flyToChina) &#123;</div><div class="line">    <span class="keyword">this</span>.__PUBLIC_PATH__ =</div><div class="line">      <span class="built_in">window</span>.__INJECTED_PUBLIC_PATH_BY_EPIPE__ || <span class="built_in">window</span>.__INJECTED_PUBLIC_PATH_BY_QIANKUN__ || <span class="string">''</span>;</div><div class="line">    ...</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>webpack 配置文件</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> webpack.DefinePlugin(&#123;</div><div class="line">  ...</div><div class="line">  <span class="string">'CESIUM_BASE_URL'</span>: <span class="string">'(window.__INJECTED_PUBLIC_PATH_BY_EPIPE__ || window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__ || "") + "/static/cesium"'</span>,</div><div class="line">&#125;),</div></pre></td></tr></table></figure>
+<h2 id="业务平台后台端"><a href="#业务平台后台端" class="headerlink" title="业务平台后台端"></a>业务平台后台端</h2><ul>
+<li>添加 VUE_APP_BASE_API 环境变量，作为为静态的 publicPath</li>
+<li>入口文件 main.js</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 添加，判断一下有没有通过 iframe 引用后台端项目</span></div><div class="line"><span class="built_in">window</span>.__INJECTED_PUBLIC_PATH_BY_EPIPE__ = parent.__INJECTED_PUBLIC_PATH_BY_EPIPE__ || process.env.VUE_APP_PUBLIC_PATH;</div><div class="line"><span class="keyword">if</span> (parent.__INJECTED_PUBLIC_PATH_BY_EPIPE__) &#123;</div><div class="line">  <span class="comment">// eslint-disable-next-line</span></div><div class="line">  __webpack_public_path__ = parent.__INJECTED_PUBLIC_PATH_BY_EPIPE__ + <span class="string">'/'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>路由文件</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  base: process.env.VUE_APP_PUBLIC_PATH, <span class="comment">// 添加</span></div><div class="line">  scrollBehavior: () =&gt; (&#123; y: <span class="number">0</span> &#125;),</div><div class="line">  routes: constantRoutes,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>vue.config.js 配置文件</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">publicPath: process.env.VUE_APP_PUBLIC_PATH || <span class="string">'/'</span>,</div><div class="line">chainWebpack(config) &#123;</div><div class="line">  <span class="comment">// 重新定义环境变量</span></div><div class="line">  config.plugin(<span class="string">'define'</span>).tap(args =&gt; &#123;</div><div class="line">    args[<span class="number">0</span>][<span class="string">'process.env'</span>].VUE_APP_PUBLIC_PATH = <span class="string">'(parent.__INJECTED_PUBLIC_PATH_BY_EPIPE__ || "'</span> + process.env.VUE_APP_PUBLIC_PATH + <span class="string">'")'</span>;</div><div class="line">    args[<span class="number">0</span>][<span class="string">'process.env'</span>].VUE_APP_BASE_API = <span class="string">'(parent.__INJECTED_PUBLIC_PATH_BY_EPIPE__ || "'</span> + process.env.VUE_APP_PUBLIC_PATH + <span class="string">'") + "'</span> + process.env.VUE_APP_BASE_API + <span class="string">'"'</span>;</div><div class="line">    args[<span class="number">0</span>][<span class="string">'process.env'</span>].VUE_APP_MODEL_URL = <span class="string">'(parent.__INJECTED_PUBLIC_PATH_BY_EPIPE__ || "'</span> + process.env.VUE_APP_PUBLIC_PATH + <span class="string">'") + "'</span> + process.env.VUE_APP_MODEL_URL + <span class="string">'"'</span>;</div><div class="line">    args[<span class="number">0</span>][<span class="string">'process.env'</span>].VUE_APP_LAYER_URL = <span class="string">'(parent.__INJECTED_PUBLIC_PATH_BY_EPIPE__ || "'</span> + process.env.VUE_APP_PUBLIC_PATH + <span class="string">'") + "'</span> + process.env.VUE_APP_LAYER_URL + <span class="string">'"'</span>;</div><div class="line">    <span class="keyword">return</span> args;</div><div class="line">  &#125;);</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="业务平台用户端"><a href="#业务平台用户端" class="headerlink" title="业务平台用户端"></a>业务平台用户端</h2><ul>
+<li>添加 VUE_APP_BASE_API 环境变量，作为为静态的 publicPath</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># 生产环境配置</div><div class="line">ENV = 'production'</div><div class="line"></div><div class="line"># 若依管理系统/生产环境</div><div class="line">VUE_APP_PUBLIC_PATH = ''</div><div class="line"></div><div class="line">VUE_APP_BASE_API = '$&#123;VUE_APP_PUBLIC_PATH&#125;/prod-api'</div><div class="line"></div><div class="line">VUE_APP_MODEL_API = '$&#123;VUE_APP_PUBLIC_PATH&#125;/model/model/'</div><div class="line"></div><div class="line">VUE_APP_LAYER_URL = '$&#123;VUE_APP_PUBLIC_PATH&#125;/model/layer/'</div></pre></td></tr></table></figure>
+<ul>
+<li>入口文件 main.js</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 添加</span></div><div class="line"><span class="built_in">window</span>.__INJECTED_PUBLIC_PATH_BY_EPIPE__ = process.env.VUE_APP_PUBLIC_PATH;</div></pre></td></tr></table></figure>
+<ul>
+<li>路由文件</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  base: process.env.VUE_APP_PUBLIC_PATH, <span class="comment">// 添加</span></div><div class="line">  scrollBehavior: () =&gt; (&#123; y: <span class="number">0</span> &#125;),</div><div class="line">  routes: constantRoutes,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>vue.config.js 配置文件</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">publicPath: process.env.VUE_APP_PUBLIC_PATH || <span class="string">'/'</span>,</div><div class="line">chainWebpack(config) &#123;</div><div class="line">  <span class="comment">// 拷贝静态资源</span></div><div class="line">  config.plugin(<span class="string">'copy'</span>).use(CopyWebpackPlugin, [</div><div class="line">    [</div><div class="line">      &#123;</div><div class="line">        <span class="keyword">from</span>: <span class="string">'./static'</span>,</div><div class="line">        to: <span class="string">'static'</span>,</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="keyword">from</span>: <span class="string">'node_modules/epipe-vp-web-cms/static/cms'</span>,</div><div class="line">        to: <span class="string">'static/cms'</span>,</div><div class="line">        ignore: [<span class="string">'.*'</span>],</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="keyword">from</span>: <span class="string">'node_modules/epipe-vp-web-cms/static/images'</span>,</div><div class="line">        to: <span class="string">'static/images'</span>,</div><div class="line">        ignore: [<span class="string">'.*'</span>],</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="keyword">from</span>: <span class="string">'node_modules/epipe-vp-web-cms/index.html'</span>,</div><div class="line">        to: <span class="string">'static/cms'</span>,</div><div class="line">        ignore: [<span class="string">'.*'</span>],</div><div class="line">        transform (content, path) &#123;</div><div class="line">          <span class="keyword">let</span> str = content.toString();</div><div class="line">          <span class="comment">// 路径替换，添加 VUE_APP_PUBLIC_PATH 环境变量</span></div><div class="line">          str = str.replace(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/(\/static\/cms)/g</span>), process.env.VUE_APP_PUBLIC_PATH + <span class="string">'/static/cms'</span>);</div><div class="line">          <span class="keyword">return</span> str;</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">    ],</div><div class="line">  ]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Webpack/" rel="tag">#Webpack</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/04/qiankun-base/" rel="next" title="qiankun 集成">
+                <i class="fa fa-chevron-left"></i> qiankun 集成
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/08/git-fork-sync/" rel="prev" title="git-fork-sync">
+                git-fork-sync <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

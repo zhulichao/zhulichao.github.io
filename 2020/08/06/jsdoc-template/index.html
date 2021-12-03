@@ -1,0 +1,840 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="JSDoc 无法修改 Title 名称，显示一直为 Home，无法解析方法返回值的对象结构，可以通过修改模板来解决这些问题。 自定义模板复制 /node_modules/jsdoc/templates/default 目录到项目目录下，命令中添加 -t path/to/default 即指定了使用项目下的 default 目录作为模板，这时我们就可以修改模板了。 修改 Title 名称将 defa">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSDoc-修改模板">
+<meta property="og:url" content="https://zhulichao.github.io/2020/08/06/jsdoc-template/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="JSDoc 无法修改 Title 名称，显示一直为 Home，无法解析方法返回值的对象结构，可以通过修改模板来解决这些问题。 自定义模板复制 /node_modules/jsdoc/templates/default 目录到项目目录下，命令中添加 -t path/to/default 即指定了使用项目下的 default 目录作为模板，这时我们就可以修改模板了。 修改 Title 名称将 defa">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://zhulichao.github.io/2020/08/06/jsdoc-template/return.png">
+<meta property="og:image" content="https://zhulichao.github.io/2020/08/06/jsdoc-template/path.png">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.296Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSDoc-修改模板">
+<meta name="twitter:description" content="JSDoc 无法修改 Title 名称，显示一直为 Home，无法解析方法返回值的对象结构，可以通过修改模板来解决这些问题。 自定义模板复制 /node_modules/jsdoc/templates/default 目录到项目目录下，命令中添加 -t path/to/default 即指定了使用项目下的 default 目录作为模板，这时我们就可以修改模板了。 修改 Title 名称将 defa">
+<meta name="twitter:image" content="https://zhulichao.github.io/2020/08/06/jsdoc-template/return.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> JSDoc-修改模板 | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义模板"><span class="nav-number">1.</span> <span class="nav-text">自定义模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-Title-名称"><span class="nav-number">2.</span> <span class="nav-text">修改 Title 名称</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析方法返回值的对象结构"><span class="nav-number">3.</span> <span class="nav-text">解析方法返回值的对象结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类名称显示模块路径"><span class="nav-number"></span> <span class="nav-text">类名称显示模块路径</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JSDoc-修改模板
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-08-06T10:43:33+08:00" content="2020-08-06">
+              2020-08-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>JSDoc 无法修改 Title 名称，显示一直为 Home，无法解析方法返回值的对象结构，可以通过修改模板来解决这些问题。</p>
+<h3 id="自定义模板"><a href="#自定义模板" class="headerlink" title="自定义模板"></a>自定义模板</h3><p>复制 /node_modules/jsdoc/templates/default 目录到项目目录下，命令中添加 -t path/to/default 即指定了使用项目下的 default 目录作为模板，这时我们就可以修改模板了。</p>
+<h3 id="修改-Title-名称"><a href="#修改-Title-名称" class="headerlink" title="修改 Title 名称"></a>修改 Title 名称</h3><p>将 default/publish.js 中替换 Home 替换为想要的值即可。</p>
+<h3 id="解析方法返回值的对象结构"><a href="#解析方法返回值的对象结构" class="headerlink" title="解析方法返回值的对象结构"></a>解析方法返回值的对象结构</h3><p>default/tmpl/method.tmpl 文件中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// 原内容</div><div class="line">&lt;?js if (data.returns &amp;&amp; returns.length) &#123; ?&gt;</div><div class="line">&lt;h5&gt;Returns:&lt;/h5&gt;</div><div class="line">&lt;?js if (returns.length &gt; 1) &#123; ?&gt;&lt;ul&gt;&lt;?js</div><div class="line">    returns.forEach(function(r) &#123; ?&gt;</div><div class="line">        &lt;li&gt;&lt;?js= self.partial(&apos;returns.tmpl&apos;, r) ?&gt;&lt;/li&gt;</div><div class="line">    &lt;?js &#125;);</div><div class="line">?&gt;&lt;/ul&gt;&lt;?js &#125; else &#123;</div><div class="line">    returns.forEach(function(r) &#123; ?&gt;</div><div class="line">        &lt;?js= self.partial(&apos;returns.tmpl&apos;, r) ?&gt;</div><div class="line">    &lt;?js &#125;);</div><div class="line">&#125; &#125; ?&gt;</div><div class="line"></div><div class="line">// 替换为</div><div class="line">&lt;?js if (data.returns &amp;&amp; returns.length) &#123; ?&gt;</div><div class="line">&lt;h5&gt;Returns:&lt;/h5&gt;</div><div class="line">&lt;?js= this.partial(&apos;params.tmpl&apos;, returns) ?&gt;</div><div class="line">&lt;?js &#125; ?&gt;</div></pre></td></tr></table></figure>
+<p>default/publish.js 文件中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 原内容</span></div><div class="line">returnTypesString = util.format(<span class="string">' &amp;rarr; %s&#123;%s&#125;'</span>, attribsString, returnTypes.join(<span class="string">'|'</span>));</div><div class="line"></div><div class="line"><span class="comment">// 替换为</span></div><div class="line">returnTypesString = util.format(<span class="string">' &amp;rarr; %s&#123;%s&#125;'</span>, attribsString, returnTypes[<span class="number">0</span>]);</div></pre></td></tr></table></figure>
+<p>添加自定义插件如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">exports.handlers = &#123;</div><div class="line">  newDoclet: e =&gt; &#123;</div><div class="line">    // 修改对 return 的解析</div><div class="line">    if (e.doclet.returns) &#123;</div><div class="line">      e.doclet.returns.forEach(item =&gt; &#123;</div><div class="line">        if (item.description) &#123;</div><div class="line">          const parseArr = item.description.split(&apos; - &apos;);</div><div class="line">          if (parseArr.length &gt; 1) &#123;</div><div class="line">            item.description = parseArr[1];</div><div class="line">            item.name = parseArr[0];</div><div class="line">          &#125; else &#123;</div><div class="line">            item.description = parseArr[0];</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>效果为</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">  * 返回 viewer.</div><div class="line">  * @return &#123;object&#125; viewer - The viewer value.</div><div class="line">  * @return &#123;number&#125; viewer.key1 - 描述1</div><div class="line">  * @return &#123;string&#125; viewer.key2 - 描述2</div><div class="line">  */</div><div class="line"><span class="keyword">static</span> getViewer() &#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.viewer;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<img src="/2020/08/06/jsdoc-template/return.png" width="400" title="返回对象">
+<h2 id="类名称显示模块路径"><a href="#类名称显示模块路径" class="headerlink" title="类名称显示模块路径"></a>类名称显示模块路径</h2><p>default/publish.js 文件中，将 buildMemberNav 方法替换为如下内容</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 替换为</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildMemberNav</span>(<span class="params">items, itemHeading, itemsSeen, linktoFn</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> nav = <span class="string">''</span>;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (items.length) &#123;</div><div class="line">    <span class="keyword">let</span> itemsNav = <span class="string">''</span>;</div><div class="line">    <span class="keyword">let</span> pathName = <span class="string">''</span>;</div><div class="line">    items.forEach(item =&gt; &#123;</div><div class="line">      <span class="keyword">const</span> result = item.comment.match(<span class="regexp">/@path \&#123;[^\&#125;]+\&#125;/</span>);</div><div class="line">      <span class="keyword">if</span> (result &amp;&amp; result[<span class="number">0</span>]) &#123;</div><div class="line">        pathName = result[<span class="number">0</span>].replace(<span class="string">'@path &#123;'</span>, <span class="string">''</span>).replace(<span class="string">'&#125;'</span>, <span class="string">''</span>);</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="keyword">let</span> displayName;</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (!hasOwnProp.call(item, <span class="string">'longname'</span>)) &#123;</div><div class="line">        itemsNav += <span class="string">`&lt;li&gt;<span class="subst">$&#123;linktoFn('', item.name)&#125;</span>&lt;/li&gt;`</span>;</div><div class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!hasOwnProp.call(itemsSeen, item.longname)) &#123;</div><div class="line">        <span class="keyword">if</span> (env.conf.templates.default.useLongnameInNav) &#123;</div><div class="line">          displayName = item.longname;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pathName) &#123;</div><div class="line">          displayName = pathName;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">          displayName = item.name;</div><div class="line">        &#125;</div><div class="line">        itemsNav += <span class="string">`&lt;li&gt;<span class="subst">$&#123;linktoFn(</span></span></div><div class="line">          item.longname,</div><div class="line">          displayName.replace(/\b(module|event):/g, '')</div><div class="line">        )&#125;&lt;/li&gt;`;</div><div class="line"></div><div class="line">        itemsSeen[item.longname] = <span class="literal">true</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (itemsNav !== <span class="string">''</span>) &#123;</div><div class="line">      nav += <span class="string">`&lt;h3&gt;<span class="subst">$&#123;itemHeading&#125;</span>&lt;/h3&gt;&lt;ul&gt;<span class="subst">$&#123;itemsNav&#125;</span>&lt;/ul&gt;`</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> nav;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果为</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 通过火星科技创建地球</div><div class="line"> * @hideconstructor</div><div class="line"> * @path &#123;EVECesium.App.Viewer&#125;</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Viewer</span> </span>&#123;&#125;</div></pre></td></tr></table></figure>
+<img src="/2020/08/06/jsdoc-template/path.png" title="Class显示模块路径">
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/06/api-design/" rel="next" title="API-设计">
+                <i class="fa fa-chevron-left"></i> API-设计
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/21/iframe-module/" rel="prev" title="使用 iframe 引用 NPM 包">
+                使用 iframe 引用 NPM 包 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

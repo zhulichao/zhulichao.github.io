@@ -1,0 +1,962 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Reading Notes," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在开发产品之前，弄清楚用户是否会购买你的产品。 在整个产品生命周期中，倾听用户的心声。 理解为何在设计一款产品之前要做测试。 获得对产品设计至关重要的9个工具。 区分必须的功能和有则更好的功能。 学习最小化可行产品是如何影响用户体验设计决策的。 协同使用A/B测试与优秀的用户体验设计实践。 加速产品开发过程而不牺牲产品质量。  全书共3篇，分别从验证、设计及产品3个方面介绍了精益用户体验设计。">
+<meta name="keywords" content="Reading Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《精益创业UX篇 高效用户体验设计》笔记">
+<meta property="og:url" content="https://zhulichao.github.io/2021/04/04/lean-ux/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="在开发产品之前，弄清楚用户是否会购买你的产品。 在整个产品生命周期中，倾听用户的心声。 理解为何在设计一款产品之前要做测试。 获得对产品设计至关重要的9个工具。 区分必须的功能和有则更好的功能。 学习最小化可行产品是如何影响用户体验设计决策的。 协同使用A/B测试与优秀的用户体验设计实践。 加速产品开发过程而不牺牲产品质量。  全书共3篇，分别从验证、设计及产品3个方面介绍了精益用户体验设计。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.315Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《精益创业UX篇 高效用户体验设计》笔记">
+<meta name="twitter:description" content="在开发产品之前，弄清楚用户是否会购买你的产品。 在整个产品生命周期中，倾听用户的心声。 理解为何在设计一款产品之前要做测试。 获得对产品设计至关重要的9个工具。 区分必须的功能和有则更好的功能。 学习最小化可行产品是如何影响用户体验设计决策的。 协同使用A/B测试与优秀的用户体验设计实践。 加速产品开发过程而不牺牲产品质量。  全书共3篇，分别从验证、设计及产品3个方面介绍了精益用户体验设计。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 《精益创业UX篇 高效用户体验设计》笔记 | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#验证"><span class="nav-number">1.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计"><span class="nav-number">2.</span> <span class="nav-text">设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#产品"><span class="nav-number">3.</span> <span class="nav-text">产品</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《精益创业UX篇 高效用户体验设计》笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2021-04-04T01:50:35+08:00" content="2021-04-04">
+              2021-04-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Reading-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Reading Notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>在开发产品之前，弄清楚用户是否会购买你的产品。</li>
+<li>在整个产品生命周期中，倾听用户的心声。</li>
+<li>理解为何在设计一款产品之前要做测试。</li>
+<li>获得对产品设计至关重要的9个工具。</li>
+<li>区分必须的功能和有则更好的功能。</li>
+<li>学习最小化可行产品是如何影响用户体验设计决策的。</li>
+<li>协同使用A/B测试与优秀的用户体验设计实践。</li>
+<li>加速产品开发过程而不牺牲产品质量。</li>
+</ul>
+<p>全书共3篇，分别从验证、设计及产品3个方面介绍了精益用户体验设计。</p>
+<p>你应该了解如何设计简单产品，A/B测试，然后周期迭代改进。对了，别忘了还有持续部署、敏捷开发和最小化可行产品。</p>
+<p>和精益创业非常相似，精益用户体验设计时围绕着验证假设展开的。</p>
+<p>精益用户体验设计认为产品是由一组有待验证的假设所组成的。换句话说，不要以为我们知道用户想要什么。我们做用户访谈和用户调研就是为了拟定关于用户可能需要什么的假设，然后以各种方式验证这一假设，来看看我们是否正确。每一次验证都帮助我们对产品进行改进。</p>
+<p>精益用户体验设计不是简单地把功能添加到产品，它是要找出关于驱动业务的指标，了解我们可以解决的客户问题从而推动指标的增长，产生改善这些客户问题的想法，然后验证这些想法是否正确。</p>
+<p>很多精益创业公司都会落入这个陷阱：无法判断一个假设是否被验证了。</p>
+<p>精益用户体验设计是以用户为中心的（User Centered Design，UCD）。</p>
+<p>精益用户体验设计是敏捷的。</p>
+<p>精益用户体验设计是由数据驱动的。</p>
+<p>精益用户体验设计是快速和低成本的（某些时候）。</p>
+<p>精益用户体验设计是迭代改进的（一直都是）。</p>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>思考产品点子的时候，人们会犯一个很常见的错，要么是这个产品要解决的问题根本不存在，要么是痛点还不够痛，没有达到人们忍无可忍，想要解决它的程度。</p>
+<p>但如果找不到需要解决的问题，那么人们也就没有足够充分的理由购买你的产品。就算你的点子再怎么棒、有创意、具有颠覆性的，早期验证可以让你更好地理解用户和完善你的点子。</p>
+<p>创业是在充满各种高度不确定性的情况下进行产品或服务创新，尽早验证问题足以降低这种不确定性。</p>
+<p>验证市场的第一个目标是缩小受众人群——那些希望问题能够被彻底解决的人们。第二个目标是去了解他们为什么对你的方案感兴趣，由此你还可以找到相似的市场，他们也有类似的动机。</p>
+<p>当你能精确地预测某类人将会遇到的某个特殊问题，并且这个问题也足够严重，以至于他们愿意花钱购买解决方案，那么此时，就算你已经成功验证了你的市场了。</p>
+<p>用于早期验证的方法：</p>
+<ul>
+<li><p>用户行为习惯研究（倾听你的用户）</p>
+<p>在做用户行为研究的时候，非常容易犯一个错误，那就是告诉受访者你正在制作什么样的产品，以及这个产品是多么适合他们。如果给用户灌输你的想法的话，没有什么能比这更快地把用户带到沟里去。</p>
+</li>
+<li><p>着陆页测试</p>
+<p>在制作产品之前先售卖产品。通过制作一个只有一些简单页面的网站，你可以得到一些粗略的数据，它能够揭示出有多少人对你的解决方案感兴趣。这样做有个好处，那就是你可以在制作产品之前就开始制作这样的网站。</p>
+</li>
+<li><p>原型测试</p>
+<p>正确的方式是，给用户展示一些东西，并且观察他们的反应。最理想的情况是，你给用户展示的东西最好看上去，或者让他们感觉到这确实是一个产品，但是又并不需要你花上几个月的时间来写代码来制作这个东西。原型测试是个永不尽早验证你的产品的最佳方式。</p>
+</li>
+</ul>
+<p>痛点驱动设计（Pain-Driven Design，PDD）要求你在开始设计产品或者新功能之前，首先要弄明白是什么东西让你的用户或者潜在用户感到难受。</p>
+<p>如果你在对的时间做对的研究，你最终会节省时间和金钱。我已经提到过你应该做的几种不同类型的用户研究：用户验证和原型测试。</p>
+<p>去测试别人的产品，你要做的不是去帮他们修复问题，而是要避免他们犯过的所有错误。</p>
+<ul>
+<li>你喜欢这个产品的什么地方？</li>
+<li>你不喜欢这个产品的什么地方？</li>
+<li>你对这个产品的哪里感到困惑？</li>
+<li>这个产品有什么让你感到特别不爽吗？</li>
+<li>这个产品缺少什么吗？</li>
+<li>你如何学会使用这个产品？</li>
+<li>你是在哪里听说这个产品的？</li>
+<li>你试用过其他类似的产品吗？</li>
+<li>为什么你选了这个产品而不是其他的呢？</li>
+<li>（用于企业产品）哪部分工作是你必须要做、但这个产品却没有提供相应功能的？你是如何看待这个问题的？</li>
+</ul>
+<p>在你打算创业时最重要的决策之一就是如何对用户描述产品。</p>
+<p>A/B测试可以告诉你在各个着陆页中哪一个效果最好。</p>
+<p>找出用户对你的着陆页反应的唯一方法是问答下面的问题：</p>
+<ul>
+<li>用户觉得这个产品是做什么的？</li>
+<li>用户认为这个产品是给谁用的？</li>
+<li>用户知道如何获取该产品吗？</li>
+</ul>
+<p>UsabilityHub是一个远程用户测试平台，通过5秒钟测试、单击测试、导航测试、问题测试和偏好测试等，你可获得真实快捷的用户反馈。UsabilityHub作为研究用户数据的工具可帮助开发，设计以及营销人员改善目标网页和应用程序的用户体验，从而提升你网站的转化率。</p>
+<p>为了在任何类型的用户调研中都发挥到极致，在发现共性问题之前，最好找尽量少的人进行测试。然后你会一次次地测试这些人，同时也会在每次测试之间留下足够多的时间来修改产品、样品、原型、讨论方案，或者任何你打算进行测试的东西。</p>
+<p>只有一种类型的调研需要亲自面对面进行，那就是你需要了解用户在什么环境中使用你的产品，或者用户和产品在一起的时候才能进行测试。</p>
+<p>非监管测试是指，你可以自动获得一个关于真实用户使用你的产品的视频，视频中的人尝试着去执行各种你所指派的任务。它最不适合用来做什么：</p>
+<ul>
+<li>了解人们是否喜欢你的产品</li>
+<li>了解人们是否会使用你的产品</li>
+<li>了解人们在他们的设备上并且在没有任何提示的情况下使用你的产品的时候，是否还能知道他们应该执行什么任务</li>
+<li>了解真实用户每天都是怎么使用你的产品的</li>
+<li>了解如何修复你发现的易用性问题</li>
+<li>其他</li>
+</ul>
+<p>定性研究，这主要包括和用户会谈，观察并理解他们的行为。这里跟统计学无关。这里有几个定性研究的例子：</p>
+<ul>
+<li>情境问答</li>
+<li>易用性研究</li>
+<li>客服访谈</li>
+</ul>
+<p>定量研究指的是测量真实用户是如何使用你的产品的。它不涉及和某一个人交谈，而更多的是关于研究聚合的数据。这是具有统计学意义的。这里有几个定量研究的例子：</p>
+<ul>
+<li>漏斗分析</li>
+<li>A/B测试</li>
+<li>群组分析</li>
+</ul>
+<p>定量研究会告诉你问题是什么，定性研究会告诉你为什么有这样的问题。</p>
+<p>定性的方法：</p>
+<ul>
+<li>定期观察用户使用你的产品</li>
+<li>和那些放弃使用你的产品的人交流</li>
+<li>观察新用户使用你的产品，问问他们在开始使用产品的最初15分钟里，他们期望的是什么</li>
+</ul>
+<p>定量的方法：</p>
+<ul>
+<li>观察那些被最有价值的用户使用得最多的产品功能</li>
+<li>尝试使用“假功能“测试，这可以通过添加一个按钮或者导航元素</li>
+</ul>
+<p>最佳的策略是，确保你总是能够追踪到你的指标，并且观察人们使用你的产品。</p>
+<p>定性研究能够很明确地告诉你，用户能否做某件事。它可以告诉你这个功能对于用户而言是否有意义，以及用户能否成功完成某项任务。</p>
+<p>定性研究对于判断用户是否愿意做某些事情也是有一定效果的，因为用户很有可能会做这些事情，只要产品或者功能不要太难以使用。</p>
+<p>当你在决定到底是选择定性研究还是定量研究的时候，有件很重要事情得记住，那就是问自己，到底是想要知道发生了什么，还是想知道为什么某件事会发生。</p>
+<h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><p>设计就是关于解决问题的。一旦你很好地定义你的问题，并确定你想要的产品结果是什么，为了防止万一你的最终产物存在缺陷，精益用户体验设计鼓励你用尽量少的工作量尽快的制作出你期望的结果。这意味着要先做设计并去验证你的假设。</p>
+<p>在精益用户体验设计中，你应该尽可能多地区验证你的假设。</p>
+<ul>
+<li>工具1：真正了解问题</li>
+<li>工具2：先设计测试</li>
+<li>工具3：写一些故事</li>
+<li>工具4：与团队讨论可能的解决方案</li>
+<li>工具5：做出决策</li>
+<li>工具6：验证方法是否有效</li>
+<li>工具7：一些草绘的方法，Balsamiq 或 OmniGraffle 草绘工具</li>
+<li>工具8：创建交互原型</li>
+<li>工具9：测试和迭代改进</li>
+</ul>
+<p>如果要我说出精益用户体验设计区别于其他设计方式的最明显的一点的话，那答案就是测试。</p>
+<p>还要补充一点：给用户真正想要的。一个客户说：”我想要某个功能“，企业家和产品负责人往往写下”客户想要某个功能“，而不是了解他为什么想要这个功能，然后就开始制作这个功能了。</p>
+<p>卓越设计当中很重要的一环就是把时间花在重要的事情上，而不要浪费在那些无关紧要的事情上。</p>
+<ul>
+<li>这个问题影响到谁了？</li>
+<li>影响到他们的频率有多高？</li>
+<li>这个问题对哪一个关键指标造成了破坏？</li>
+</ul>
+<p>流程图适合用来做什么？当你想要弄清楚用户在产品中的移动路径，以及他们是如何完成某些常规任务的时候，最好是用流程图或者站点地图。它对预估工作量也有极大帮助，还可以辅助你和开发人员就设计问题进行沟通交流。</p>
+<p>流程图不合适拿来验证假设，或者用于易用性测试，因为它不是设计给用户看到。</p>
+<p>草绘图是你首次开始试着把产品或者功能变得可视化。别再从”用户需要登录“这个角度思考问题，而应该多思考用户在登录过程中可能需要哪些元素，以及这些元素之间的关系。</p>
+<p>在你思考问题的时候，应该采用草绘图，因为它非常便捷，灵活度高。你可以毫不费力的在页面上画各种各样的元素，移动调整它们的位置，甚至删除或者再加入一些元素。你也可以制作一堆草绘图，每一个都包含众多的元素，或者把不同的信息归类放置。总之，你可以很容易地做各种试验。</p>
+<p>草绘图还可以帮你和其他人沟通交流你的设计思路。</p>
+<p>草绘图并不能用来从用户那里收集反馈信息。</p>
+<p>在我看来，一个使用的线框图必须包含所有的真实产品中的文字、按钮、关键操作，以及导航元素。而且此时它还没有任何视觉设计，这将在后面的环节中添加进来。但是可以肯定的是，线框图包含了所有在制作草绘图的时候设计出来的元素，并且不仅仅只是把这些元素组合到一起，还要让它们支撑起整个功能或者产品。</p>
+<p>重要的是要记住，线框图是用来让你弄清楚屏幕上或者产品的某个工作状态下的每一处细节的。</p>
+<p>制作交互式原型产品的最佳理由是，在花费大量时间和金钱制作真正的产品之前，它有助于帮你找出设计里的错误。基本上来讲，当原型产品可以帮你节省时间和金钱的时候，你就应该使用它。</p>
+<p>关于交互式原型很重要的一件事情就是，当制作一个要耗费很多时间才能上线的功能的时候，或者后续的修补成本很高的时候，它很适合用来测试你的产品。</p>
+<p>在设计的最初阶段，还在和团队成员头脑风暴各种不同的点子的时候，纸上原型可以让每个人都对产品有统一的认识。这种情况下，纸上原型是非常迅速且高效的，但是别期望可以得到更多的更深入的细节。而且不要给潜在用户展示纸上原型，仅仅只把它展示给团队成员。</p>
+<p>视觉设计和交互设计是不能互换的，视觉设计是关于一个产品看起来怎么样，而交互设计是关于一个产品如何运作的。</p>
+<h2 id="产品"><a href="#产品" class="headerlink" title="产品"></a>产品</h2><p>A/B测试（有时称为分桶测试或多变量测试）是指创建多个版本的界面或功能，并在真实产品环境中对不同的用户显示不同版本，以找出哪个版本的测试结果更好。</p>
+<p>做设计评估最主要的原因是，可以知道你所做的改动对于公司而言，到底是起到了正面积极的作用，还是带来了负面的影响。</p>
+<p>A/B测试的本质是，通过技术解决方案来解决设计问题，正是这一点使得它被大量的工程师文化浓厚的团队所采纳。</p>
+<p>净推荐值是指有多少用户会向朋友推荐你的产品。虽然净推荐值是度量用户满意度的最佳指标，但它很难被精确收集。</p>
+<p>只有在产品具有延迟注册机制的情况下，注册率才能算是衡量用户满意度的指标。</p>
+<p>有时候就算得到的统计数据看上去非常显著，然而却并不具备统计学意义，原因是样本范围太小。</p>
+<p>当你观察任何类型的实验或改动的结果时，你应该加入时间因素，看看在较长的时间范围内它将如何影响你的指标。</p>
+<p>跨职能团队能起到很好的效果是因为每个人在相同的时间做相同的事情，这意味着信息在传递的过程中不会被混淆或丢失。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Reading-Notes/" rel="tag">#Reading Notes</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/02/22/web-responsive/" rel="next" title="WEB 自适应">
+                <i class="fa fa-chevron-left"></i> WEB 自适应
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/04/13/ie11-compatibility/" rel="prev" title="IE11 兼容调试">
+                IE11 兼容调试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

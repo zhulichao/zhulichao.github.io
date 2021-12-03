@@ -1,0 +1,912 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Project Base," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在 github 中配置  默认分支 保护分支，注意里面的配置项   VSCode 中添加 Code Spell Checker 进行拼写检查  VSCode 中添加 EditorConfig for VS Code 进行风格统一  参考 EditorConfig 官网 项目根目录添加 .editorconfig 文件 editorConfig 不是什么软件，而是一个名称为 .editorcon">
+<meta name="keywords" content="Project Base">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目基础配置">
+<meta property="og:url" content="https://zhulichao.github.io/2018/05/06/project-base/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="在 github 中配置  默认分支 保护分支，注意里面的配置项   VSCode 中添加 Code Spell Checker 进行拼写检查  VSCode 中添加 EditorConfig for VS Code 进行风格统一  参考 EditorConfig 官网 项目根目录添加 .editorconfig 文件 editorConfig 不是什么软件，而是一个名称为 .editorcon">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.253Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="项目基础配置">
+<meta name="twitter:description" content="在 github 中配置  默认分支 保护分支，注意里面的配置项   VSCode 中添加 Code Spell Checker 进行拼写检查  VSCode 中添加 EditorConfig for VS Code 进行风格统一  参考 EditorConfig 官网 项目根目录添加 .editorconfig 文件 editorConfig 不是什么软件，而是一个名称为 .editorcon">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 项目基础配置 | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                项目基础配置
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-06T09:57:52+08:00" content="2018-05-06">
+              2018-05-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Project-Base/" itemprop="url" rel="index">
+                    <span itemprop="name">Project Base</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><p>在 github 中配置</p>
+<ul>
+<li>默认分支</li>
+<li>保护分支，注意里面的配置项</li>
+</ul>
+</li>
+<li><p>VSCode 中添加 Code Spell Checker 进行拼写检查</p>
+</li>
+<li><p>VSCode 中添加 EditorConfig for VS Code 进行风格统一</p>
+<ul>
+<li>参考 <a href="http://editorconfig.org" target="_blank" rel="external">EditorConfig 官网</a></li>
+<li>项目根目录添加 .editorconfig 文件</li>
+<li>editorConfig 不是什么软件，而是一个名称为 .editorconfig 的自定义文件，该文件用来定义项目的编码规范，编辑器的行为会与.editorconfig 文件中定义的一致，并且其优先级比编辑器自身的设置要高</li>
+</ul>
+</li>
+<li><p>格式检查</p>
+<ul>
+<li>参考 <a href="https://prettier.io" target="_blank" rel="external">prettier 官网</a> 进行配置，它可以很好的集成的到项目中，利用 git 的 hooks 的机制，在提交 commit 时自动调用 prettier，使用 husky 和 lint-staged 配合使用<ul>
+<li>husky ：可以方便的通过 npm scripts 来调用各种 git hooks</li>
+<li>lint-staged ：利用 git 的 staged 特性，可以提取出本次提交的变动文件，让 prettier 只处理这些文件</li>
+</ul>
+</li>
+<li>husky 配合 lint-stage 的过程可以通过 pretty-quick 来取代，但如果项目中也使用了其它工具，比如ESLint，请使用lint-stage</li>
+<li>VSCode 中添加 Prettier - Code formatter 插件</li>
+<li>执行 <code>./node_modules/.bin/prettier --single-quote --write &quot;src/**/*.{js,jsx,json,css}&quot;</code> 来检查整个项目</li>
+</ul>
+</li>
+<li><p>样式检查</p>
+<ul>
+<li>参考 <a href="https://stylelint.io/" target="_blank" rel="external">stylelint</a> 进行配置</li>
+<li>安装 stylelint-config-standard、stylelint-order</li>
+<li>VSCode 中添加 stylelint 插件</li>
+</ul>
+</li>
+<li><p>语法检查</p>
+<ul>
+<li>参考 <a href="https://palantir.github.io/tslint/" target="_blank" rel="external">TSLint 官网</a> <a href="https://github.com/palantir/tslint-react" target="_blank" rel="external">tslint-react</a> 进行配置</li>
+<li><a href="https://github.com/alexjoverm/tslint-config-prettier" target="_blank" rel="external">tslint-config-prettier</a> 防止 tslint 和 prettier 发生冲突，prettier 负责格式，tslint 负责其它</li>
+<li>VSCode 中添加 TSLint 插件</li>
+</ul>
+</li>
+<li><p>自动化测试</p>
+<ul>
+<li>参考 <a href="https://facebook.github.io/jest/" target="_blank" rel="external">Jest</a>，需安装 @types/jest</li>
+<li>参考 <a href="https://github.com/kulshekhar/ts-jest" target="_blank" rel="external">ts-jest</a>，作用是将 ts 写的测试文件转为 js 的，再对这些文件执行 jest</li>
+<li><p>VSCode 中添加 jest 插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line">import * as React from &apos;react&apos;;</div><div class="line">import * as renderer from &apos;react-test-renderer&apos;;</div><div class="line">import configureStore from &apos;redux-mock-store&apos;;</div><div class="line">import thunk from &apos;redux-thunk&apos;;</div><div class="line"></div><div class="line">import App from &apos;../App&apos;;</div><div class="line">import Badge, &#123; BadgeVariant &#125; from &apos;./Badge&apos;;</div><div class="line"></div><div class="line">const middlewares = [thunk];</div><div class="line">const mockStore = configureStore(middlewares);</div><div class="line">const initialState = &#123;&#125;;</div><div class="line"></div><div class="line">test(&apos;正确渲染&apos;, () =&gt; &#123;</div><div class="line">const store = mockStore(initialState);</div><div class="line"></div><div class="line">let tree = renderer</div><div class="line">    .create(</div><div class="line">    &lt;App</div><div class="line">        context=&#123;&#123;</div><div class="line">        fetch: () =&gt; &#123;</div><div class="line">            return;</div><div class="line">        &#125;,</div><div class="line">        store,</div><div class="line">        client: &#123;&#125;,</div><div class="line">        &#125;&#125;</div><div class="line">    &gt;</div><div class="line">        &lt;Badge className=&quot;badge&quot;&gt;&#123;10&#125;&lt;/Badge&gt;</div><div class="line">    &lt;/App&gt;,</div><div class="line">    )</div><div class="line">    .toJSON();</div><div class="line">expect(tree).toMatchSnapshot();</div><div class="line"></div><div class="line">tree = renderer</div><div class="line">    .create(</div><div class="line">    &lt;App</div><div class="line">        context=&#123;&#123;</div><div class="line">        fetch: () =&gt; &#123;</div><div class="line">            return;</div><div class="line">        &#125;,</div><div class="line">        store,</div><div class="line">        client: &#123;&#125;,</div><div class="line">        &#125;&#125;</div><div class="line">    &gt;</div><div class="line">        &lt;Badge&gt;New&lt;/Badge&gt;</div><div class="line">    &lt;/App&gt;,</div><div class="line">    )</div><div class="line">    .toJSON();</div><div class="line">expect(tree).toMatchSnapshot();</div><div class="line">&#125;);</div><div class="line"></div><div class="line">test(&apos;variant属性值应为 primary, info, success, warning, error 中的一个&apos;, () =&gt; &#123;</div><div class="line">const store = mockStore(initialState);</div><div class="line">for (const variant in BadgeVariant) &#123;</div><div class="line">    if (BadgeVariant[variant]) &#123;</div><div class="line">    const tree = renderer</div><div class="line">    .create(</div><div class="line">        &lt;App</div><div class="line">        context=&#123;&#123;</div><div class="line">            fetch: () =&gt; &#123;</div><div class="line">            return;</div><div class="line">            &#125;,</div><div class="line">            store,</div><div class="line">            client: &#123;&#125;,</div><div class="line">        &#125;&#125;</div><div class="line">        &gt;</div><div class="line">        &lt;Badge variant=&#123;BadgeVariant[variant]&#125;&gt;职问&lt;/Badge&gt;</div><div class="line">        &lt;/App&gt;,</div><div class="line">    )</div><div class="line">    .toJSON();</div><div class="line"></div><div class="line">    expect(tree).toMatchSnapshot();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>配置文件</p>
+<ul>
+<li><p>.editorconfig 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">root = true</div><div class="line"></div><div class="line">[*]</div><div class="line">indent_style = space</div><div class="line">indent_size = 2</div><div class="line">end_of_line = lf</div><div class="line">charset = utf-8</div><div class="line">trim_trailing_whitespace = true</div><div class="line">insert_final_newline = true</div><div class="line"></div><div class="line"># editorconfig-tools is unable to ignore long strings or urls</div><div class="line">max_line_length = null</div></pre></td></tr></table></figure>
+</li>
+<li><p>.prettierrc 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;singleQuote&quot;: true,</div><div class="line">    &quot;trailingComma&quot;: &quot;all&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>.stylelintrc 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    extends: &apos;stylelint-config-standard&apos;,</div><div class="line">    plugins: [</div><div class="line">        &apos;stylelint-order&apos;,</div><div class="line">    ],</div><div class="line">    rules: &#123;</div><div class="line">        &apos;property-no-unknown&apos;: [</div><div class="line">            true,</div><div class="line">            &#123;</div><div class="line">                ignoreProperties: [</div><div class="line">                &apos;composes&apos;,</div><div class="line">            ],</div><div class="line">            &#125;,</div><div class="line">        ],</div><div class="line">        &apos;selector-pseudo-class-no-unknown&apos;: [</div><div class="line">            true,</div><div class="line">            &#123;</div><div class="line">                ignorePseudoClasses: [</div><div class="line">                    &apos;global&apos;,</div><div class="line">                ],</div><div class="line">            &#125;,</div><div class="line">        ],</div><div class="line">        &apos;string-quotes&apos;: &apos;single&apos;,</div><div class="line">        &apos;order/order&apos;: [</div><div class="line">            &apos;custom-properties&apos;,</div><div class="line">            &apos;dollar-variables&apos;,</div><div class="line">            &apos;declarations&apos;,</div><div class="line">            &apos;at-rules&apos;,</div><div class="line">            &apos;rules&apos;,</div><div class="line">        ],</div><div class="line">        &apos;order/properties-order&apos;: [</div><div class="line">            &apos;composes&apos;,</div><div class="line">            &apos;position&apos;,</div><div class="line">            &apos;top&apos;,</div><div class="line">            &apos;right&apos;,</div><div class="line">            &apos;bottom&apos;,</div><div class="line">            &apos;left&apos;,</div><div class="line">            &apos;z-index&apos;,</div><div class="line">            &apos;display&apos;,</div><div class="line">            &apos;align-content&apos;,</div><div class="line">            &apos;align-items&apos;,</div><div class="line">            &apos;align-self&apos;,</div><div class="line">            &apos;flex&apos;,</div><div class="line">            &apos;flex-basis&apos;,</div><div class="line">            &apos;flex-direction&apos;,</div><div class="line">            &apos;flex-flow&apos;,</div><div class="line">            &apos;flex-grow&apos;,</div><div class="line">            &apos;flex-shrink&apos;,</div><div class="line">            &apos;flex-wrap&apos;,</div><div class="line">            &apos;justify-content&apos;,</div><div class="line">            &apos;order&apos;,</div><div class="line">            &apos;float&apos;,</div><div class="line">            &apos;width&apos;,</div><div class="line">            &apos;height&apos;,</div><div class="line">            &apos;max-width&apos;,</div><div class="line">            &apos;max-height&apos;,</div><div class="line">            &apos;min-width&apos;,</div><div class="line">            &apos;min-height&apos;,</div><div class="line">            &apos;padding&apos;,</div><div class="line">            &apos;padding-top&apos;,</div><div class="line">            &apos;padding-right&apos;,</div><div class="line">            &apos;padding-bottom&apos;,</div><div class="line">            &apos;padding-left&apos;,</div><div class="line">            &apos;margin&apos;,</div><div class="line">            &apos;margin-top&apos;,</div><div class="line">            &apos;margin-right&apos;,</div><div class="line">            &apos;margin-bottom&apos;,</div><div class="line">            &apos;margin-left&apos;,</div><div class="line">            &apos;margin-collapse&apos;,</div><div class="line">            &apos;margin-top-collapse&apos;,</div><div class="line">            &apos;margin-right-collapse&apos;,</div><div class="line">            &apos;margin-bottom-collapse&apos;,</div><div class="line">            &apos;margin-left-collapse&apos;,</div><div class="line">            &apos;overflow&apos;,</div><div class="line">            &apos;overflow-x&apos;,</div><div class="line">            &apos;overflow-y&apos;,</div><div class="line">            &apos;clip&apos;,</div><div class="line">            &apos;clear&apos;,</div><div class="line">            &apos;font&apos;,</div><div class="line">            &apos;font-family&apos;,</div><div class="line">            &apos;font-size&apos;,</div><div class="line">            &apos;font-smoothing&apos;,</div><div class="line">            &apos;osx-font-smoothing&apos;,</div><div class="line">            &apos;font-style&apos;,</div><div class="line">            &apos;font-weight&apos;,</div><div class="line">            &apos;hyphens&apos;,</div><div class="line">            &apos;src&apos;,</div><div class="line">            &apos;line-height&apos;,</div><div class="line">            &apos;letter-spacing&apos;,</div><div class="line">            &apos;word-spacing&apos;,</div><div class="line">            &apos;color&apos;,</div><div class="line">            &apos;text-align&apos;,</div><div class="line">            &apos;text-decoration&apos;,</div><div class="line">            &apos;text-indent&apos;,</div><div class="line">            &apos;text-overflow&apos;,</div><div class="line">            &apos;text-rendering&apos;,</div><div class="line">            &apos;text-size-adjust&apos;,</div><div class="line">            &apos;text-shadow&apos;,</div><div class="line">            &apos;text-transform&apos;,</div><div class="line">            &apos;word-break&apos;,</div><div class="line">            &apos;word-wrap&apos;,</div><div class="line">            &apos;white-space&apos;,</div><div class="line">            &apos;vertical-align&apos;,</div><div class="line">            &apos;list-style&apos;,</div><div class="line">            &apos;list-style-type&apos;,</div><div class="line">            &apos;list-style-position&apos;,</div><div class="line">            &apos;list-style-image&apos;,</div><div class="line">            &apos;pointer-events&apos;,</div><div class="line">            &apos;cursor&apos;,</div><div class="line">            &apos;background&apos;,</div><div class="line">            &apos;background-attachment&apos;,</div><div class="line">            &apos;background-color&apos;,</div><div class="line">            &apos;background-image&apos;,</div><div class="line">            &apos;background-position&apos;,</div><div class="line">            &apos;background-repeat&apos;,</div><div class="line">            &apos;background-size&apos;,</div><div class="line">            &apos;border&apos;,</div><div class="line">            &apos;border-collapse&apos;,</div><div class="line">            &apos;border-top&apos;,</div><div class="line">            &apos;border-right&apos;,</div><div class="line">            &apos;border-bottom&apos;,</div><div class="line">            &apos;border-left&apos;,</div><div class="line">            &apos;border-color&apos;,</div><div class="line">            &apos;border-image&apos;,</div><div class="line">            &apos;border-top-color&apos;,</div><div class="line">            &apos;border-right-color&apos;,</div><div class="line">            &apos;border-bottom-color&apos;,</div><div class="line">            &apos;border-left-color&apos;,</div><div class="line">            &apos;border-spacing&apos;,</div><div class="line">            &apos;border-style&apos;,</div><div class="line">            &apos;border-top-style&apos;,</div><div class="line">            &apos;border-right-style&apos;,</div><div class="line">            &apos;border-bottom-style&apos;,</div><div class="line">            &apos;border-left-style&apos;,</div><div class="line">            &apos;border-width&apos;,</div><div class="line">            &apos;border-top-width&apos;,</div><div class="line">            &apos;border-right-width&apos;,</div><div class="line">            &apos;border-bottom-width&apos;,</div><div class="line">            &apos;border-left-width&apos;,</div><div class="line">            &apos;border-radius&apos;,</div><div class="line">            &apos;border-top-right-radius&apos;,</div><div class="line">            &apos;border-bottom-right-radius&apos;,</div><div class="line">            &apos;border-bottom-left-radius&apos;,</div><div class="line">            &apos;border-top-left-radius&apos;,</div><div class="line">            &apos;border-radius-topright&apos;,</div><div class="line">            &apos;border-radius-bottomright&apos;,</div><div class="line">            &apos;border-radius-bottomleft&apos;,</div><div class="line">            &apos;border-radius-topleft&apos;,</div><div class="line">            &apos;content&apos;,</div><div class="line">            &apos;quotes&apos;,</div><div class="line">            &apos;outline&apos;,</div><div class="line">            &apos;outline-offset&apos;,</div><div class="line">            &apos;outline-width&apos;,</div><div class="line">            &apos;outline-style&apos;,</div><div class="line">            &apos;outline-color&apos;,</div><div class="line">            &apos;opacity&apos;,</div><div class="line">            &apos;filter&apos;,</div><div class="line">            &apos;visibility&apos;,</div><div class="line">            &apos;size&apos;,</div><div class="line">            &apos;zoom&apos;,</div><div class="line">            &apos;transform&apos;,</div><div class="line">            &apos;box-align&apos;,</div><div class="line">            &apos;box-flex&apos;,</div><div class="line">            &apos;box-orient&apos;,</div><div class="line">            &apos;box-pack&apos;,</div><div class="line">            &apos;box-shadow&apos;,</div><div class="line">            &apos;box-sizing&apos;,</div><div class="line">            &apos;table-layout&apos;,</div><div class="line">            &apos;animation&apos;,</div><div class="line">            &apos;animation-delay&apos;,</div><div class="line">            &apos;animation-duration&apos;,</div><div class="line">            &apos;animation-iteration-count&apos;,</div><div class="line">            &apos;animation-name&apos;,</div><div class="line">            &apos;animation-play-state&apos;,</div><div class="line">            &apos;animation-timing-function&apos;,</div><div class="line">            &apos;animation-fill-mode&apos;,</div><div class="line">            &apos;transition&apos;,</div><div class="line">            &apos;transition-delay&apos;,</div><div class="line">            &apos;transition-duration&apos;,</div><div class="line">            &apos;transition-property&apos;,</div><div class="line">            &apos;transition-timing-function&apos;,</div><div class="line">            &apos;background-clip&apos;,</div><div class="line">            &apos;backface-visibility&apos;,</div><div class="line">            &apos;resize&apos;,</div><div class="line">            &apos;appearance&apos;,</div><div class="line">            &apos;user-select&apos;,</div><div class="line">            &apos;interpolation-mode&apos;,</div><div class="line">            &apos;direction&apos;,</div><div class="line">            &apos;marks&apos;,</div><div class="line">            &apos;page&apos;,</div><div class="line">            &apos;set-link-source&apos;,</div><div class="line">            &apos;unicode-bidi&apos;,</div><div class="line">            &apos;speak&apos;,</div><div class="line">        ],</div><div class="line">    &#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>tslint.json 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">   &#123;</div><div class="line">        &quot;extends&quot;: [&quot;tslint:latest&quot;, &quot;tslint-config-prettier&quot;, &quot;tslint-react&quot;],</div><div class="line">        &quot;rules&quot;: &#123;</div><div class="line">            &quot;interface-name&quot;: [true, &quot;never-prefix&quot;],</div><div class="line">            &quot;no-submodule-imports&quot;: false,</div><div class="line">            &quot;jsx-boolean-value&quot;: false,</div><div class="line">            &quot;jsx-no-multiline-js&quot;: false,</div><div class="line">            &quot;jsx-wrap-multiline&quot;: false,</div><div class="line">            &quot;class-name&quot;: true,</div><div class="line">            &quot;comment-format&quot;: [true, &quot;check-space&quot;],</div><div class="line">            &quot;curly&quot;: true,</div><div class="line">            &quot;indent&quot;: [true, &quot;spaces&quot;],</div><div class="line">            &quot;one-line&quot;: [true, &quot;check-open-brace&quot;, &quot;check-whitespace&quot;],</div><div class="line">            &quot;no-var-keyword&quot;: true,</div><div class="line">            &quot;quotemark&quot;: [true, &quot;single&quot;, &quot;avoid-escape&quot;, &quot;jsx-double&quot;],</div><div class="line">            &quot;semicolon&quot;: [true, &quot;always&quot;, &quot;ignore-bound-class-methods&quot;],</div><div class="line">            &quot;whitespace&quot;: [</div><div class="line">                true,</div><div class="line">                &quot;check-branch&quot;,</div><div class="line">                &quot;check-decl&quot;,</div><div class="line">                &quot;check-operator&quot;,</div><div class="line">                &quot;check-module&quot;,</div><div class="line">                &quot;check-separator&quot;,</div><div class="line">                &quot;check-type&quot;</div><div class="line">            ],</div><div class="line">            &quot;typedef-whitespace&quot;: [</div><div class="line">            true,</div><div class="line">            &#123;</div><div class="line">                &quot;call-signature&quot;: &quot;nospace&quot;,</div><div class="line">                &quot;index-signature&quot;: &quot;nospace&quot;,</div><div class="line">                &quot;parameter&quot;: &quot;nospace&quot;,</div><div class="line">                &quot;property-declaration&quot;: &quot;nospace&quot;,</div><div class="line">                &quot;variable-declaration&quot;: &quot;nospace&quot;</div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                &quot;call-signature&quot;: &quot;onespace&quot;,</div><div class="line">                &quot;index-signature&quot;: &quot;onespace&quot;,</div><div class="line">                &quot;parameter&quot;: &quot;onespace&quot;,</div><div class="line">                &quot;property-declaration&quot;: &quot;onespace&quot;,</div><div class="line">                &quot;variable-declaration&quot;: &quot;onespace&quot;</div><div class="line">            &#125;</div><div class="line">            ],</div><div class="line">            &quot;no-internal-module&quot;: true,</div><div class="line">            &quot;no-trailing-whitespace&quot;: true,</div><div class="line">            &quot;no-null-keyword&quot;: true,</div><div class="line">            &quot;prefer-const&quot;: true,</div><div class="line">            &quot;jsdoc-format&quot;: true,</div><div class="line">            &quot;object-literal-sort-keys&quot;: false</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>tsConfig.json 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;compilerOptions&quot;: &#123;</div><div class="line">        &quot;outDir&quot;: &quot;build/dist&quot;,</div><div class="line">        &quot;module&quot;: &quot;esnext&quot;,</div><div class="line">        &quot;target&quot;: &quot;es5&quot;,</div><div class="line">        &quot;lib&quot;: [&quot;es7&quot;, &quot;dom&quot;],</div><div class="line">        &quot;sourceMap&quot;: true,</div><div class="line">        &quot;allowJs&quot;: true,</div><div class="line">        &quot;jsx&quot;: &quot;react&quot;,</div><div class="line">        &quot;moduleResolution&quot;: &quot;node&quot;,</div><div class="line">        &quot;rootDirs&quot;: [&quot;src&quot;, &quot;config&quot;],</div><div class="line">        &quot;forceConsistentCasingInFileNames&quot;: true,</div><div class="line">        &quot;noImplicitReturns&quot;: true,</div><div class="line">        &quot;noImplicitThis&quot;: true,</div><div class="line">        &quot;noImplicitAny&quot;: true,</div><div class="line">        &quot;strictNullChecks&quot;: true,</div><div class="line">        &quot;suppressImplicitAnyIndexErrors&quot;: true,</div><div class="line">        &quot;noUnusedLocals&quot;: true</div><div class="line">    &#125;,</div><div class="line">    &quot;exclude&quot;: [</div><div class="line">        &quot;node_modules&quot;,</div><div class="line">        &quot;build&quot;,</div><div class="line">        &quot;scripts&quot;,</div><div class="line">        &quot;acceptance-tests&quot;,</div><div class="line">        &quot;webpack&quot;,</div><div class="line">        &quot;jest&quot;,</div><div class="line">        &quot;src/setupTests.ts&quot;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>package.json 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    ...</div><div class="line">    &quot;lint-staged&quot;: &#123;</div><div class="line">        &quot;*.&#123;json,md,graphql&#125;&quot;: [</div><div class="line">            &quot;prettier --write&quot;,</div><div class="line">            &quot;git add&quot;</div><div class="line">        ],</div><div class="line">        &quot;*.&#123;ts,tsx&#125;&quot;: [</div><div class="line">            &quot;prettier --write&quot;,</div><div class="line">            &quot;tslint --fix&quot;,</div><div class="line">            &quot;git add&quot;</div><div class="line">        ],</div><div class="line">        &quot;*.&#123;css,less,scss,sass,sss&#125;&quot;: [</div><div class="line">            &quot;prettier --write&quot;,</div><div class="line">            &quot;stylelint --fix&quot;,</div><div class="line">            &quot;git add&quot;</div><div class="line">        ]</div><div class="line">    &#125;,</div><div class="line">    &quot;scripts&quot;: &#123;</div><div class="line">        &quot;precommit&quot;: &quot;lint-staged&quot;,</div><div class="line">        &quot;lint&quot;: &quot;yarn run lint-ts &amp;&amp; yarn run lint-css&quot;,</div><div class="line">        &quot;fix&quot;: &quot;yarn run fix-ts &amp;&amp; yarn run fix-css&quot;,</div><div class="line">        &quot;lint-ts&quot;: &quot;tslint &apos;src/**/*.&#123;ts,tsx&#125;&apos;&quot;,</div><div class="line">        &quot;fix-ts&quot;: &quot;tslint --fix &apos;src/**/*.&#123;ts,tsx&#125;&apos;&quot;,</div><div class="line">        &quot;lint-css&quot;: &quot;stylelint &apos;src/**/*.&#123;css,less,scss,sass,sss&#125;&apos;&quot;,</div><div class="line">        &quot;fix-css&quot;: &quot;stylelint --fix &apos;src/**/*.&#123;css,less,scss,sass,sss&#125;&apos;&quot;,</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>jest.config.js 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">    automock: false,</div><div class="line">    browser: false,</div><div class="line">    bail: false,</div><div class="line">    collectCoverageFrom: [</div><div class="line">        &apos;src/**/*.&#123;ts,tsx&#125;&apos;,</div><div class="line">        &apos;!**/node_modules/**&apos;,</div><div class="line">        &apos;!**/vendor/**&apos;,</div><div class="line">    ],</div><div class="line">    coverageDirectory: &apos;&lt;rootDir&gt;/coverage&apos;,</div><div class="line">    globals: &#123;</div><div class="line">        __DEV__: true,</div><div class="line">    &#125;,</div><div class="line">    moduleFileExtensions: [&apos;ts&apos;, &apos;tsx&apos;, &apos;js&apos;, &apos;jsx&apos;, &apos;json&apos;, &apos;node&apos;],</div><div class="line">    moduleNameMapper: &#123;</div><div class="line">        &apos;\\.(css|less|scss|sss)$&apos;: &apos;identity-obj-proxy&apos;,</div><div class="line">        &apos;\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$&apos;:</div><div class="line">        &apos;GlobalImageStub&apos;,</div><div class="line">    &#125;,</div><div class="line">    transform: &#123;</div><div class="line">        &apos;^.+\\.tsx?$&apos;: &apos;ts-jest&apos;,</div><div class="line">    &#125;,</div><div class="line">    testRegex: &apos;(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$&apos;,</div><div class="line">    verbose: true,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>持续集成 CI</p>
+<ul>
+<li>参考 <a href="https://circleci.com" target="_blank" rel="external">CircleCi</a></li>
+<li>登录 CircleCi，进入 Projects，Add Project，找到项目，Follow Project，Builds 中运行</li>
+<li>登录 GitHub，github setting branches，require status check，ci/circleci</li>
+<li>项目中配置 .circleci/config.yml 文件如下</li>
+<li><p>CI 中需配置环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">version: 2</div><div class="line">jobs:</div><div class="line">build:</div><div class="line">    working_directory: ~/repo</div><div class="line">    docker:</div><div class="line">    - image: circleci/node:latest</div><div class="line">    steps:</div><div class="line">    - checkout</div><div class="line">    - restore_cache:</div><div class="line">        keys:</div><div class="line">        - v1-dependencies-&#123;&#123; checksum &quot;package.json&quot; &#125;&#125;</div><div class="line">        - v1-dependencies-</div><div class="line">    - run: yarn install</div><div class="line">    - save_cache:</div><div class="line">        paths:</div><div class="line">            - node_modules</div><div class="line">        key: v1-dependencies-&#123;&#123; checksum &quot;package.json&quot; &#125;&#125;</div><div class="line">    - run: yarn run lint</div><div class="line">    - run: yarn run test</div><div class="line">    - run:</div><div class="line">        name: yarn build</div><div class="line">        command: |</div><div class="line">            if [ &quot;$CIRCLE_BRANCH&quot; != &quot;develop&quot; ] &amp;&amp; [ &quot;$CIRCLE_BRANCH&quot; != &quot;master&quot; ]; then</div><div class="line">            yarn build;</div><div class="line">            fi</div><div class="line">    - store_artifacts:</div><div class="line">        path: build</div><div class="line">        destination: build</div><div class="line">    - store_test_results:</div><div class="line">        path: coverage</div></pre></td></tr></table></figure>
+<p>在运行测试时 <code>yarn test</code> 命令有时会带参数 <code>yarn test --maxWorkers 2</code>，<a href="https://facebook.github.io/jest/docs/zh-Hans/cli.html" target="_blank" rel="external">Jest 官方文档</a>描述如下：</p>
+<blockquote>
+<p>设定测试会使用的最大 worker 数目。 默认会使用你的计算机上可用的内核的数量。 在类似 CI 等有资源限制的环境下需要进行相关调整时很有用。但多数场景都应该使用默认值。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>注意：<a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html" target="_blank" rel="external">TypeScript 2.7</a> 支持 <code>import React from &#39;react&#39;</code> 的方式，需要在 ts.config 中配置 <code>&quot;module&quot;: &quot;commonjs&quot;</code> <code>&quot;esModuleInterop&quot;: true</code>。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Project-Base/" rel="tag">#Project Base</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/04/git-base2/" rel="next" title="Git-基础2">
+                <i class="fa fa-chevron-left"></i> Git-基础2
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/13/mac-use/" rel="prev" title="Mac-使用">
+                Mac-使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

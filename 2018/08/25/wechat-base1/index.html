@@ -1,0 +1,855 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="WeChat," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="我们的项目中是使用 TypeScript 写代码，通过 rollup 编译成 javascript，在微信开发者工具打开 build 后的目录，即可运行，开发模式下在每次保存完代码后都会进行编译。仍使用 yarn add xxx 集成第三方 package，在使用 import 引入第三方依赖的时候，会将第三方文件打包进去，因此不用特殊处理。当然如果没有必要引用或者没有必要全部引用的，尽量不引用或">
+<meta name="keywords" content="WeChat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序开发基础1">
+<meta property="og:url" content="https://zhulichao.github.io/2018/08/25/wechat-base1/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="我们的项目中是使用 TypeScript 写代码，通过 rollup 编译成 javascript，在微信开发者工具打开 build 后的目录，即可运行，开发模式下在每次保存完代码后都会进行编译。仍使用 yarn add xxx 集成第三方 package，在使用 import 引入第三方依赖的时候，会将第三方文件打包进去，因此不用特殊处理。当然如果没有必要引用或者没有必要全部引用的，尽量不引用或">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://zhulichao.github.io/2018/08/25/wechat-base1/lodash.png">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.257Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序开发基础1">
+<meta name="twitter:description" content="我们的项目中是使用 TypeScript 写代码，通过 rollup 编译成 javascript，在微信开发者工具打开 build 后的目录，即可运行，开发模式下在每次保存完代码后都会进行编译。仍使用 yarn add xxx 集成第三方 package，在使用 import 引入第三方依赖的时候，会将第三方文件打包进去，因此不用特殊处理。当然如果没有必要引用或者没有必要全部引用的，尽量不引用或">
+<meta name="twitter:image" content="https://zhulichao.github.io/2018/08/25/wechat-base1/lodash.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 微信小程序开发基础1 | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译后-process-env-NODE-ENV-的报错"><span class="nav-number">1.</span> <span class="nav-text">编译后 process.env.NODE_ENV 的报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译后-whatwg-fetch-中-this-为-undefined-的问题"><span class="nav-number">2.</span> <span class="nav-text">编译后 whatwg-fetch 中 this 为 undefined 的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集成-Redux、Redux-Persist、Graphql、Apollo-Client"><span class="nav-number">3.</span> <span class="nav-text">集成 Redux、Redux-Persist、Graphql、Apollo-Client</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集成-Lodash"><span class="nav-number">4.</span> <span class="nav-text">集成 Lodash</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                微信小程序开发基础1
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-08-25T13:01:50+08:00" content="2018-08-25">
+              2018-08-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/WeChat/" itemprop="url" rel="index">
+                    <span itemprop="name">WeChat</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我们的项目中是使用 TypeScript 写代码，通过 rollup 编译成 javascript，在微信开发者工具打开 build 后的目录，即可运行，开发模式下在每次保存完代码后都会进行编译。仍使用 yarn add xxx 集成第三方 package，在使用 import 引入第三方依赖的时候，会将第三方文件打包进去，因此不用特殊处理。当然如果没有必要引用或者没有必要全部引用的，尽量不引用或引用局部文件，防止将所有文件都打包进去最终超过 2M 的限制。</p>
+<p>请注意因为使用了 ts，再引入第三方 package 时，有时 ts 校验会报错，可以关闭一次编辑器重新打开确认一下是否真的有校验错误，我在引入 moment 时就遇到了这个问题，第一次引入时有校验报错，第二天再试时就好了。</p>
+<h2 id="编译后-process-env-NODE-ENV-的报错"><a href="#编译后-process-env-NODE-ENV-的报错" class="headerlink" title="编译后 process.env.NODE_ENV 的报错"></a>编译后 process.env.NODE_ENV 的报错</h2><p>使用 rollup 编译后的文件，在微信开发者工具中运行时，会由于没有 process 变量但引用了 process.env.NODE_ENV 而报错。解决办法是使用 rollup-plugin-replace 插件，在 rollup.config.js 配置文件中添加如下代码即可。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> replace <span class="keyword">from</span> <span class="string">'rollup-plugin-replace'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  ...</div><div class="line">  plugins: [</div><div class="line">    ...</div><div class="line">    replace(&#123;</div><div class="line">      <span class="string">'process.env.NODE_ENV'</span>: <span class="built_in">JSON</span>.stringify(</div><div class="line">        process.env.NODE_ENV || <span class="string">'development'</span>,</div><div class="line">      ),</div><div class="line">    &#125;),</div><div class="line">  ],</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="编译后-whatwg-fetch-中-this-为-undefined-的问题"><a href="#编译后-whatwg-fetch-中-this-为-undefined-的问题" class="headerlink" title="编译后 whatwg-fetch 中 this 为 undefined 的问题"></a>编译后 whatwg-fetch 中 this 为 undefined 的问题</h2><p>项目中有安装包依赖了 whatwg-fetch，由于小程序既不是浏览器环境也不是 node 环境，其中使用的 this 编译后变成了 undefined。解决办法是在 rollup.config.js 配置中间中指定 whatwg-fetch 上下文即可，但这个上下文要是小程序中无需定义而存在的上下文，经过试验可使用 global 变量。代码如下。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  moduleContext: &#123;</div><div class="line">    [<span class="built_in">require</span>.resolve(<span class="string">'whatwg-fetch'</span>)]: <span class="string">'global'</span>,</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="集成-Redux、Redux-Persist、Graphql、Apollo-Client"><a href="#集成-Redux、Redux-Persist、Graphql、Apollo-Client" class="headerlink" title="集成 Redux、Redux-Persist、Graphql、Apollo-Client"></a>集成 Redux、Redux-Persist、Graphql、Apollo-Client</h2><p><code>yarn add redux redux-persist</code><br><code>yarn add apollo-client graphql-tag</code></p>
+<p><a href="https://github.com/reactjs/redux" target="_blank" rel="external">Redux</a>的使用参考官方文档即可。小程序中不能使用 react-redux，为了能够像以前 react 使用 redux 一样在小程序中使用 redux，我参考了 <a href="https://github.com/charleyw/wechat-weapp-redux" target="_blank" rel="external">小程序 Redux 绑定库</a>，将其中的 warning.js、shallowEqual.js、wrapActionCreators.js、connect.js、Provider.js 简单修改为 ts 文件集成到项目中，就可以用使用 react-redux 的方式使用 redux 了。</p>
+<p>在使用的过程中，connect 在 Page 上使用没有问题，但小程序中 Component 使用 connect 没有效果，这是因为 Component 的声明周期中没有 onLoad、onUnload，有的是 attached、detached 方法，因此修改 connect.ts 文件，通过传入固定参数 type 为 Component 来决定使用哪两个生命周期方法，这样支持了 Component 也能通过 connect 使用 redux。</p>
+<p>使用 <a href="https://github.com/rt2zz/redux-persist" target="_blank" rel="external">redux-persist</a> 可以将 store 的整个数据保存到指定的 storage 中，如浏览器的 LocalStorage、react-native 的 AsyncStorage 等。将微信 storage 的 api 进行封装，也可直接使用<a href="https://github.com/cuijiemmx/redux-casa/tree/master/packages/redux-persist-weapp-storage" target="_blank" rel="external">redux-persist-weapp-storage</a>，可指定使用微信的 storage。参考 redux-persist 的文档，将 store 存储到 storage 可使用 persistStore 方法，或将 active 置为 true 在每次 store 变化时都保存到 storage 中。但在程序初始化时将 storage 中保存的数据放入 store 的操作在文档中没找到，官方提供的方式是针对 react 组件的，我自己找了两种可以达到该效果的方式，一种是直接从 storage 中读出数据，另一种是使用 getStoredState 读出数据，具体代码参考下面。</p>
+<p>Apollo-Client 默认是使用 fetch 进行网络请求的，但是小程序中没有 fetch，只能使用 wx.request 进行网络请求，在官方文档也没有找到可以自定义或传入 fetch 的方式。后来查了源码，在 new ApolloClient 的 networkInterface 参数中可以传入 query 参数，这样将 wx.request 进行封装通过 query 参数传入，就可以使用 Apollo-Client 进行网络请求了。在我们的项目中有使用轮询的需求，使用的是 Apollo-Client 的 watchQuery 方法，因为每次需要指定 pollInterval 参数，感觉不太方便管理，因此对 watchQuery 的使用进行了封装，具体代码参考下面。</p>
+<p>现在虽然能使用 Apollo-Client 进行网络请求了，但还没有办法直接拿到请求返回的结果，在 Web 端是使用 react-apollo 的 compose 将请求结果通过 props 传入组件，但是小程序无法使用。目前我使用了两种不是很好的方式临时解决的这个问题，如果是 mutation，直接使用 then 来拿到返回结果，如果是 query，是在 mapPropsToState 中，使用 Apollo-Client 的 readQuery 拿到请求的返回结果，进行处理后传入 Page 的 data。</p>
+<p><strong>主要代码如下：</strong></p>
+<p>configureStore.ts<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">import ApolloClient from &apos;apollo-client&apos;;</div><div class="line">import &#123; applyMiddleware, combineReducers, createStore, Store &#125; from &apos;redux&apos;;</div><div class="line">import &#123; getStoredState, persistReducer, persistStore &#125; from &apos;redux-persist&apos;;</div><div class="line">import thunk from &apos;redux-thunk&apos;;</div><div class="line"></div><div class="line">import createApolloClient from &apos;./createApolloClient&apos;;</div><div class="line">import reducer from &apos;./reducers/index&apos;;</div><div class="line">import WxStorage from &apos;./storage&apos;;</div><div class="line"></div><div class="line">interface CreateRootReducer &#123;</div><div class="line">  apolloClient: ApolloClient;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function createRootReducer(&#123; apolloClient &#125;: CreateRootReducer) &#123;</div><div class="line">  return combineReducers(&#123;</div><div class="line">    apollo: apolloClient.reducer(),</div><div class="line">    ...reducer,</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">let store: Store&lt;&#123;&#125;&gt;;</div><div class="line"></div><div class="line">export default function configureStore() &#123;</div><div class="line">  const apolloClient = createApolloClient();</div><div class="line">  const middleware = [thunk, apolloClient.middleware()];</div><div class="line">  const enhancer = applyMiddleware(...middleware);</div><div class="line">  const rootReducer = createRootReducer(&#123; apolloClient &#125;);</div><div class="line"></div><div class="line">  const persistConfig = &#123;</div><div class="line">    // active: true, // store 在每次变化后都会同步保存到 storage 中</div><div class="line">    key: &apos;root&apos;,</div><div class="line">    storage: WxStorage,</div><div class="line">    version: 2,</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  const persistedReducer = persistReducer(persistConfig, rootReducer);</div><div class="line">  // 将 storage 中保存的数据初始化给 store</div><div class="line">  // 方式一</div><div class="line">  const storedState = wx.getStorageSync(&apos;persist:root&apos;);</div><div class="line">  const state: any = &#123;&#125;;</div><div class="line">  if (typeof storedState === &apos;string&apos; &amp;&amp; storedState) &#123;</div><div class="line">    const rawState = JSON.parse(storedState);</div><div class="line">    Object.keys(rawState).forEach(key =&gt; &#123;</div><div class="line">      state[key] = JSON.parse(rawState[key]);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  // 方式二</div><div class="line">  getStoredState(persistConfig)</div><div class="line">    .then(res =&gt; &#123;</div><div class="line">      store.dispatch(&#123;</div><div class="line">        key: &apos;root&apos;,</div><div class="line">        payload: res,</div><div class="line">        type: &apos;persist/REHYDRATE&apos;,</div><div class="line">      &#125;);</div><div class="line">    &#125;)</div><div class="line">    .catch(error =&gt; &#123;</div><div class="line">      throw error;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">  store = createStore(persistedReducer, &#123;&#125;, enhancer);</div><div class="line">  return &#123;</div><div class="line">    apolloClient,</div><div class="line">    persistStore: () =&gt; persistStore(store), // 将 store 数据保存到 storage 中</div><div class="line">    store,</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>storage.ts<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">interface Storage &#123;</div><div class="line">  getItem(key: string, ...args: any[]): any;</div><div class="line">  setItem(key: string, value: any, ...args: any[]): any;</div><div class="line">  removeItem(key: string, ...args: any[]): any;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const WxStorage: Storage = &#123;</div><div class="line">  getItem: key =&gt;</div><div class="line">    new Promise((resolve, reject) =&gt; &#123;</div><div class="line">      wx.getStorage(&#123;</div><div class="line">        fail: res =&gt; &#123;</div><div class="line">          reject(res);</div><div class="line">        &#125;,</div><div class="line">        key,</div><div class="line">        success: res =&gt; &#123;</div><div class="line">          resolve(res.data);</div><div class="line">        &#125;,</div><div class="line">      &#125;);</div><div class="line">    &#125;),</div><div class="line">  removeItem: key =&gt;</div><div class="line">    new Promise((resolve, reject) =&gt; &#123;</div><div class="line">      wx.removeStorage(&#123;</div><div class="line">        fail: res =&gt; &#123;</div><div class="line">          reject(res);</div><div class="line">        &#125;,</div><div class="line">        key,</div><div class="line">        success: res =&gt; &#123;</div><div class="line">          resolve(res);</div><div class="line">        &#125;,</div><div class="line">      &#125;);</div><div class="line">    &#125;),</div><div class="line">  setItem: (key, data) =&gt;</div><div class="line">    new Promise((resolve, reject) =&gt; &#123;</div><div class="line">      wx.setStorage(&#123;</div><div class="line">        data,</div><div class="line">        fail: res =&gt; &#123;</div><div class="line">          reject(res);</div><div class="line">        &#125;,</div><div class="line">        key,</div><div class="line">        success: res =&gt; &#123;</div><div class="line">          resolve(res);</div><div class="line">        &#125;,</div><div class="line">      &#125;);</div><div class="line">    &#125;),</div><div class="line">&#125;;</div><div class="line"></div><div class="line">export default WxStorage;</div></pre></td></tr></table></figure></p>
+<p>warning.ts<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">export default function warning(message: string) &#123;</div><div class="line">  if (typeof console !== &apos;undefined&apos; &amp;&amp; typeof console.error === &apos;function&apos;) &#123;</div><div class="line">    console.error(message);</div><div class="line">  &#125;</div><div class="line">  try &#123;</div><div class="line">    // This error was thrown as a convenience so that if you enable</div><div class="line">    // &quot;break on all exceptions&quot; in your console,</div><div class="line">    // it would pause the execution at this line.</div><div class="line">    throw new Error(message);</div><div class="line">  &#125; catch (e) &#123;</div><div class="line">    console.log(e);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>shallowEqual.ts<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">export default function shallowEqual(objA: any, objB: any) &#123;</div><div class="line">  if (objA === objB) &#123;</div><div class="line">    return true;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  const keysA = Object.keys(objA);</div><div class="line">  const keysB = Object.keys(objB);</div><div class="line"></div><div class="line">  if (keysA.length !== keysB.length) &#123;</div><div class="line">    return false;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  let result = true;</div><div class="line">  // Test for A&apos;s keys different from B.</div><div class="line">  const hasOwn = Object.prototype.hasOwnProperty;</div><div class="line">  keysA.forEach(keyA =&gt; &#123;</div><div class="line">    if (!hasOwn.call(objB, keysA) || objA[keyA] !== objB[keyA]) &#123;</div><div class="line">      result = false;</div><div class="line">      return false;</div><div class="line">    &#125;</div><div class="line">    return;</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  return result;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>wrapActionCreators.ts<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">function bindActionCreator(actionCreator: any, dispatch: any) &#123;</div><div class="line">  return () =&gt; dispatch(actionCreator.apply(undefined, arguments));</div><div class="line">&#125;</div><div class="line"></div><div class="line">function bindActionCreators(actionCreators: any, dispatch: any) &#123;</div><div class="line">  if (typeof actionCreators === &apos;function&apos;) &#123;</div><div class="line">    return bindActionCreator(actionCreators, dispatch);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  if (typeof actionCreators !== &apos;object&apos; || actionCreators === null) &#123;</div><div class="line">    throw new Error(</div><div class="line">      &apos;bindActionCreators expected an object or a function, instead received &apos; +</div><div class="line">        (actionCreators === null ? &apos;null&apos; : typeof actionCreators) +</div><div class="line">        &apos;. &apos; +</div><div class="line">        &apos;Did you write &quot;import ActionCreators from&quot; instead of &quot;import * as ActionCreators from&quot;?&apos;,</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  const keys = Object.keys(actionCreators);</div><div class="line">  const boundActionCreators: any = &#123;&#125;;</div><div class="line">  keys.forEach(actionKey =&gt; &#123;</div><div class="line">    const tempActionCreator = actionCreators[actionKey];</div><div class="line">    if (typeof tempActionCreator === &apos;function&apos;) &#123;</div><div class="line">      boundActionCreators[actionKey] = bindActionCreator(</div><div class="line">        tempActionCreator,</div><div class="line">        dispatch,</div><div class="line">      );</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  return boundActionCreators;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default function wrapActionCreators(actionCreators: any) &#123;</div><div class="line">  return (dispatch: any) =&gt; bindActionCreators(actionCreators, dispatch);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>connect.ts<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line">import shallowEqual from &apos;./shallowEqual&apos;;</div><div class="line">import warning from &apos;./warning&apos;;</div><div class="line">import wrapActionCreators from &apos;./wrapActionCreators&apos;;</div><div class="line"></div><div class="line">const defaultMapStateToProps = (state: object) =&gt; &#123;</div><div class="line">  console.log(state);</div><div class="line">  return &#123;&#125;;</div><div class="line">&#125;;</div><div class="line">const defaultMapDispatchToProps = (dispatch: any) =&gt; (&#123; dispatch &#125;);</div><div class="line"></div><div class="line">export default function connect(mapStateToProps: any, mapDispatchToProps: any) &#123;</div><div class="line">  const shouldSubscribe = Boolean(mapStateToProps);</div><div class="line">  const mapState = mapStateToProps || defaultMapStateToProps;</div><div class="line">  const app = getApp();</div><div class="line"></div><div class="line">  let mapDispatch: any;</div><div class="line">  if (typeof mapDispatchToProps === &apos;function&apos;) &#123;</div><div class="line">    mapDispatch = mapDispatchToProps;</div><div class="line">  &#125; else if (!mapDispatchToProps) &#123;</div><div class="line">    mapDispatch = defaultMapDispatchToProps;</div><div class="line">  &#125; else &#123;</div><div class="line">    mapDispatch = wrapActionCreators(mapDispatchToProps);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  return function wrapWithConnect(pageConfig: any) &#123;</div><div class="line">    function handleChange(this: any, options: any) &#123;</div><div class="line">      if (!this.unsubscribe) &#123;</div><div class="line">        return;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      const state = this.store.getState();</div><div class="line">      const mappedState = mapState(state, options);</div><div class="line">      if (!this.data || shallowEqual(this.data, mappedState)) &#123;</div><div class="line">        return;</div><div class="line">      &#125;</div><div class="line">      this.setData(mappedState);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    let &#123; onLoad: pageConfigOnLoad, onUnload: pageConfigOnUnload &#125; = pageConfig;</div><div class="line"></div><div class="line">    // 支持 Component 使用</div><div class="line">    if (pageConfig.type === &apos;Component&apos;) &#123;</div><div class="line">      pageConfigOnLoad = pageConfig.attached;</div><div class="line">      pageConfigOnUnload = pageConfig.detached;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    function onLoad(this: any, options: any) &#123;</div><div class="line">      this.store = app.store;</div><div class="line">      if (!this.store) &#123;</div><div class="line">        warning(&apos;Store对象不存在!&apos;);</div><div class="line">      &#125;</div><div class="line">      if (shouldSubscribe) &#123;</div><div class="line">        this.unsubscribe = this.store.subscribe(</div><div class="line">          handleChange.bind(this, options),</div><div class="line">        );</div><div class="line">        handleChange.call(this, options);</div><div class="line">      &#125;</div><div class="line">      if (typeof pageConfigOnLoad === &apos;function&apos;) &#123;</div><div class="line">        pageConfigOnLoad.call(this, options);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    function onUnload(this: any) &#123;</div><div class="line">      if (typeof pageConfigOnUnload === &apos;function&apos;) &#123;</div><div class="line">        pageConfigOnUnload.call(this);</div><div class="line">      &#125;</div><div class="line">      if (typeof this.unsubscribe === &apos;function&apos;) &#123;</div><div class="line">        this.unsubscribe();</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // 支持 Component 使用</div><div class="line">    if (pageConfig.type === &apos;Component&apos;) &#123;</div><div class="line">      return Object.assign(</div><div class="line">        &#123;&#125;,</div><div class="line">        pageConfig,</div><div class="line">        &#123;</div><div class="line">          methods: &#123;</div><div class="line">            ...pageConfig.methods,</div><div class="line">            ...mapDispatch(app.store.dispatch),</div><div class="line">          &#125;,</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">          attached: onLoad,</div><div class="line">          detached: onUnload,</div><div class="line">        &#125;,</div><div class="line">      );</div><div class="line">    &#125; else &#123;</div><div class="line">      return Object.assign(&#123;&#125;, pageConfig, mapDispatch(app.store.dispatch), &#123;</div><div class="line">        onLoad,</div><div class="line">        onUnload,</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Provider.ts<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">import warning from &apos;./warning&apos;;</div><div class="line"></div><div class="line">function checkStoreShape(store: object) &#123;</div><div class="line">  const missingMethods = [&apos;subscribe&apos;, &apos;dispatch&apos;, &apos;getState&apos;].filter(</div><div class="line">    m =&gt; !store.hasOwnProperty(m),</div><div class="line">  );</div><div class="line"></div><div class="line">  if (missingMethods.length &gt; 0) &#123;</div><div class="line">    warning(</div><div class="line">      &apos;Store 似乎不是一个合法的 Redux Store对象: &apos; +</div><div class="line">        &apos;缺少这些方法: &apos; +</div><div class="line">        missingMethods.join(&apos;, &apos;) +</div><div class="line">        &apos;。&apos;,</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default function Provider(store: object) &#123;</div><div class="line">  checkStoreShape(store);</div><div class="line">  return (appConfig: object) =&gt; Object.assign(&#123;&#125;, appConfig, &#123; store &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>config.ts<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export default &#123;</div><div class="line">  requestUrl: &apos;http://127.0.0.1:8888&apos;,</div><div class="line">  pollInterval: 3000,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>createApolloClient.ts<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">import ApolloClient, &#123;</div><div class="line">  createNetworkInterface,</div><div class="line">  ObservableQuery,</div><div class="line">  WatchQueryOptions,</div><div class="line">&#125; from &apos;apollo-client&apos;;</div><div class="line">import config from &apos;./config&apos;;</div><div class="line"></div><div class="line">interface CustomClient extends ApolloClient &#123;</div><div class="line">  allQueryWatchers?: Set&lt;ObservableQuery&lt;&#123;&#125;&gt;&gt;;</div><div class="line">  watchQueryStart?: (options: WatchQueryOptions) =&gt; ObservableQuery&lt;&#123;&#125;&gt;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 封装通用 fetch，gql 返回类型就是 any</div><div class="line">export const query = (input: any) =&gt; &#123;</div><div class="line">  return new Promise(resolve =&gt; &#123;</div><div class="line">    wx.request(&#123;</div><div class="line">      ...input,</div><div class="line">      data: &#123;</div><div class="line">        query: input.query.loc.source.body, // 获取查询语句字符串</div><div class="line">        variables: input.variables || &#123;&#125;,</div><div class="line">      &#125;,</div><div class="line">      method: &apos;POST&apos;,</div><div class="line">      header: &#123;</div><div class="line">        cookie: getApp().globalData.cookie,</div><div class="line">      &#125;,</div><div class="line">      fail: res =&gt; &#123;</div><div class="line">        throw res;</div><div class="line">      &#125;,</div><div class="line">      success: res =&gt; &#123;</div><div class="line">        resolve(res.data);</div><div class="line">      &#125;,</div><div class="line">      url: `$&#123;config.requestUrl&#125;/graphql`,</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">const client: CustomClient = new ApolloClient(&#123;</div><div class="line">  networkInterface: &#123;</div><div class="line">    ...createNetworkInterface(&#123;</div><div class="line">      opts: &#123;</div><div class="line">        credentials: &apos;include&apos;,</div><div class="line">      &#125;,</div><div class="line">      uri: `$&#123;config.requestUrl&#125;/graphql`,</div><div class="line">    &#125;),</div><div class="line">    query,</div><div class="line">  &#125;,</div><div class="line">  queryDeduplication: true,</div><div class="line">  addTypename: false,</div><div class="line">  reduxRootSelector: state =&gt; state.apollo,</div><div class="line">&#125;);</div><div class="line"></div><div class="line">export default function createApolloClient() &#123;</div><div class="line">  client.allQueryWatchers = new Set();</div><div class="line">  // 封装通用 watchQuery，具有统一的轮询间隔</div><div class="line">  client.watchQueryStart = function(options: WatchQueryOptions) &#123;</div><div class="line">    const queryWatcher = client.watchQuery(options);</div><div class="line">    queryWatcher.startPolling(config.pollInterval);</div><div class="line">    if (this.allQueryWatchers) &#123;</div><div class="line">      this.allQueryWatchers.add(queryWatcher);</div><div class="line">    &#125;</div><div class="line">    return queryWatcher;</div><div class="line">  &#125;;</div><div class="line">  return client;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>发起 query 的示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">import gql from &apos;graphql-tag&apos;;</div><div class="line"></div><div class="line">const products = gql`</div><div class="line">  query Products &#123;</div><div class="line">    products &#123;</div><div class="line">      id</div><div class="line">      name</div><div class="line">      description</div><div class="line">      amount</div><div class="line">      code</div><div class="line">      lectures &#123;</div><div class="line">        type</div><div class="line">        lecture &#123;</div><div class="line">          ... on Live &#123;</div><div class="line">            __typename</div><div class="line">            id</div><div class="line">            name</div><div class="line">            startDate</div><div class="line">            endDate</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line">export default products;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">import productsQuery from &apos;../../graphql/products&apos;;</div><div class="line"></div><div class="line">const pageConfig: wx.PageParam = &#123;</div><div class="line">    onLoad() &#123;</div><div class="line">        app.globalData.apolloClient.query(&#123;</div><div class="line">            query: productsQuery,</div><div class="line">        &#125;);</div><div class="line">    &#125;,</div><div class="line">    ...</div><div class="line">&#125;;</div><div class="line"></div><div class="line">const mapStateToData = (state: any) =&gt; &#123;</div><div class="line">  const pagesInstance = getCurrentPages();</div><div class="line">  let products: ProductType[] = [];</div><div class="line"></div><div class="line">  pagesInstance.forEach(page =&gt; &#123;</div><div class="line">    // 通过路由判断找到当前 Page 实例，这样可以获取到当前页面的 data、options 等信息</div><div class="line">    if (page.route === &apos;pages/home/home&apos;) &#123;</div><div class="line">      const data: ProductsType =</div><div class="line">        state.apollo.data.ROOT_QUERY &amp;&amp; state.apollo.data.ROOT_QUERY[`products`]</div><div class="line">          ? app.globalData.apolloClient.readQuery(&#123;</div><div class="line">              query: productsQuery,</div><div class="line">            &#125;)</div><div class="line">          : [];</div><div class="line"></div><div class="line">      if (data.products) &#123;</div><div class="line">        products = data.products.map(product =&gt; &#123;...&#125;);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  return &#123;</div><div class="line">    products,</div><div class="line">  &#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">const nextPageConfig = connect(mapStateToData, undefined)(pageConfig);</div><div class="line">Page(nextPageConfig);</div></pre></td></tr></table></figure>
+<p>发起 mutation 的示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">import gql from &apos;graphql-tag&apos;;</div><div class="line"></div><div class="line">const createActivityRecord = gql`</div><div class="line">  mutation CreateActivityRecord(</div><div class="line">    $input: ActivityRecordInput!</div><div class="line">    $byOrder: Boolean</div><div class="line">  ) &#123;</div><div class="line">    createActivityRecord(input: $input, byOrder: $byOrder) &#123;</div><div class="line">      id</div><div class="line">      product &#123;</div><div class="line">        id</div><div class="line">        name</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line">export default createActivityRecord;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">app.globalData.query(&#123;</div><div class="line">    query: createActivityRecord,</div><div class="line">    variables: &#123;</div><div class="line">        input: &#123;</div><div class="line">            activityId: this.data.activityId,</div><div class="line">            productId: this.data.productId,</div><div class="line">            ownerId: this.data.ownerId,</div><div class="line">        &#125;,</div><div class="line">        byOrder: false,</div><div class="line">    &#125;,</div><div class="line">&#125;).then((res: any) =&gt; &#123;</div><div class="line">    if (res.data.errors) &#123;</div><div class="line">        wx.showToast(&#123;</div><div class="line">        title: &apos;操作失败&apos;,</div><div class="line">        icon: &apos;none&apos;,</div><div class="line">        &#125;);</div><div class="line">    &#125; else &#123;</div><div class="line">        this.sendFlowerSuccess();</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="集成-Lodash"><a href="#集成-Lodash" class="headerlink" title="集成 Lodash"></a>集成 Lodash</h2><p><code>yarn add lodash-es</code><br><code>yarn add -D @types/lodash-es</code></p>
+<p>import debounce from ‘lodash-es/debounce’;<br>…</p>
+<p>在使用的地方局部引用即可。在使用 debounce 方法时，会报下图所示的错误。原因是小程序没有全局的 window 对象，但查看源码只要有全局 self、global 之一即可，通过 console 输出看到小程序有 global 对象，因此在 app.ts 中添加如下代码，之后就可以正常使用 lodash 了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// 全局 global 处理，lodash 中使用了 global</div><div class="line">Object.assign(global, &#123;</div><div class="line">    Array,</div><div class="line">    Date,</div><div class="line">    Error,</div><div class="line">    Function,</div><div class="line">    Math,</div><div class="line">    Object,</div><div class="line">    RegExp,</div><div class="line">    String,</div><div class="line">    TypeError,</div><div class="line">    setTimeout,</div><div class="line">    clearTimeout,</div><div class="line">    setInterval,</div><div class="line">    clearInterval,</div><div class="line">&#125;);</div><div class="line"></div><div class="line">App(&#123;...&#125;);</div></pre></td></tr></table></figure>
+<img src="/2018/08/25/wechat-base1/lodash.png" title="使用 lodash 报错">
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WeChat/" rel="tag">#WeChat</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/23/communication-problem/" rel="next" title="沟通问题">
+                <i class="fa fa-chevron-left"></i> 沟通问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/25/wechat-base2/" rel="prev" title="微信小程序开发基础2">
+                微信小程序开发基础2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

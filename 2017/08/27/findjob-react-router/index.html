@@ -1,0 +1,866 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="React Router," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="以下内容主要参考自深入理解 react-router 路由系统react-router的实现原理前端路由实现与 react-router 源码分析  react-router怎么实现页面局部刷新和url变化的   路由的原理并不复杂，即保证视图和URL的同步，只要URL一致，那么返回的UI界面总是相同的。从性能和用户体验的层面来比较的话，后端路由每次访问一个新页面的时候都要向服务器发送请求，然后服">
+<meta name="keywords" content="React Router">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Router-简单原理">
+<meta property="og:url" content="https://zhulichao.github.io/2017/08/27/findjob-react-router/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="以下内容主要参考自深入理解 react-router 路由系统react-router的实现原理前端路由实现与 react-router 源码分析  react-router怎么实现页面局部刷新和url变化的   路由的原理并不复杂，即保证视图和URL的同步，只要URL一致，那么返回的UI界面总是相同的。从性能和用户体验的层面来比较的话，后端路由每次访问一个新页面的时候都要向服务器发送请求，然后服">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.240Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React Router-简单原理">
+<meta name="twitter:description" content="以下内容主要参考自深入理解 react-router 路由系统react-router的实现原理前端路由实现与 react-router 源码分析  react-router怎么实现页面局部刷新和url变化的   路由的原理并不复杂，即保证视图和URL的同步，只要URL一致，那么返回的UI界面总是相同的。从性能和用户体验的层面来比较的话，后端路由每次访问一个新页面的时候都要向服务器发送请求，然后服">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> React Router-简单原理 | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React Router-简单原理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-27T15:07:53+08:00" content="2017-08-27">
+              2017-08-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/FJ/" itemprop="url" rel="index">
+                    <span itemprop="name">FJ</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>以下内容主要参考自<br><a href="http://www.cnblogs.com/wyaocn/p/5805777.html" target="_blank" rel="external">深入理解 react-router 路由系统</a><br><a href="https://segmentfault.com/a/1190000004527878" target="_blank" rel="external">react-router的实现原理</a><br><a href="http://web.jobbole.com/86407/" target="_blank" rel="external">前端路由实现与 react-router 源码分析</a></p>
+<ul>
+<li><p>react-router怎么实现页面局部刷新和url变化的</p>
+<p>  路由的原理并不复杂，即保证视图和URL的同步，只要URL一致，那么返回的UI界面总是相同的。从性能和用户体验的层面来比较的话，后端路由每次访问一个新页面的时候都要向服务器发送请求，然后服务器再响应请求，这个过程肯定会有延迟。而前端路由在访问一个新页面的时候仅仅是变换了一下路径而已，没有了网络延迟，对于用户体验来说会有相当大的提升。</p>
+<p>  在HTML5的historyAPI出现之前，前端的路由都是通过hash来实现的，hash能兼容低版本的浏览器。Web服务并不会解析hash，也就是说#后的内容Web服务都会自动忽略，但是JavaScript是可以通过window.location.hash读取到的，读取到路径加以解析之后就可以响应不同路径的逻辑处理。</p>
+<p>  history是HTML5才有的新API，可以用来操作浏览器的session history(会话历史)。基于history来实现的路由可以和最初的路径规则一样，即不带#。用户可能都察觉不到该访问地址是Web服务实现的路由还是前端实现的路由。</p>
+<p>  react-router路由系统的核心是history对象，它的很多特性也与React保持了一致，比如声明式组件、组件嵌套、状态机特性等，毕竟它就是基于React构建并且为之所用的。路由进入时装载匹配的组件离开时卸载该组件的策略可以做到合理利用资源，不会一下把所有的组件都装载进来使内存占用飙升，也不会离开时没有卸载而时内存泄漏，每一个路由中声明的组件在渲染之前都会被传入一些props，主要包括history对象和location对象，这两个对象同时存在于路由组件的context中，还可以通过React的context API在组件的子级组件中获取到这两个对象。</p>
+<p>  <strong>点击Link后路由系统发生了什么？</strong></p>
+<p>  Link组件最终会渲染为HTML的a标签，它的to、query、hash属性会被组合在一起并渲染为href属性。虽然Link被渲染为超链接，但在内部实现上使用脚本拦截了浏览器的默认行为，然后调用了history.pushState方法。history包中底层的pushState方法支持传入两个参数state和path，在函数体内又将这两个参数传输到createLocation方法中，返回location。系统会将这个location对象作为参数传入到TransitionTo方法中，然后调用window.location.hash或者window.history.pushState()修改了应用的URL，这取决于你创建history对象的方式。同时会触发history.listen中注册的事件监听器。</p>
+<p>  接下来请看路由系统内部是如何修改UI的。在得到了新的location对象后，系统内部的matchRoutes方法会匹配出Route组件树中与当前location对象匹配的一个子集，并且得到了nextState。在Router组件的componentWillMount生命周期方法中调用了history.listen(listener)方法。listener会在上述matchRoutes方法执行成功后执行listener(nextState)，nextState对象里面包含location、routes、params、components属性，接下来执行this.setState(nextState)就可以实现重新渲染Router组件。</p>
+<p>  <strong>点击浏览器的前进和后退按钮发生了什么？</strong></p>
+<p>  前进与后退的实现，是通过监听popstate以及hashchange的事件，当前进或后退url更新时，触发这两个事件的回调函数。可以简单地把web浏览器的历史记录比做成一个仅有入栈操作的栈，当用户浏览器到某一个页面时将该文档存入到栈中，点击后退或前进按钮时移动指针到history栈中对应的某一个文档。在传统的浏览器中，文档都是从服务端请求过来的。不过现代的浏览器一般都会支持两种方式用于动态的生成并载入页面。</p>
+<p>  第一种方式</p>
+<p>  location.hash与hashchange事件，这也是比较简单并且兼容性也比较好的一种方式，会在浏览器的URL中添加一个#号，对应history包中的createHashHistory方法，出于兼容性的考虑（ie8+），路由系统内部将这种方式作为创建history对象的默认方法。详细请看下面几点：</p>
+<blockquote>
+<p>使用hashchange事件来监听window.location.hash的变化<br>hash发生变化浏览器会更新URL，并且在history栈中产生一条记录<br>路由系统会将所有的路由信息都保存到location.hash中<br>在react-router内部注册了window.addEventListener(‘hashchange’, listener, false)事件监听器<br>listener内部可以通过hash fragment获取到当前URL对应的location对象<br>接下来的过程与点击<code>&lt;Link/&gt;</code>时保持一致</p>
+</blockquote>
+<p>  当然，你会想到不仅仅在前进和后退会触发hashchange事件，应该说每次路由操作都会有hash的变化。确实如此，为了解决这个问题，路由系统内部通过判断currentLocation与nextLocation是否相等来处理该问题。不过，从它的实现原理上来看，由于路由操作hash发生变化而重复调用transitonTo(location)这一步确实无可避免。</p>
+<p>  第二种方式</p>
+<p>  history.pushState与popstate事件，新的HTML5规范中还提出了一个相对复杂但更加健壮的方式来解决该问题，对应history包中的createBrowserHistory方法，使用这种方式进行路由需要服务端要做一个路由的配置将所有请求重定向到入口文件位置，否则在用户刷新页面时会报404错误。详细请看下面几点：</p>
+<blockquote>
+<p>可以通过window.history.pushState(state, title, path)方法来改变浏览器的URL，实际上该方法同时在history栈中存入了state对象<br>在浏览器前进和后退时触发popstate事件，然后注册window.addEventListener(‘popstate’, listener, false)，并且可以在事件对象中取出对应的state对象<br>state对象可以存储一些恢复该页面所需要的简单信息，state会作为属性存储在location对象中，这样你就可以在组件中通过location.state来获取到<br>在react-router内部将该对象存储到了sessionStorage中，也就是上图中的saveState操作<br>接下来的操作与第一种方式一致</p>
+</blockquote>
+<p>  实际上，上面提到的state对象不仅仅在第二种路由方式中可以使用。react-router内部做了polyfill，统一了API。在使用第一种方式创建路由时你会发现URL中多了一个类似_key=s1gvrm的query，这个_key就是为react-router内部在sessionStorage中读取state对象所提供的。</p>
+</li>
+<li><p>react-router中的几类history</p>
+<blockquote>
+<p>老浏览器的history: 主要通过hash来实现，对应createHashHistory<br>高版本浏览器: 通过html5里面的history，对应createBrowserHistory<br>node环境下: 主要存储在memeory里面，对应createMemoryHistory</p>
+</blockquote>
+<p>  上面针对不同的环境提供了三个API，但是三个API有一些共性的操作，将其抽象了一个公共的文件createHistory，createHashHistory、createBrowserHistory、createMemoryHistory只是覆盖其中的某些方法而已。需要注意的是，这里的location跟浏览器原生的location是不相同的，最大的区别就在于里面多了key字段，history内部通过key来进行location的操作。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// 内部的抽象实现</div><div class="line">function createHistory(options=&#123;&#125;) &#123;</div><div class="line">  ...</div><div class="line">  return &#123;</div><div class="line">    listenBefore, // 内部的hook机制，可以在location发生变化前执行某些行为，AOP的实现</div><div class="line">    listen, // location发生改变时触发回调</div><div class="line">    transitionTo, // 执行location的改变</div><div class="line">    push, // 改变location</div><div class="line">    replace,</div><div class="line">    go,</div><div class="line">    goBack,</div><div class="line">    goForward,</div><div class="line">    createKey, // 创建location的key，用于唯一标示该location，是随机生成的</div><div class="line">    createPath,</div><div class="line">    createHref,</div><div class="line">    createLocation, // 创建location</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  执行URL前进</p>
+<blockquote>
+<p>createBrowserHistory: pushState、replaceState<br>createHashHistory: location.hash=<em>*</em>、location.replace()<br>createMemoryHistory: 在内存中进行历史记录的存储</p>
+</blockquote>
+<p>  伪代码如下：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">// createBrowserHistory(HTML5)中的前进实现</div><div class="line">function finishTransition(location) &#123;</div><div class="line">  ...</div><div class="line">  const historyState = &#123; key &#125;;</div><div class="line">  ...</div><div class="line">  if (location.action === &apos;PUSH&apos;) ) &#123;</div><div class="line">    window.history.pushState(historyState, null, path);</div><div class="line">  &#125; else &#123;</div><div class="line">    window.history.replaceState(historyState, null, path)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// createHashHistory的内部实现</div><div class="line">function finishTransition(location) &#123;</div><div class="line">  ...</div><div class="line">  if (location.action === &apos;PUSH&apos;) ) &#123;</div><div class="line">    window.location.hash = path;</div><div class="line">  &#125; else &#123;</div><div class="line">    window.location.replace(</div><div class="line">    window.location.pathname + window.location.search + &apos;#&apos; + path</div><div class="line">  );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// createMemoryHistory的内部实现</div><div class="line">entries = [];</div><div class="line">function finishTransition(location) &#123;</div><div class="line">  ...</div><div class="line">  switch (location.action) &#123;</div><div class="line">    case &apos;PUSH&apos;:</div><div class="line">      entries.push(location);</div><div class="line">      break;</div><div class="line">    case &apos;REPLACE&apos;:</div><div class="line">      entries[current] = location;</div><div class="line">      break;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  检测URL回退</p>
+<blockquote>
+<p>createBrowserHistory: popstate<br>createHashHistory: hashchange<br>createMemoryHistory: 因为是在内存中操作，跟浏览器没有关系，不涉及UI层面的事情，所以可以直接进行历史信息的回退</p>
+</blockquote>
+<p>  伪代码实现如下：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">// createBrowserHistory(HTML5)中的后退检测</div><div class="line">function startPopStateListener(&#123; transitionTo &#125;) &#123;</div><div class="line">  function popStateListener(event) &#123;</div><div class="line">    ...</div><div class="line">    transitionTo( getCurrentLocation(event.state) );</div><div class="line">  &#125;</div><div class="line">  addEventListener(window, &apos;popstate&apos;, popStateListener);</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">// createHashHistory的后退检测</div><div class="line">function startPopStateListener(&#123; transitionTo &#125;) &#123;</div><div class="line">  function hashChangeListener(event) &#123;</div><div class="line">    ...</div><div class="line">    transitionTo( getCurrentLocation(event.state) );</div><div class="line">  &#125;</div><div class="line">  addEventListener(window, &apos;hashchange&apos;, hashChangeListener);</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">// createMemoryHistory的内部实现</div><div class="line">function go(n) &#123;</div><div class="line">  if (n) &#123;</div><div class="line">    ...</div><div class="line">    current += n;</div><div class="line">    const currentLocation = getCurrentLocation();</div><div class="line">    // change action to POP</div><div class="line">    history.transitionTo(&#123; ...currentLocation, action: POP &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  为了维护state的状态，将其存储在sessionStorage里面:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">// createBrowserHistory/createHashHistory中state的存储</div><div class="line">function saveState(key, state) &#123;</div><div class="line">  ...</div><div class="line">  window.sessionStorage.setItem(createKey(key), JSON.stringify(state));</div><div class="line">&#125;</div><div class="line">function readState(key) &#123;</div><div class="line">  ...</div><div class="line">  json = window.sessionStorage.getItem(createKey(key));</div><div class="line">  return JSON.parse(json);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// createMemoryHistory仅仅在内存中，所以操作比较简单</div><div class="line">const storage = createStateStorage(entries);</div><div class="line">function saveState(key, state) &#123;</div><div class="line">  storage[key] = state;</div><div class="line">&#125;</div><div class="line">function readState(key) &#123;</div><div class="line">  return storage[key];</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React-Router/" rel="tag">#React Router</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/26/findjob-es6/" rel="next" title="ES6-常用知识">
+                <i class="fa fa-chevron-left"></i> ES6-常用知识
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/31/findjob-algorithm/" rel="prev" title="算法基础">
+                算法基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

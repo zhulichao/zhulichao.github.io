@@ -1,0 +1,859 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Saber," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="开发 Saber 项目使用 VSCode 作为编辑器。Saber 项目使用 @vue/cli 创建的，在此基础上再进行代码检查相关配置，包括拼写检查、JavaScript 代码检查、CSS 代码检查、代码风格检查、使用 Git Hook 工具进行提交前代码规范校验。 拼写检查 VSCode 中添加 Code Spell Checker 插件，进行单词的拼写检查，如果代码中出现了拼写错误编辑器会有提">
+<meta name="keywords" content="Saber">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Saber 项目集成代码检查">
+<meta property="og:url" content="https://zhulichao.github.io/2020/03/23/saber-lint/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="开发 Saber 项目使用 VSCode 作为编辑器。Saber 项目使用 @vue/cli 创建的，在此基础上再进行代码检查相关配置，包括拼写检查、JavaScript 代码检查、CSS 代码检查、代码风格检查、使用 Git Hook 工具进行提交前代码规范校验。 拼写检查 VSCode 中添加 Code Spell Checker 插件，进行单词的拼写检查，如果代码中出现了拼写错误编辑器会有提">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://zhulichao.github.io/2020/03/23/saber-lint/spell.png">
+<meta property="og:image" content="https://zhulichao.github.io/2020/03/23/saber-lint/eslint.png">
+<meta property="og:image" content="https://zhulichao.github.io/2020/03/23/saber-lint/stylelint.png">
+<meta property="og:image" content="https://zhulichao.github.io/2020/03/23/saber-lint/prettier.png">
+<meta property="og:image" content="https://zhulichao.github.io/2020/03/23/saber-lint/githook.png">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.284Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Saber 项目集成代码检查">
+<meta name="twitter:description" content="开发 Saber 项目使用 VSCode 作为编辑器。Saber 项目使用 @vue/cli 创建的，在此基础上再进行代码检查相关配置，包括拼写检查、JavaScript 代码检查、CSS 代码检查、代码风格检查、使用 Git Hook 工具进行提交前代码规范校验。 拼写检查 VSCode 中添加 Code Spell Checker 插件，进行单词的拼写检查，如果代码中出现了拼写错误编辑器会有提">
+<meta name="twitter:image" content="https://zhulichao.github.io/2020/03/23/saber-lint/spell.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Saber 项目集成代码检查 | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#拼写检查"><span class="nav-number">1.</span> <span class="nav-text">拼写检查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-检查"><span class="nav-number">2.</span> <span class="nav-text">JS 检查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-检查"><span class="nav-number">3.</span> <span class="nav-text">CSS 检查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#格式检查"><span class="nav-number">4.</span> <span class="nav-text">格式检查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-Hook"><span class="nav-number">5.</span> <span class="nav-text">Git Hook</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Saber 项目集成代码检查
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-03-23T11:46:35+08:00" content="2020-03-23">
+              2020-03-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Saber/" itemprop="url" rel="index">
+                    <span itemprop="name">Saber</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>开发 Saber 项目使用 VSCode 作为编辑器。Saber 项目使用 @vue/cli 创建的，在此基础上再进行代码检查相关配置，包括拼写检查、JavaScript 代码检查、CSS 代码检查、代码风格检查、使用 Git Hook 工具进行提交前代码规范校验。</p>
+<h2 id="拼写检查"><a href="#拼写检查" class="headerlink" title="拼写检查"></a>拼写检查</h2><ul>
+<li>VSCode 中添加 <strong>Code Spell Checker</strong> 插件，进行单词的拼写检查，如果代码中出现了拼写错误编辑器会有提示</li>
+</ul>
+<img src="/2020/03/23/saber-lint/spell.png" width="400" title="错误提示">
+<h2 id="JS-检查"><a href="#JS-检查" class="headerlink" title="JS 检查"></a>JS 检查</h2><ul>
+<li>VSCode 中添加 <strong>ESLint</strong> 插件，参考 <a href="https://eslint.org/" target="_blank" rel="external">ESLint 官网</a> 进行配置，进行 JavaScript 语法和格式检查</li>
+<li>项目安装 eslint-plugin-import、eslint-plugin-node、eslint-plugin-promise、eslint-plugin-vue 包</li>
+<li>项目根目录添加 .eslintrc.js 文件，内容如下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">// .eslintrc.js 文件</div><div class="line">module.exports = &#123;</div><div class="line">  root: true,</div><div class="line">  env: &#123;</div><div class="line">    node: true</div><div class="line">  &#125;,</div><div class="line">  extends: [</div><div class="line">    &apos;plugin:vue/essential&apos;,</div><div class="line">    &apos;eslint:recommended&apos;,</div><div class="line">    &apos;prettier&apos;</div><div class="line">  ],</div><div class="line">  plugins: [&quot;import&quot;, &quot;prettier&quot;],</div><div class="line">  rules: &#123;</div><div class="line">    &quot;prettier/prettier&quot;: &quot;error&quot;,</div><div class="line">    &apos;no-console&apos;: process.env.NODE_ENV === &apos;production&apos; ? &apos;error&apos; : &apos;off&apos;,</div><div class="line">    &apos;no-debugger&apos;: process.env.NODE_ENV === &apos;production&apos; ? &apos;error&apos; : &apos;off&apos;,</div><div class="line">    &quot;no-var&quot;: &quot;error&quot;,</div><div class="line">    &quot;indent&quot;: [&quot;error&quot;, 2, &#123; &quot;SwitchCase&quot;: 1 &#125;],</div><div class="line">    &quot;quotes&quot;: [ &quot;error&quot;, &quot;single&quot;],</div><div class="line">    &quot;semi&quot;: [&quot;error&quot;, &quot;always&quot;],</div><div class="line">    &quot;comma-dangle&quot;: [</div><div class="line">      &quot;error&quot;,</div><div class="line">      &#123;</div><div class="line">        &quot;arrays&quot;: &quot;ignore&quot;,</div><div class="line">        &quot;objects&quot;: &quot;always-multiline&quot;,</div><div class="line">        &quot;imports&quot;: &quot;always-multiline&quot;,</div><div class="line">        &quot;exports&quot;: &quot;ignore&quot;,</div><div class="line">        &quot;functions&quot;: &quot;ignore&quot;</div><div class="line">      &#125;</div><div class="line">    ],</div><div class="line">    &quot;no-empty&quot;: 2,</div><div class="line">    &quot;no-eq-null&quot;: 2,</div><div class="line">    &quot;no-new&quot;: 0,</div><div class="line">    &quot;no-fallthrough&quot;: 0,</div><div class="line">    &quot;no-unreachable&quot;: 0,</div><div class="line">    &quot;space-before-function-paren&quot;: [2, &quot;never&quot;],</div><div class="line">    &quot;import/newline-after-import&quot;: 2</div><div class="line">  &#125;,</div><div class="line">  parserOptions: &#123;</div><div class="line">    parser: &apos;babel-eslint&apos;,</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<img src="/2020/03/23/saber-lint/eslint.png" width="500" title="错误提示">
+<h2 id="CSS-检查"><a href="#CSS-检查" class="headerlink" title="CSS 检查"></a>CSS 检查</h2><ul>
+<li>VSCode 中添加 <strong>stylelint</strong> 插件，参考 <a href="https://stylelint.io/" target="_blank" rel="external">stylelint</a> 进行配置，进行 CSS 语法和格式检查</li>
+<li>项目添加 stylelint、stylelint-config-standard、stylelint-config-prettier、stylelint-order 包</li>
+<li>项目根目录添加 .stylelintrc.js 文件，内容如下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div></pre></td><td class="code"><pre><div class="line">// stylelintrc.js 文件</div><div class="line">module.exports = &#123;</div><div class="line">  extends: [&apos;stylelint-config-standard&apos;, &apos;stylelint-config-prettier&apos;],</div><div class="line">  plugins: [&apos;stylelint-order&apos;],</div><div class="line">  rules: &#123;</div><div class="line">    &apos;property-no-unknown&apos;: [</div><div class="line">      true,</div><div class="line">      &#123;</div><div class="line">        ignoreProperties: [&apos;composes&apos;],</div><div class="line">      &#125;,</div><div class="line">    ],</div><div class="line">    &apos;selector-pseudo-class-no-unknown&apos;: [</div><div class="line">      true,</div><div class="line">      &#123;</div><div class="line">        ignorePseudoClasses: [&apos;global&apos;],</div><div class="line">      &#125;,</div><div class="line">    ],</div><div class="line">    &apos;string-quotes&apos;: &apos;single&apos;,</div><div class="line">    &apos;order/order&apos;: [</div><div class="line">      &apos;custom-properties&apos;,</div><div class="line">      &apos;dollar-variables&apos;,</div><div class="line">      &apos;declarations&apos;,</div><div class="line">      &apos;at-rules&apos;,</div><div class="line">      &apos;rules&apos;,</div><div class="line">    ],</div><div class="line">    &apos;order/properties-order&apos;: [</div><div class="line">      &apos;composes&apos;,</div><div class="line">      &apos;position&apos;,</div><div class="line">      &apos;top&apos;,</div><div class="line">      &apos;right&apos;,</div><div class="line">      &apos;bottom&apos;,</div><div class="line">      &apos;left&apos;,</div><div class="line">      &apos;z-index&apos;,</div><div class="line">      &apos;display&apos;,</div><div class="line">      &apos;align-content&apos;,</div><div class="line">      &apos;align-items&apos;,</div><div class="line">      &apos;align-self&apos;,</div><div class="line">      &apos;flex&apos;,</div><div class="line">      &apos;flex-basis&apos;,</div><div class="line">      &apos;flex-direction&apos;,</div><div class="line">      &apos;flex-flow&apos;,</div><div class="line">      &apos;flex-grow&apos;,</div><div class="line">      &apos;flex-shrink&apos;,</div><div class="line">      &apos;flex-wrap&apos;,</div><div class="line">      &apos;justify-content&apos;,</div><div class="line">      &apos;order&apos;,</div><div class="line">      &apos;float&apos;,</div><div class="line">      &apos;width&apos;,</div><div class="line">      &apos;height&apos;,</div><div class="line">      &apos;max-width&apos;,</div><div class="line">      &apos;max-height&apos;,</div><div class="line">      &apos;min-width&apos;,</div><div class="line">      &apos;min-height&apos;,</div><div class="line">      &apos;padding&apos;,</div><div class="line">      &apos;padding-top&apos;,</div><div class="line">      &apos;padding-right&apos;,</div><div class="line">      &apos;padding-bottom&apos;,</div><div class="line">      &apos;padding-left&apos;,</div><div class="line">      &apos;margin&apos;,</div><div class="line">      &apos;margin-top&apos;,</div><div class="line">      &apos;margin-right&apos;,</div><div class="line">      &apos;margin-bottom&apos;,</div><div class="line">      &apos;margin-left&apos;,</div><div class="line">      &apos;margin-collapse&apos;,</div><div class="line">      &apos;margin-top-collapse&apos;,</div><div class="line">      &apos;margin-right-collapse&apos;,</div><div class="line">      &apos;margin-bottom-collapse&apos;,</div><div class="line">      &apos;margin-left-collapse&apos;,</div><div class="line">      &apos;overflow&apos;,</div><div class="line">      &apos;overflow-x&apos;,</div><div class="line">      &apos;overflow-y&apos;,</div><div class="line">      &apos;clip&apos;,</div><div class="line">      &apos;clear&apos;,</div><div class="line">      &apos;font&apos;,</div><div class="line">      &apos;font-family&apos;,</div><div class="line">      &apos;font-size&apos;,</div><div class="line">      &apos;font-smoothing&apos;,</div><div class="line">      &apos;osx-font-smoothing&apos;,</div><div class="line">      &apos;font-style&apos;,</div><div class="line">      &apos;font-weight&apos;,</div><div class="line">      &apos;hyphens&apos;,</div><div class="line">      &apos;src&apos;,</div><div class="line">      &apos;line-height&apos;,</div><div class="line">      &apos;letter-spacing&apos;,</div><div class="line">      &apos;word-spacing&apos;,</div><div class="line">      &apos;color&apos;,</div><div class="line">      &apos;text-align&apos;,</div><div class="line">      &apos;text-decoration&apos;,</div><div class="line">      &apos;text-indent&apos;,</div><div class="line">      &apos;text-overflow&apos;,</div><div class="line">      &apos;text-rendering&apos;,</div><div class="line">      &apos;text-size-adjust&apos;,</div><div class="line">      &apos;text-shadow&apos;,</div><div class="line">      &apos;text-transform&apos;,</div><div class="line">      &apos;word-break&apos;,</div><div class="line">      &apos;word-wrap&apos;,</div><div class="line">      &apos;white-space&apos;,</div><div class="line">      &apos;vertical-align&apos;,</div><div class="line">      &apos;list-style&apos;,</div><div class="line">      &apos;list-style-type&apos;,</div><div class="line">      &apos;list-style-position&apos;,</div><div class="line">      &apos;list-style-image&apos;,</div><div class="line">      &apos;pointer-events&apos;,</div><div class="line">      &apos;cursor&apos;,</div><div class="line">      &apos;background&apos;,</div><div class="line">      &apos;background-attachment&apos;,</div><div class="line">      &apos;background-color&apos;,</div><div class="line">      &apos;background-image&apos;,</div><div class="line">      &apos;background-position&apos;,</div><div class="line">      &apos;background-repeat&apos;,</div><div class="line">      &apos;background-size&apos;,</div><div class="line">      &apos;border&apos;,</div><div class="line">      &apos;border-collapse&apos;,</div><div class="line">      &apos;border-top&apos;,</div><div class="line">      &apos;border-right&apos;,</div><div class="line">      &apos;border-bottom&apos;,</div><div class="line">      &apos;border-left&apos;,</div><div class="line">      &apos;border-color&apos;,</div><div class="line">      &apos;border-image&apos;,</div><div class="line">      &apos;border-top-color&apos;,</div><div class="line">      &apos;border-right-color&apos;,</div><div class="line">      &apos;border-bottom-color&apos;,</div><div class="line">      &apos;border-left-color&apos;,</div><div class="line">      &apos;border-spacing&apos;,</div><div class="line">      &apos;border-style&apos;,</div><div class="line">      &apos;border-top-style&apos;,</div><div class="line">      &apos;border-right-style&apos;,</div><div class="line">      &apos;border-bottom-style&apos;,</div><div class="line">      &apos;border-left-style&apos;,</div><div class="line">      &apos;border-width&apos;,</div><div class="line">      &apos;border-top-width&apos;,</div><div class="line">      &apos;border-right-width&apos;,</div><div class="line">      &apos;border-bottom-width&apos;,</div><div class="line">      &apos;border-left-width&apos;,</div><div class="line">      &apos;border-radius&apos;,</div><div class="line">      &apos;border-top-right-radius&apos;,</div><div class="line">      &apos;border-bottom-right-radius&apos;,</div><div class="line">      &apos;border-bottom-left-radius&apos;,</div><div class="line">      &apos;border-top-left-radius&apos;,</div><div class="line">      &apos;border-radius-topright&apos;,</div><div class="line">      &apos;border-radius-bottomright&apos;,</div><div class="line">      &apos;border-radius-bottomleft&apos;,</div><div class="line">      &apos;border-radius-topleft&apos;,</div><div class="line">      &apos;content&apos;,</div><div class="line">      &apos;quotes&apos;,</div><div class="line">      &apos;outline&apos;,</div><div class="line">      &apos;outline-offset&apos;,</div><div class="line">      &apos;outline-width&apos;,</div><div class="line">      &apos;outline-style&apos;,</div><div class="line">      &apos;outline-color&apos;,</div><div class="line">      &apos;opacity&apos;,</div><div class="line">      &apos;filter&apos;,</div><div class="line">      &apos;visibility&apos;,</div><div class="line">      &apos;size&apos;,</div><div class="line">      &apos;zoom&apos;,</div><div class="line">      &apos;transform&apos;,</div><div class="line">      &apos;box-align&apos;,</div><div class="line">      &apos;box-flex&apos;,</div><div class="line">      &apos;box-orient&apos;,</div><div class="line">      &apos;box-pack&apos;,</div><div class="line">      &apos;box-shadow&apos;,</div><div class="line">      &apos;box-sizing&apos;,</div><div class="line">      &apos;table-layout&apos;,</div><div class="line">      &apos;animation&apos;,</div><div class="line">      &apos;animation-delay&apos;,</div><div class="line">      &apos;animation-duration&apos;,</div><div class="line">      &apos;animation-iteration-count&apos;,</div><div class="line">      &apos;animation-name&apos;,</div><div class="line">      &apos;animation-play-state&apos;,</div><div class="line">      &apos;animation-timing-function&apos;,</div><div class="line">      &apos;animation-fill-mode&apos;,</div><div class="line">      &apos;transition&apos;,</div><div class="line">      &apos;transition-delay&apos;,</div><div class="line">      &apos;transition-duration&apos;,</div><div class="line">      &apos;transition-property&apos;,</div><div class="line">      &apos;transition-timing-function&apos;,</div><div class="line">      &apos;background-clip&apos;,</div><div class="line">      &apos;backface-visibility&apos;,</div><div class="line">      &apos;resize&apos;,</div><div class="line">      &apos;appearance&apos;,</div><div class="line">      &apos;user-select&apos;,</div><div class="line">      &apos;interpolation-mode&apos;,</div><div class="line">      &apos;direction&apos;,</div><div class="line">      &apos;marks&apos;,</div><div class="line">      &apos;page&apos;,</div><div class="line">      &apos;set-link-source&apos;,</div><div class="line">      &apos;unicode-bidi&apos;,</div><div class="line">      &apos;speak&apos;,</div><div class="line">    ],</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<img src="/2020/03/23/saber-lint/stylelint.png" width="500" title="错误提示">
+<h2 id="格式检查"><a href="#格式检查" class="headerlink" title="格式检查"></a>格式检查</h2><ul>
+<li>VSCode 中添加 <strong>Prettier - Code formatter</strong> 插件，参考 <a href="https://prettier.io" target="_blank" rel="external">prettier 官网</a> 进行配置，配置完成可用 Alt + Shift + F 进行代码格式化</li>
+<li>项目添加 eslint-config-prettier、eslint-plugin-prettier 包</li>
+<li>项目根目录添加 .prettierrc.js 文件，内容如下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// .prettierrc.js 文件</div><div class="line">module.exports = &#123;</div><div class="line">  &quot;singleQuote&quot;: false, // 字符串是否使用单引号，默认为false，使用双引号</div><div class="line">  &quot;trailingComma&quot;: &quot;none&quot;, // 是否使用尾逗号，有三个可选值&quot;&lt;none|es5|all&gt;&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<img src="/2020/03/23/saber-lint/prettier.png" title="格式化">
+<h2 id="Git-Hook"><a href="#Git-Hook" class="headerlink" title="Git Hook"></a>Git Hook</h2><ul>
+<li>利用 git 的 hooks 机制，在提交 commit 时自动调用格式校验</li>
+<li>项目安装 husky、lint-staged 包</li>
+<li>package.json 中添加如下内容</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// package.json 文件</div><div class="line">&#123;</div><div class="line">	...</div><div class="line">  &quot;lint-staged&quot;: &#123;</div><div class="line">    &quot;*.js&quot;: [</div><div class="line">      &quot;vue-cli-service lint&quot;,</div><div class="line">      &quot;git add&quot;</div><div class="line">    ],</div><div class="line">    &quot;*.&#123;css,less,scss,sss&#125;&quot;: [</div><div class="line">      &quot;stylelint --fix&quot;,</div><div class="line">      &quot;git add&quot;</div><div class="line">    ],</div><div class="line">    &quot;*.vue&quot;: [</div><div class="line">      &quot;vue-cli-service lint&quot;,</div><div class="line">      &quot;git add&quot;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  &quot;husky&quot;: &#123;</div><div class="line">    &quot;hooks&quot;: &#123;</div><div class="line">      &quot;pre-commit&quot;: &quot;lint-staged&quot;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<img src="/2020/03/23/saber-lint/githook.png" title="Git Hook 执行">
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Saber/" rel="tag">#Saber</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/23/saber-base/" rel="next" title="Saber-基础">
+                <i class="fa fa-chevron-left"></i> Saber-基础
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/23/saber-code/" rel="prev" title="Saber 源码学习">
+                Saber 源码学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,954 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="React Native," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="使用过的组件及APIKeyboardAvoidingView、View、ListView、Navigator、RefreshControl、ScrollView、Text、TextInput、TouchableHighlight、WebView、Alert、AppRegistry、AsyncStorage、BackAndroid、Dimensions、Keyboard、StyleSheet、Pla">
+<meta name="keywords" content="React Native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-Native-基础1">
+<meta property="og:url" content="https://zhulichao.github.io/2016/11/30/react-native-base/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="使用过的组件及APIKeyboardAvoidingView、View、ListView、Navigator、RefreshControl、ScrollView、Text、TextInput、TouchableHighlight、WebView、Alert、AppRegistry、AsyncStorage、BackAndroid、Dimensions、Keyboard、StyleSheet、Pla">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://zhulichao.github.io/2016/11/30/react-native-base/UnexpectedToken.png">
+<meta property="og:image" content="https://zhulichao.github.io/2016/11/30/react-native-base/debugger1.png">
+<meta property="og:image" content="https://zhulichao.github.io/2016/11/30/react-native-base/debugger2.png">
+<meta property="og:image" content="https://zhulichao.github.io/2016/11/30/react-native-base/rn_start_err.png">
+<meta property="og:image" content="https://zhulichao.github.io/2016/11/30/react-native-base/webpack.png">
+<meta property="og:image" content="https://zhulichao.github.io/2016/11/30/react-native-base/react-web-start.png">
+<meta property="og:image" content="https://zhulichao.github.io/2016/11/30/react-native-base/start.png">
+<meta property="og:image" content="https://zhulichao.github.io/2016/11/30/react-native-base/init.png">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.198Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React-Native-基础1">
+<meta name="twitter:description" content="使用过的组件及APIKeyboardAvoidingView、View、ListView、Navigator、RefreshControl、ScrollView、Text、TextInput、TouchableHighlight、WebView、Alert、AppRegistry、AsyncStorage、BackAndroid、Dimensions、Keyboard、StyleSheet、Pla">
+<meta name="twitter:image" content="https://zhulichao.github.io/2016/11/30/react-native-base/UnexpectedToken.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> React-Native-基础1 | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用过的组件及API"><span class="nav-number">1.</span> <span class="nav-text">使用过的组件及API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化工程"><span class="nav-number">2.</span> <span class="nav-text">初始化工程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目名称修改"><span class="nav-number">3.</span> <span class="nav-text">项目名称修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#android启动图标"><span class="nav-number">4.</span> <span class="nav-text">android启动图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#android首屏背景"><span class="nav-number">5.</span> <span class="nav-text">android首屏背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#android项目版本号修改"><span class="nav-number">6.</span> <span class="nav-text">android项目版本号修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动项目"><span class="nav-number">7.</span> <span class="nav-text">启动项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用-Ant-Design-Mobile"><span class="nav-number">8.</span> <span class="nav-text">如何使用 Ant Design Mobile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用图标"><span class="nav-number">9.</span> <span class="nav-text">如何使用图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何设置样式"><span class="nav-number">10.</span> <span class="nav-text">如何设置样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样式适配问题"><span class="nav-number">11.</span> <span class="nav-text">样式适配问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Navigator组件的使用"><span class="nav-number">12.</span> <span class="nav-text">Navigator组件的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6语法问题"><span class="nav-number">13.</span> <span class="nav-text">ES6语法问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TextInput触发两次onSubmitEditing问题"><span class="nav-number">14.</span> <span class="nav-text">TextInput触发两次onSubmitEditing问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ListView组件的使用"><span class="nav-number">15.</span> <span class="nav-text">ListView组件的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TouchableHighlight的使用"><span class="nav-number">16.</span> <span class="nav-text">TouchableHighlight的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络请求"><span class="nav-number">17.</span> <span class="nav-text">网络请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息提醒"><span class="nav-number">18.</span> <span class="nav-text">消息提醒</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件间交互"><span class="nav-number">19.</span> <span class="nav-text">组件间交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步异步问题"><span class="nav-number">20.</span> <span class="nav-text">同步异步问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试问题"><span class="nav-number">21.</span> <span class="nav-text">调试问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-调试"><span class="nav-number">22.</span> <span class="nav-text">React 调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redux支持"><span class="nav-number">23.</span> <span class="nav-text">Redux支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Webpack支持"><span class="nav-number">24.</span> <span class="nav-text">Webpack支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行在Web浏览器上面"><span class="nav-number">25.</span> <span class="nav-text">运行在Web浏览器上面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件不显示"><span class="nav-number">26.</span> <span class="nav-text">组件不显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化的项目启动报错"><span class="nav-number">27.</span> <span class="nav-text">初始化的项目启动报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目启动报错"><span class="nav-number">28.</span> <span class="nav-text">项目启动报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#平台扩展名及平台检测"><span class="nav-number">29.</span> <span class="nav-text">平台扩展名及平台检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链接原生"><span class="nav-number">30.</span> <span class="nav-text">链接原生</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React-Native-基础1
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-30T16:04:45+08:00" content="2016-11-30">
+              2016-11-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Native/" itemprop="url" rel="index">
+                    <span itemprop="name">React Native</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="使用过的组件及API"><a href="#使用过的组件及API" class="headerlink" title="使用过的组件及API"></a>使用过的组件及API</h2><p>KeyboardAvoidingView、View、ListView、Navigator、RefreshControl、ScrollView、Text、TextInput、TouchableHighlight、WebView、Alert、AppRegistry、AsyncStorage、BackAndroid、Dimensions、Keyboard、StyleSheet、Platform、Picker、Geolocation、InteractionManager、Vibration</p>
+<h2 id="初始化工程"><a href="#初始化工程" class="headerlink" title="初始化工程"></a>初始化工程</h2><p>react-native init ProjectName 初始化的工程。</p>
+<p>react-native init ProjectName –version 0.42.0 初始化指定版本react-native工程。</p>
+<p>工程重命名：工程代码中有工程名称，所有不好直接给工程重命名，可能需要重新初始化一个项目，然后将代码复制过去。</p>
+<p>如果要修改App显示名称，将/android/app/src/main/res/values/strings.xml 中修改app_name改为想要的名字即可。</p>
+<h2 id="项目名称修改"><a href="#项目名称修改" class="headerlink" title="项目名称修改"></a>项目名称修改</h2><p>目前只找到了针对Android的项目名称修改的方法，如将项目名称修改为HelloRN，步骤如下：</p>
+<ul>
+<li>/package.json 中修改name属性值为”HelloRN”</li>
+<li>/index.android.js 中修改根组件名称为”HelloRN”及AppRegistry.registerComponent(‘HelloRN’, () =&gt; HelloRN);</li>
+<li>包结构修改为/android/app/src/main/java/com/hellorn</li>
+<li>/android/app/build.gradle 中修改applicationId为”com.hellorn”</li>
+<li>/android/app/src/AndroidManifest.xml 中修改package为”com.hellorn”</li>
+<li>/android/app/src/main/java/com/hellorn/MainActivity.java 中getMainComponentName方法的返回值修改为”HelloRN”</li>
+<li>/android/app/src/main/res/values/strings.xml 中修改app_name为”HelloRN”</li>
+</ul>
+<p>针对IOS项目名称修改的方法还未找到？</p>
+<h2 id="android启动图标"><a href="#android启动图标" class="headerlink" title="android启动图标"></a>android启动图标</h2><ul>
+<li>/android/app/src/main/res/mipmap-hdpi目录下，替换ic_launcher.png图片，72×72</li>
+<li>/android/app/src/main/res/mipmap-mdpi目录下，替换ic_launcher.png图片，48×48</li>
+<li>/android/app/src/main/res/mipmap-xhdpi目录下，替换ic_launcher.png图片，96×96</li>
+<li>/android/app/src/main/res/mipmap-xxhdpi目录下，替换ic_launcher.png图片，144×144</li>
+</ul>
+<h2 id="android首屏背景"><a href="#android首屏背景" class="headerlink" title="android首屏背景"></a>android首屏背景</h2><ul>
+<li>/android/app/src/main/res/drawable-hdpi目录下480×800，添加png图片</li>
+<li>/android/app/src/main/res/drawable-mdpi目录下320×480，添加png图片</li>
+<li>/android/app/src/main/res/drawable-xhdpi目录下720×1280，添加png图片</li>
+<li>/android/app/src/main/res/drawable-xxhdpi目录下1080×1920，添加png图片</li>
+</ul>
+<p>/android/app/src/main/res/values/styles.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat.Light.NoActionBar&quot;&gt;</div><div class="line">    &lt;!-- 这里将刚刚那张图片设置为背景图片， splash对应图片名称 --&gt;</div><div class="line">    &lt;item name=&quot;android:windowBackground&quot;&gt;@drawable/splash&lt;/item&gt;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="android项目版本号修改"><a href="#android项目版本号修改" class="headerlink" title="android项目版本号修改"></a>android项目版本号修改</h2><p>/android/app/目录下修改build.gradle文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">android &#123;</div><div class="line">  ...</div><div class="line">  defaultConfig &#123;</div><div class="line">    ...</div><div class="line">    varsionName &quot;1.1&quot; // 打包后apk的版本</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">...</div></pre></td></tr></table></figure>
+<h2 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h2><p>react-native run-android 在android启动项目，如果运行在真机，需要摇晃手机调出开发者菜单-&gt;Dev Settings-&gt;Debug server host for device，进行IP和端口的设置。</p>
+<p>react-native run-ios 在ios启动项目。</p>
+<p>无论是运行上面哪个命令，都会打开一个启动package服务的命令行窗口，如果没有打开这个窗口，请用react-native start手动启动package服务，react-native start –port XXXX 开启服务的时候直接指定端口号。</p>
+<h2 id="如何使用-Ant-Design-Mobile"><a href="#如何使用-Ant-Design-Mobile" class="headerlink" title="如何使用 Ant Design Mobile"></a>如何使用 Ant Design Mobile</h2><ul>
+<li><code>npm install antd-mobile --save</code>  </li>
+<li><code>npm install babel-plugin-import --save-dev</code></li>
+<li>.babelrc中配置如下  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;presets&quot;: [</div><div class="line">    &quot;react-native&quot;</div><div class="line">  ],</div><div class="line">  &quot;plugins&quot;: [</div><div class="line">    [</div><div class="line">      &quot;import&quot;,</div><div class="line">      &#123;</div><div class="line">        &quot;libraryName&quot;: &quot;antd-mobile&quot;</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="如何使用图标"><a href="#如何使用图标" class="headerlink" title="如何使用图标"></a>如何使用图标</h2><p>Android上直接使用Ant Design Mobile的Icon组件没有效果，个人感觉Icon只支持移动Web。如果想使用图标，目前用过两种方式：</p>
+<ul>
+<li>将<a href="https://www.iconfinder.com/iconsets/miu" target="_blank" rel="external">Iconfinder</a>中图标的Base64编码值定义为变量，在使用地方的uri值指定为该变量。该网站上比较容易找到配套图标，就是点击和未点击配套的图标，但是不能改变图标颜色。</li>
+<li>使用<a href="http://fontawesome.io/icons/" target="_blank" rel="external">FontAwesome</a>，配置方式详见<a href="https://github.com/oblador/react-native-vector-icons" target="_blank" rel="external">react-native-vector-icons</a>。使用该图标可通过style指定图标样式，包括颜色，但要找配套的图标比较困难。<br>注意<a href="http://fontawesome.io/icons/" target="_blank" rel="external">FontAwesome</a>中描述<code>&lt;i class=&quot;fa fa-user&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;</code>使用图标，这应该是移动Web的使用方式，在React Native中使用如下。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">import Icon from &apos;react-native-vector-icons/FontAwesome&apos;;</div><div class="line">...</div><div class="line">&lt;Icon name=&quot;user&quot; size=&#123;20&#125; style=&#123;styles.icon&#125; /&gt;</div></pre></td></tr></table></figure>
+<h2 id="如何设置样式"><a href="#如何设置样式" class="headerlink" title="如何设置样式"></a>如何设置样式</h2><p>StyleSheet提供了一种类似CSS样式表的抽象。const styles = StyleSheet.create()传入样式定义的对象，该对象键为样式名称，值为定义样式的对象。使用时通过styles的键名即可引用到对应的样式。也可以使用内联样式，但比较低效，内联样式对象会在每一个渲染周期都被重新创建。</p>
+<p>Stylesheet.Create方法是可选的，但有一些重要的优势。它保证了值是不可变的，并且通过将它们转换成指向内部表的纯数字，保持了代码的不透明性。将它们放在文件的末尾可保证它们在应用中只会被创建一次，而不是每一次渲染周期都被重新创建。</p>
+<p>我在RN工程中定义了styles目录，将每个组件引用的样式单独定义成组件同名的文件放在该目录，想要做到样式独立管理，但有些样式可能是根据组件中的一些属性定义的，还是不可避免的要放到组件定义的文件中。</p>
+<p>React Native支持部分样式属性，不同的组件有些样式属性也是不能使用的，会报红屏错误。下面是在源码中添加console.log打印出的可用的样式属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div></pre></td><td class="code"><pre><div class="line">Valid style props: [</div><div class="line">  &quot;alignItems&quot;,</div><div class="line">  &quot;alignSelf&quot;,</div><div class="line">  &quot;backfaceVisibility&quot;,</div><div class="line">  &quot;backgroundColor&quot;,</div><div class="line">  &quot;borderBottomColor&quot;,</div><div class="line">  &quot;borderBottomLeftRadius&quot;,</div><div class="line">  &quot;borderBottomRightRadius&quot;,</div><div class="line">  &quot;borderBottomWidth&quot;,</div><div class="line">  &quot;borderColor&quot;,</div><div class="line">  &quot;borderLeftColor&quot;,</div><div class="line">  &quot;borderLeftWidth&quot;,</div><div class="line">  &quot;borderRadius&quot;,</div><div class="line">  &quot;borderRightColor&quot;,</div><div class="line">  &quot;borderRightWidth&quot;,</div><div class="line">  &quot;borderStyle&quot;,</div><div class="line">  &quot;borderTopColor&quot;,</div><div class="line">  &quot;borderTopLeftRadius&quot;,</div><div class="line">  &quot;borderTopRightRadius&quot;,</div><div class="line">  &quot;borderTopWidth&quot;,</div><div class="line">  &quot;borderWidth&quot;,</div><div class="line">  &quot;bottom&quot;,</div><div class="line">  &quot;color&quot;,</div><div class="line">  &quot;decomposedMatrix&quot;,</div><div class="line">  &quot;elevation&quot;,</div><div class="line">  &quot;flex&quot;,</div><div class="line">  &quot;flexBasis&quot;,</div><div class="line">  &quot;flexDirection&quot;,</div><div class="line">  &quot;flexGrow&quot;,</div><div class="line">  &quot;flexShrink&quot;,</div><div class="line">  &quot;flexWrap&quot;,</div><div class="line">  &quot;fontFamily&quot;,</div><div class="line">  &quot;fontSize&quot;,</div><div class="line">  &quot;fontStyle&quot;,</div><div class="line">  &quot;fontVariant&quot;,</div><div class="line">  &quot;fontWeight&quot;,</div><div class="line">  &quot;height&quot;,</div><div class="line">  &quot;justifyContent&quot;,</div><div class="line">  &quot;left&quot;,</div><div class="line">  &quot;letterSpacing&quot;,</div><div class="line">  &quot;lineHeight&quot;,</div><div class="line">  &quot;margin&quot;,</div><div class="line">  &quot;marginBottom&quot;,</div><div class="line">  &quot;marginHorizontal&quot;,</div><div class="line">  &quot;marginLeft&quot;,</div><div class="line">  &quot;marginRight&quot;,</div><div class="line">  &quot;marginTop&quot;,</div><div class="line">  &quot;marginVertical&quot;,</div><div class="line">  &quot;maxHeight&quot;,</div><div class="line">  &quot;maxWidth&quot;,</div><div class="line">  &quot;minHeight&quot;,</div><div class="line">  &quot;minWidth&quot;,</div><div class="line">  &quot;opacity&quot;,</div><div class="line">  &quot;overflow&quot;,</div><div class="line">  &quot;overlayColor&quot;,</div><div class="line">  &quot;padding&quot;,</div><div class="line">  &quot;paddingBottom&quot;,</div><div class="line">  &quot;paddingHorizontal&quot;,</div><div class="line">  &quot;paddingLeft&quot;,</div><div class="line">  &quot;paddingRight&quot;,</div><div class="line">  &quot;paddingTop&quot;,</div><div class="line">  &quot;paddingVertical&quot;,</div><div class="line">  &quot;position&quot;,</div><div class="line">  &quot;resizeMode&quot;,</div><div class="line">  &quot;right&quot;,</div><div class="line">  &quot;rotation&quot;,</div><div class="line">  &quot;scaleX&quot;,</div><div class="line">  &quot;scaleY&quot;,</div><div class="line">  &quot;shadowColor&quot;,</div><div class="line">  &quot;shadowOffset&quot;,</div><div class="line">  &quot;shadowOpacity&quot;,</div><div class="line">  &quot;shadowRadius&quot;,</div><div class="line">  &quot;textAlign&quot;,</div><div class="line">  &quot;textAlignVertical&quot;,</div><div class="line">  &quot;textDecorationColor&quot;,</div><div class="line">  &quot;textDecorationLine&quot;,</div><div class="line">  &quot;textDecorationStyle&quot;,</div><div class="line">  &quot;textShadowColor&quot;,</div><div class="line">  &quot;textShadowOffset&quot;,</div><div class="line">  &quot;textShadowRadius&quot;,</div><div class="line">  &quot;tintColor&quot;,</div><div class="line">  &quot;top&quot;,</div><div class="line">  &quot;transform&quot;,</div><div class="line">  &quot;transformMatrix&quot;,</div><div class="line">  &quot;translateX&quot;,</div><div class="line">  &quot;translateY&quot;,</div><div class="line">  &quot;width&quot;,</div><div class="line">  &quot;writingDirection&quot;,</div><div class="line">  &quot;zIndex&quot;</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>如果当前元素的父元素没有使用弹性盒模型，也就是没有flex属性，则只给当前元素flex属性是不起作用的。</p>
+<p>文字可以用’\n’换行，如<code>&lt;Text&gt;这是内容...{&#39;\n&#39;}这是内容...&lt;/Text&gt;</code>。</p>
+<h2 id="样式适配问题"><a href="#样式适配问题" class="headerlink" title="样式适配问题"></a>样式适配问题</h2><p>React Native中指定大小通常只能使用数字，不能使用百分比，这样就存在在一个设备上设定好的样式，换一台设备可能就变样了。 </p>
+<ul>
+<li>使用flex布局能解决一部分问题  </li>
+<li>使用Dimensions获取屏幕宽度、高度，通过计算指定样式</li>
+<li>onLayout回调函数可得到组件被加载时的放置状态以及监听设备放置状态</li>
+<li>使用measure成员函数以得到组件当前的宽、高与位置信息</li>
+</ul>
+<p>个人感觉关于样式适配还是存在问题，我们自己指定的样式，可以知道样式值的大小，但如果使用了Ant Design Mobile等其它组件，有些样式值是不知道，也无法通过代码动态获取到，只能查看源码找到相应值，再进行计算，这样可能不把握。</p>
+<h2 id="Navigator组件的使用"><a href="#Navigator组件的使用" class="headerlink" title="Navigator组件的使用"></a>Navigator组件的使用</h2><p>Navigator是React Native提供的路由管理的组件，通常一个工程中只有一个Navigator组件，个人感觉放在index.android.js文件中比较好，还有对物理返回键BackAndroid的管理最好也放在这里，常用的就是push和pop方法，push时可传入参数。具体使用方法参见<a href="http://reactnative.cn/docs/0.39/navigator.html#content" target="_blank" rel="external">React Native中文网-Navigator</a>即可。</p>
+<ul>
+<li>使用时好像必须作为render的根组件返回，即使外面包层View，都不会有显示内容</li>
+<li>如果在TabBar.Item中返回的Navigator组件，路由切换时页面底部的TabBar一直存在</li>
+<li>navigator需要作为属性一直向下传递，否则子组件无法引用</li>
+</ul>
+<h2 id="ES6语法问题"><a href="#ES6语法问题" class="headerlink" title="ES6语法问题"></a>ES6语法问题</h2><p>ES6语法不需要在babelrc文件中配置东西，但有的es6语法用不了，目前发现的是startsWith和new Date()传入日期字符串的构造函数，不报任何错误信息，但是打开浏览器调试时是好使的。网上查原因是打开调试是通过浏览器处理js的，浏览器认识这些语法，但到手机上就不认识了。<br><strong>这个问题很奇怪，一开始感觉是babel配置不对，但是大多数ES6甚至ES7的语法是没问题的。在网上没有查到react-native具体怎么配置babel，查看过react-native源码babel的配置，改成一样的配置也没解决这个问题。</strong></p>
+<h2 id="TextInput触发两次onSubmitEditing问题"><a href="#TextInput触发两次onSubmitEditing问题" class="headerlink" title="TextInput触发两次onSubmitEditing问题"></a>TextInput触发两次onSubmitEditing问题</h2><p>在Android手机上，当软键盘的确定/提交按钮被按下的时候调用onSubmitEditing函数。但在做demo时发现该函数会被调用两次，stackoverflow给出一个解决方案如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;TextInput</div><div class="line">  ref=&#123;component =&gt; this._textInput = component&#125;</div><div class="line">  onSubmitEditing=&#123;this._onSubmitEditing.bind(this)&#125;</div><div class="line">  onEndEditing=&#123;this._onPressSearch.bind(this)&#125;</div><div class="line">  returnKeyType=&apos;search&apos;</div><div class="line">  style=&#123;styles.inputText&#125;</div><div class="line">/&gt;</div><div class="line">  _onSubmitEditing()&#123;</div><div class="line">    this._textInput.blur();</div><div class="line">  &#125;</div><div class="line">  _onPressSearch(event)&#123;</div><div class="line">    console.log(event.nativeEvent.text);</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p>该解决方案以点击软键盘确认执行搜索为例，意思是点击确认时触发失去焦点，当文本输入结束后调用搜索方法（或其它方法），但会存在输入时，如果不点击确认，直接点击页面其它区域，会直接触发搜索方法。</p>
+<h2 id="ListView组件的使用"><a href="#ListView组件的使用" class="headerlink" title="ListView组件的使用"></a>ListView组件的使用</h2><p>ListView是React Native核心组件，使用时注意以下几点。</p>
+<ul>
+<li>ListView最好添加enableEmptySections属性，处理ListView没有显示数据时报的黄色警告。</li>
+<li>如果发现列表没滑倒底部就调用onEndReached回调方法了，可以试试设置onEndReachedThreshold值。</li>
+<li>如果在onEndReached回调方法中进行的是获取更多数据的操作，注意判断条件是否正确，如当前页数已为最大页数或数据已达到总条数，如果还继续执行获取数据操作，有可能导致一直执行获取数据的操作，就像死循环一样。</li>
+</ul>
+<h2 id="TouchableHighlight的使用"><a href="#TouchableHighlight的使用" class="headerlink" title="TouchableHighlight的使用"></a>TouchableHighlight的使用</h2><p>使用时建议里面包裹React Native提供的组件，而不要使用自定义的组件，否则会报<br><code>Touchable child must either be native or forward setNativeProps to a native component.</code>的错误信息。如果非要使用自定义组件，需要给自定义组件添加setNativeProps方法，参见<a href="http://reactnative.cn/docs/0.20/direct-manipulation.html" target="_blank" rel="external">React Native中文网-直接操作</a>。</p>
+<h2 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h2><p>可直接使用React Native已经封装好的fetch。查看了react-native的package.json文件，在依赖中与fetch相关的只有node-fetch和whatwg-fetch，在node-fetch和whatwg-fetch中都添加了打印语句，发现打印的都是来自whatwg-fetch的。但在《React Native跨平台移动应用开发》书中第12章提到，“React Native框架在初始化项目时，安装了node-fetch包，开发者可以使用node-fetch包通过HTTP协议来获取网络册的数据”。</p>
+<h2 id="消息提醒"><a href="#消息提醒" class="headerlink" title="消息提醒"></a>消息提醒</h2><p>可使用<a href="https://www.npmjs.com/package/react-native-push-notification" target="_blank" rel="external">react-native-push-notification</a>组件进行消息提醒。</p>
+<h2 id="组件间交互"><a href="#组件间交互" class="headerlink" title="组件间交互"></a>组件间交互</h2><p>React Native用起来感觉跟React差不多，目前发现复杂的地方还是组件间的交互问题。如对于如下结构的组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">        A</div><div class="line">        |</div><div class="line">--------+---------</div><div class="line">|                |</div><div class="line">|                |</div><div class="line">B-------+--------C</div><div class="line">        |</div><div class="line">        D</div></pre></td></tr></table></figure></p>
+<p>场景描述：A拥有B、C组件，B、C组件都会进入D组件，在D组件中需要调用B、C中的方法。<br>解决方案：我使用的方法是给A的state添加两个属性methodB、methodC，初始可为null，添加一个可以更新state的方法update，将methodB、methodC、update一起传入B、C中，在B、C组件调用update方法将methodB和methodC赋值给A的同名state属性，这样在D中就可调用到B和C的方法了。</p>
+<h2 id="同步异步问题"><a href="#同步异步问题" class="headerlink" title="同步异步问题"></a>同步异步问题</h2><p>React Native在使用fetch进行网络请求是异步的，有时我们想要的是同步的效果，或是执行状态的更新setState后的操作，这时可以使用<a href="http://es6.ruanyifeng.com/#docs/async#async函数" target="_blank" rel="external">async函数</a>。</p>
+<p><strong>场景一</strong><br>如下代码执行后，输出的state并不是methodA方法中更新后的state。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function methodA() &#123;</div><div class="line">    ...</div><div class="line">    this.setState(&#123;&#125;);</div><div class="line">    ...</div><div class="line">    this.methodB();</div><div class="line">&#125;</div><div class="line">function methodB() &#123;</div><div class="line">    consolt.log(&quot;更新后的state:&quot;, this.state);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用async await后即可输入更新后的state。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">async function methodA() &#123;</div><div class="line">    ...</div><div class="line">    await this.setState(&#123;&#125;);</div><div class="line">    ...</div><div class="line">    this.methodB();</div><div class="line">&#125;</div><div class="line">function methodB() &#123;</div><div class="line">    consolt.log(&quot;更新后的state:&quot;, this.state);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>场景二</strong><br>AsyncStorage的get操作是一个异步操作，如果将所有AsyncStorage操作放在一个文件中管理，在组件中要获取缓存中的信息以决定下一步操作时，可以使用如下方式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">// storageUtils.js中</div><div class="line">export let storage = &#123;</div><div class="line">    save(name,value)&#123;</div><div class="line">    ...</div><div class="line">    &#125;,</div><div class="line">    remove(name)&#123;</div><div class="line">    ...</div><div class="line">    &#125;,</div><div class="line">    async get(name)&#123;</div><div class="line">        let result = null;</div><div class="line">        await AsyncStorage.getItem(name)</div><div class="line">            .then((value) =&gt; &#123;</div><div class="line">                if (value) &#123;</div><div class="line">                    result =  JSON.parse(value);</div><div class="line">                &#125;</div><div class="line">            &#125;).catch((error) =&gt; &#123;</div><div class="line">                console.log(&apos;获取失败：&apos;, error);</div><div class="line">            &#125;);</div><div class="line">        return result;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// MobileUi组件中</div><div class="line">class MobileUi extends Component &#123;</div><div class="line">    constructor(props)&#123;</div><div class="line">        super(props);</div><div class="line">        this.state = &#123;</div><div class="line">            token: null,</div><div class="line">        &#125;;</div><div class="line">        this.getUserInfo = this.getUserInfo.bind(this);</div><div class="line">    &#125;</div><div class="line">    async getUserInfo() &#123;</div><div class="line">        let token = await storage.get(&apos;token&apos;);</div><div class="line">        this.setState(&#123;</div><div class="line">            token,</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    render() &#123;</div><div class="line">        let initialRoute = &#123;name: &apos;主页&apos;, component: App&#125;;</div><div class="line">        if (this.state.token === null) &#123;</div><div class="line">            initialRoute = &#123;name: &apos;登录&apos;, component: Login&#125;;</div><div class="line">        &#125;</div><div class="line">        return (</div><div class="line">            &lt;Navigator</div><div class="line">                ref=&quot;navigator&quot;</div><div class="line">                initialRoute=&#123;initialRoute&#125;</div><div class="line">                shadowHidden=&#123;true&#125;</div><div class="line">                translucent=&#123;true&#125;</div><div class="line">                configureScene=&#123;this.configureScene&#125;</div><div class="line">                renderScene=&#123;this.renderScene&#125;</div><div class="line">            /&gt;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>场景三</strong><br>根据fetch请求的返回结果决定下一步的操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">async ifRunning() &#123;</div><div class="line">    let result = &apos;&apos;;</div><div class="line">    await fetch(`$&#123;config.applicationIpAndPort&#125;$&#123;config.applicationContext&#125;/OA_UTILS_FLOW_VERIFY.ifRunning.do`, &#123;</div><div class="line">        method: &apos;POST&apos;,</div><div class="line">        headers: commonHeaders,</div><div class="line">        body: JSON.stringify(&#123;</div><div class="line">            PI_ID: this.state.cardData.nodeInstBean.PI_ID,</div><div class="line">            NI_ID: this.state.cardData.nodeInstBean.NI_ID,</div><div class="line">        &#125;)</div><div class="line">    &#125;).then(responseData =&gt; &#123;</div><div class="line">        result = responseData.IF_RUNNING;</div><div class="line">    &#125;).catch((errors) =&gt; &#123;</div><div class="line">        showError(errors, this.props.navigator, this.ifRunning, &apos;ifRunning请求失败&apos;)</div><div class="line">    &#125;);</div><div class="line">    return result;</div><div class="line">&#125;</div><div class="line">async agreeHandler(data) &#123;</div><div class="line">    const ifRunningResult = await this.ifRunning();</div><div class="line">    if (ifRunningResult === &apos;1&apos;) &#123;</div><div class="line">        console.log(&quot;进行审批操作&quot;);</div><div class="line">    &#125; else &#123;</div><div class="line">        console.log(&quot;单据已过期&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="调试问题"><a href="#调试问题" class="headerlink" title="调试问题"></a>调试问题</h2><p>在Android上连续两个R键可进行刷新，ctrl+M可打开调试菜单，可以选择Debug JS Remotely启动浏览器的调试工具进行调试，主要是使用console.log打印日志或是debugger进行断点查看。</p>
+<p>当你加载了开启Chrome调试工具的React Native应用之后，Google的Chrome浏览器便会通过React Native包管理器使用一个标准的<code>&lt;script&gt;</code>标签来执行相同的JavaScript代码，因此你可以拥有一个基于浏览器的调试器。随后，包管理器使用WebSocket进行设备与浏览器之间的通信。</p>
+<p>如果Packager的控制台编译未完成或模拟器报Unexpected token，很有可能是存在语法错误。</p>
+<img src="/2016/11/30/react-native-base/UnexpectedToken.png" width="300" title="模拟器中错误">
+<p>如果模拟器报如下错误，不容易定位到哪里发生了错误，打开浏览器调试工具-&gt;Network，点击显示红色的请求，Preview里面错误信息。</p>
+<img src="/2016/11/30/react-native-base/debugger1.png" width="300" title="模拟器中错误">
+<img src="/2016/11/30/react-native-base/debugger2.png" width="300" title="浏览器中错误">
+<p>如果模拟器报如下错误，哪里都不要改，重新执行<code>react-native run-android</code>重新启动，直到启起来。</p>
+<img src="/2016/11/30/react-native-base/rn_start_err.png" title="见到这个错误需重新启动">
+<p>如果用 ios 模拟器调试时所有操作都变得很慢，检查模拟器 → Debug → Slow Animations 是否为选中了，取消选中即可。</p>
+<h2 id="React-调试"><a href="#React-调试" class="headerlink" title="React 调试"></a>React 调试</h2><p>直接使用Debug JS Remotely启动浏览器的调试工具是没有React组件调试的。按如下方式可以进行React组件 调试，但React调试和浏览器的调试 <a href="http://localhost:8081/debugger-ui" target="_blank" rel="external">http://localhost:8081/debugger-ui</a> 不能同时使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 安装依赖</div><div class="line">npm install --save-dev react-devtools</div><div class="line">// 修改package.json中</div><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;devtools&quot;: &quot;react-devtools&quot;,</div><div class="line">  // ...</div><div class="line">&#125;</div><div class="line">// 启动调试</div><div class="line">npm run devtools</div><div class="line">// 启动项目</div><div class="line">react-native run-android</div></pre></td></tr></table></figure>
+<h2 id="Redux支持"><a href="#Redux支持" class="headerlink" title="Redux支持"></a>Redux支持</h2><p>跟React使用redux是一样的，在用浏览器的调试工具进行redux调试时，需要特殊处理。目前Windows上是安装remote-redux-devtools的0.5.0版本，在react-native为0.34.0时是好使的，但是react-native为0.42.0时就不好使了，感觉应该是目前还不支持0.42.0。</p>
+<p>安装依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev remote-redux-devtools@0.5.0</div><div class="line">npm install --save-dev remote-redux-devtools-on-debugger</div></pre></td></tr></table></figure></p>
+<p>package.json里添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;postinstall&quot;: &quot;remotedev-debugger --hostname localhost --port 5678 --injectserver&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>configureStore.js修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">import &#123; Platform &#125; from &apos;react-native&apos;;</div><div class="line">import &#123; createStore, applyMiddleware, compose &#125; from &apos;redux&apos;;</div><div class="line">import thunk from &apos;redux-thunk&apos;;</div><div class="line">import devTools from &apos;remote-redux-devtools&apos;;</div><div class="line">import reducer from &apos;../reducers&apos;;</div><div class="line"></div><div class="line">export default function configureStore(initialState) &#123;</div><div class="line">  const enhancer = compose(</div><div class="line">    applyMiddleware(thunk),</div><div class="line">    devTools(&#123;</div><div class="line">      name: Platform.OS,</div><div class="line">      hostname: &apos;localhost&apos;,</div><div class="line">      port: 5678</div><div class="line">    &#125;)</div><div class="line">  );</div><div class="line">  return createStore(reducer, initialState, enhancer);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm run postinstall</div><div class="line">react-native run-android</div></pre></td></tr></table></figure></p>
+<h2 id="Webpack支持"><a href="#Webpack支持" class="headerlink" title="Webpack支持"></a>Webpack支持</h2><p>Webpack有一段介绍如下：<br><img src="/2016/11/30/react-native-base/webpack.png" title="什么是Webpack"></p>
+<p>Webpack是Web前端打包的工具，不是用在移动端的。如果要在浏览器上运行React Native项目，就需要Webpack了。</p>
+<h2 id="运行在Web浏览器上面"><a href="#运行在Web浏览器上面" class="headerlink" title="运行在Web浏览器上面"></a>运行在Web浏览器上面</h2><p>参考<a href="https://yq.aliyun.com/articles/8184" target="_blank" rel="external">三步将 React Native 项目运行在 Web 浏览器上面</a>或者Ant Design Mobile的<a href="https://github.com/ant-design/antd-init/tree/master/boilerplates/MobileDemo" target="_blank" rel="external">MobileDemo</a>怎么在Web端运行的。</p>
+<p>注意：  </p>
+<ul>
+<li>react、react-dom 版本为15.3.x，否则可能会报错</li>
+<li>webpack.config.js中要有publicPath，如下说是，否则可能会报错</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">output:&#123;</div><div class="line">  publicPath:&apos;&apos;,</div><div class="line">  path: path.join(__dirname, &apos;output&apos;),</div><div class="line">  filename: &apos;bundle.js&apos;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<img src="/2016/11/30/react-native-base/react-web-start.png" title="没有publicPath的报错">
+<p>已经按照教程测试过，简单的组件可以跑在浏览器上，可以使用浏览器的React调试工具看组件的结构。使用React Native的StyleSheet定义的样式在Web端也生效，可以使用div等html的标签。</p>
+<p>但是我现在还不明白React Native 项目运行在Web浏览器上面是为了方便测试，还是为了一套代码可以运行在三端。像我测试中用的React Native的Button组件在浏览器上显示是占满屏幕整个宽度的，还有进行网络请求用的fetch报错了。不是简单的一套代码就能运行在三端，但是个人感觉样式和redux的部分是可以公用的，可能显示组件需要调整。</p>
+<h2 id="组件不显示"><a href="#组件不显示" class="headerlink" title="组件不显示"></a>组件不显示</h2><p>如果组件没显示出来，还没有报错，可鞥是组件外层没有高度，换成ScrollView或者显示指定height试试。</p>
+<h2 id="初始化的项目启动报错"><a href="#初始化的项目启动报错" class="headerlink" title="初始化的项目启动报错"></a>初始化的项目启动报错</h2><p>在一个目录下执行react-native init project_name 初始化了一个项目，能跑起来。但换个目录再执行 react-native init project_name 初始化同名项目，即使什么都没修改，也可能跑不起来，会报如下错误。但换个目录可能就能跑起来了，很奇怪。</p>
+<img src="/2016/11/30/react-native-base/start.png" width="300" title="启动报错">
+<p>在网上查了很多都没有找到原因，github上也有人发现类似问题。</p>
+<img src="/2016/11/30/react-native-base/init.png" title="类似错误">
+<p>这时请确认是否使用了<strong>babel-plugin-transform-runtime</strong>依赖及使用是否正确，很有可能是这个依赖导致的，如果没用可以去掉。我在去掉之后再没有发现这个问题。</p>
+<h2 id="项目启动报错"><a href="#项目启动报错" class="headerlink" title="项目启动报错"></a>项目启动报错</h2><p>如果项目启动时报<code>Could not find com.atlassian.mobile.video:okhttp-ws-compat:3.7.0-atlassian1.</code>错误，在android/build.gradle文件中，allprojects中添加如下代码即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">allprojects &#123;</div><div class="line">  repositories &#123;...&#125;</div><div class="line">  configurations.all &#123;</div><div class="line">    resolutionStrategy &#123;</div><div class="line">        eachDependency &#123; DependencyResolveDetails details -&gt;</div><div class="line">            if (details.requested.group == &apos;com.facebook.react&apos; &amp;&amp; details.requested.name == &apos;react-native&apos;) &#123;</div><div class="line">                details.useVersion &quot;0.42.0&quot; // Your real React Native version here</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">...</div></pre></td></tr></table></figure>
+<h2 id="平台扩展名及平台检测"><a href="#平台扩展名及平台检测" class="headerlink" title="平台扩展名及平台检测"></a>平台扩展名及平台检测</h2><p><a href="http://www.jianshu.com/p/64ea85cccf74" target="_blank" rel="external">React- Native 特定平台扩展名, 及平台检测</a></p>
+<p><a href="http://www.jianshu.com/p/4c1d96132756" target="_blank" rel="external">React - Native InteractionManager 动画交互管理器</a></p>
+<h2 id="链接原生"><a href="#链接原生" class="headerlink" title="链接原生"></a>链接原生</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">react-native link -- 链接所有原生依赖</div><div class="line">react-native link xxx -- 链接某个原生依赖</div><div class="line">react-native unlink xxx -- 取消对某个原生依赖的链接</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React-Native/" rel="tag">#React Native</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/25/redux-experience1/" rel="next" title="Redux-学习经验">
+                <i class="fa fa-chevron-left"></i> Redux-学习经验
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/17/ant-design-mobile-study/" rel="prev" title="Ant Design Mobile 组件学习经验">
+                Ant Design Mobile 组件学习经验 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

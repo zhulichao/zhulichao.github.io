@@ -1,0 +1,928 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Small github地址Small官方教程使用Small进行Android模块化开发small的插件化的基本使用 简介插件模块是Small特有的插件化与IDE完美结合的产物，做到了“模块即组件，组件即插件”。 组件是工程的角度，插件是应用的角度。只有做到了清晰的组件解耦，才能更好的拆分插件模块。 出于业务需求考虑，Small定义了两类插件：公共库插件与应用插件。应用插件相对简单，就是用来把大应">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android-Small框架-基础">
+<meta property="og:url" content="https://zhulichao.github.io/2017/05/06/android-small-base/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="Small github地址Small官方教程使用Small进行Android模块化开发small的插件化的基本使用 简介插件模块是Small特有的插件化与IDE完美结合的产物，做到了“模块即组件，组件即插件”。 组件是工程的角度，插件是应用的角度。只有做到了清晰的组件解耦，才能更好的拆分插件模块。 出于业务需求考虑，Small定义了两类插件：公共库插件与应用插件。应用插件相对简单，就是用来把大应">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://zhulichao.github.io/2017/05/06/android-small-base/small.png">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.230Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android-Small框架-基础">
+<meta name="twitter:description" content="Small github地址Small官方教程使用Small进行Android模块化开发small的插件化的基本使用 简介插件模块是Small特有的插件化与IDE完美结合的产物，做到了“模块即组件，组件即插件”。 组件是工程的角度，插件是应用的角度。只有做到了清晰的组件解耦，才能更好的拆分插件模块。 出于业务需求考虑，Small定义了两类插件：公共库插件与应用插件。应用插件相对简单，就是用来把大应">
+<meta name="twitter:image" content="https://zhulichao.github.io/2017/05/06/android-small-base/small.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Android-Small框架-基础 | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发基础"><span class="nav-number">2.</span> <span class="nav-text">开发基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工程结构图"><span class="nav-number">3.</span> <span class="nav-text">工程结构图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">4.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用API"><span class="nav-number">5.</span> <span class="nav-text">常用API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它"><span class="nav-number">6.</span> <span class="nav-text">其它</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#热更新？"><span class="nav-number">7.</span> <span class="nav-text">热更新？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增量更新？"><span class="nav-number">8.</span> <span class="nav-text">增量更新？</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android-Small框架-基础
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-06T16:30:06+08:00" content="2017-05-06">
+              2017-05-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://github.com/wequick/Small" target="_blank" rel="external">Small github地址</a><br><a href="http://code.wequick.net/Small/cn/quickstart" target="_blank" rel="external">Small官方教程</a><br><a href="http://www.jianshu.com/p/cd152c75b0e0?nomobile=yes" target="_blank" rel="external">使用Small进行Android模块化开发</a><br><a href="http://www.jianshu.com/p/8eca24846445" target="_blank" rel="external">small的插件化的基本使用</a></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>插件模块是Small特有的插件化与IDE完美结合的产物，做到了“模块即组件，组件即插件”。 组件是工程的角度，插件是应用的角度。只有做到了清晰的组件解耦，才能更好的拆分插件模块。</p>
+<p>出于业务需求考虑，Small定义了两类插件：公共库插件与应用插件。应用插件相对简单，就是用来把大应用拆分成一个个小的业务单元，公共库插件则是为这些业务单元提供公共的代码与资源。</p>
+<p>通过设定 URI，宿主、本地化应用插件、本地化web插件、在线网页，以及任何自定义的插件之间能够相互调起与传递参数。</p>
+<p>目前已支持 Android 、iOS 以及 HTML5 插件。并且三者之间可以通过同一套 JavaScript 接口进行通信。</p>
+<h2 id="开发基础"><a href="#开发基础" class="headerlink" title="开发基础"></a>开发基础</h2><ul>
+<li><p>通过 build.gradle 集成 Small，项目的build.gradle文件中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        ...</div><div class="line">        classpath &apos;net.wequick.tools.build:gradle-small:1.2.0-beta3&apos;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">...</div><div class="line">apply plugin: &apos;net.wequick.small&apos;</div><div class="line">small &#123;</div><div class="line">    aarVersion = &apos;1.2.0-beta3&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过 自定义Application 初始化 Small，app &gt; java &gt; com.example.mysmall &gt; SmallApp中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class SmallApp extends Application &#123;</div><div class="line">    public SmallApp() &#123;</div><div class="line">        // Small框架初始化</div><div class="line">        Small.preSetUp(this);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  AndroidManifest.xml中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;application</div><div class="line">    android:name=&quot;.SmallApp&quot;</div><div class="line">    ...&gt;</div><div class="line">&lt;/application&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建插件模块 App.main，注意包名为com.example.app.main</p>
+</li>
+<li><p>通过 buildLib，buildBundle 编译 Small 插件，命令后面可添加 -Dbundle.arch=x86</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gradlew buildLib -q</div><div class="line">gradlew buildBundle -q</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过 bundle.json 配置插件路由，右键 app 模块，New &gt; Folder &gt; Assets Folder 新建 assets 目录，在新建配置文件bundle.json内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</div><div class="line">  &quot;bundles&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;uri&quot;: &quot;main&quot;,</div><div class="line">      &quot;pkg&quot;: &quot;com.example.appmain&quot;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过 Small.openUri 启动插件，宿主的 app &gt; java &gt; com.example.mysmall &gt; MainActivity中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onStart() &#123;</div><div class="line">    super.onStart();</div><div class="line">    // Small插件初始化</div><div class="line">    Small.setUp(this, new Small.OnCompleteListener() &#123;</div><div class="line">        @Override</div><div class="line">        public void onComplete() &#123;</div><div class="line">            // 通过uri启动插件</div><div class="line">            Small.openUri(&quot;main&quot;, MainActivity.this);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建公共库插件模块 Lib.style，注意包名为com.example.lib.style，将app.main/src/main/res/values 下除了strings.xml的文件移动到lib.style/src/main/res/values 目录下，修改 lib.style/src/main/res/colors.xml中colorPrimary值为#2FA739</p>
+</li>
+<li><p>添加公共库引用，修改 app.main/build.gradle，增加对 lib.style 的依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    ...</div><div class="line">    compile project(&apos;:lib.style&apos;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加插件路由</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&quot;bundles&quot;: [</div><div class="line">    ...</div><div class="line">    &#123;</div><div class="line">        &quot;pkg&quot;: &quot;com.example.libstyle&quot;</div><div class="line">    &#125;</div><div class="line">]</div></pre></td></tr></table></figure>
+</li>
+<li><p>重新运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">gradlew cleanLib -q</div><div class="line">gradlew buildLib -q</div><div class="line">gradlew buildBundle -q</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="工程结构图"><a href="#工程结构图" class="headerlink" title="工程结构图"></a>工程结构图</h2><img src="/2017/05/06/android-small-base/small.png" title="工程目录结构">
+<ul>
+<li><p>宿主：工程中的app模块，不能依赖lib.xxx</p>
+<ul>
+<li>assets目录下的bundle.json声明宿主使用的插件，每个bundle可定义一些rule去启动特定的Activity</li>
+<li>可增加签名配置和共享的依赖库<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">signingConfigs &#123;</div><div class="line">    release &#123;</div><div class="line">        storeFile file(&apos;../sign/release.jks&apos;)</div><div class="line">        storePassword &quot;5mall@ndro!d&quot;</div><div class="line">        keyAlias &quot;small&quot;</div><div class="line">        keyPassword &quot;5mall@ndro!d&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">buildTypes &#123;</div><div class="line">    release &#123;</div><div class="line">        signingConfig signingConfigs.release</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">[...]</div><div class="line"></div><div class="line">compile &apos;com.android.support:design:23.1.1&apos;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>公共库插件：工程中的lib.xxx模块，是标准的Android库工程</p>
+<ul>
+<li>第三方依赖合并到lib.vendor中管理</li>
+<li>样式相关的资源放在lib.style中管理</li>
+<li>其它工具类，以及网络、存储等跨业务模块的底层代码可以在lib.utils中管理</li>
+<li>可以通过compile project(‘:插件模块名’)来被应用插件模块所引用</li>
+<li>编译时(buildLib)会被打包成为一个可独立更新的插件</li>
+</ul>
+</li>
+<li>业务插件：工程中的app.xxx模块，是标准的Android应用工程<ul>
+<li>app.main一般是程序的入口，并控制业务逻辑的主线</li>
+<li>其他app.xxx一般是业务逻辑的支线，插件内的业务逻辑之间关联性较强</li>
+<li>app.xxx可以依赖多个lib.xxx</li>
+<li>可独立运行、独立更新</li>
+</ul>
+</li>
+<li>宿主分身模块：工程中的app+xxx模块，是标准的Android应用工程<ul>
+<li>分身是宿主的一部分，最终编译到宿主中，不可被独立更新</li>
+<li>具备占坑(stub)的功能，即在宿主中预留特定的(无法插件化的)资源、代码或manifest项目，使系统可以正常识别，任何稳定的资源、代码、第三方库也可使用分身下沉到宿主中，以减少插件体积</li>
+<li>它提供了可以让插件模块自由访问其中的资源与代码的能力，并为所有插件模块添加该依赖</li>
+<li>需要占坑的项目为<ul>
+<li>必须在宿主Manifest注册的项目，包括：所有权限，受限 Activity，任何 Provider、Service、BroadcastReceiver</li>
+<li>必须在宿主占坑的资源，包括：转场动画、通知栏图标、自定义视图、桌面快捷方式图标</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>web插件工程：工程中的web.xxx模块，本地网页组件</li>
+</ul>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
+<li>gradlew samll          # 查看编译情况</li>
+<li>gradlew buildLib -q    # 编译公共库插件，不仅编译了lib.xxx，还编译了宿主模块</li>
+<li>gradlew buildBundle -q # 编译业务插件 </li>
+<li>gradlew -p app.main assembleRelease # 单独编译一个插件app.main</li>
+<li>gradlew cleanLib -q    # 清除公共库</li>
+<li>gradlew cleanBundle -q # 清除业务库</li>
+</ul>
+<p>其中-q是安静模式，可以让输出更好看，也可以不加。对插件的编译，会在app/smallLibs/生成对应的so文件，这些so文件本质上就是独立的apk包。</p>
+<h2 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h2><p>// 框架初始化<br>Small.preSetUp(this);</p>
+<p>// 浏览器跳转url<br>Small.setBaseUri(“<a href="http://code.wequick.net/small-sample/" target="_blank" rel="external">http://code.wequick.net/small-sample/</a>“);</p>
+<p>// 在宿主的 Application 里指定是否从 assets 读取插件，有build.gradle 中 buildToAssets的值指定<br>Small.setLoadFromAssets(BuildConfig.LOAD_FROM_ASSETS);</p>
+<p>// 设定基本的跳转地址<br>Small.openUri(“<a href="https://github.com/wequick/Small/issues" target="_blank" rel="external">https://github.com/wequick/Small/issues</a>“, MainActivity.this);</p>
+<p>// 更新bundles.json和version信息<br>Small.updateManifest(info.manifest, false)</p>
+<p>// 获取补丁文件目录<br>net.wequick.small.Bundle bundle = Small.getBundle(u.packageName);<br>File file = bundle.getPatchFile();</p>
+<p>// 使更新后的插件生效<br>bundle.upgrade();</p>
+<p>// 暗度插件意图<br>Small.wrapIntent(intent);</p>
+<p>// 创建远程fragment<br>Small.createObject(“fragment-v4”, sUris[position], MainActivity.this);</p>
+<p>// 设置网页的基本回调<br>Small.setWebViewClient(new MyWebViewClient());</p>
+<p>// TODO<br>Small.getBundleVersions()</p>
+<p>// TODO<br>Small.setWebActivityTheme(R.style.AppTheme);</p>
+<p>// TODO<br>Small.getIsNewHostApp()</p>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ul>
+<li>对插件的编译，会在app/smallLibs/生成对应的so文件，这些so文件本质上就是独立的apk包，所以修改某个模块之后，要在运行时生效，必须先编译对应的插件，更新smallLibs下的.so文件</li>
+<li>编译后的lib，如果删除资源再编译就会出现错误“No support deleting resources on lib.* now!”，所以在删除lib中的资源后，需要删除lib.xxx模块下的public.txt再通过cleanLib, buildLib, cleanBundle, buildBundle重新编译</li>
+<li>从插件初始化，到初始化完成会耗费几百毫秒，甚至更多可以考虑将欢迎页放入宿主工程之中，如果欢迎页有比较复杂的广告逻辑或统计相关的逻辑，则可以考虑在主插件中做一个透明的Activity来处理</li>
+<li>关于插件的Manifest，可以在插件的Manifest中指定application，每个插件的Application都会在Small.setup时被创建；对于需要处理android:configChanges的Activity需要在宿主中注册；如果要通过uri启动Activity，则对应Activity应该Manifest中进行注册，如果需app插件可以独立运行，但在Manifest中至少要注册一个主Activity</li>
+</ul>
+<h2 id="热更新？"><a href="#热更新？" class="headerlink" title="热更新？"></a>热更新？</h2><p>打开项目的app工程也就是入口工程，文件夹里有一个smallLibs文件夹，里面有一个armeabi文件，里面是.so文件，这些文件就是通过buildLib和buildBundle来把非宿主的app中的文件打包成的.so文件。最终安装到手机上的apk其实就是只有宿主的apk和其内部的.so文件，通过加载.so文件来实现加载插件中的文件。热更新就是更新bundle.json文件和插件.so文件的过程。</p>
+<h2 id="增量更新？"><a href="#增量更新？" class="headerlink" title="增量更新？"></a>增量更新？</h2><p>增量更新的原理是：在服务器端先拿新版本安装包和旧版本安装包进行对比，在生成差异包之后下发，之后客户端根据对应的差异包和本地旧版本安装包合成，便生成了新版本安装包。</p>
+<p>对于Small框架，它把每个插件都编译成.so文件，然后存放到app的native目录下，不过，如果它发现自己的download目录有新的插件，那么就会去加载download目录下的插件，并且这种加载优先权是最大的，也就是说它会优先加载download目录下的插件。所以，如果我们要做增量更新，旧文件就从app的native目录进行读取，然后从服务器端下载增量包，最后合成的文件存放到download目录下，这样每次插件启动都会到download目录下加载新的插件。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/04/react-native-insert-android/" rel="next" title="React-Native-嵌入到android">
+                <i class="fa fa-chevron-left"></i> React-Native-嵌入到android
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/21/ant-design-mobile-notice/" rel="prev" title="Ant Design Mobile 组件注意">
+                Ant Design Mobile 组件注意 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

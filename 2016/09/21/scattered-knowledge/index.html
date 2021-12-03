@@ -1,0 +1,864 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Other," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="window.parent和window.opener区别 window.parent能获取一个框架的父窗口或父框架。顶层窗口的parent引用的是它本身。 window.opener引用的是window.open打开的页面的父页面。  解决不支持html5标签的办法方式一：自己创建标签节点123&amp;lt;script&amp;gt;    document.createElement(e[i]);&amp;lt;">
+<meta name="keywords" content="Other">
+<meta property="og:type" content="article">
+<meta property="og:title" content="零散知识">
+<meta property="og:url" content="https://zhulichao.github.io/2016/09/21/scattered-knowledge/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="window.parent和window.opener区别 window.parent能获取一个框架的父窗口或父框架。顶层窗口的parent引用的是它本身。 window.opener引用的是window.open打开的页面的父页面。  解决不支持html5标签的办法方式一：自己创建标签节点123&amp;lt;script&amp;gt;    document.createElement(e[i]);&amp;lt;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://zhulichao.github.io/2016/09/21/scattered-knowledge/innerHTML.gif">
+<meta property="og:image" content="https://zhulichao.github.io/2016/09/21/scattered-knowledge/login1.png">
+<meta property="og:image" content="https://zhulichao.github.io/2016/09/21/scattered-knowledge/save.png">
+<meta property="og:image" content="https://zhulichao.github.io/2016/09/21/scattered-knowledge/card.png">
+<meta property="og:image" content="https://zhulichao.github.io/2016/09/21/scattered-knowledge/card1.png">
+<meta property="og:image" content="https://zhulichao.github.io/2016/09/21/scattered-knowledge/card2.png">
+<meta property="og:image" content="https://zhulichao.github.io/2016/09/21/scattered-knowledge/card3.png">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.184Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="零散知识">
+<meta name="twitter:description" content="window.parent和window.opener区别 window.parent能获取一个框架的父窗口或父框架。顶层窗口的parent引用的是它本身。 window.opener引用的是window.open打开的页面的父页面。  解决不支持html5标签的办法方式一：自己创建标签节点123&amp;lt;script&amp;gt;    document.createElement(e[i]);&amp;lt;">
+<meta name="twitter:image" content="https://zhulichao.github.io/2016/09/21/scattered-knowledge/innerHTML.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 零散知识 | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#window-parent和window-opener区别"><span class="nav-number">1.</span> <span class="nav-text">window.parent和window.opener区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决不支持html5标签的办法"><span class="nav-number">2.</span> <span class="nav-text">解决不支持html5标签的办法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#outerHTML、innerText、innerHTML"><span class="nav-number">3.</span> <span class="nav-text">outerHTML、innerText、innerHTML</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo"><span class="nav-number">4.</span> <span class="nav-text">echo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chrome浏览器用户名、密码回填问题"><span class="nav-number">5.</span> <span class="nav-text">Chrome浏览器用户名、密码回填问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#端口占用"><span class="nav-number">6.</span> <span class="nav-text">端口占用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows"><span class="nav-number">6.1.</span> <span class="nav-text">windows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mac"><span class="nav-number">6.2.</span> <span class="nav-text">mac</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eclipse分配内存"><span class="nav-number">7.</span> <span class="nav-text">eclipse分配内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Xshell指令更新环境"><span class="nav-number">8.</span> <span class="nav-text">Xshell指令更新环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chrome插件生成crx文件"><span class="nav-number">9.</span> <span class="nav-text">Chrome插件生成crx文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thunk函数的含义"><span class="nav-number">10.</span> <span class="nav-text">Thunk函数的含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库表回滚"><span class="nav-number">11.</span> <span class="nav-text">数据库表回滚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle数据库导入导出"><span class="nav-number">12.</span> <span class="nav-text">Oracle数据库导入导出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#响应式编程"><span class="nav-number">13.</span> <span class="nav-text">响应式编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检测浏览器版本"><span class="nav-number">14.</span> <span class="nav-text">检测浏览器版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打版本号"><span class="nav-number">15.</span> <span class="nav-text">打版本号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元编程"><span class="nav-number">16.</span> <span class="nav-text">元编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#robots-txt"><span class="nav-number">17.</span> <span class="nav-text">robots.txt</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                零散知识
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-21T17:53:42+08:00" content="2016-09-21">
+              2016-09-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Other/" itemprop="url" rel="index">
+                    <span itemprop="name">Other</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="window-parent和window-opener区别"><a href="#window-parent和window-opener区别" class="headerlink" title="window.parent和window.opener区别"></a>window.parent和window.opener区别</h2><ul>
+<li>window.parent能获取一个框架的父窗口或父框架。顶层窗口的parent引用的是它本身。</li>
+<li>window.opener引用的是window.open打开的页面的父页面。</li>
+</ul>
+<h2 id="解决不支持html5标签的办法"><a href="#解决不支持html5标签的办法" class="headerlink" title="解决不支持html5标签的办法"></a>解决不支持html5标签的办法</h2><p>方式一：自己创建标签节点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    document.createElement(e[i]);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>方式二：使用Google的html5shiv包（推荐）<br><code>&lt;script src=&quot;http://html5shiv.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;</code></p>
+<p><strong>不管使用以上哪种方法,都要初始化新标签的CSS</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">article,aside,dialog,footer,header,section,footer,nav,figure,menu&#123;</div><div class="line">    display: block;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>方式三：防弹衣技术<br>Bulletproof技术，防弹衣技术，建议在所有新的HTML5块级元素中增加一个内部的div元素，然后包含一个CSS class，用这个元素来替代HTML元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;section&gt;</div><div class="line">　　&lt;div class=&quot;section&quot;&gt;</div><div class="line">　　&lt;!-- content --&gt;</div><div class="line">　　&lt;/div&gt;</div><div class="line">&lt;/section&gt;</div><div class="line"></div><div class="line">.section &#123;</div><div class="line">   　　color: blue;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<h2 id="outerHTML、innerText、innerHTML"><a href="#outerHTML、innerText、innerHTML" class="headerlink" title="outerHTML、innerText、innerHTML"></a>outerHTML、innerText、innerHTML</h2><img src="/2016/09/21/scattered-knowledge/innerHTML.gif" title="一张图了解outerHTML和innerText、innerHTML">
+<h2 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h2><p>cmd中输入<code>echo %PATH%</code> 可查看path环境变量</p>
+<h2 id="Chrome浏览器用户名、密码回填问题"><a href="#Chrome浏览器用户名、密码回填问题" class="headerlink" title="Chrome浏览器用户名、密码回填问题"></a>Chrome浏览器用户名、密码回填问题</h2><p>前几天发现一个奇怪的问题，使用Chrome浏览器在登录输入用户名、密码后，点击了保存用户名密码，在其它页面发生了用户名、密码的回填。</p>
+<img src="/2016/09/21/scattered-knowledge/login1.png" title="登录输入">
+<img src="/2016/09/21/scattered-knowledge/save.png" title="点击保存密码">
+<img src="/2016/09/21/scattered-knowledge/card.png" title="其它页面表单">
+<p>解决方案：在使用到Input的地方，都添加了autoComplete属性值为off和name属性，但是不同的name属性值，有的可能不会回填有的可能就会回填，我有点怀疑人生了。</p>
+<img src="/2016/09/21/scattered-knowledge/card1.png" title="回填登录信息">
+<img src="/2016/09/21/scattered-knowledge/card2.png" title="没有回填登录信息">
+<p><strong>而且对于没有回填用户信息的情况，在点击密码框的时候，还是会有用户密码信息的提示，这个还没有找到解决方案。</strong></p>
+<img src="/2016/09/21/scattered-knowledge/card3.png" title="提示用户密码">
+<h2 id="端口占用"><a href="#端口占用" class="headerlink" title="端口占用"></a>端口占用</h2><h3 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h3><p>netstat -aon | findstr 8088 # 查看指定端口被哪个进程占用，会返回一个进程号<br>tasklist | findstr 6808 # 查看指定进程号是哪个程序的<br>taskkill -F -IM javaw.exe # 杀死应用程序</p>
+<h3 id="mac"><a href="#mac" class="headerlink" title="mac"></a>mac</h3><p>sudo lsof -i :4000<br>sudo kill -9 [PID]</p>
+<h2 id="eclipse分配内存"><a href="#eclipse分配内存" class="headerlink" title="eclipse分配内存"></a>eclipse分配内存</h2><p>右键项目 -&gt; Run As -&gt; -Run Configurations -&gt; Arguments， 添加下面的信息到VM arguments中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-Xms256m</div><div class="line">-Xmx512m -XX:MaxNewSize=256m -XX:MaxPermSize=512m</div></pre></td></tr></table></figure></p>
+<h2 id="Xshell指令更新环境"><a href="#Xshell指令更新环境" class="headerlink" title="Xshell指令更新环境"></a>Xshell指令更新环境</h2><p>停 tomcat 重新启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ps -ef|grep java            # 查进程号，12997</div><div class="line">kill -9 12997               # 杀死进程</div><div class="line">cd /usr/local/tomcat6/bin/  # 进入到目录</div><div class="line">./catalina.sh start         # 启动</div><div class="line">cd ..                       </div><div class="line">cd logs</div><div class="line">tail -f catalina.out        # 打日志</div></pre></td></tr></table></figure></p>
+<h2 id="Chrome插件生成crx文件"><a href="#Chrome插件生成crx文件" class="headerlink" title="Chrome插件生成crx文件"></a>Chrome插件生成crx文件</h2><p>扩展程序-&gt;开发者模式-&gt;打包扩展程序-&gt;根据扩展程序ID，如hgmloofddffdnphfgcellkdfbfbjeloo，在C:\Users\Administrator\AppData\Local\Google\Chrome\User Data\Default\Extensions\路径下找到指定ID(hgmloofddffdnphfgcellkdfbfbjeloo)文件，双击进入，选择文件夹-&gt;打包扩展程序，即可生成crx文件。</p>
+<h2 id="Thunk函数的含义"><a href="#Thunk函数的含义" class="headerlink" title="Thunk函数的含义"></a>Thunk函数的含义</h2><p>编译器的”传名调用”实现，往往是将参数放到一个临时函数之中，再将这个临时函数传入函数体。这个临时函数就叫做Thunk函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function f(m)&#123;</div><div class="line">  return m * 2;</div><div class="line">&#125;</div><div class="line">f(x + 5);</div><div class="line"></div><div class="line">// 等同于</div><div class="line">var thunk = function () &#123;</div><div class="line">  return x + 5;</div><div class="line">&#125;;</div><div class="line">function f(thunk)&#123;</div><div class="line">  return thunk() * 2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在JavaScript语言中，Thunk函数替换的不是表达式，而是多参数函数，将其替换成单参数的版本，且只接受回调函数作为参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 正常版本的readFile（多参数版本）</div><div class="line">fs.readFile(fileName, callback);</div><div class="line"></div><div class="line">// Thunk版本的readFile（单参数版本）</div><div class="line">var Thunk = function (fileName)&#123;</div><div class="line">  return function (callback)&#123;</div><div class="line">    return fs.readFile(fileName, callback);</div><div class="line">  &#125;;</div><div class="line">&#125;;</div><div class="line">var readFileThunk = Thunk(fileName);</div><div class="line">readFileThunk(callback);</div></pre></td></tr></table></figure>
+<h2 id="数据库表回滚"><a href="#数据库表回滚" class="headerlink" title="数据库表回滚"></a>数据库表回滚</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 表sy_org_user1回滚到2015-01-09 15:00:00时间</div><div class="line">alter table sy_org_user1 enable row movement;</div><div class="line">flashback table sy_org_user1 to timestamp to_timestamp(&apos;2015-01-09 15:00:00&apos;,&apos;yyyy-mm-dd hh24:mi:ss&apos;);</div></pre></td></tr></table></figure>
+<h2 id="Oracle数据库导入导出"><a href="#Oracle数据库导入导出" class="headerlink" title="Oracle数据库导入导出"></a>Oracle数据库导入导出</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># 导出库</div><div class="line">exp DEV_BASE/DEV_BASE@pcmdb_192.168.100.30 file=E:\DEV_BASE.dmp owner=DEV_BASE</div><div class="line"># 如果以前导入过，删除用户再重建</div><div class="line">drop user DEV_BASE cascade;</div><div class="line">create user DEV_BASE identified by DEV_BASE;</div><div class="line">grant resource, connect, dba to DEV_BASE;</div><div class="line">alter user DEV_BASE quota unlimited on PCMDB;</div><div class="line"># 导入库</div><div class="line">imp system/sys1234@orcl fromuser=DEV_BASE touser=DEV_BASE file=E:\DEV_BASE.dmp</div></pre></td></tr></table></figure>
+<h2 id="响应式编程"><a href="#响应式编程" class="headerlink" title="响应式编程"></a>响应式编程</h2><p>响应式编程是一种面向数据流和变化传播的编程范式，这意味着可以在编程语言中很方便地表达静态或动态的数据流，而相关的计算模型会自动将变化的值通过数据流进行传播。响应式编程最初是为了简化交互式用户界面的创建和实时系统动画的绘制而提出来的一种方法，但它本质上是一种通用的编程范式。在MVC软件架构中，响应式编程允许将相关模型的变化自动反映到视图上，反之亦然。</p>
+<h2 id="检测浏览器版本"><a href="#检测浏览器版本" class="headerlink" title="检测浏览器版本"></a>检测浏览器版本</h2><p>最近做的项目对浏览器的类型及版本有要求，同事写了检测浏览器版本的代码如下，我在此处进行记录，供以后参考。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--在工程入口html文件的body标签中添加如下script内容--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">id</span>=<span class="string">"body"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"react-content"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="xml"></span></div><div class="line">      function cheackBowser() &#123;</div><div class="line">        var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串</div><div class="line">        var version = navigator.appVersion; // 浏览器版本信息</div><div class="line">        var isOpera = userAgent.indexOf("Opera") &gt; -1; //判断是否Opera浏览器</div><div class="line">        var isChrome = userAgent.indexOf("Chrome") &gt; -1; //判断是否Chrome浏览器</div><div class="line">        var isIE = userAgent.indexOf("compatible") &gt; -1 &amp;&amp; userAgent.indexOf("MSIE") &gt; -1 &amp;&amp; !isOpera; //判断是否IE浏览器</div><div class="line">        var isFF = userAgent.indexOf("Firefox") &gt; -1; //判断是否Firefox浏览器</div><div class="line">        var isSafari = userAgent.indexOf("Safari") &gt; -1; //判断是否Safari浏览器</div><div class="line"></div><div class="line">        //如果是 IE 火狐 opera，提示下载qq浏览器</div><div class="line">        if(isIE || isFF || isOpera) &#123;</div><div class="line">          //主页面不显示只显示弹出框，弹出弹框提示下载qq浏览器</div><div class="line">          if(confirm("您使用的浏览器存在兼容问题，为了您更好的用户体验，建议您点击确定下载QQ浏览器")) &#123;</div><div class="line">              document.getElementById("react-content").style.display = "none";</div><div class="line">              window.open("http://browser.qq.com/?adtag=SEM1", "_self");</div><div class="line">          &#125; else &#123;</div><div class="line">            //点击取消关闭此页面</div><div class="line">            window.close();</div><div class="line">            //如果关闭此页面被阻止则把页面清空</div><div class="line">            if(window)&#123;</div><div class="line">               window.location.href="about:blank";</div><div class="line">            &#125;</div><div class="line">          &#125;</div><div class="line">        &#125; else if(isChrome)&#123;</div><div class="line">            var detailVersion = Number(VersionFilter(version)[0].substring(7,9));</div><div class="line">            if(detailVersion <span class="tag">&lt; <span class="attr">45</span>) &#123;</span></div><div class="line">              <span class="attr">document.getElementById</span>("<span class="attr">react-content</span>")<span class="attr">.style.display</span> = <span class="string">"none"</span>;</div><div class="line">              <span class="attr">if</span>(<span class="attr">confirm</span>("您使用的浏览器版本太低，为了您更好的用户体验，建议您点击确定下载<span class="attr">QQ</span>浏览器")) &#123;</div><div class="line">                <span class="attr">window.open</span>("<span class="attr">https:</span>//<span class="attr">dldir1.qq.com</span>/<span class="attr">invc</span>/<span class="attr">tt</span>/<span class="attr">QQBrowser_Setup_SEM1.exe</span>","<span class="attr">_self</span>");</div><div class="line">              &#125;</div><div class="line">            &#125; <span class="attr">else</span> &#123;</div><div class="line">              //谷歌浏览器,版本符合要求</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      // 获取详细的<span class="attr">chrome</span>版本</div><div class="line">      <span class="attr">function</span> <span class="attr">VersionFilter</span> (<span class="attr">value</span>) &#123;</div><div class="line">        <span class="attr">var</span> <span class="attr">reg</span> = <span class="string">/Chrome\/\d&#123;2&#125;\.\d+\.\d+/</span></div><div class="line">         <span class="attr">return</span> <span class="attr">reg.exec</span>(<span class="attr">value</span>)</div><div class="line">      &#125;</div><div class="line">      <span class="attr">cheackBowser</span>()</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="打版本号"><a href="#打版本号" class="headerlink" title="打版本号"></a>打版本号</h2><p>在做项目时，测试环境只要更新，最好打个版本号(tag)，这样如果这次测试的结果比较稳定，要向线上更新，直接更新指定tag的代码到线上就行了，开发人员还是正常开发提交代码。</p>
+<h2 id="元编程"><a href="#元编程" class="headerlink" title="元编程"></a>元编程</h2><p>简单的理解可以说成是“关于编程的编程”，或者说“与编程相关的编程”，如程序甲可以输出 A ~ Z，而程序乙可以生成程序甲，那么编写程序乙的活动就可以算作元编程。元编程更狭义的意思应该是指“编写能改变语言语法特性或者运行时特性的程序”，一种语言本来做不到的事情，通过编程来修改它，使得它可以做到了，这就是元编程。</p>
+<h2 id="robots-txt"><a href="#robots-txt" class="headerlink" title="robots.txt"></a>robots.txt</h2><p><a href="https://baike.baidu.com/item/robots%E5%8D%8F%E8%AE%AE/2483797?fromtitle=robots.txt&amp;fromid=9518761&amp;fr=aladdin" target="_blank" rel="external">【百度百科】</a>robots协议也叫robots.txt（统一小写）是一种存放于网站根目录下的ASCII编码的文本文件，它通常告诉网络搜索引擎的漫游器（又称网络蜘蛛），此网站中的哪些内容是不应被搜索引擎的漫游器获取的，哪些是可以被漫游器获取的。因为一些系统中的URL是大小写敏感的，所以robots.txt的文件名应统一为小写。robots.txt应放置于网站的根目录下。如果想单独定义搜索引擎的漫游器访问子目录时的行为，那么可以将自定的设置合并到根目录下的robots.txt，或者使用robots元数据（Metadata，又称元数据）。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Other/" rel="tag">#Other</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/18/css-layout1/" rel="next" title="CSS-布局基础1">
+                <i class="fa fa-chevron-left"></i> CSS-布局基础1
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/21/css-layout2/" rel="prev" title="CSS-布局基础2">
+                CSS-布局基础2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

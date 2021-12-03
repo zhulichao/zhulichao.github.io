@@ -1,0 +1,892 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="React Native," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="高德地图key值 http://lbs.amap.com/，注册帐号 登录后，进入控制台，应用管理-&amp;gt;我的应用，添加新key PackageName为/android/app/src/main/AndroidManifest.xml中package的值 发布版安全码SHA1，在cmd下执行如下命令会生成SHA1值  cd .android  keytool -list -v -keystor">
+<meta name="keywords" content="React Native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-Native-Android使用高德地图">
+<meta property="og:url" content="https://zhulichao.github.io/2017/03/24/react-native-amap-android/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="高德地图key值 http://lbs.amap.com/，注册帐号 登录后，进入控制台，应用管理-&amp;gt;我的应用，添加新key PackageName为/android/app/src/main/AndroidManifest.xml中package的值 发布版安全码SHA1，在cmd下执行如下命令会生成SHA1值  cd .android  keytool -list -v -keystor">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://zhulichao.github.io/2017/03/24/react-native-amap-android/android-key.png">
+<meta property="og:image" content="https://zhulichao.github.io/2017/03/24/react-native-amap-android/mapError.png">
+<meta property="og:image" content="https://zhulichao.github.io/2017/03/24/react-native-amap-android/map.jpg">
+<meta property="og:image" content="https://zhulichao.github.io/2017/03/24/react-native-amap-android/locationText.png">
+<meta property="og:image" content="https://zhulichao.github.io/2017/03/24/react-native-amap-android/mapError3.png">
+<meta property="og:image" content="https://zhulichao.github.io/2017/03/24/react-native-amap-android/mapError4.png">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.211Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React-Native-Android使用高德地图">
+<meta name="twitter:description" content="高德地图key值 http://lbs.amap.com/，注册帐号 登录后，进入控制台，应用管理-&amp;gt;我的应用，添加新key PackageName为/android/app/src/main/AndroidManifest.xml中package的值 发布版安全码SHA1，在cmd下执行如下命令会生成SHA1值  cd .android  keytool -list -v -keystor">
+<meta name="twitter:image" content="https://zhulichao.github.io/2017/03/24/react-native-amap-android/android-key.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> React-Native-Android使用高德地图 | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#高德地图key值"><span class="nav-number">1.</span> <span class="nav-text">高德地图key值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显示地图"><span class="nav-number">2.</span> <span class="nav-text">显示地图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#地图定位"><span class="nav-number">3.</span> <span class="nav-text">地图定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置签名后key值问题"><span class="nav-number">4.</span> <span class="nav-text">配置签名后key值问题</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React-Native-Android使用高德地图
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-24T23:08:46+08:00" content="2017-03-24">
+              2017-03-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Native/" itemprop="url" rel="index">
+                    <span itemprop="name">React Native</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="高德地图key值"><a href="#高德地图key值" class="headerlink" title="高德地图key值"></a>高德地图key值</h2><ul>
+<li><a href="http://lbs.amap.com/，注册帐号" target="_blank" rel="external">http://lbs.amap.com/，注册帐号</a></li>
+<li>登录后，进入控制台，应用管理-&gt;我的应用，添加新key<ul>
+<li>PackageName为<code>/android/app/src/main/AndroidManifest.xml</code>中package的值</li>
+<li>发布版安全码SHA1，在cmd下执行如下命令会生成SHA1值<br>  <code>cd .android</code><br>  <code>keytool -list -v -keystore debug.keystore</code></li>
+</ul>
+</li>
+</ul>
+<img src="/2017/03/24/react-native-amap-android/android-key.png" title="申请高德地图key">
+<h2 id="显示地图"><a href="#显示地图" class="headerlink" title="显示地图"></a>显示地图</h2><p>使用<a href="https://github.com/dwd-fe/react-native-amap" target="_blank" rel="external">react-native-amap</a>依赖。</p>
+<ul>
+<li><p><code>NPM install</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install react-native-amap --save</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>android/setting.gradle</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">include &apos;:react-native-amap-view&apos;</div><div class="line">project(&apos;:react-native-amap-view&apos;).projectDir = new File(rootProject.projectDir, &apos;../node_modules/react-native-amap-view/android&apos;)</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>android/app/build.gradle</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile project(&quot;:react-native-amap-view&quot;)</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>MainApplication.java</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import com.dianwoba.rctamap.AMapPackage;</div><div class="line"></div><div class="line">      return Arrays.&lt;ReactPackage&gt;asList(</div><div class="line">          ...</div><div class="line">          , new AMapPackage()</div><div class="line">          ...</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>AndroidManifest.xml</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&lt;!--用于进行网络定位--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--用于访问GPS定位--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--获取运营商信息，用于支持提供运营商信息相关的接口--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--用于访问wifi网络信息，wifi信息会用于进行网络定位--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.CHANGE_WIFI_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--用于访问网络，网络定位需要上网--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--用于读取手机当前的状态--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--写入扩展存储，向扩展卡写入数据，用于写入缓存定位数据--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line"></div><div class="line">&lt;application</div><div class="line">  android:name=&quot;.MainApplication&quot;</div><div class="line">  android:allowBackup=&quot;true&quot;</div><div class="line">  android:label=&quot;@string/app_name&quot;</div><div class="line">  android:icon=&quot;@mipmap/ic_launcher&quot;</div><div class="line">  android:theme=&quot;@style/AppTheme&quot;&gt;</div><div class="line">  &lt;service android:name=&quot;com.amap.api.location.APSService&quot;&gt;&lt;/service&gt;</div><div class="line">  &lt;meta-data</div><div class="line">   android:name=&quot;com.amap.api.v2.apikey&quot;</div><div class="line">   android:value=&quot;e55ba4f9a563450e0e63f0493f01c323&quot;/&gt;&lt;!--高德地图key值--&gt;</div><div class="line">   ...</div></pre></td></tr></table></figure>
+</li>
+<li><p>Usage</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">import React, &#123; Component &#125; from &apos;react&apos;;</div><div class="line">import &#123; View, Text, TouchableHighlight, StyleSheet, InteractionManager, MapView &#125; from &apos;react-native&apos;;</div><div class="line">import AMapView from &apos;react-native-amap-view&apos;;</div><div class="line"></div><div class="line">class Amap extends Component &#123;</div><div class="line">  render()&#123;</div><div class="line">    return (</div><div class="line">        &lt;View style=&#123;&#123;flex: 1, backgroundColor: &apos;#f00&apos;&#125;&#125;&gt;</div><div class="line">            &lt;AMapView initialRegion=&#123;&#123;latitude: 30.315888, longitude: 120.165817&#125;&#125; showsUserLocation&gt;</div><div class="line">                &lt;AMapView.Marker pinColor=&quot;green&quot; draggable title=&apos;xxx&apos; description=&quot;这是一个好地方&quot; coordinate=&#123;&#123;latitude: 30.315888, longitude: 120.165817&#125;&#125; /&gt;</div><div class="line">            &lt;/AMapView&gt;</div><div class="line">        &lt;/View&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">export default Amap;</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动<br>react-native run-android 启动后，报如下错误，将<code>node_modules\react-native-amap-view\android\src\main\java\com\dianwoba\rctamap\RegionChangeEvent.java</code>的17行 改为<code>super(id);</code>就不报这个错了。<strong>之后可能需要重启6、7次才能正常启动起来。</strong></p>
+<img src="/2017/03/24/react-native-amap-android/mapError.png" title="报错如图">
+</li>
+</ul>
+<h2 id="地图定位"><a href="#地图定位" class="headerlink" title="地图定位"></a>地图定位</h2><p>使用<a href="https://github.com/xiaobuu/react-native-amap-location" target="_blank" rel="external">react-native-amap-location
+</a>依赖，该依赖仅用于android。</p>
+<ul>
+<li><p><code>NPM install</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install react-native-amap-location --save</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>android/setting.gradle</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">include &apos;:reactamaplocation&apos;</div><div class="line">project(&apos;:reactamaplocation&apos;).projectDir = new File(rootProject.projectDir, &apos;../node_modules/react-native-amap-location&apos;)</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>android/app/build.gradle</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile project(&apos;:reactamaplocation&apos;)</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>MainApplication.java</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import com.xiaobu.amap.AMapLocationReactPackage;</div><div class="line">      </div><div class="line">      return Arrays.&lt;ReactPackage&gt;asList(</div><div class="line">          ...</div><div class="line">          , new AMapLocationReactPackage()</div><div class="line">          ...</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>AndroidManifest.xml</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&lt;!--用于进行网络定位--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--用于访问GPS定位--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--获取运营商信息，用于支持提供运营商信息相关的接口--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--用于访问wifi网络信息，wifi信息会用于进行网络定位--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.CHANGE_WIFI_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--用于访问网络，网络定位需要上网--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--用于读取手机当前的状态--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;!--写入扩展存储，向扩展卡写入数据，用于写入缓存定位数据--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line"></div><div class="line">&lt;application</div><div class="line">  android:name=&quot;.MainApplication&quot;</div><div class="line">  android:allowBackup=&quot;true&quot;</div><div class="line">  android:label=&quot;@string/app_name&quot;</div><div class="line">  android:icon=&quot;@mipmap/ic_launcher&quot;</div><div class="line">  android:theme=&quot;@style/AppTheme&quot;&gt;</div><div class="line">  &lt;service android:name=&quot;com.amap.api.location.APSService&quot;&gt;&lt;/service&gt;</div><div class="line">  &lt;meta-data</div><div class="line">   android:name=&quot;com.amap.api.v2.apikey&quot;</div><div class="line">   android:value=&quot;e55ba4f9a563450e0e63f0493f01c323&quot;/&gt;&lt;!--高德地图key值--&gt;</div><div class="line">   ...</div></pre></td></tr></table></figure>
+</li>
+<li><p>Usage</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">import React, &#123; Component &#125; from &apos;react&apos;;</div><div class="line">import &#123; View, Text, TouchableHighlight, StyleSheet, InteractionManager, MapView &#125; from &apos;react-native&apos;;</div><div class="line">import AMapView from &apos;react-native-amap-view&apos;;</div><div class="line">import AMapLocation from &apos;react-native-amap-location&apos;;</div><div class="line"></div><div class="line">class Amap extends Component &#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    super(props);</div><div class="line">    this.state = &#123;</div><div class="line">      latitude: 39.888396427164594,</div><div class="line">      longitude: 116.35112870293183,</div><div class="line">    &#125;;</div><div class="line">    this.clearInterval = null;</div><div class="line">  &#125;</div><div class="line">  componentDidMount() &#123;</div><div class="line">    this.listener = AMapLocation.addEventListener((data) =&gt; &#123;</div><div class="line">      console.log(&apos;data&apos;, data);</div><div class="line">      this.setState(&#123;</div><div class="line">        latitude: data.latitude,</div><div class="line">        longitude: data.longitude,</div><div class="line">      &#125;);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    AMapLocation.startLocation(&#123;</div><div class="line">      accuracy: &apos;HighAccuracy&apos;,</div><div class="line">      killProcess: true,</div><div class="line">      needDetail: true,</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  componentWillUnmount() &#123;</div><div class="line">    AMapLocation.stopLocation();</div><div class="line">    this.listener.remove();</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;View style=&#123;&#123;height: 500, width: 500,&#125;&#125;&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">  render()&#123;</div><div class="line">    return (</div><div class="line">      &lt;View style=&#123;&#123;flex: 1, backgroundColor: &apos;#f00&apos;&#125;&#125;&gt;</div><div class="line">        &lt;AMapView initialRegion=&#123;&#123;latitude: this.state.latitude, longitude: this.state.longitude&#125;&#125; showsUserLocation&gt;</div><div class="line">          &lt;AMapView.Marker pinColor=&quot;green&quot; draggable title=&apos;当前位置&apos; description=&quot;这是一个好地方&quot; coordinate=&#123;&#123;latitude: this.state.latitude, longitude: this.state.longitude&#125;&#125; /&gt;</div><div class="line">        &lt;/AMapView&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">export default Amap;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<img src="/2017/03/24/react-native-amap-android/map.jpg" width="300" title="地图">
+<img src="/2017/03/24/react-native-amap-android/locationText.png" title="位置信息">
+<p>注意，如果是在模拟器上可能由于缺少定位权限报如下错误。</p>
+<img src="/2017/03/24/react-native-amap-android/mapError3.png" width="300" title="报错">
+<img src="/2017/03/24/react-native-amap-android/mapError4.png" title="缺少定位权限">
+<h2 id="配置签名后key值问题"><a href="#配置签名后key值问题" class="headerlink" title="配置签名后key值问题"></a>配置签名后key值问题</h2><p>如果项目中配置了签名，参考RN官网，也就是在android/app/build.gradle中添加了如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">android &#123;</div><div class="line">    ...</div><div class="line">    defaultConfig &#123; ... &#125;</div><div class="line">    signingConfigs &#123;</div><div class="line">        release &#123;</div><div class="line">            storeFile file(MYAPP_RELEASE_STORE_FILE)</div><div class="line">            storePassword MYAPP_RELEASE_STORE_PASSWORD</div><div class="line">            keyAlias MYAPP_RELEASE_KEY_ALIAS</div><div class="line">            keyPassword MYAPP_RELEASE_KEY_PASSWORD</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    buildTypes &#123;</div><div class="line">        release &#123;</div><div class="line">            ...</div><div class="line">            signingConfig signingConfigs.release</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>这时生成环境的高德key值需要根据签名中的SHA1值生成，打开cmd，切换到签名keystore文件所在目录，输入 <code>keytool -list -v -keystore xxx.keystore</code>命令即可查看SHA1值。由这个SHA1值生成的高德key值在发布环境是好使的。</p>
+<p>但是在开发环境会报key值不正确，首先的感觉是SHA1值是生成环境的，那再根据开发环境SHA1值生成key值试一次，打开出cmd，<code>cd .android</code> 进入到 .android下，输入<code>keytool -v -list -keystore debug.keystore</code>命令即可查看开发SHA1值，但仍然报key值不正确。在网上查原因是由于配置了发布签名导致的，需要修改android/app/build.gradle文件让开发环境使用相同的签名配置，这样可以开发和生成环境使用同一个高德key值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">signingConfigs &#123;</div><div class="line">    release &#123;</div><div class="line">        storeFile file(MYAPP_RELEASE_STORE_FILE)</div><div class="line">        storePassword MYAPP_RELEASE_STORE_PASSWORD</div><div class="line">        keyAlias MYAPP_RELEASE_KEY_ALIAS</div><div class="line">        keyPassword MYAPP_RELEASE_KEY_PASSWORD</div><div class="line">    &#125;</div><div class="line">    debug &#123;</div><div class="line">        storeFile file(MYAPP_RELEASE_STORE_FILE)</div><div class="line">        storePassword MYAPP_RELEASE_STORE_PASSWORD</div><div class="line">        keyAlias MYAPP_RELEASE_KEY_ALIAS</div><div class="line">        keyPassword MYAPP_RELEASE_KEY_PASSWORD</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React-Native/" rel="tag">#React Native</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/23/react-native-ios/" rel="next" title="React-Native-IOS开发">
+                <i class="fa fa-chevron-left"></i> React-Native-IOS开发
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/24/react-native-amap-ios/" rel="prev" title="React-Native-IOS使用高德地图">
+                React-Native-IOS使用高德地图 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

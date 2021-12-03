@@ -1,0 +1,862 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ES6," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="历史上，JavaScript 一直没有模块（module）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。在 ES6 之前，社区制定了一些模块加载方案，最主要的有 CommonJS 和 AMD 两种。前者用于服务器，后者用于浏览器。ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决">
+<meta name="keywords" content="ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6-Module">
+<meta property="og:url" content="https://zhulichao.github.io/2020/05/22/es6-module/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="历史上，JavaScript 一直没有模块（module）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。在 ES6 之前，社区制定了一些模块加载方案，最主要的有 CommonJS 和 AMD 两种。前者用于服务器，后者用于浏览器。ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.288Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6-Module">
+<meta name="twitter:description" content="历史上，JavaScript 一直没有模块（module）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。在 ES6 之前，社区制定了一些模块加载方案，最主要的有 CommonJS 和 AMD 两种。前者用于服务器，后者用于浏览器。ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> ES6-Module | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ES6-Module
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-05-22T16:13:43+08:00" content="2020-05-22">
+              2020-05-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ES6/" itemprop="url" rel="index">
+                    <span itemprop="name">ES6</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>历史上，JavaScript 一直没有模块（module）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。在 ES6 之前，社区制定了一些模块加载方案，最主要的有 CommonJS 和 AMD 两种。前者用于服务器，后者用于浏览器。ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决方案。</p>
+<p>ES6 模块的设计思想是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。CommonJS 和 AMD 模块，都只能在运行时确定这些东西，导致完全没办法在编译时做“静态优化”。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// CommonJS 模块就是对象，输入时必须查找对象属性。这种加载称为“运行时加载”，因为只有运行时才能得到这个对象。</span></div><div class="line"><span class="keyword">let</span> &#123; stat, exists, readfile &#125; = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 等同于</span></div><div class="line"><span class="keyword">let</span> _fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"><span class="keyword">let</span> stat = _fs.stat;</div><div class="line"><span class="keyword">let</span> exists = _fs.exists;</div><div class="line"><span class="keyword">let</span> readfile = _fs.readfile;</div><div class="line"></div><div class="line"><span class="comment">// ES6 模块不是对象，而是通过 export 命令显式指定输出的代码，再通过 import 命令输入指定方法，其他方法不加载。这种加载称为“编译时加载”或者静态加载。</span></div><div class="line"><span class="keyword">import</span> &#123; stat, exists, readFile &#125; <span class="keyword">from</span> <span class="string">'fs'</span>;</div></pre></td></tr></table></figure>
+<p>ES6 模块还有以下好处：</p>
+<ul>
+<li>静态加载</li>
+<li>不再需要 UMD 模块格式了，将来服务器和浏览器都会支持 ES6 模块格式</li>
+<li>将来浏览器的新 API 就能用模块格式提供，不再必须做成全局变量或者 <code>navigator</code> 对象的属性</li>
+<li>不再需要对象作为命名空间（比如 Math 对象），未来这些功能可以通过模块提供</li>
+</ul>
+<p>模块功能主要由两个命令构成：<code>export</code> 和 <code>import</code>。<code>export</code> 命令用于规定模块的对外接口，<code>import</code> 命令用于输入其他模块提供的功能。<code>import</code> 和 <code>export</code> 命令只能在模块的顶层，不能在代码块之中。</p>
+<p><code>export</code> 命令用于规定模块的对外接口，必须与模块内部的变量建立一一对应关系，<code>export</code> 语句输出的接口，与其对应的值是动态绑定关系，即通过该接口，可以取到模块内部实时的值。<code>export</code> 命令可以出现在模块的任何位置，只要处于模块顶层就可以。可以用 <code>as</code> 重命名，可以用不同的名字输出两次。<code>export default</code> 命令，为模块指定默认输出，一个模块只能有一个默认输出，<code>export default</code> 就是输出一个叫做 <code>default</code> 的变量或方法，然后系统允许你为它取任意名字。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">var</span> firstName = <span class="string">'Michael'</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">var</span> lastName = <span class="string">'Jackson'</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">var</span> year = <span class="number">1958</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> firstName = <span class="string">'Michael'</span>;</div><div class="line"><span class="keyword">var</span> lastName = <span class="string">'Jackson'</span>;</div><div class="line"><span class="keyword">var</span> year = <span class="number">1958</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> &#123; firstName, lastName, year &#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> &#123;</div><div class="line">  firstName <span class="keyword">as</span> f,</div><div class="line">  lastName <span class="keyword">as</span> l,</div><div class="line">  lastName <span class="keyword">as</span> L</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">multiply</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> x * y;</div><div class="line">&#125;;</div><div class="line"><span class="comment">// 默认输出</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'foo'</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 因为 export default 命令的本质是将后面的值，赋给 default 变量，所以可以直接将一个值写在 export default 之后</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="number">42</span>;</div></pre></td></tr></table></figure>
+<p><code>import</code> 命令用于输入其他模块提供的功能。如果想为输入的变量重新取一个名字，<code>import</code> 命令要使用 <code>as</code> 关键字，将输入的变量重命名。<code>import</code> 命令输入的变量都是只读的，因为它的本质是输入接口。如果输入的变量是一个对象，改写属性是允许的。<code>import</code> 命令具有提升效果，会提升到整个模块的头部，首先执行。由于 <code>import</code> 是静态执行，所以不能使用表达式和变量、if 语句，这些只有在运行时才能得到结果的语法结构。<code>import</code> 语句会执行所加载的模块。如果多次重复执行同一句 <code>import</code> 语句，那么只会执行一次，而不会执行多次。除了指定加载某个输出值，还可以使用整体加载，即用星号（<code>*</code>）指定一个对象，所有输出值都加载在这个对象上面，这个对象应该是可以静态分析的，所以不允许运行时改变。加载默认模块时，<code>import</code> 命令可以为该匿名函数指定任意名字。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; firstName, lastName, year &#125; <span class="keyword">from</span> <span class="string">'./profile.js'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; lastName <span class="keyword">as</span> surname &#125; <span class="keyword">from</span> <span class="string">'./profile.js'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">'lodash'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> circle <span class="keyword">from</span> <span class="string">'./circle'</span>;</div><div class="line"><span class="comment">// 加载默认输出</span></div><div class="line"><span class="keyword">import</span> customName <span class="keyword">from</span> <span class="string">'./export-default'</span>;</div></pre></td></tr></table></figure>
+<p>如果在一个模块之中，先输入后输出同一个模块，<code>import</code> 语句可以与 <code>export</code> 语句写在一起。但需要注意的是，写成一行以后，<code>foo</code> 和 <code>bar</code> 实际上并没有被导入当前模块，只是相当于对外转发了这两个接口，导致当前模块不能直接使用 <code>foo</code> 和 <code>bar</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> &#123; foo, bar &#125; <span class="keyword">from</span> <span class="string">'my_module'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> &#123; foo <span class="keyword">as</span> myFoo &#125; <span class="keyword">from</span> <span class="string">'my_module'</span>;</div><div class="line"><span class="comment">// 忽略 my_module 模块的 default 方法</span></div><div class="line"><span class="keyword">export</span> * <span class="keyword">from</span> <span class="string">'my_module'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> &#123; <span class="keyword">default</span> &#125; <span class="keyword">from</span> <span class="string">'foo'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> &#123; es6 <span class="keyword">as</span> <span class="keyword">default</span> &#125; <span class="keyword">from</span> <span class="string">'./someModule'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> &#123; <span class="keyword">default</span> <span class="keyword">as</span> es6 &#125; <span class="keyword">from</span> <span class="string">'./someModule'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> * <span class="keyword">as</span> ns <span class="keyword">from</span> <span class="string">"mod"</span>;</div><div class="line"><span class="comment">// 等同于</span></div><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> ns <span class="keyword">from</span> <span class="string">"mod"</span>;</div><div class="line"><span class="keyword">export</span> &#123;ns&#125;;</div></pre></td></tr></table></figure>
+<p>ES2020提案 引入 <code>import()</code> 函数，支持动态加载模块。<code>import</code> 命令能够接受什么参数，<code>import()</code> 函数就能接受什么参数，两者区别主要是后者为动态加载。<code>import()</code> 返回一个 <code>Promise</code> 对象。 <code>import()</code> 函数可以用在任何地方，不仅仅是模块，非模块的脚本也可以使用。<code>import()</code> 函数与所加载的模块没有静态连接关系，这点也是与 <code>import</code> 语句不相同。<code>import()</code> 类似于 Node 的 <code>require</code> 方法，区别主要是前者是异步加载，后者是同步加载。<code>import()</code> 适用于按需加载、条件加载、动态的模块路径。<code>import()</code> 加载模块成功以后，这个模块会作为一个对象，当作 <code>then</code> 方法的参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> main = <span class="built_in">document</span>.querySelector(<span class="string">'main'</span>);</div><div class="line"></div><div class="line"><span class="keyword">import</span>(<span class="string">`./section-modules/<span class="subst">$&#123;someVariable&#125;</span>.js`</span>)</div><div class="line">  .then(<span class="built_in">module</span> =&gt; &#123;</div><div class="line">    <span class="built_in">module</span>.loadPageInto(main);</div><div class="line">  &#125;)</div><div class="line">  .catch(err =&gt; &#123;</div><div class="line">    main.textContent = err.message;</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<p>HTML 网页中，浏览器通过 <code>&lt;script&gt;</code> 标签加载 JavaScript 脚本，默认情况下，浏览器是同步加载 JavaScript 脚本。这显然是很不好的体验，所以浏览器允许脚本异步加载，下面就是两种异步加载的语法。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"path/to/myModule.js"</span> <span class="attr">defer</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"path/to/myModule.js"</span> <span class="attr">async</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>defer</code> 与 <code>async</code> 的区别是：<code>defer</code> 要等到整个页面在内存中正常渲染结束（DOM 结构完全生成，以及其他脚本执行完成），才会执行；<code>async</code> 一旦下载完，渲染引擎就会中断渲染，执行这个脚本以后，再继续渲染。一句话，<code>defer</code> 是“渲染完再执行”，<code>async</code> 是“下载完就执行”。另外，如果有多个 <code>defer</code> 脚本，会按照它们在页面出现的顺序加载，而多个 <code>async</code> 脚本是不能保证加载顺序的。</p>
+<p>浏览器加载 ES6 模块，也使用 <code>&lt;script&gt;</code> 标签，但是要加入 <code>type=&quot;module&quot;</code> 属性。浏览器对于带有 <code>type=&quot;module&quot;</code> 的 <code>&lt;script&gt;</code>，都是异步加载，不会造成堵塞浏览器，即等到整个页面渲染完，再执行模块脚本，等同于打开了 <code>&lt;script&gt;</code> 标签的 <code>defer</code> 属性。<code>&lt;script&gt;</code> 标签的 <code>async</code> 属性也可以打开，这时只要加载完成，渲染引擎就会中断渲染立即执行。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"module"</span> <span class="attr">src</span>=<span class="string">"./foo.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>代码是在模块作用域之中运行，而不是在全局作用域运行。模块内部的顶层变量，外部不可见。模块脚本自动采用严格模式，不管有没有声明use strict。模块之中，顶层的 <code>this</code> 关键字返回 <code>undefined</code>，而不是指向 <code>window</code>。也就是说，在模块顶层使用 <code>this</code> 关键字，是无意义的。同一个模块如果加载多次，将只执行一次。<strong>利用顶层的 <code>this</code> 等于 <code>undefined</code> 这个语法点，可以侦测当前代码是否在 ES6 模块之中。</strong></p>
+<p>ES6 模块与 CommonJS 模块完全不同：</p>
+<ul>
+<li>CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用</li>
+<li>CommonJS 模块是运行时加载，ES6 模块是编译时输出接口</li>
+</ul>
+<p>Node.js 要求，<code>.mjs</code> 文件总是以 ES6 模块加载，<code>.cjs</code> 文件总是以 CommonJS 模块加载，<code>.js</code> 文件的加载取决于 <code>package.json</code> 里面 <code>type</code> 字段的设置，取值为 <code>module</code> 或 <code>commonjs</code>。</p>
+<p><code>package.json</code> 文件有两个字段可以指定模块的入口文件：<code>main</code> 和 <code>exports</code>，<code>exports</code> 字段的优先级高于 <code>main</code> 字段。<code>exports</code> 有多种用法：</p>
+<ul>
+<li>可以指定脚本或子目录的别名</li>
+<li>别名如果是<code>.</code>，就代表模块的主入口，优先级高于 <code>main</code> 字段，可以简写成 <code>exports</code>字段的值</li>
+<li>条件加载，利用 <code>.</code> 这个别名，可以为 ES6 模块和 CommonJS 指定不同的入口</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 指定脚本或子目录的别名</span></div><div class="line">&#123;</div><div class="line">  <span class="string">"exports"</span>: &#123;</div><div class="line">    <span class="string">"./submodule"</span>: <span class="string">"./src/submodule.js"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">import</span> submodule <span class="keyword">from</span> <span class="string">'es-module-package/submodule'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 模块的主入口</span></div><div class="line">&#123;</div><div class="line">  <span class="string">"exports"</span>: &#123;</div><div class="line">    <span class="string">"."</span>: <span class="string">"./main.js"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 等同于</span></div><div class="line">&#123;</div><div class="line">  <span class="string">"exports"</span>: <span class="string">"./main.js"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 条件加载</span></div><div class="line">&#123;</div><div class="line">  <span class="string">"type"</span>: <span class="string">"module"</span>,</div><div class="line">  <span class="string">"exports"</span>: &#123;</div><div class="line">    <span class="string">"."</span>: &#123;</div><div class="line">      <span class="string">"require"</span>: <span class="string">"./main.cjs"</span>,</div><div class="line">      <span class="string">"default"</span>: <span class="string">"./main.js"</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 等同于，如果同时还有其他别名，就不能采用简写</span></div><div class="line">&#123;</div><div class="line">  <span class="string">"exports"</span>: &#123;</div><div class="line">    <span class="string">"require"</span>: <span class="string">"./main.cjs"</span>,</div><div class="line">    <span class="string">"default"</span>: <span class="string">"./main.js"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>CommonJS 的一个模块，就是一个脚本文件。<code>require</code> 命令第一次加载该脚本，就会执行整个脚本，然后在内存生成一个对象，以后需要用到这个模块的时候，就会到这个对象上面取值，即使再次执行 <code>require</code> 命令，也不会再次执行该模块，而是到缓存之中取值。也就是说，CommonJS 模块无论加载多少次，都只会在第一次加载时运行一次，以后再加载，就返回第一次运行的结果，除非手动清除系统缓存。CommonJS 模块的重要特性是加载时执行，即脚本代码在 <code>require</code> 的时候，就会全部执行。一旦出现某个模块被”循环加载”，就只输出已经执行的部分，还未执行的部分不会输出。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line">exports.done = <span class="literal">false</span>;</div><div class="line"><span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">'./b.js'</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'在 a.js 之中，b.done = %j'</span>, b.done);</div><div class="line">exports.done = <span class="literal">true</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'a.js 执行完毕'</span>);</div><div class="line"></div><div class="line"><span class="comment">// b.js</span></div><div class="line">exports.done = <span class="literal">false</span>;</div><div class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a.js'</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'在 b.js 之中，a.done = %j'</span>, a.done);</div><div class="line">exports.done = <span class="literal">true</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'b.js 执行完毕'</span>);</div><div class="line"></div><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a.js'</span>);</div><div class="line"><span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">'./b.js'</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'在 main.js 之中, a.done=%j, b.done=%j'</span>, a.done, b.done);</div><div class="line"></div><div class="line"><span class="comment">// 在 b.js 之中，a.done = false</span></div><div class="line"><span class="comment">// b.js 执行完毕</span></div><div class="line"><span class="comment">// 在 a.js 之中，b.done = true</span></div><div class="line"><span class="comment">// a.js 执行完毕</span></div><div class="line"><span class="comment">// 在 main.js 之中, a.done=true, b.done=true</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.mjs</span></div><div class="line"><span class="keyword">import</span> &#123;bar&#125; <span class="keyword">from</span> <span class="string">'./b'</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'a.mjs'</span>);</div><div class="line"><span class="built_in">console</span>.log(bar);</div><div class="line"><span class="keyword">export</span> <span class="keyword">let</span> foo = <span class="string">'foo'</span>;</div><div class="line"></div><div class="line"><span class="comment">// b.mjs</span></div><div class="line"><span class="keyword">import</span> &#123;foo&#125; <span class="keyword">from</span> <span class="string">'./a'</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'b.mjs'</span>);</div><div class="line"><span class="built_in">console</span>.log(foo);</div><div class="line"><span class="keyword">export</span> <span class="keyword">let</span> bar = <span class="string">'bar'</span>;</div><div class="line"></div><div class="line"><span class="comment">// $ node --experimental-modules a.mjs</span></div><div class="line"><span class="comment">// b.mjs</span></div><div class="line"><span class="comment">// ReferenceError: foo is not defined</span></div></pre></td></tr></table></figure>
+<p>ES6 处理循环加载时，首先，执行 <code>a.mjs</code> 以后，引擎发现它加载了 <code>b.mjs</code>，因此会优先执行 <code>b.mjs</code>，然后再执行 <code>a.mjs</code>。接着，执行 <code>b.mjs</code> 的时候，已知它从 <code>a.mjs</code> 输入了 <code>foo</code> 接口，这时不会去执行 <code>a.mjs</code>，而是认为这个接口已经存在了，继续往下执行。执行到第三行 <code>console.log(foo)</code> 的时候，才发现这个接口根本没定义，因此报错。解决这个问题的方法，就是让 <code>b.mjs</code> 运行的时候，<code>foo</code> 已经有定义了，这可以通过将 <code>foo</code> 写成函数来解决，因为函数具有提升作用。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ES6/" rel="tag">#ES6</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/22/es6-class/" rel="next" title="ES6-Class">
+                <i class="fa fa-chevron-left"></i> ES6-Class
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/12/jsdoc/" rel="prev" title="JSDoc javascript 注释">
+                JSDoc javascript 注释 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

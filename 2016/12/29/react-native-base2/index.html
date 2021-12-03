@@ -1,0 +1,846 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="React Native," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="View组件View组件还有三个没有在官方文档中公布的回调函数：onTouchStart、onTouchMove、onTouchEnd。这三个回调函数都有一个特殊的性质，就是在React Native开发中，通常是在最上层的组建中(render函数靠后渲染的组件)处理触摸事件的；但这三个回调函数总能收到事件，而不管用户当前触摸区域是空白的，还是有其它组件已经处理了触摸事件。 pointEvents">
+<meta name="keywords" content="React Native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-Native-基础2">
+<meta property="og:url" content="https://zhulichao.github.io/2016/12/29/react-native-base2/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="View组件View组件还有三个没有在官方文档中公布的回调函数：onTouchStart、onTouchMove、onTouchEnd。这三个回调函数都有一个特殊的性质，就是在React Native开发中，通常是在最上层的组建中(render函数靠后渲染的组件)处理触摸事件的；但这三个回调函数总能收到事件，而不管用户当前触摸区域是空白的，还是有其它组件已经处理了触摸事件。 pointEvents">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://zhulichao.github.io/2016/12/29/react-native-base2/measure.png">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.202Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React-Native-基础2">
+<meta name="twitter:description" content="View组件View组件还有三个没有在官方文档中公布的回调函数：onTouchStart、onTouchMove、onTouchEnd。这三个回调函数都有一个特殊的性质，就是在React Native开发中，通常是在最上层的组建中(render函数靠后渲染的组件)处理触摸事件的；但这三个回调函数总能收到事件，而不管用户当前触摸区域是空白的，还是有其它组件已经处理了触摸事件。 pointEvents">
+<meta name="twitter:image" content="https://zhulichao.github.io/2016/12/29/react-native-base2/measure.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> React-Native-基础2 | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#View组件"><span class="nav-number">1.</span> <span class="nav-text">View组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pointEvents属性"><span class="nav-number">2.</span> <span class="nav-text">pointEvents属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备放置状态、onLayout回调函数"><span class="nav-number">3.</span> <span class="nav-text">设备放置状态、onLayout回调函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setNativeProps成员函数"><span class="nav-number">4.</span> <span class="nav-text">setNativeProps成员函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#measure成员函数"><span class="nav-number">5.</span> <span class="nav-text">measure成员函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AsyncStorage"><span class="nav-number">6.</span> <span class="nav-text">AsyncStorage</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React-Native-基础2
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-29T07:51:49+08:00" content="2016-12-29">
+              2016-12-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Native/" itemprop="url" rel="index">
+                    <span itemprop="name">React Native</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="View组件"><a href="#View组件" class="headerlink" title="View组件"></a>View组件</h2><p>View组件还有三个没有在官方文档中公布的回调函数：onTouchStart、onTouchMove、onTouchEnd。这三个回调函数都有一个特殊的性质，就是在React Native开发中，通常是在最上层的组建中(render函数靠后渲染的组件)处理触摸事件的；但这三个回调函数总能收到事件，而不管用户当前触摸区域是空白的，还是有其它组件已经处理了触摸事件。</p>
+<h2 id="pointEvents属性"><a href="#pointEvents属性" class="headerlink" title="pointEvents属性"></a>pointEvents属性</h2><p>在React Native中，触摸事件总是被传送给最上层的组件。当很多组件被布局在手机屏幕上时，有的组件可能会遮盖住它下方的其它组件。对于某些应用逻辑，被遮盖住的组件需要处理触摸事件，这时就可以使用pointerEvents属性。</p>
+<ul>
+<li>取值none，表示发生在本组件与本组件的子组件上的触摸事件都会交给本组件的父组件处理；</li>
+<li>取值box-none，表示发生在本组件显示范围内（但非本组件的子组件显示范围内）的事件将交由本组件的父组件处理，发生在本组件的子组件显示范围内的触摸事件由子组件处理；</li>
+<li>取值box-only，表示发生在本组件显示范围内的触摸事件将全部有本组件处理（即使触摸事件发生在本组件的子组件显示范围内）；</li>
+<li>取值auto会视组件的不同而不同。</li>
+</ul>
+<h2 id="设备放置状态、onLayout回调函数"><a href="#设备放置状态、onLayout回调函数" class="headerlink" title="设备放置状态、onLayout回调函数"></a>设备放置状态、onLayout回调函数</h2><p>使项目在两个平台行都能自动调整应用的显示方式来适应设备当前的放置状态，需要：</p>
+<ul>
+<li>在应用启动时能检测到设备是横置的还是竖置的；</li>
+<li>当设备从横置变为竖置或从竖置变为横置时，应用要能监测到这个事件。</li>
+</ul>
+<p>检测设备当前是竖置还是横置的一个方法是取当前设备屏幕的宽与高，正常的设备在竖置时宽小于高，在横置时宽大于高。Demensions API 可以获取屏幕的宽和高。</p>
+<p>通常，React Native 开发的应用有一个或多个根View，根View的特点是它没有父组件。onLayout回调函数在组件被加载或者布局被改变时会被调用，通过指定这个根View组件的onLayout回调函数可以很方便地得到初始设备的放置状态，检测设备放置状态的改变并得到改变后新的屏幕高度与宽度。为了实现这些功能，不能指定根View的宽和高，并需要设定根View组件的样式flex值为1。<strong>注意，模拟器显示方式被改变时不会触发Layout事件。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">&apos;user strick&apos;;</div><div class="line">var React = require(&apos;react-native&apos;);</div><div class="line">var &#123; AppRegister, StyleSheet, Text, View, Dimensions &#125; = React;</div><div class="line">var Project19 = React.createClass(&#123;</div><div class="line">    _onLayout: function (event) &#123;</div><div class="line">        console.log(&apos;屏幕的宽度：&apos;, Dimensions.get(&apos;window&apos;).width);</div><div class="line">        console.log(&apos;屏幕的高度：&apos;, Dimensions.get(&apos;window&apos;).height);</div><div class="line">        let &#123; x, y, width, height &#125; = event.nativeEvent.layout;</div><div class="line">        console.log(&apos;View的宽度：&apos;, width);</div><div class="line">        console.log(&apos;View的高度：&apos;, height);</div><div class="line">        console.log(&apos;View的左上顶点横坐标：&apos;, x);</div><div class="line">        console.log(&apos;View的左上顶点纵坐标：&apos;, y);</div><div class="line">    &#125;,</div><div class="line">    _onLayoutText: function(event) &#123;</div><div class="line">        let &#123; x, y, width, height &#125; = event.nativeEvent.layout;</div><div class="line">        console.log(&apos;Text的宽度：&apos;, width);</div><div class="line">        console.log(&apos;Text的高度：&apos;, height);</div><div class="line">        console.log(&apos;Text的左上顶点横坐标：&apos;, x);</div><div class="line">        console.log(&apos;Text的左上顶点纵坐标：&apos;, y);</div><div class="line">    &#125;,</div><div class="line">    render: function() &#123;</div><div class="line">        return (</div><div class="line">            &lt;View style=&#123;styles.container&#125; onLayout=&#123;this._onLayout&#125;&gt;</div><div class="line">                &lt;Text style=&#123;styles.welcom&#125; onLayout=&#123;this._onLayoutText&#125;&gt;</div><div class="line">                    Welcom to React Native!</div><div class="line">                &lt;/Text&gt;</div><div class="line">            &lt;/View&gt;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">var styles = StyleSheet.create(&#123;</div><div class="line">    container: &#123;</div><div class="line">        flex: 1,</div><div class="line">        justifyContent: &apos;center&apos;,</div><div class="line">        alignItem: &apos;center&apos;,</div><div class="line">        backgroundColor: &apos;#F5FCFF&apos;,</div><div class="line">    &#125;,</div><div class="line">    welcom: &#123;</div><div class="line">        fontSize: 20,</div><div class="line">        textAlign: &apos;center&apos;,</div><div class="line">        margin: 10,</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">AppRegister.registerComponent(&apos;Project19&apos;, () =&gt; Project19);</div></pre></td></tr></table></figure>
+<h2 id="setNativeProps成员函数"><a href="#setNativeProps成员函数" class="headerlink" title="setNativeProps成员函数"></a>setNativeProps成员函数</h2><p>每个React Native组件都有一个公开的成员函数setNativeProps，使用它可以增加或修改组件的属性，但不建议使用该函数，它是一个“简单、粗暴”的方法，可以直接操作任何层面组件的属性，而不是使用React Native组件的状态机变量，这样会使代码逻辑混乱。</p>
+<p>在不得不频繁刷新而又遇到性能瓶颈时，比如创建连续的动画，同时要避免渲染组件结构和同步太多的视图变化所带来的大量开销时，才考虑使用setNativeProps函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">let Project19 = React.createClass(&#123;</div><div class="line">    getInitialState: function() &#123;</div><div class="line">        return &#123;</div><div class="line">            textInputValue: &apos;&apos;</div><div class="line">        &#125;;</div><div class="line">    &#125;,</div><div class="line">    buttonPressed: function() &#123;</div><div class="line">        let textInputValue = &apos;new value&apos;;</div><div class="line">        this.setState(&#123; textInputValue &#125;);</div><div class="line">        this.refs.textInputRefer.setNativeProps(&#123;</div><div class="line">            editable: false</div><div class="line">        &#125;);</div><div class="line">        this.refs.text2.setNativeProps(&#123;</div><div class="line">            style: &#123;</div><div class="line">                color: &apos;blue&apos;,</div><div class="line">                fontSize: 30</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;,</div><div class="line">    render: function() &#123;</div><div class="line">        return (</div><div class="line">            &lt;View style=&#123;styles.container&#125;&gt;</div><div class="line">                &lt;Text style=&#123;styles.buttonStyle&#125; onPress=&#123;this.buttonPressed&#125;&gt;</div><div class="line">                    Press me genterly</div><div class="line">                &lt;/Text&gt;</div><div class="line">                &lt;Text style=&#123;styles.textPromptStyle&#125; ref=&quot;text2&quot;</div><div class="line">                    文字提示</div><div class="line">                &lt;/Text&gt;</div><div class="line">                &lt;View&gt;</div><div class="line">                    &lt;TextInput</div><div class="line">                        style=&#123;styles.textInputStyle&#125;</div><div class="line">                        ref=&quot;textInputRefer&quot;</div><div class="line">                        value=&#123;this.state.textInputValue&#125;</div><div class="line">                        onChangeText=&#123;(textInputValue)=&gt;this.setState(&#123;textInputValue&#125;)&#125;</div><div class="line">                    /&gt;</div><div class="line">                &lt;/View&gt;</div><div class="line">            &lt;/View&gt;</div><div class="line">        );</div><div class="line">    &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="measure成员函数"><a href="#measure成员函数" class="headerlink" title="measure成员函数"></a>measure成员函数</h2><p>每一个React Native组件都有一个measure成员函数，调用它可以得到组件当前的宽、高与位置信息。使用View组件的onLayout回调函数是获取组件的宽、高与位置信息的好办法，但对某些代码生成的组件，使用组件的measure成员函数是唯一的方法。<strong>Ant Design Mobile组件无法使用measure方法。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">// 在componentDidMount执行完后才可以获取位置信息</div><div class="line">componentDidMount: function() &#123;</div><div class="line">    var aref = this.tempfunc;</div><div class="line">    window.setTimeout(aref, 1);</div><div class="line">&#125;,</div><div class="line">tempfunc: function() &#123;</div><div class="line">    this.refs.aTextInputRef.measure( this.getTextInputPosition);</div><div class="line">&#125;,</div><div class="line">getTextInputPosition: function(fx, fy, width, height, px, py) &#123;</div><div class="line">    console.log(&apos;getTextInputPosition方法&apos;);  </div><div class="line">    console.log(&apos;Component width: &apos; + width);</div><div class="line">    console.log(&apos;Component height: &apos; + height);</div><div class="line">    console.log(&apos;X offset to frame: &apos; + fx); // 这个值无用</div><div class="line">    console.log(&apos;Y offset to frame: &apos; + fy);</div><div class="line">    console.log(&apos;X offset to page: &apos; + px);</div><div class="line">    console.log(&apos;Y offset to page: &apos; + py);</div><div class="line">&#125;,</div><div class="line">...</div></pre></td></tr></table></figure>
+<img src="/2016/12/29/react-native-base2/measure.png" title="结果如图">
+<h2 id="AsyncStorage"><a href="#AsyncStorage" class="headerlink" title="AsyncStorage"></a>AsyncStorage</h2><p>React Native框架不支持调用JavaScript的fs包进行文件读写操作，<strong>但提供了AsyncStorage API将“字符串键值对”存储在手机存储空间中</strong>。AsyncStorage不提供索引、排序等数据库中经常使用的功能，每个AsyncStorage API提供的方法都会返回一个JavaScript的Promise对象。</p>
+<p>使用AsyncStorage的静态函数时，如果参数类型提供错误，try…catch机制将无法捕捉到这个错误。使用Promise机制的rejection状态处理函数中或者利用Promise机制发生错误时的回调函数可以捕捉到错误。但这三种机制中的任何一种都不能阻止手机屏幕的红屏错误。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React-Native/" rel="tag">#React Native</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/26/promise-async-base/" rel="next" title="Promise-Async-基础">
+                <i class="fa fa-chevron-left"></i> Promise-Async-基础
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/08/javascript-event-loop/" rel="prev" title="JavaScript-事件循环">
+                JavaScript-事件循环 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

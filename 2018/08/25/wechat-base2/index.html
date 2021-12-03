@@ -1,0 +1,879 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="WeChat," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="前端学习之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="开发过程中的发现 wx:for 可以变量对象，wx:for-index 为对象的 key，wx:for-item 为对象的值 wx.getBackgroundAudioManager() 获取到的值，是可能随时发生变化的，如下情况的代码，在两次输出时可能会返回不同的值 1234const backgroundAudioManager = wx.getBackgroundAudioManager()">
+<meta name="keywords" content="WeChat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序开发基础2">
+<meta property="og:url" content="https://zhulichao.github.io/2018/08/25/wechat-base2/index.html">
+<meta property="og:site_name" content="前端学习之路">
+<meta property="og:description" content="开发过程中的发现 wx:for 可以变量对象，wx:for-index 为对象的 key，wx:for-item 为对象的值 wx.getBackgroundAudioManager() 获取到的值，是可能随时发生变化的，如下情况的代码，在两次输出时可能会返回不同的值 1234const backgroundAudioManager = wx.getBackgroundAudioManager()">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://zhulichao.github.io/2018/08/25/wechat-base2/folder.png">
+<meta property="og:updated_time" content="2021-08-11T08:16:24.257Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序开发基础2">
+<meta name="twitter:description" content="开发过程中的发现 wx:for 可以变量对象，wx:for-index 为对象的 key，wx:for-item 为对象的值 wx.getBackgroundAudioManager() 获取到的值，是可能随时发生变化的，如下情况的代码，在两次输出时可能会返回不同的值 1234const backgroundAudioManager = wx.getBackgroundAudioManager()">
+<meta name="twitter:image" content="https://zhulichao.github.io/2018/08/25/wechat-base2/folder.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 微信小程序开发基础2 | 前端学习之路 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41d77ee7657d4e19a7f8a6361fe2121f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">前端学习之路</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+  
+</nav>
+
+ </div>
+      
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.png"
+               alt="小朱" />
+          <p class="site-author-name" itemprop="name">小朱</p>
+          <p class="site-description motion-element" itemprop="description">前端学习之路</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">168</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhulichao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://caniuse.com" title="caniuse" target="_blank">caniuse</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://codepen.io" title="codepen" target="_blank">codepen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://jsbin.com/?html,css,output" title="JS Bin" target="_blank">JS Bin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://babeljs.io/repl/" title="Babel在线编译" target="_blank">Babel在线编译</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.iconfinder.com/iconsets/miu" title="Iconfinder图标" target="_blank">Iconfinder图标</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.bejson.com/" title="在线JSON格式化" target="_blank">在线JSON格式化</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://img.top/" title="智能图像压缩" target="_blank">智能图像压缩</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开发过程中的发现"><span class="nav-number">1.</span> <span class="nav-text">开发过程中的发现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考组件"><span class="nav-number">2.</span> <span class="nav-text">参考组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明周期方法"><span class="nav-number">3.</span> <span class="nav-text">声明周期方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义-Component"><span class="nav-number">4.</span> <span class="nav-text">自定义 Component</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Page-的代码"><span class="nav-number">4.1.</span> <span class="nav-text">Page 的代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Component-的代码"><span class="nav-number">4.2.</span> <span class="nav-text">Component 的代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#探索页面卸载前的监听、页面返回监听、退出小程序监听"><span class="nav-number">5.</span> <span class="nav-text">探索页面卸载前的监听、页面返回监听、退出小程序监听</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#探索是否自定义-Header-和-TabBar"><span class="nav-number">6.</span> <span class="nav-text">探索是否自定义 Header 和 TabBar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#探索小程序运行原理"><span class="nav-number">7.</span> <span class="nav-text">探索小程序运行原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#探索图片适配问题"><span class="nav-number">8.</span> <span class="nav-text">探索图片适配问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#探索样式中不同单位的区别-px、rpx、rem、pt-等（待完成）"><span class="nav-number">9.</span> <span class="nav-text">探索样式中不同单位的区别 px、rpx、rem、pt 等（待完成）</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+    </header>
+ 
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                微信小程序开发基础2
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-08-25T13:01:54+08:00" content="2018-08-25">
+              2018-08-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/WeChat/" itemprop="url" rel="index">
+                    <span itemprop="name">WeChat</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="开发过程中的发现"><a href="#开发过程中的发现" class="headerlink" title="开发过程中的发现"></a>开发过程中的发现</h2><ul>
+<li>wx:for 可以变量对象，wx:for-index 为对象的 key，wx:for-item 为对象的值</li>
+<li><p>wx.getBackgroundAudioManager() 获取到的值，是可能随时发生变化的，如下情况的代码，在两次输出时可能会返回不同的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const backgroundAudioManager = wx.getBackgroundAudioManager();</div><div class="line">console.log(backgroundAudioManager.src);</div><div class="line">...</div><div class="line">console.log(backgroundAudioManager.src);</div></pre></td></tr></table></figure>
+</li>
+<li><p>WXML 中参数命名为 data-live-id，在 js 中调用的事件处理函数中通过参数 e.target.dataset.liveId 获取；命名为 data-liveId，通过参数 e.target.dataset.liveid 获取</p>
+</li>
+<li>scroll-view 设置 scroll-into-view 有时候没有效果，目前已知在先设置了 scroll-into-view 值，但是页面由于数据的处理还没有完成进行的是初始空列表的渲染，此时无法滚动到指定位置</li>
+<li>在点击页面返回按钮时如果想指定返回层级数，可以在 onUnload() 生命周期方法中，调用 getCurrentPages() 获取整个路由栈中的所有信息，来决定返回返回几级页面 <code>wx.navigateBack({ delta: 1 });</code>，但是可能存在中间页面显示一下就消失的效果</li>
+<li>图片的名称不要用汉字，在真机上（华为荣耀8）可能找不到资源</li>
+<li>对于图片高度未知的情况，可能存在图片被压缩了然后又正常显示的情况，可以设置图片的 <code>height: auto;</code> 或者添加 image 组件的 bindload 回调，控制图片在加载完成后再显示出来</li>
+<li>如果有富文本的内容需要后端返回，因为 web-view 有一些限制，为了降低开发成本可以使用长图的形式</li>
+<li>onUnload 是页面元素已经卸载后的回调，目前小程序没有提供页面元素卸载前的回调，如果在 onUnload 中进行获取页面元素的操作可能会报错</li>
+<li>官方文档中描述，wx:if 有更高的切换消耗而 hidden 有更高的初始渲染消耗，如果需要频繁切换的情景下，用 hidden 更好，如果在运行时条件不大可能改变则 wx:if 较好</li>
+<li>100vh 指的是去掉顶部 Header 和底部 TabBar (如果存在) 后的高度，wx.getSystemInfo() 返回的理论上也是去掉顶部 Header 和底部 TabBar (如果存在) 后的高度，但存在适配问题，在 android 机上不同页面调用可能返回不同的值</li>
+</ul>
+<h2 id="参考组件"><a href="#参考组件" class="headerlink" title="参考组件"></a>参考组件</h2><p><a href="https://gitee.com/SolitaryAngel/doomm" target="_blank" rel="external">弹幕 doomm</a><br><a href="https://github.com/GeoffZhu/wepy-swipe-delete" target="_blank" rel="external">滑动删除 wepy-swipe-delete（考虑封装）</a><br><a href="https://github.com/jingle1267/demo" target="_blank" rel="external">小程序官方示例</a><br><a href="https://github.com/charleyw/wechat-weapp-redux" target="_blank" rel="external">小程序 Redux 绑定库</a><br><a href="https://github.com/icindy/wxParse" target="_blank" rel="external">富文本解析 wxParse（考虑改为 ts）</a><br><a href="https://www.jianshu.com/p/c681007a6287" target="_blank" rel="external">可滑动 tabs（考虑封装）</a><br><a href="https://github.com/youzan/zanui-weapp" target="_blank" rel="external">赞组件库 zanui-weapp</a><br><a href="https://github.com/meili/minui" target="_blank" rel="external">MinUI 组件库</a><br><a href="https://github.com/wenshan/iwebchat" target="_blank" rel="external">wepy基础 UI 组件</a></p>
+<h2 id="声明周期方法"><a href="#声明周期方法" class="headerlink" title="声明周期方法"></a>声明周期方法</h2><p>// 初始化，显示 Page1 页面<br>App === onLaunch<br>App === onShow<br>Page1 === onLoad<br>Page1 === onShow<br>Page1 === onReady</p>
+<p>// 跳转到 Page2 页面<br>Page1 === onHide<br>Page2 === onLoad<br>Page2 === onShow<br>Page2 === onReady</p>
+<p>// 从 Page2 返回 Page1 页面<br>Page2 === onUnload<br>Page1 === onShow</p>
+<p>// 切后台<br>Page1 === onHide<br>App === onHide</p>
+<h2 id="自定义-Component"><a href="#自定义-Component" class="headerlink" title="自定义 Component"></a>自定义 Component</h2><p>自定义 Component 需要注意的主要是 Component 中调用调用处 Page 的方法的方式，以及自定义子组件的传入方式。</p>
+<h3 id="Page-的代码"><a href="#Page-的代码" class="headerlink" title="Page 的代码"></a>Page 的代码</h3><p>page.json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;usingComponents&quot;: &#123;</div><div class="line">    &quot;voice&quot;: &quot;/components/voice/voice&quot;,</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>page.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Page(&#123;</div><div class="line">    ...</div><div class="line">    handleVoiceSeek(e) &#123;</div><div class="line">        // e.detail 内是 Component 传入的参数，还可通过 e.target.dataset.src 获取调用组件时传入的 data-src 参数</div><div class="line">        this.backgroundAudioManager.seek(e.detail.value);</div><div class="line">    &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>page.wxml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;view&gt;</div><div class="line">    &lt;voice</div><div class="line">        data-src=&quot;&#123;&#123;particle.audio.uri&#125;&#125;&quot;</div><div class="line">        bind:_handleVoiceSeek=&quot;handleVoiceSeek&quot;</div><div class="line">        src=&quot;&#123;&#123;particle.audio.uri&#125;&#125;&quot;</div><div class="line">        playing=&quot;&#123;&#123;true&#125;&#125;&quot;</div><div class="line">        currentTime=&quot;&#123;&#123;particle.audio.currentTime&#125;&#125;&quot;</div><div class="line">        duration=&quot;&#123;&#123;particle.audio.duration&#125;&#125;&quot;</div><div class="line">        formatedCurrentTime=&quot;&#123;&#123;particle.audio.formatedCurrentTime&#125;&#125;&quot;</div><div class="line">        formatedEndedTime=&quot;&#123;&#123;particle.audio.formatedEndedTime&#125;&#125;&quot;</div><div class="line">    &gt;</div><div class="line">        &lt;view slot=&quot;content&quot;&gt;这里是插入到组件slot中的内容&lt;/view&gt;</div><div class="line">    &lt;/voice&gt;</div><div class="line">&lt;/view&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="Component-的代码"><a href="#Component-的代码" class="headerlink" title="Component 的代码"></a>Component 的代码</h3><p>component.json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;component&quot;: true</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>component.ts<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">Component(&#123;</div><div class="line">  options: &#123;</div><div class="line">    multipleSlots: true, // 在组件定义时的选项中启用多slot支持</div><div class="line">  &#125;,</div><div class="line">  methods: &#123;</div><div class="line">    _handleSeek(e) &#123;</div><div class="line">        // 此处的参数 e 是 slider 传入的，触发调用处的 bind:_handleVoiceSeek 对应的 js 中定义的方法并传入参数，也就是调用 handleVoiceSeek 方法</div><div class="line">        this.triggerEvent(&apos;_handleVoiceSeek&apos;, &#123; value: e.detail.value &#125;);</div><div class="line">    &#125;,</div><div class="line">  &#125;,</div><div class="line">  properties: &#123;</div><div class="line">    src: &#123;</div><div class="line">      type: String,</div><div class="line">    &#125;,</div><div class="line">    playing: &#123;</div><div class="line">      type: Boolean,</div><div class="line">    &#125;,</div><div class="line">    currentTime: &#123;</div><div class="line">      type: Number,</div><div class="line">    &#125;,</div><div class="line">    duration: &#123;</div><div class="line">      type: Number,</div><div class="line">    &#125;,</div><div class="line">    formatedCurrentTime: &#123;</div><div class="line">      type: String,</div><div class="line">    &#125;,</div><div class="line">    formatedEndedTime: &#123;</div><div class="line">      type: String,</div><div class="line">    &#125;,</div><div class="line">  &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>component.wxml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;view class=&quot;container&quot;&gt;</div><div class="line">    &lt;image wx:if=&quot;&#123;&#123;playing&#125;&#125;&quot; class=&quot;icon&quot; src=&quot;/images/pause.png&quot; /&gt;</div><div class="line">    &lt;image wx:else class=&quot;icon&quot; src=&quot;/images/play.png&quot; /&gt;</div><div class="line">    &lt;view class=&quot;sliderContainer&quot;&gt;</div><div class="line">        &lt;slider min=&quot;0&quot; max=&quot;&#123;&#123;duration&#125;&#125;&quot; value=&quot;&#123;&#123;currentTime&#125;&#125;&quot; bindchange=&quot;_handleSeek&quot; /&gt;</div><div class="line">        &lt;view class=&quot;time&quot;&gt;</div><div class="line">            &lt;text&gt;&#123;&#123;formatedCurrentTime&#125;&#125;&lt;/text&gt;</div><div class="line">            &lt;text&gt;&#123;&#123;formatedEndedTime&#125;&#125;&lt;/text&gt;</div><div class="line">        &lt;/view&gt;</div><div class="line">    &lt;/view&gt;</div><div class="line">    &lt;slot name=&quot;content&quot; /&gt;</div><div class="line">&lt;/view&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="探索页面卸载前的监听、页面返回监听、退出小程序监听"><a href="#探索页面卸载前的监听、页面返回监听、退出小程序监听" class="headerlink" title="探索页面卸载前的监听、页面返回监听、退出小程序监听"></a>探索页面卸载前的监听、页面返回监听、退出小程序监听</h2><p>目前小程序未提供这些功能！</p>
+<h2 id="探索是否自定义-Header-和-TabBar"><a href="#探索是否自定义-Header-和-TabBar" class="headerlink" title="探索是否自定义 Header 和 TabBar"></a>探索是否自定义 Header 和 TabBar</h2><p>在有些场景使用官方提供的 Header 和 TabBar 可能无法满足需求，官方会说可以使用自定的形式，但我查了下社区自定义可能存在不好处理的兼容性问题、android 原生事件无法监听的问题。如果没有真的特别需要、必须自定义，暂时还是不要自定义了。</p>
+<h2 id="探索小程序运行原理"><a href="#探索小程序运行原理" class="headerlink" title="探索小程序运行原理"></a>探索小程序运行原理</h2><p>微信小程序运行在三端：iOS、Android 和 开发者工具。在 iOS 上，小程序的 javascript 代码是运行在 JavaScriptCore 中（苹果开源的浏览器内核）；在 Android 上，小程序的 javascript 代码是通过 X5 内核来解析（QQ浏览器内核），X5 对 ES6 的支持不好，要兼容的话，可以使用 ES5 或者引入 babel-polyfill 兼容库；在开发工具上，小程序的 javascript 代码是运行在 nwjs（chrome内核）。</p>
+<p>微信开发者工具编辑器的实现原理和方式：它本身也是基于WEB技术体系实现的，nwjs + react，nwjs 简单说就是node + webkit，node提供给本地api能力，webkit提供web能力，两者结合就能使用JS+HTML实现本地应用程序，wxml 转化为 html用的是 reactjs，包括里面整套的逻辑都是建构在 reactjs 之上的。既然有nodejs，打包时ES6转ES5可引入babel-core的node包，CSS补全可引入postcss和autoprefixer的node包（postcss和autoprefixer的原理看这里），代码压缩可引入uglifyjs的node包。</p>
+<p>微信小程序的 JavaScript 运行环境即不是 Browser 也不是 Node.js。它运行在微信 App 的上下文中，不能操作 Browser context 下的 DOM，也不能通过 Node.js 相关接口访问操作系统 API。所以，严格意义来讲，微信小程序并不是 Html5，尽管开发过程和用到的技术栈和 Html5 是相通的。开发者写的所有代码最终将会打包成一份 JavaScript，并在小程序启动的时候运行，直到小程序销毁。</p>
+<p>小程序的视图层目前使用 WebView 作为渲染载体，而逻辑层是由独立的 JavascriptCore 作为运行环境。在架构上，WebView 和 JavascriptCore 都是独立的模块，并不具备数据直接共享的通道。当前，视图层和逻辑层的数据传输，实际上通过两边提供的 evaluateJavascript 所实现。即用户传输的数据，需要将其转换为字符串形式传递，同时把转换后的数据内容拼接成一份 JS 脚本，再通过执行 JS 脚本的形式传递到两边独立环境。但是 evaluateJavascript 的执行会受很多方面的影响，数据到达视图层并不是实时的。</p>
+<p>小程序代码包经过编译后，会放在微信的 CDN 上供用户下载，CDN 开启了 GZIP 压缩，所以用户下载的是压缩后的 GZIP 包，其大小比代码包原体积会更小。目前小程序打包是会将工程下所有文件都打入代码包内，也就是说，这些没有被实际使用到的库文件和资源也会被打入到代码包里，从而影响到整体代码包的大小。小程序启动时会从CDN下载小程序的完整包，一般是数字命名的，如：_-2082693788_4.wxapkg。</p>
+<p>小程序正式部署使用 webpack 打的包，而在打包的过程中，把以下变量给屏蔽了：<code>window,document,frames,self,location,navigator,localStorage,history,Caches,screen,alert,confirm,prompt,XMLHttpRequest,WebSocket</code>。主要是为了管理和监控，如果这些对象你能访问，就可以像操作通常的网页一样操作小程序，这是绝对不被允许的。</p>
+<img src="/2018/08/25/wechat-base2/folder.png" title="小程序打包后的结构">
+<p>所有的小程序最后基本都被打成上面的结构，其中：</p>
+<ul>
+<li>WAService.js 框架JS库，提供逻辑层基础的API能力</li>
+<li>WAWebview.js 框架JS库，提供视图层基础的API能力</li>
+<li>WAConsole.js 框架JS库，控制台</li>
+<li>app-config.js 小程序完整的配置，包含我们通过app.json里的所有配置，综合了默认配置型</li>
+<li>app-service.js 我们自己的JS代码，全部打包到这个文件</li>
+<li>page-frame.html 小程序视图的模板文件，所有的页面都使用此加载渲染，且所有的WXML都拆解为JS实现打包到这里</li>
+<li>pages 所有的页面，这个不是我们之前的wxml文件了，主要是处理WXSS转换，使用js插入到header区域</li>
+</ul>
+<p>微信小程序的框架包含两部分：AppView视图层，AppService逻辑层。AppView层用来渲染页面结构，所有的视图（wxml和wxss）都是单独的 WebView来承载。AppService层用来逻辑处理、数据请求、接口调用，整个小程序只有一个，并且整个生命周期常驻内存。它们在两个进程（两个 WebView）里运行，所以小程序打开至少就会有2个 WebView进程，由于每个视图都是一个独立的 WebView进程，考虑到性能消耗，小程序不允许打开超过5个层级的页面，当然同是也是为了体验更好。使用消息 publish 和 subscribe 机制实现两个 WebView之间的通信，实现方式就是统一封装一个 WeixinJSBridge 对象，而不同的环境封装的接口不一样。</p>
+<p>对逻辑和UI进行了完全隔离，这个跟当前流行的react，agular，vue有本质的区别，小程序逻辑和UI完全运行在2个独立的WebView里面，而后面这几个框架还是运行在一个 WebView 里面的，如果你想还是可以直接操作 dom 对象进行 ui 渲染的。</p>
+<p>微信自己写了2个工具：wcc 把 WXML 转换为 VirtualDOM；wcsc 把 WXSS 转换为一个 JS 字符串的形式通过 style 标签append 到 header 里。</p>
+<h2 id="探索图片适配问题"><a href="#探索图片适配问题" class="headerlink" title="探索图片适配问题"></a>探索图片适配问题</h2><p>方式一：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@media  (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2)&#123;</div><div class="line">  .imgTest&#123;</div><div class="line">    background: url(https://images/2x.png) no-repeat;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">@media  (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3)&#123;</div><div class="line">  .imgTest&#123;</div><div class="line">    background: url(https://images/3x.png) no-repeat;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>方式二：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 获取设备像素比，在 wxml 中根据不同像素比显示不同图片</div><div class="line">const getPixelRatio = () =&gt; &#123;</div><div class="line">  let pixelRatio = 0</div><div class="line">  wx.getSystemInfo(&#123;</div><div class="line">    success: function (res) &#123;</div><div class="line">      pixelRatio = res.pixelRatio</div><div class="line">    &#125;,</div><div class="line">    fail: function () &#123;</div><div class="line">      pixelRatio = 0</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">  return pixelRatio</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>方式三：<br>只使用三倍图，或者说最大尺寸的图片，在样式中指定宽高。我个人和团队的 UI 设计师都倾向于使用这种方式，因为小程序限制上传代码的大小为 2M，尽量不使用多套图片，使用 UI 切好的大尺寸的图片在小尺寸手机上效果也不会有太大影响。</p>
+<h2 id="探索样式中不同单位的区别-px、rpx、rem、pt-等（待完成）"><a href="#探索样式中不同单位的区别-px、rpx、rem、pt-等（待完成）" class="headerlink" title="探索样式中不同单位的区别 px、rpx、rem、pt 等（待完成）"></a>探索样式中不同单位的区别 px、rpx、rem、pt 等（待完成）</h2><p>在显示屏上，每一个画面都是由无数的点阵形成的，这个点阵中，每一个点叫做像素，就是 pixel（缩写为 px），1px 所能代表的尺寸并非是一成不变的，同样 px 尺寸的元素，在高分屏上显示会明显要比在低分屏显得更小。css 中的 px 单位，是多个设备像素，1个css像素所对应的物理像素个数是不一致的，每英寸的像素的数量保持在96左右，因此设置为12px的元素，无论使用什么样的设备查看网页，字体的大小始终为1/8英寸。</p>
+<p>px 像素，是一个点，点的大小是会变的，也称“相对长度”<br>pt 全称 point，1/72英寸，用于印刷业，也称“绝对长度”<br>dp = px <em> (目标设备 dpi 分辨率 / 160)<br>rpx = px </em> (目标设备宽 px 值 / 750)<br>rem: 规定屏幕宽度为20rem；1rem = (750/20)rpx</p>
+<p>dp 是以屏幕分辨率为基准的动态单位，而 rpx 是以长度为基准的动态单位，两者是不能直接进行互换的。</p>
+<p>如果将微信小程序放到平板电脑上运行，屏幕的宽度 px 值有可能会变化（横竖屏、分屏模式等等），这时候，再以宽度为基准，就会出现元素显示不正确的问题，从这一点可以看出，微信团队目前并不希望将小程序扩展到手机以外的设备中。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WeChat/" rel="tag">#WeChat</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/25/wechat-base1/" rel="next" title="微信小程序开发基础1">
+                <i class="fa fa-chevron-left"></i> 微信小程序开发基础1
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/25/wechat-api/" rel="prev" title="小程序基础 api">
+                小程序基础 api <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+       
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小朱</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+
+            $('.popup').detach().appendTo('.container');
+            //$('.popup').detach().appendTo('.header-inner');
+
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
